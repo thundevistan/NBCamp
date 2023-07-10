@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 import 'package:team7_work/FirstTab.dart';
 import 'package:team7_work/ThirdTab.dart';
 import 'package:team7_work/SecondTab.dart';
-import 'package:team7_work/FifthTab.dart';
 import 'package:team7_work/FourthTab.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,12 +26,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  void _onTabTapped(BuildContext context, int index) {
-    DefaultTabController.of(context)?.animateTo(index);
-  }
+  @override
+  State<HomePage> createState() => _HomePageState(); }
 
   @override
   Widget build(BuildContext context) {

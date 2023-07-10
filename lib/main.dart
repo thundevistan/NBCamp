@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 import 'package:team7_work/FirstTab.dart';
+import 'package:team7_work/SecondTap.dart';
 import 'package:team7_work/ThirdTab.dart';
-import 'package:team7_work/SecondTab.dart';
+import 'package:team7_work/FirstTab.dart';
 import 'package:team7_work/FourthTab.dart';
 import 'package:team7_work/FifthTab.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: DefaultTabController(
         length: 5,
-        initialIndex: 1,
+        initialIndex: 0,
         child: HomePage(),
       ),
     );

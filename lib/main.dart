@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'second_tab.dart';
-import 'fifth_tab.dart';
-import 'first_tab.dart';
-import 'fourth_tab.dart';
-import 'third_tab.dart';
+import 'package:team7_work/FirstTab.dart';
+import 'package:team7_work/ThirdTab.dart';
+import 'package:team7_work/SecondTab.dart';
+import 'package:team7_work/FifthTab.dart';
+import 'package:team7_work/FourthTab.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 4,
+        length: 5,
         initialIndex: 1,
         child: HomePage(),
       ),
@@ -24,42 +24,78 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  void _onTabTapped(BuildContext context, int index) {
+    DefaultTabController.of(context)?.animateTo(index);
+  }
 
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+      body: Column(
         children: [
-          TabBarView(
-            children: [],
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: Column(
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              alignment: Alignment.topCenter,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    alignment: Alignment.topCenter,
-                    child: TabPageSelector(
-                      color: DefaultTabController.of(context)?.index == 1
-                          ? Colors.black38
-                          : Colors.grey[400],
-                      selectedColor:
-                          DefaultTabController.of(context)?.index == 1
-                              ? Colors.white
-                              : Colors.black26,
-                      indicatorSize: 8,
+                  GestureDetector(
+                    onTap: () => _onTabTapped(context, 0),
+                    child: Image.asset(
+                      'assets/home.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _onTabTapped(context, 1),
+                    child: Image.asset(
+                      'assets/settings.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _onTabTapped(context, 2),
+                    child: Image.asset(
+                      'assets/person.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _onTabTapped(context, 3),
+                    child: Image.asset(
+                      'assets/work.png',
+                      width: 30,
+                      height: 30,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => _onTabTapped(context, 4),
+                    child: Image.asset(
+                      'assets/favorite.png',
+                      width: 30,
+                      height: 30,
                     ),
                   ),
                 ],
               ),
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                FirstTab(),
+                SecondTab(),
+                ThirdTab(),
+                FourthTab(),
+                FifthTab(),
+              ],
             ),
           ),
         ],

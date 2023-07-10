@@ -5,6 +5,7 @@ import 'package:team7_work/FirstTab.dart';
 import 'package:team7_work/ThirdTab.dart';
 import 'package:team7_work/SecondTab.dart';
 import 'package:team7_work/FourthTab.dart';
+import 'package:team7_work/FifthTab.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -30,73 +31,44 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState(); }
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          TabBarView(
+            children: [
+              FirstTab(),
+              SecondTab(),
+              ThirdTab(),
+              FourthTab(),
+              FifthTab(),
+            ],
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+              child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () => _onTabTapped(context, 0),
-                    child: Image.asset(
-                      'assets/home.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => _onTabTapped(context, 1),
-                    child: Image.asset(
-                      'assets/settings.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => _onTabTapped(context, 2),
-                    child: Image.asset(
-                      'assets/person.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => _onTabTapped(context, 3),
-                    child: Image.asset(
-                      'assets/work.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => _onTabTapped(context, 4),
-                    child: Image.asset(
-                      'assets/favorite.png',
-                      width: 30,
-                      height: 30,
+                  Container(
+                    alignment: Alignment.topCenter,
+                    child: TabPageSelector(
+                      color: DefaultTabController.of(context)?.index == 1
+                          ? Colors.black38
+                          : Colors.grey[400],
+                      selectedColor:
+                          DefaultTabController.of(context)?.index == 1
+                              ? Colors.white
+                              : Colors.black26,
+                      indicatorSize: 8,
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                FirstTab(),
-                SecondTab(),
-                ThirdTab(),
-                FourthTab(),
-                FifthTab(),
-              ],
             ),
           ),
         ],

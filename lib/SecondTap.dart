@@ -8,7 +8,7 @@ class SecondTab extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          'First Tab',
+          'SecondTap',
           style: TextStyle(fontSize: 24),
         ),
       ),

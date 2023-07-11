@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:team7_work/FirstTab.dart';
+import 'package:team7_work/SecondTap.dart';
 import 'package:team7_work/ThirdTab.dart';
 import 'package:team7_work/FirstTab.dart';
 import 'package:team7_work/FourthTab.dart';
@@ -28,23 +29,18 @@ class FirstTab extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Image.asset(
-                    'images/gitlogo.png',
-                    width: 100,
-                    height: 100,
-                  ),
                   Spacer(),
                   Column(
                     children: [
                       Text(
-                        'Hi,Github!',
+                        'Introduce Our Team!',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'welcome',
+                        'This is ME',
                         style: TextStyle(
                             color: Color.fromARGB(255, 165, 164, 164),
                             fontSize: 25),
@@ -57,15 +53,16 @@ class FirstTab extends StatelessWidget {
                 height: 120,
               ),
               Container(
+                // 첫 번째 타일
                 decoration: BoxDecoration(
-                    color: Color(0xFF1F2123),
+                    color: Color.fromARGB(255, 67, 83, 99),
                     borderRadius: BorderRadius.circular(20)),
                 child: Row(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(
-                        Icons.face_2,
+                        Icons.face_sharp,
                         size: 80,
                         color: Colors.white,
                       ),
@@ -73,10 +70,28 @@ class FirstTab extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SecondTab(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Ji Gyeon",
+                        style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    )
                   ],
                 ),
               ),
               Transform.translate(
+                // 두 번째 타일
                 offset: Offset(0, -20),
                 child: Container(
                   decoration: BoxDecoration(
@@ -87,7 +102,7 @@ class FirstTab extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.face_3,
+                          Icons.face_6,
                           size: 80,
                           color: Colors.black,
                         ),
@@ -100,13 +115,16 @@ class FirstTab extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FirstTab(),
+                              builder: (context) => ThirdTab(),
                             ),
                           );
                         },
                         child: Text(
-                          'Seul Bi',
-                          style: TextStyle(color: Colors.black87, fontSize: 30),
+                          'Hyun Jun',
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -114,19 +132,20 @@ class FirstTab extends StatelessWidget {
                 ),
               ),
               Transform.translate(
+                // 세 번째 타일
                 offset: Offset(0, -40),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 141, 190, 235),
+                      color: Color.fromARGB(255, 45, 90, 133),
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.face_6,
+                          Icons.face_3,
                           size: 80,
-                          color: Color.fromARGB(255, 46, 44, 44),
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(
@@ -142,8 +161,11 @@ class FirstTab extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'ji Gyeon',
-                          style: TextStyle(color: Colors.black87, fontSize: 30),
+                          'Min Ji ',
+                          style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],
@@ -151,10 +173,11 @@ class FirstTab extends StatelessWidget {
                 ),
               ),
               Transform.translate(
+                // 네 번째 타일
                 offset: Offset(0, -60),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 247, 248, 163),
+                      color: Color.fromARGB(255, 169, 170, 136),
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     children: [
@@ -173,16 +196,15 @@ class FirstTab extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => ThirdTab(),
-                            ),
+                            MaterialPageRoute(builder: (context) => FifthTab()),
                           );
                         },
                         child: Text(
-                          'Min Woo',
+                          'Min Jun',
                           style: TextStyle(
                               color: Color.fromARGB(255, 21, 21, 22),
-                              fontSize: 30),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ],

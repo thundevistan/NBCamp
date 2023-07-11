@@ -8,7 +8,7 @@ class FifthTab extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          'First Tab',
+          'FifthTab',
           style: TextStyle(fontSize: 24),
         ),
       ),

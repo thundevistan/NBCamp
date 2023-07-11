@@ -20,7 +20,7 @@ class FirstTab extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          decoration: BoxDecoration(color: Colors.black), // 내용 영역을 흰색으로 설정
+          decoration: BoxDecoration(color: Color(0xff050521)), // 내용 영역을 흰색으로 설정
           child: ListView(
             children: [
               SizedBox(
@@ -55,7 +55,7 @@ class FirstTab extends StatelessWidget {
               Container(
                 // 첫 번째 타일
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 67, 83, 99),
+                    color: Color(0xff9C74ED),
                     borderRadius: BorderRadius.circular(20)),
                 child: Row(
                   children: [
@@ -83,7 +83,7 @@ class FirstTab extends StatelessWidget {
                         "Ji Gyeon",
                         style: TextStyle(
                             color: Colors.black87,
-                            fontSize: 30,
+                            fontSize: 25,
                             fontWeight: FontWeight.w400),
                       ),
                     )
@@ -123,7 +123,7 @@ class FirstTab extends StatelessWidget {
                           'Hyun Jun',
                           style: TextStyle(
                               color: Colors.black87,
-                              fontSize: 30,
+                              fontSize: 25,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -136,7 +136,7 @@ class FirstTab extends StatelessWidget {
                 offset: Offset(0, -40),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 45, 90, 133),
+                      color: Color(0xff7AAAE6),
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     children: [
@@ -161,10 +161,10 @@ class FirstTab extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'Min Ji ',
+                          'MinJi ',
                           style: TextStyle(
                               color: Colors.black87,
-                              fontSize: 30,
+                              fontSize: 25,
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -177,7 +177,7 @@ class FirstTab extends StatelessWidget {
                 offset: Offset(0, -60),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 169, 170, 136),
+                      color: Color.fromARGB(255, 243, 245, 247),
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     children: [
@@ -186,7 +186,7 @@ class FirstTab extends StatelessWidget {
                         child: Icon(
                           Icons.face_5,
                           size: 80,
-                          color: const Color.fromARGB(255, 61, 45, 45),
+                          color: const Color.fromARGB(255, 10, 9, 10),
                         ),
                       ),
                       SizedBox(
@@ -200,10 +200,10 @@ class FirstTab extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'Min Jun',
+                          'MinJun',
                           style: TextStyle(
                               color: Color.fromARGB(255, 21, 21, 22),
-                              fontSize: 30,
+                              fontSize: 25,
                               fontWeight: FontWeight.w400),
                         ),
                       ),

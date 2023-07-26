@@ -5,8 +5,8 @@ import java.util.Random
 
 class Balance {
     val random = Random()
-    fun rand(from : Int, to : Int): Int {
-        return random.nextInt(to-from)+from
+    fun rand(from: Int, to: Int): Int {
+        return random.nextInt(to - from) + from
     }
 
 }

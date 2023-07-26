@@ -36,6 +36,7 @@ open class Menu {
         arrayOf("성심갸또컬렉션 2호", dec.format(39000)),
         arrayOf("마들파운드 2호", dec.format(30000))
     )
+
     open fun add(orderList: MutableSet<String>) {
         // 주문
     }

@@ -9,6 +9,6 @@ class Snacks() : Menu() {
         println("4. Snacks 4 | 간단한 설명")
 
         var choice = readln()!!.toInt()
-        orderList.add(snacksArray[choice-1][0].toString())
+        orderList.add(snacksArray[choice - 1][0].toString())
     }
 }

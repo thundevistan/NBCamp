@@ -1,4 +1,3 @@
-package com.example.nbcamp_week3_assignment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

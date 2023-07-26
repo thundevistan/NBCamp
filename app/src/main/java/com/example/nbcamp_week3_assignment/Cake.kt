@@ -9,6 +9,6 @@ class Cake() : Menu() {
         println("4. Cake 4 | 간단한 설명")
 
         var choice = readln()!!.toInt()
-        orderList.add(cakeArray[choice-1][0].toString())
+        orderList.add(cakeArray[choice - 1][0].toString())
     }
 }

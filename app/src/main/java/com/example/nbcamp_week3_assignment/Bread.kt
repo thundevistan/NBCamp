@@ -9,7 +9,7 @@ class Bread() : Menu() {
         println("4. 맘모스빵 | 간단한 설명")
 
         var choice = readln()!!.toInt()
-        orderList.add(breadArray[choice-1][0].toString())
-        //테스트
+        orderList.add(breadArray[choice - 1][0].toString())
+
     }
 }

@@ -6,7 +6,11 @@ fun main() {
     val cake = Cake()
     var menu = Menu()
     var n3: Int = 0
+    var account = Balance().rand(20,30)
+
     println("성심당에 오신것을 환영합니다.")
+    println("현재 잔액은 ${account}만원 입니다.")
+
     Datetime().inspection() //은행결제시간과 현재 시간을 받아오는 코드입니다 나중에 옮겨서 사용하시면 됩니다:)
 
     while (true) {

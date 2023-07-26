@@ -7,6 +7,7 @@ fun main() {
     var menu = Menu()
     var n3: Int = 0
     println("성심당에 오신것을 환영합니다.")
+    Datetime().inspection() //은행결제시간과 현재 시간을 받아오는 코드입니다 나중에 옮겨서 사용하시면 됩니다:)
 
     while (true) {
         while (true) {
@@ -79,6 +80,7 @@ fun main() {
     }
 
     println(orderList) //*출력대신 Order class 호출 예정* -> 호출 시 orderList를 함께 넘겨주기
+
 }
 
 

@@ -7,6 +7,7 @@ class Order : Menu() {
     fun displayOrder(orderList: MutableSet<String>, currentBalance: Int) {
 //        println("[ ORDER MENU ]")
 //        println("5. Order      | 장바구니를 확인 후 주문합니다.")
+//        지우기
 
         // 주문 목록이 비어있을 경우 메시지 출력 후 함수 종료
         if (orderList.isEmpty()) {

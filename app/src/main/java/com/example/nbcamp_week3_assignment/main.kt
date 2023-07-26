@@ -1,5 +1,5 @@
 package com.example.nbcamp_week3_assignment
-
+//        지우기
 import java.text.DecimalFormat
 
 fun main() {

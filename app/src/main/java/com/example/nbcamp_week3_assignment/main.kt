@@ -15,6 +15,7 @@ fun main() {
     val cake = Cake()
     var menu = Menu()
     var n3: Int = 0
+    var order = Order()
     var account = Balance().rand(20,30)
 
     println("성심당에 오신것을 환영합니다.")

@@ -18,13 +18,11 @@ class Order : Menu() {
         var totalAmount = 0.0
 
         for (item in orderList) {
-            // 쉼표를 제거하여 숫자만으로 이루어진 문자열로 변환
-            val price = item.substringAfterLast("|").replace(",", "").trim()
             val menuInfo = getMenuInfo(item)
 
             if (menuInfo != null && menuInfo.size == 2) {
-                println("${menuInfo[0]} | ${dec.format(price.toDouble())}")
-                totalAmount += price.toDouble()
+                println("${menuInfo[0]} | ${dec.format(menuInfo[1].toDouble())}")
+                totalAmount += menuInfo[1].toDouble()
             } else {
                 println("주문 목록에 존재하지 않는 메뉴가 있습니다: $item")
             }
@@ -54,7 +52,9 @@ class Order : Menu() {
         for (menuArray in menuArrays) {
             for (menu in menuArray) {
                 if (item.contains(menu[0])) {
-                    return menu
+                    // 쉼표를 제거하여 가격을 숫자 형태로 변환
+                    val price = menu[1].replace(",", "").toDouble()
+                    return arrayOf(menu[0], price.toString())
                 }
             }
         }

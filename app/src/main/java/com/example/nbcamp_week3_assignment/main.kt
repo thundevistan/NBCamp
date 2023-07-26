@@ -51,7 +51,7 @@ fun main() {
             when (n3) {
                 1 -> break
                 2 -> {
-                    order.showOrderDetails(orderList, currentBalance) // 주문 내역과 결제 기능 호출
+                    order.displayOrder(orderList, currentBalance) // 주문 내역과 결제 기능 호출
                     break
                 }
                 else -> println("1 또는 2의 숫자만 입력할 수 있습니다")

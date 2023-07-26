@@ -10,6 +10,6 @@ class Bread() : Menu() {
 
         var choice = readln()!!.toInt()
         orderList.add(breadArray[choice-1][0].toString())
-        //테스트
+
     }
 }

@@ -2,11 +2,12 @@ package com.example.nbcamp_week3_assignment
 
 import Datetime
 import kotlin.concurrent.thread
+import kotlin.system.exitProcess
 
 // "Order" 클래스는 "Menu" 클래스를 상속
 class Order : Menu() {
     // 주문 내역을 출력하고 주문 처리를 수행
-    fun displayOrder(orderList: MutableSet<String>, currentBalance: Int) {
+    fun displayOrder(orderList: MutableList<String>, currentBalance: Int) {
 //        println("[ ORDER MENU ]")
 //        println("5. Order      | 장바구니를 확인 후 주문합니다.")
 //        지우기
@@ -41,32 +42,46 @@ class Order : Menu() {
         println("\n[ Total ]")
         println("W ${dec.format(totalCount)}")
 
-        println("\n결제하시겠습니까? [yes : 1] [no : 2] ")
-        var n = readLine()?.toIntOrNull() ?: 0
+        while (true) {
+            try {
+                println("\n결제하시겠습니까? [yes : 1] [no : 2] ")
+                var n = readLine()?.toIntOrNull() ?: 0
 
-        when (n) {
-            1 -> {
-                if (totalCount <= currentBalance) {
-                    Datetime().inspection() // 현재 시각을 받아옴
-                    //println("현재 시각은 $currentTime 입니다.") // 현재 시각 출력
-                    println("결제가 완료되었습니다. 총 ${dec.format(totalCount)}W 결제되었습니다.")
-                    orderList.clear()
-                } else {
-                    // 결제 금액이 현재 잔고보다 큰 경우 주문을 처리X
-                    println("현재 잔액은 ${dec.format(currentBalance)}W 으로 ${dec.format(totalCount - currentBalance)}W이 부족해서 주문할 수 없습니다.")
+                when (n) {
+                    1 -> {
+                        if (totalCount <= currentBalance) {
+                            Datetime().inspection() // 현재 시각을 받아옴
+                            //println("현재 시각은 $currentTime 입니다.") // 현재 시각 출력
+                            println("결제가 완료되었습니다. 총 ${dec.format(totalCount)}W 결제되었습니다.")
+                            orderList.clear()
+                            break
+                        } else {
+                            // 결제 금액이 현재 잔고보다 큰 경우 주문을 처리X
+                            println(
+                                "현재 잔액은 ${dec.format(currentBalance)}W 으로 ${
+                                    dec.format(
+                                        totalCount - currentBalance
+                                    )
+                                }W이 부족해서 주문할 수 없습니다."
+                            )
+                        }
+                    }
+
+                    2 -> {
+                        println("키오스크를 종료합니다.")
+                        exitProcess(0)
+                    }
+
+                    else -> {
+                        println("1 또는 2의 숫자만 입력할 수 있습니다")
+                    }
                 }
-            }
-
-            2 -> {
-                println("키오스크를 종료합니다.")
-            }
-
-            else -> {
-                println("1 또는 2의 숫자만 입력할 수 있습니다")
+            } catch (e: java.lang.NumberFormatException) {
+                println("잘못 입력하셨습니다. 숫자를 입력해 주세요")
             }
         }
         println("성심당을 찾아주셔서 감사합니다 오늘도 좋은하루 되세요~")
-        return
+        exitProcess(0)
     }
 
     private fun getMenuList(item: String): Array<String>? {

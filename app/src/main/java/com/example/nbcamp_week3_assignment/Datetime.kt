@@ -1,7 +1,7 @@
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Datetime{
+class Datetime {
     val currentTime = LocalDateTime.now() //현재시간 받아오기
     val formatter = DateTimeFormatter.ofPattern("현재 시각은 HH시:mm분 입니다.") //출력형식 지정
     val formattedTime = currentTime.format(formatter) //현재시간 출력형식에 맞춰 저장
@@ -18,6 +18,7 @@ class Datetime{
         }
     }
 }
+
 fun inspectionFun(currentTime: LocalDateTime): Boolean {
     //점검시간 구간 설정 22:00~22:30분!!
     val startTime = currentTime.withHour(22).withMinute(0).withSecond(0) // 22:00

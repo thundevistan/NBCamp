@@ -9,10 +9,11 @@ fun main() {
     val bread = Bread()
     val snacks = Snacks()
     val cake = Cake()
+    val rollsAndPound = RollsAndPound()
     var menu = Menu()
     var n3: Int = 0
     var order = Order()
-    var account = Balance().rand(20,30)
+    var account = Balance().rand(20, 30)
     println("성심당에 오신것을 환영합니다.")
     println("현재 잔액은 ${account}원 입니다.")
 
@@ -55,7 +56,7 @@ fun main() {
             1 -> bread.add(orderList)
             2 -> snacks.add(orderList)
             3 -> cake.add(orderList)
-            4 -> println("롤 & 파운드")
+            4 -> rollsAndPound.add(orderList)
             else -> println("예외처리")
         }
         println("장바구니에 추가되었습니다!")

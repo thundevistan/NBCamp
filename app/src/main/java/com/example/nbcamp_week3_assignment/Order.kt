@@ -1,4 +1,5 @@
 package com.example.nbcamp_week3_assignment
+
 import Datetime
 import kotlin.concurrent.thread
 
@@ -55,14 +56,19 @@ class Order : Menu() {
                     println("현재 잔액은 ${dec.format(currentBalance)}W 으로 ${dec.format(totalCount - currentBalance)}W이 부족해서 주문할 수 없습니다.")
                 }
             }
+
             2 -> {
                 println("키오스크를 종료합니다.")
             }
+
             else -> {
                 println("1 또는 2의 숫자만 입력할 수 있습니다")
             }
         }
+        println("성심당을 찾아주셔서 감사합니다 오늘도 좋은하루 되세요~")
+        return
     }
+
     private fun getMenuList(item: String): Array<String>? {
         // 주문 항목 문자열을 받아와서 해당 메뉴에 대한 정보를 가져오기
         // menuArrays는 breadArray, snacksArray, cakeArray, rollsAndPoundArray 배열들을 포함

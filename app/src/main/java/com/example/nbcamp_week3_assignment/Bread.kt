@@ -4,8 +4,8 @@ class Bread() : Menu() {
     override fun add(orderList: MutableSet<String>) {
         var num = 1
         for (menu in breadArray) {
-            println("[${num}] ${menu[0]} | ${menu[1]}원")
-            num ++
+            println("[${num}] ${menu[1].padEnd(6)} ₩ | ${menu[0]}")
+            num++
         }
 
         var choice = readln()!!.toInt()

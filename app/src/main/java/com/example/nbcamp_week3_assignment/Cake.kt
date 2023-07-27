@@ -1,7 +1,7 @@
 package com.example.nbcamp_week3_assignment
 
 class Cake() : Menu() {
-    override fun add(orderList: MutableSet<String>) {
+    override fun add(orderList: MutableList<String>) {
         var num = 1
         for (menu in cakeArray) {
             println("[${num}] ${menu[1].padEnd(6)} ₩ | ${menu[0]}원")
@@ -12,3 +12,4 @@ class Cake() : Menu() {
         orderList.add(cakeArray[choice - 1][0].toString())
     }
 }
+//

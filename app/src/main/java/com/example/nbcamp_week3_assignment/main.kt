@@ -1,9 +1,5 @@
 package com.example.nbcamp_week3_assignment
 
-
-import java.text.DecimalFormat
-
-
 import Datetime
 import kotlin.concurrent.thread
 
@@ -91,9 +87,6 @@ fun main() {
         when (n3) {
             2 -> break
         }
-    }
-    thread(start = true) {
-        WaitCount().waitCount()
     }
 
     println(orderList) //*출력대신 Order class 호출 예정* -> 호출 시 orderList를 함께 넘겨주기

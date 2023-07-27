@@ -1,6 +1,6 @@
 package com.example.nbcamp_week3_assignment
 import Datetime
-import java.text.DecimalFormat
+import kotlin.concurrent.thread
 
 // "Order" 클래스는 "Menu" 클래스를 상속
 class Order : Menu() {
@@ -19,6 +19,10 @@ class Order : Menu() {
         // 주문 내역을 출력
         println("\n아래와 같이 주문 하시겠습니까?\n")
         println("[ Orders ]")
+
+        thread(start = true) {
+            WaitCount().waitCount()
+        }
         var totalCount = 0.0 // 초기값으로 0.0을 설정
 
         for (item in orderList) {

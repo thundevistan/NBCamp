@@ -1,4 +1,4 @@
-![image](https://github.com/SoftyChoo/nbCamp_week3_assignment/assets/132810978/c2c8c41b-3ab5-4571-9593-05f1c44c8aba)![header](https://capsule-render.vercel.app/api?type=waving&color=0:6e45e2,100:88d3ce&height=290&section=header&text=nbCampWeek3Assignment&fontColor=ffffff&fontSize=50&animation=blink&fontAlignY=38&desc=내일배움캠프%203주차%2019조입니다!)
+![header](https://capsule-render.vercel.app/api?type=waving&color=0:6e45e2,100:88d3ce&height=290&section=header&text=nbCampWeek3Assignment&fontColor=ffffff&fontSize=50&animation=blink&fontAlignY=38&desc=내일배움캠프%203주차%2019조입니다!)
 
 # 🙆🏻‍♂️ Team Members
 
@@ -50,13 +50,13 @@
 
 - 선택한 번호에 따라 각각의 메뉴들에 대한 항목들이 출력되도록 구현
 
-<Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100755467.png" width = "50%"><Img src ="/https://softychoo.github.io/assets/img/blog/image-20230728100136147.png" width = "50%">
+<Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100045649.png" width = "50%"><Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100136147.png" width = "50%">
 
 - 항목 선택 시 추가되었다는 메시지와 함께 구현 해놓은 `orderList` 에 항목 추가됨
 - ① 클릭 시 다시 상단의 [성심당 MENU] 로 돌아가 추가주문 구현
 - ② 클릭 시 현재의 List의 정보를 가지고 결제를 담당하는 `Order` 클래스 호출
 
-<Img src ="/Users/minsuchoo/projects/GitHub/softychoo.github.io/assets/img/blog/image-20230728100755467.png" width = "50%"><Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100850840.png" width = "50%">
+<Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100755467.png" width = "50%"><Img src ="https://softychoo.github.io/assets/img/blog/image-20230728100850840.png" width = "50%">
 
 - 결제 클릭 시`Order` class 내부에서 장바구니(`orderList`) 를 불러와 항목 출력 후 총 가격 표시
 - 결제하시겠습니까 메시지가 뜨면서 `WaitCount` 클래스르 호출해 현재 대기자 수를 랜덤으로 불러오고 5초마다  한번씩 랜덤으로 대기자가 줄어들게 구현

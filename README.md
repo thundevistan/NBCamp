@@ -14,6 +14,8 @@
 | 이혜명 | 팀원 | INFP & ENTP | [바로가기!](https://velog.io/@playerkr)     |
 
 
+# 📖 Notion
+- [Link!!](https://dynamic-sheep-95f.notion.site/nbCamp-3-19-65b0907702874a01b8d3f694626f6cab?pvs=4)
 
 # 📽️ Project
 

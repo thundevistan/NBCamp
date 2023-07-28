@@ -1,12 +1,16 @@
 package com.example.nbcamp_week3_assignment
-import java.text.DecimalFormat
+
+import Datetime
+import kotlin.concurrent.thread
+import kotlin.system.exitProcess
 
 // "Order" 클래스는 "Menu" 클래스를 상속
 class Order : Menu() {
     // 주문 내역을 출력하고 주문 처리를 수행
-    fun displayOrder(orderList: MutableSet<String>, currentBalance: Int) {
+    fun displayOrder(orderList: MutableList<String>, currentBalance: Int) {
 //        println("[ ORDER MENU ]")
 //        println("5. Order      | 장바구니를 확인 후 주문합니다.")
+//        지우기
 
         // 주문 목록이 비어있을 경우 메시지 출력 후 함수 종료
         if (orderList.isEmpty()) {
@@ -17,6 +21,10 @@ class Order : Menu() {
         // 주문 내역을 출력
         println("\n아래와 같이 주문 하시겠습니까?\n")
         println("[ Orders ]")
+
+        thread(start = true) {
+            WaitCount().waitCount()
+        }
         var totalCount = 0.0 // 초기값으로 0.0을 설정
 
         for (item in orderList) {
@@ -34,30 +42,48 @@ class Order : Menu() {
         println("\n[ Total ]")
         println("W ${dec.format(totalCount)}")
 
-        println("\n결제하시겠습니까? [yes : 1] [no : 2] ")
-        var n = readLine()?.toIntOrNull() ?: 0
+        while (true) {
+            try {
+                println("\n결제하시겠습니까? [yes : 1] [no : 2] ")
+                var n = readLine()?.toIntOrNull() ?: 0
 
-        when (n) {
-            1 -> {
-                if (totalCount <= currentBalance) {
-                    Datetime().inspection() // 현재 시각을 받아옴
-                    //println("현재 시각은 $currentTime 입니다.") // 현재 시각 출력
-                    println("결제가 완료되었습니다. 총 ${dec.format(totalCount)}W 결제되었습니다.")
-                    orderList.clear()
-                } else {
-                    // 결제 금액이 현재 잔고보다 큰 경우 주문을 처리X
-                    println("현재 잔액은 ${dec.format(currentBalance)}W 으로 ${dec.format(totalCount - currentBalance)}W이 부족해서 주문할 수 없습니다.")
+                when (n) {
+                    1 -> {
+                        if (totalCount <= currentBalance) {
+                            Datetime().inspection() // 현재 시각을 받아옴
+                            //println("현재 시각은 $currentTime 입니다.") // 현재 시각 출력
+                            println("결제가 완료되었습니다. 총 ${dec.format(totalCount)}W 결제되었습니다.")
+                            println("현재 잔액은 $currentBalance - ${totalCount.toInt()} = ${currentBalance-totalCount.toInt()}원 입니다.")
+                            orderList.clear()
+                            break
+                        } else {
+                            // 결제 금액이 현재 잔고보다 큰 경우 주문을 처리X
+                            println(
+                                "현재 잔액은 ${dec.format(currentBalance)}W 으로 ${
+                                    dec.format(
+                                        totalCount - currentBalance
+                                    )
+                                }W이 부족해서 주문할 수 없습니다."
+                            )
+                        }
+                    }
+
+                    2 -> {
+                        println("키오스크를 종료합니다.")
+                        exitProcess(0)
+                    }
+
+                    else -> {
+                        println("1 또는 2의 숫자만 입력할 수 있습니다")
+                    }
                 }
-            }
-            2 -> {
-                println("키오스크를 종료합니다.")
-            }
-            else -> {
-                println("1 또는 2의 숫자만 입력할 수 있습니다")
+            } catch (e: java.lang.NumberFormatException) {
+                println("잘못 입력하셨습니다. 숫자를 입력해 주세요")
             }
         }
+        println("성심당을 찾아주셔서 감사합니다 오늘도 좋은하루 되세요~")
+        exitProcess(0)
     }
-
 
     private fun getMenuList(item: String): Array<String>? {
         // 주문 항목 문자열을 받아와서 해당 메뉴에 대한 정보를 가져오기
@@ -69,7 +95,7 @@ class Order : Menu() {
         for (menuArray in menuArrays) {
             for (menu in menuArray) {
                 // 주문 항목 문자열에 해당 메뉴가 있는지를 검사
-                if (item.contains(menu[0])) {
+                if (item == menu[0]) {
                     // 쉼표를 제거하여 가격을 숫자 형태로 변환
                     val price = menu[1].replace(",", "").toDouble()
                     // 메뉴 이름과 가격 정보를 문자열 배열로 묶어 반환
@@ -81,3 +107,4 @@ class Order : Menu() {
         return null
     }
 }
+//

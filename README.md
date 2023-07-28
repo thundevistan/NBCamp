@@ -9,7 +9,7 @@
 | ------ | ---- | ----------- | ------------------------------------------- |
 | 추민수 | 팀장 | ENFJ        | [바로가기!](softychoo.github.io)            |
 | 김민준 | 팀원 | ENTP        | [바로가기!](https://velog.io/@thundevistan) |
-| 신민지 | 팀원 | ISFP        | [바로가기!](minjii (개발 블로그) - velog)   |
+| 신민지 | 팀원 | ISFP        | [바로가기!](https://velog.io/@minjii)   |
 | 손현준 | 팀원 | INTP        | [바로가기!](https://velog.io/@hyunjun6133)  |
 | 이혜명 | 팀원 | INFP & ENTP | [바로가기!](https://velog.io/@playerkr)     |
 

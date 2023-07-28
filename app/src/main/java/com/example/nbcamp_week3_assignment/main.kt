@@ -14,7 +14,7 @@ fun main() {
     var menu = Menu()
     var n3: Int = 0
     var order = Order()
-    var account = Balance().rand(20, 30)
+    val account = Balance().rand(20, 30)
     println("성심당에 오신것을 환영합니다.")
     println("현재 잔액은 ${account}원 입니다.")
 
@@ -57,18 +57,22 @@ fun main() {
                 var n2 = readln()!!.toInt()
                 when (n2) {
                     1 -> {
+                        println("[Bread]")
                         bread.add(orderList)
                         break
                     }
                     2 -> {
+                        println("[Snacks]")
                         snacks.add(orderList)
                         break
                     }
                     3 -> {
+                        println("[Cake]")
                         cake.add(orderList)
                         break
                     }
                     4 -> {
+                        println("[RollsAndPound]")
                         rollsAndPound.add(orderList)
                         break
                     }

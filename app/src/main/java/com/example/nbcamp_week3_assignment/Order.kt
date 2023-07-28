@@ -53,6 +53,7 @@ class Order : Menu() {
                             Datetime().inspection() // 현재 시각을 받아옴
                             //println("현재 시각은 $currentTime 입니다.") // 현재 시각 출력
                             println("결제가 완료되었습니다. 총 ${dec.format(totalCount)}W 결제되었습니다.")
+                            println("현재 잔액은 $currentBalance - ${totalCount.toInt()} = ${currentBalance-totalCount.toInt()}원 입니다.")
                             orderList.clear()
                             break
                         } else {

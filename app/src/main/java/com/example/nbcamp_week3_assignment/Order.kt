@@ -95,7 +95,7 @@ class Order : Menu() {
         for (menuArray in menuArrays) {
             for (menu in menuArray) {
                 // 주문 항목 문자열에 해당 메뉴가 있는지를 검사
-                if (item.contains(menu[0])) {
+                if (item == menu[0]) {
                     // 쉼표를 제거하여 가격을 숫자 형태로 변환
                     val price = menu[1].replace(",", "").toDouble()
                     // 메뉴 이름과 가격 정보를 문자열 배열로 묶어 반환

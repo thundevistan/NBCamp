@@ -43,10 +43,5 @@ class SingleActivity : AppCompatActivity() {
 			startActivity(intent)       // SignUpActivity 이동
 		}
 	}
-
-//	fun doOnClick() {
-//		val intent = Intent(this, SignUpActivity::class.java)
-//		startActivity(intent)
-//	}
 }
 

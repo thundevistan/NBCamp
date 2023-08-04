@@ -1,3 +1,3 @@
 
-l
-<app/src/main/java/com/android/introduceapp/SignUpActivity.kt,c\0\c030ccc4d7d68fe310b413f9aa048332c6e1f646
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

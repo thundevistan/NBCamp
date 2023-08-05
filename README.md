@@ -66,10 +66,9 @@
 
 💡 **도전과제**
 ---
-Custom button design.
-HomeActivity의 종료 버튼을 아래 동영상 처럼 만들어주세요.
-
-### 1. 동작방식
+### Custom button design.
+1. HomeActivity의 종료 버튼을 아래 동영상 처럼 만들어주세요.
+2. 동작방식
 - 버튼 모양은 ractangle, 모서리가 10dp 둥글게 만들어요
 - 종료 버튼을 누르면(pressed) 배경색과 스마일 아이콘, 종료 텍스트 색상이 변경됩니다.
 - 스마일 아이콘 및 텍스트 색상은 임의 변경 가능합니다.

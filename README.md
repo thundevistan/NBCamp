@@ -1,4 +1,4 @@
-**lv1. 로그인 페이지 만들기 (SignInActivity)**
+1️⃣ **lv1. 로그인 페이지 만들기 (SignInActivity)**
 ---
 - 디자인은 취향대로 해도 되나 화면 구성은 동일하게 해주세요. ✨
 <img width="30%" src="https://user-images.githubusercontent.com/139092551/258107423-7f665f8f-3402-44e7-abe8-61508deaaebf.png"/>
@@ -14,7 +14,8 @@
 
 <br/>
 
-**lv2. 회원가입 페이지 만들기 (SignUpActivity)**
+
+2️⃣ **lv2. 회원가입 페이지 만들기 (SignUpActivity)**
 ---
 - 디자인은 취향대로 해도 되나 화면 구성은 동일하게 해주세요. ✨
 
@@ -29,7 +30,8 @@
 
 <br/>
 
-**lv3. 자기소개 페이지 만들기 (HomeActivity)**
+
+3️⃣ **lv3. 자기소개 페이지 만들기 (HomeActivity)**
 ---
 - 디자인 및 화면구성은 마음대로~~~ ✨
 
@@ -40,3 +42,36 @@
 - ImageView, TextView 외에 각종 Widget을 활용해 자유롭게 화면을 디자인 해주세요.
     - 이름, 나이, MBTI 등 자기소개등이 들어가는 위젯을 자유롭게 디자인해주세요.
 - 종료 버튼이 눌리면 SignInActivity로 이동합니다. (finish 활용)
+
+<br/>
+
+
+⚙ **선택과제 : 필수는 아니에요~**
+---
+선택 과제는 안드로이드 앱개발 입문 강의를 기반으로 하지만 한 걸음 더 성장하기 위해 고민하며 공부한 후 구현하는 과제 입니다.  혼자, 또는 팀원과 함께 공부하며 도전해보세요!!
+
+### 1. **화면 이동 + @**
+
+- 회원 가입페이지에서 입력한 아이디/비밀번호가 로그인 화면으로 돌아올 때 자동 입력되는 기능!
+- Hint! `registerForActivityResult` 를 알아봅시다.
+<details>
+<summary>참고 영상</summary>
+<div markdown="1">
+
+<img src="https://github.com/thundevistan/IntroduceAPP/issues/6#issue-1837802302">
+
+</div>
+</details>
+
+### 2. 자기 소개 랜덤 사진
+
+- 5장의 사진을 등록합니다. (drawable 폴더)
+- 자기소개 페이지가 시작될 때 5장 중 랜덤으로 1장의 사진이 표시됩니다.
+<details>
+<summary>참고 영상</summary>
+<div markdown="1">
+
+<img src="https://github.com/thundevistan/IntroduceAPP/issues/7#issue-1837803090">
+
+</div>
+</details>

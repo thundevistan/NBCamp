@@ -64,7 +64,7 @@
 
 <br/>
 
-💡 **깜짝 도전과제**
+💡 **도전과제**
 ---
 Custom button design.
 HomeActivity의 종료 버튼을 아래 동영상 처럼 만들어주세요.

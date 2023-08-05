@@ -61,3 +61,17 @@
 - 5장의 사진을 등록합니다. (drawable 폴더)
 - 자기소개 페이지가 시작될 때 5장 중 랜덤으로 1장의 사진이 표시됩니다.
 - [참고 영상] (https://github.com/thundevistan/IntroduceAPP/issues/7#issue-1837803090)
+
+<br/>
+
+💡 **깜짝 도전과제**
+---
+Custom button design.
+HomeActivity의 종료 버튼을 아래 동영상 처럼 만들어주세요.
+
+### 1. 동작방식
+- 버튼 모양은 ractangle, 모서리가 10dp 둥글게 만들어요
+- 종료 버튼을 누르면(pressed) 배경색과 스마일 아이콘, 종료 텍스트 색상이 변경됩니다.
+- 스마일 아이콘 및 텍스트 색상은 임의 변경 가능합니다.
+- 참고로, HomeActivity.kt파일은 건들지 않습니다.  (selector이용)
+- [참고 영상] (https://github.com/thundevistan/IntroduceAPP/issues/8#issue-1837821223)

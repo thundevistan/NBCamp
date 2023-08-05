@@ -54,24 +54,10 @@
 
 - 회원 가입페이지에서 입력한 아이디/비밀번호가 로그인 화면으로 돌아올 때 자동 입력되는 기능!
 - Hint! `registerForActivityResult` 를 알아봅시다.
-<details>
-<summary>참고 영상</summary>
-<div markdown="1">
-
-<img src="https://github.com/thundevistan/IntroduceAPP/issues/6#issue-1837802302">
-
-</div>
-</details>
+- [참고 영상] (https://github.com/thundevistan/IntroduceAPP/issues/7#issue-1837803090)
 
 ### 2. 자기 소개 랜덤 사진
 
 - 5장의 사진을 등록합니다. (drawable 폴더)
 - 자기소개 페이지가 시작될 때 5장 중 랜덤으로 1장의 사진이 표시됩니다.
-<details>
-<summary>참고 영상</summary>
-<div markdown="1">
-
-<img src="https://github.com/thundevistan/IntroduceAPP/issues/7#issue-1837803090">
-
-</div>
-</details>
+- [참고 영상] (https://github.com/thundevistan/IntroduceAPP/issues/7#issue-1837803090)

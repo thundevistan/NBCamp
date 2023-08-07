@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import java.security.AccessController.getContext
 import kotlin.random.Random
 
@@ -29,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
 		val textViewId = findViewById<TextView>(R.id.textViewId)        // 아이디
 		textViewId.text = "아이디 : " + strData        // 아이디 : strData 출력
 
-		val btn_close = findViewById<Button>(R.id.btn_close)        // 종료 버튼
+		val btn_close = findViewById<ConstraintLayout>(R.id.btn_close)        // 종료 버튼
 		btn_close.setOnClickListener {      // 버튼 클릭
 			finish()
 		}

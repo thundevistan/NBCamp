@@ -2,7 +2,6 @@
   
   ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=Week3%20Assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
 </div>
-<div align=center>
 
 1️⃣ **lv1. 로그인 페이지 만들기 (SignInActivity)**
 ---

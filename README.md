@@ -1,3 +1,9 @@
+<div align="center">
+  
+  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=Week3 Assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
+</div>
+<div align=center>
+
 1️⃣ **lv1. 로그인 페이지 만들기 (SignInActivity)**
 ---
 - 디자인은 취향대로 해도 되나 화면 구성은 동일하게 해주세요. ✨

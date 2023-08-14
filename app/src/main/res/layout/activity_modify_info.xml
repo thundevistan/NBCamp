@@ -159,8 +159,20 @@
                 android:inputType="textPassword"
                 android:paddingHorizontal="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/modify_info_password_toggle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/modify_info_password" />
+
+            <ImageView
+                android:id="@+id/modify_info_password_toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/modify_info_password_edittext"
+                app:srcCompat="@drawable/ic_password_hide_button"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="8dp"/>
 
             <Button
                 android:id="@+id/modify_info_ok_button"

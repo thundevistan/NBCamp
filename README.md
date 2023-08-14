@@ -1,6 +1,6 @@
 <div align="center">
   
-  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=Week3 Assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
+  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=Week3%20Assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
 </div>
 <div align=center>
 

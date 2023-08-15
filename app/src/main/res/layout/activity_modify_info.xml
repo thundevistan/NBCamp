@@ -35,12 +35,13 @@
             android:textSize="24sp" />
     </RelativeLayout>
 
+
     <ScrollView
         android:id="@+id/modify_info_scrollview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/modify_info_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/modify_info_toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/modify_info_bottom_bar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -214,26 +215,41 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/transparent"
+                    android:contentDescription="modify_info_password_toggle_hide"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/modify_info_password_edittext"
                     app:srcCompat="@drawable/ic_password_hide_button" />
 
-                <Button
-                    android:id="@+id/modify_info_ok_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
-                    android:text="확인"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="35dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password_edittext" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/modify_info_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/modify_info_ok_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="확인"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

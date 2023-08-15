@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Android_Supporters_SNS_Project</string>
+    <string name="signup_titletext">Application</string>
+    <string name="signup_profile_picture_text">프로필 사진</string>
+    <string name="signup_email_text">이메일</string>
+    <string name="signup_email_repetition_text">중복확인</string>
+    <string name="signup_email_warning_text">이메일 형식이 올바르지 않습니다.</string>
+    <string name="signup_password_text">비밀번호(8~16자/영어,숫자)</string>
+    <string name="signup_password_warning_text">비밀번호 형식이 올바르지 않습니다.(8~16자/영어,숫자)</string>
+    <string name="signup_passwordcheck_text">비밀번호 확인</string>
+    <string name="signup_password_check_warning_text">비밀번호가 일치하지 않습니다.</string>
+    <string name="signup_name_text">이름</string>
+    <string name="signup_name_warning_text">올바른 이름을 입력해주세요.</string>
+    <string name="signup_nickname_text">닉네임(최대 15자)</string>
+    <string name="signup_nickname_repetition_button_text">중복확인</string>
+    <string name="signup_nickname_warning_text">중복 닉네임입니다.</string>
+    <string name="signup_confirmbutton_text">확인</string>
 </resources>

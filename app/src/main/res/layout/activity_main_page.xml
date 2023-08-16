@@ -54,48 +54,50 @@
             tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
+                android:id="@+id/main_addView_userContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/main_userIcon"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_test" />
+                    android:src="@drawable/ic_main_ex" />
 
                 <ImageView
                     android:id="@+id/main_userIcon2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_test" />
+                    android:src="@drawable/ic_main_ex2" />
 
                 <ImageView
                     android:id="@+id/main_userIcon3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_test" />
+                    android:src="@drawable/ic_main_ex3" />
 
                 <ImageView
                     android:id="@+id/main_userIcon4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_test" />
+                    android:src="@drawable/ic_main_ex4" />
 
                 <ImageView
                     android:id="@+id/main_userIcon5"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_test" />
+                    android:src="@drawable/ic_main_ex5" />
+
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
@@ -127,11 +129,9 @@
 
         <!-- addView: activity_main_page_post 영역 -->
         <LinearLayout
-            android:id="@+id/main_addView_container"
+            android:id="@+id/main_addView_postContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 </LinearLayout>

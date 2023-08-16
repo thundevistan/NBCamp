@@ -24,4 +24,5 @@
     <string name="main_profileText">팀원</string>
     <string name="main_postText">게시글</string>
     <string name="main_postUserId">User ID</string>
+    <string name="modifyinfo_password_warning_text">비밀번호 형식이 올바르지 않습니다.(8~16자/영어,숫자)</string>
 </resources>

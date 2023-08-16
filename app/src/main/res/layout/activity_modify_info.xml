@@ -17,13 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/modify_info_toolbar_back_button"
+            android:id="@+id/modify_info_back_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:background="@android:color/transparent"
+            android:contentDescription="modify_info_back_button"
             android:src="@drawable/ic_modify_info_backbutton" />
 
         <TextView
@@ -46,13 +47,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="60dp"
+            android:paddingHorizontal="40dp"
             android:paddingVertical="30dp">
+
 
             <ImageView
                 android:id="@+id/modify_info_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="image_modify_info_image"
                 android:src="@drawable/image_modify_info_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -61,9 +64,9 @@
 
             <Button
                 android:id="@+id/modify_info_image_edit"
-                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="수정"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,9 +77,16 @@
                 android:id="@+id/modify_info_main_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/modify_info_image_edit">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/modify_info_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.7" />
 
                 <TextView
                     android:id="@+id/modify_info_email"
@@ -84,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="이메일"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,21 +103,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="사용자 이메일"
+                    android:background="@drawable/edittext_modify_info"
+                    android:padding="15dp"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_email" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/modify_info_email_edittext"
-                    app:layout_constraintStart_toStartOf="@+id/modify_info_email_edittext"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
 
                 <TextView
                     android:id="@+id/modify_info_name"
@@ -114,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="이름"
+                    android:layout_marginStart="10dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
@@ -123,20 +127,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:paddingHorizontal="8dp"
-                    android:text="사용자 이름"
+                    android:background="@drawable/edittext_modify_info"
+                    android:padding="15dp"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_name" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/modify_info_name_edittext"
-                    app:layout_constraintStart_toStartOf="@+id/modify_info_name_edittext"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
 
                 <TextView
                     android:id="@+id/modify_info_nickname"
@@ -144,19 +140,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="닉네임"
+                    android:layout_marginStart="10dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
 
                 <EditText
                     android:id="@+id/modify_info_nickname_edittext"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Nickname"
+                    android:background="@drawable/edittext_modify_info"
                     android:inputType="text"
-                    android:paddingHorizontal="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:padding="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/modify_info_vertical_guideline"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="0dp"
+                    android:paddingVertical="13dp"
+                    android:text="중복확인"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
                 <TextView
@@ -164,38 +171,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="비밀번호"
+                    android:text="비밀번호(8~16자/영어,숫자)"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext" />
 
-                <EditText
-                    android:id="@+id/modify_info_password_edittext"
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/modify_info_password_textinputlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/modify_info_password_toggle"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password" />
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password"
+                    app:passwordToggleEnabled="true">
 
-                <ImageButton
-                    android:id="@+id/modify_info_password_toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="modify_info_password_toggle_hide"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/modify_info_password_edittext"
-                    app:srcCompat="@drawable/ic_password_hide_button" />
+                    <EditText
+                        android:id="@+id/modify_info_password_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_modify_info"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:id="@+id/modify_info_password_error_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingHorizontal="4dp"
+                        android:text=""
+                        android:textColor="@android:color/holo_red_dark"
+                        android:visibility="invisible" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -213,7 +224,7 @@
 
         <Button
             android:id="@+id/modify_info_ok_button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="60dp"

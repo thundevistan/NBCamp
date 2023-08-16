@@ -94,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="이메일"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -117,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="이름"
+                    android:layout_marginStart="10dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
@@ -140,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="닉네임"
+                    android:layout_marginStart="10dp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
@@ -173,6 +176,7 @@
                     android:layout_marginTop="20dp"
                     android:text="비밀번호(8~16자/영어,숫자)"
                     android:textStyle="bold"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext" />
 

@@ -20,4 +20,8 @@
     <string name="detailContentView_content_example">예시 텍스트 / Text 길이에 따라 늘어남</string>
     <string name="detailContentView_reply_hint">댓글</string>
     <string name="detailContentView_reply_confirm_button">확인</string>
+    <string name="main_titletext">Application</string>
+    <string name="main_profileText">팀원</string>
+    <string name="main_postText">게시글</string>
+    <string name="main_postUserId">User ID</string>
 </resources>

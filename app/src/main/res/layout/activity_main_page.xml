@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainPageActivity">
+
+    <!-- appBar 영역 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_appName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/main_titletext"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/main_myPageIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_main_test" />
+    </RelativeLayout>
+
+    <!-- 팀원 수평 ScrollVew 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_teamText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/main_profileText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/main_userIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_main_test" />
+
+                <ImageView
+                    android:id="@+id/main_userIcon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_main_test" />
+
+                <ImageView
+                    android:id="@+id/main_userIcon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_main_test" />
+
+                <ImageView
+                    android:id="@+id/main_userIcon4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_main_test" />
+
+                <ImageView
+                    android:id="@+id/main_userIcon5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_main_test" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- 게시글 TextView 영역 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_postText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_postText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 게시글 수직 ScrollView 영역 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:padding="8dp"
+        android:scrollbars="none"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <!-- addView: activity_main_page_post 영역 -->
+        <LinearLayout
+            android:id="@+id/main_addView_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -50,12 +50,6 @@
             android:paddingHorizontal="60dp"
             android:paddingVertical="30dp">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/modify_info_vertical_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.7" />
 
             <ImageView
                 android:id="@+id/modify_info_image"
@@ -86,6 +80,13 @@
                 android:layout_marginTop="25dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/modify_info_image_edit">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/modify_info_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.7" />
 
                 <TextView
                     android:id="@+id/modify_info_email"

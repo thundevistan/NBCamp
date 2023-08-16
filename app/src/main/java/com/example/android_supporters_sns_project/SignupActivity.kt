@@ -1,5 +1,6 @@
 package com.example.android_supporters_sns_project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
+import com.example.android_supporters_sns_project.dataclass.Member
 import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
@@ -105,7 +107,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         confirmButton.setOnClickListener {
-
+            createInstance()
         }
 
     }
@@ -249,5 +251,14 @@ class SignupActivity : AppCompatActivity() {
     }
     private fun enableConfirmButton() {
         confirmButton.isEnabled = checkEmail && checkPassword && checkPasswordCheck && checkNickname && checkName
+    }
+
+    private fun createInstance() {
+        var member = Member(
+            emailEditText.text.toString().trim(),
+            passwordEditText.text.toString().trim(),
+            nameEditText.text.toString().trim(),
+            nicknameEditText.text.toString().trim()
+        )
     }
 }

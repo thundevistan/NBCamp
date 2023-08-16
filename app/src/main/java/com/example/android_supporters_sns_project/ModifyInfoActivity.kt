@@ -48,7 +48,7 @@ class ModifyInfoActivity : AppCompatActivity() {
                     navigateGallery()
                 }
                 // 갤러리 접근 권한이 없는 경우
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_MEDIA_IMAGES)
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 -> {
                     showPermissionContextPopup()
                 }

@@ -10,7 +10,7 @@
     <string name="signup_passwordcheck_text">비밀번호 확인</string>
     <string name="signup_password_check_warning_text">비밀번호가 일치하지 않습니다.</string>
     <string name="signup_name_text">이름</string>
-    <string name="signup_name_warning_text">올바른 이름을 입력해주세요.</string>
+    <string name="signup_name_warning_text">이름을 입력해주세요.</string>
     <string name="signup_nickname_text">닉네임(최대 15자)</string>
     <string name="signup_nickname_repetition_button_text">중복확인</string>
     <string name="signup_nickname_warning_text">중복 닉네임입니다.</string>

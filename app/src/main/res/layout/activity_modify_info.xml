@@ -54,12 +54,12 @@
                 android:id="@+id/modify_info_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="image_modify_info_image"
                 android:src="@drawable/image_modify_info_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="image_modify_info_image"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/modify_info_image_edit"
@@ -164,6 +164,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:autofillHints="username"
                         android:hint="Nickname"
                         android:inputType="text" />
 
@@ -191,6 +192,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:autofillHints="password"
                         android:hint="Password"
                         android:inputType="textPassword" />
 

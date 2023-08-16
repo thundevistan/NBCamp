@@ -4,11 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.view.View
 import android.widget.TextView
-
 
 class LoginActivity : AppCompatActivity() {
 
@@ -30,16 +29,12 @@ class LoginActivity : AppCompatActivity() {
         signupButton = findViewById(R.id.login_signup_button)
         emailEditText = findViewById(R.id.login_id_edittext)
         passwordEditText = findViewById(R.id.login_password_edittext)
-
-    }
-
-    private val loginTextWatcher = object : TextWatcher {
         emailWarningMessage = findViewById(R.id.login_id_message)
         passwordWarningMessage = findViewById(R.id.login_password_message)
+
     }
 
     private val loginEmailTextWatcher = object : TextWatcher {
-
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
@@ -47,25 +42,6 @@ class LoginActivity : AppCompatActivity() {
 
         }
         override fun afterTextChanged(p0: Editable?) {
-
-
-        }
-    }
-    private fun checkEmailEditText() {
-        val emailText = emailEditText.toString().trim()
-        if(emailText.isNotEmpty()) {
-
-        }
-        else {
-
-        }
-    }
-    private fun checkPasswordEditText() {
-
-    }
-
-    private fun login() {
-
             checkEmailEditText()
         }
     }
@@ -106,6 +82,5 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         loginButton.isEnabled = isEmail&&isPassword
-
     }
 }

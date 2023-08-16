@@ -47,7 +47,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="60dp"
+            android:paddingHorizontal="40dp"
             android:paddingVertical="30dp">
 
 
@@ -149,14 +149,22 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="username"
-                    android:padding="15dp"
                     android:background="@drawable/edittext_modify_info"
                     android:hint="Nickname"
                     android:inputType="text"
-                    app:layout_constraintEnd_toEndOf="@id/modify_info_vertical_guideline"
+                    android:padding="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/modify_info_vertical_guideline"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname"/>
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="중복확인"
+                    android:padding="0dp"
+                    app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
                 <TextView
                     android:id="@+id/modify_info_password"

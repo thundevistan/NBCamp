@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/modify_info_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="50dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,16 +25,26 @@
             android:layout_marginStart="16dp"
             android:background="@android:color/transparent"
             android:contentDescription="modify_info_back_button"
-            android:src="@drawable/ic_modify_info_backbutton" />
+            android:src="@drawable/ic_teammatedetail_backbutton" />
 
         <TextView
             android:id="@+id/modify_info_logo_edittext"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Application"
+            android:layout_centerVertical="true"
             android:textSize="24sp" />
     </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/modifyInfo_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/modify_info_toolbar"
+        android:layout_marginTop="5dp"
+        />
 
 
     <ScrollView
@@ -42,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/modify_info_bottom_bar"
-        app:layout_constraintTop_toBottomOf="@+id/modify_info_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/modifyInfo_divider">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

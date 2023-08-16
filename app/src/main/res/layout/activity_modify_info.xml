@@ -149,16 +149,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
 
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/modify_info_nickname_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nickname"
-                    android:inputType="text"
-                    android:paddingHorizontal="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nickname"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/modify_info_password"

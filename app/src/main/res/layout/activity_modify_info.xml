@@ -94,22 +94,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="10dp"
+                    android:padding="15dp"
                     android:text="사용자 이메일"
                     android:textSize="16sp"
+                    android:background="@drawable/edittext_modify_info"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_email" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/modify_info_email_edittext"
-                    app:layout_constraintStart_toStartOf="@+id/modify_info_email_edittext"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
 
                 <TextView
                     android:id="@+id/modify_info_name"
@@ -126,21 +118,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="10dp"
+                    android:padding="15dp"
                     android:text="사용자 이름"
+                    android:background="@drawable/edittext_modify_info"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_name" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/modify_info_name_edittext"
-                    app:layout_constraintStart_toStartOf="@+id/modify_info_name_edittext"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
 
                 <TextView
                     android:id="@+id/modify_info_nickname"
@@ -166,6 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="username"
+                        android:background="@drawable/edittext_modify_info"
                         android:hint="Nickname"
                         android:inputType="text" />
 
@@ -196,6 +181,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="password"
+                        android:background="@drawable/edittext_modify_info"
                         android:hint="Password"
                         android:inputType="textPassword" />
 

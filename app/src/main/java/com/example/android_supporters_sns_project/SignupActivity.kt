@@ -1,6 +1,5 @@
 package com.example.android_supporters_sns_project
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import com.example.android_supporters_sns_project.dataclass.Member
 import java.util.regex.Pattern
 
@@ -24,39 +22,39 @@ class SignupActivity : AppCompatActivity() {
     var checkNickname = false
 
     //Widget(email)
-    private lateinit var emailEditText : EditText
-    private lateinit var emailRepetitionButton : Button
-    private lateinit var emailWarningText : TextView
-    private lateinit var emailConfirmCheck : ImageView
+    private lateinit var emailEditText: EditText
+    private lateinit var emailRepetitionButton: Button
+    private lateinit var emailWarningText: TextView
+    private lateinit var emailConfirmCheck: ImageView
 
     //Widget(password)
-    private lateinit var passwordEditText : EditText
-    private lateinit var passwordWarningText : TextView
-    private lateinit var passwordConfirmCheck : ImageView
+    private lateinit var passwordEditText: EditText
+    private lateinit var passwordWarningText: TextView
+    private lateinit var passwordConfirmCheck: ImageView
 
     //Widget(passwordcheck)
-    private lateinit var passwordCheckEditText : EditText
-    private lateinit var passwordCheckWarningText : TextView
-    private lateinit var passwordCheckConfirmCheck : ImageView
+    private lateinit var passwordCheckEditText: EditText
+    private lateinit var passwordCheckWarningText: TextView
+    private lateinit var passwordCheckConfirmCheck: ImageView
 
     //Widget(name)
     private lateinit var nameEditText: EditText
-    private lateinit var nameWarningText : TextView
-    private lateinit var nameConfirmCheck : ImageView
+    private lateinit var nameWarningText: TextView
+    private lateinit var nameConfirmCheck: ImageView
 
     //Widget(nickname)
     private lateinit var nicknameEditText: EditText
-    private lateinit var nicknameRepetitionButton : Button
-    private lateinit var nicknameWarningText : TextView
+    private lateinit var nicknameRepetitionButton: Button
+    private lateinit var nicknameWarningText: TextView
     private lateinit var nicknameConfirmCheck: ImageView
 
 
-
-    private lateinit var confirmButton : Button
+    private lateinit var confirmButton: Button
 
 
     //정규식
-    private val email = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+    private val email =
+        "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     private val password = "^[A-Za-z0-9]{8,16}$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,29 +109,33 @@ class SignupActivity : AppCompatActivity() {
         }
 
     }
+
     //Text Watcher
-    private val signupTextWatcher = object :TextWatcher {
+    private val signupTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
+
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
+
         override fun afterTextChanged(p0: Editable?) {
-            if(emailEditText.text.isNotEmpty()) {
+            if (emailEditText.text.isNotEmpty()) {
                 emailCheck()
                 enableConfirmButton()
             }
-            if(passwordEditText.text.isNotEmpty()) {
+            if (passwordEditText.text.isNotEmpty()) {
                 passwordCheck()
                 enableConfirmButton()
             }
-            if(passwordCheckEditText.text.isNotEmpty()) {
+            if (passwordCheckEditText.text.isNotEmpty()) {
                 checkPasswordCheck()
                 enableConfirmButton()
             }
         }
     }
+
     //Name Text Watcher
     private val signupNameTextWatcher = object : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -167,15 +169,15 @@ class SignupActivity : AppCompatActivity() {
         }
 
     }
+
     //이메일 edittext를 확인하고 widget을 변경
     private fun emailCheck() {
         val emailText = emailEditText.text.toString().trim()
         val emailCheck = Pattern.matches(email, emailText)
-        if(emailCheck) {
+        if (emailCheck) {
             emailWarningText.visibility = View.INVISIBLE
             emailRepetitionButton.isEnabled = true
-        }
-        else {
+        } else {
             emailWarningText.visibility = View.VISIBLE
             emailRepetitionButton.isEnabled = false
             emailConfirmCheck.visibility = View.INVISIBLE
@@ -192,8 +194,7 @@ class SignupActivity : AppCompatActivity() {
             passwordWarningText.visibility = View.INVISIBLE
             passwordConfirmCheck.visibility = View.VISIBLE
             checkPassword = true
-        }
-        else {
+        } else {
             passwordWarningText.visibility = View.VISIBLE
             passwordConfirmCheck.visibility = View.INVISIBLE
             checkPassword = false
@@ -205,12 +206,11 @@ class SignupActivity : AppCompatActivity() {
         val checkPasswordText = passwordCheckEditText.text.toString().trim()
         val passwordText = passwordEditText.text.toString().trim()
 
-        if(checkPasswordText == passwordText) {
+        if (checkPasswordText == passwordText) {
             passwordCheckWarningText.visibility = View.INVISIBLE
             passwordCheckConfirmCheck.visibility = View.VISIBLE
             checkPasswordCheck = true
-        }
-        else {
+        } else {
             passwordCheckWarningText.visibility = View.VISIBLE
             passwordCheckConfirmCheck.visibility = View.INVISIBLE
             checkPasswordCheck = false
@@ -221,12 +221,11 @@ class SignupActivity : AppCompatActivity() {
     private fun nameCheck() {
         val nameText = nameEditText.text.toString().trim()
 
-        if(nameText.isNotEmpty()) {
+        if (nameText.isNotEmpty()) {
             nameWarningText.visibility = View.INVISIBLE
             nameConfirmCheck.visibility = View.VISIBLE
             checkName = true
-        }
-        else if(nameText.isEmpty()) {
+        } else if (nameText.isEmpty()) {
             nameWarningText.visibility = View.VISIBLE
             nameConfirmCheck.visibility = View.INVISIBLE
             checkName = false
@@ -238,27 +237,31 @@ class SignupActivity : AppCompatActivity() {
     private fun nicknameCheck() {
         val nicknameText = nicknameEditText.text.toString().trim()
 
-        if(nicknameText.length in 1..15) {
+        if (nicknameText.length in 1..15) {
             nicknameWarningText.visibility = View.INVISIBLE
             nicknameRepetitionButton.isEnabled = true
-        }
-        else {
+        } else {
             nicknameWarningText.visibility = View.VISIBLE
             nicknameRepetitionButton.isEnabled = false
             nicknameConfirmCheck.visibility = View.INVISIBLE
             checkNickname = false
         }
     }
+
     private fun enableConfirmButton() {
-        confirmButton.isEnabled = checkEmail && checkPassword && checkPasswordCheck && checkNickname && checkName
+        confirmButton.isEnabled =
+            checkEmail && checkPassword && checkPasswordCheck && checkNickname && checkName
     }
 
     private fun createInstance() {
-        var member = Member(
+        val member = Member(
             emailEditText.text.toString().trim(),
             passwordEditText.text.toString().trim(),
             nameEditText.text.toString().trim(),
             nicknameEditText.text.toString().trim()
         )
+
+        MemberManager.addMember(member) // 입력 받은 값을 추가
+        MemberManager.printMembers() // memberList에 저장된 데이터 확인을 위한 Logcat 출력
     }
 }

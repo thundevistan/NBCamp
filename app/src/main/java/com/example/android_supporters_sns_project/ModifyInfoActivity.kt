@@ -29,24 +29,13 @@ class ModifyInfoActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if ((s?.length ?: 0) in 1..7 || (s?.length ?: 0) > 16 || !isPasswordValid(s.toString())) {
-                    passwordLayout.isErrorEnabled = true
                     errorMessageView.visibility = View.VISIBLE
                     errorMessageView.text = getString(R.string.modifyinfo_password_warning_text)
                 } else {
-                    passwordLayout.isErrorEnabled = false
                     errorMessageView.visibility = View.INVISIBLE
                 }
             }
             override fun afterTextChanged(s: Editable?) {
-
-                if ((s?.length ?: 0) in 1..7 || (s?.length ?: 0) > 16 || !isPasswordValid(s.toString()))  {
-                    passwordLayout.isErrorEnabled = true
-                    errorMessageView.visibility = View.VISIBLE
-                    errorMessageView.text = getString(R.string.modifyinfo_password_warning_text)
-                } else {
-                    passwordLayout.isErrorEnabled = false
-                    errorMessageView.visibility = View.INVISIBLE
-                }
             }
         })
     }

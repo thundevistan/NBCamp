@@ -85,7 +85,7 @@ class ModifyInfoActivity : AppCompatActivity() {
         }
     }
 
-    // 갤러리에서 사진만 가져옴
+    // 갤러리에서 사진만 보여줌
     private fun navigateGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"

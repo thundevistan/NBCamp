@@ -148,7 +148,6 @@
                     android:id="@+id/modify_info_nickname_edittext"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:autofillHints="username"
                     android:background="@drawable/edittext_modify_info"
                     android:hint="Nickname"
                     android:inputType="text"
@@ -160,10 +159,10 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:text="중복확인"
                     android:paddingHorizontal="0dp"
                     android:paddingVertical="13dp"
+                    android:text="중복확인"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
@@ -191,7 +190,6 @@
                         android:id="@+id/modify_info_password_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="password"
                         android:background="@drawable/edittext_modify_info"
                         android:hint="Password"
                         android:inputType="textPassword" />

@@ -79,7 +79,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
-                    android:hint="아이디를 입력해주세요"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toTopOf="@+id/guideline3"
                     app:layout_constraintEnd_toStartOf="@+id/guideline14"
@@ -101,7 +100,8 @@
                 android:hint="존재하지 않는 아이디입니다."
                 android:textColorHint="#FF0000"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintTop_toTopOf="@+id/guideline3" />
+                app:layout_constraintTop_toTopOf="@+id/guideline3"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/login_password_textview"
@@ -138,7 +138,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
-                    android:hint="비밀번호를 입력해주세요"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +155,8 @@
                 android:hint="비밀번호가 올바르지 않습니다."
                 android:textColorHint="#FF0000"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintTop_toTopOf="@+id/guideline12" />
+                app:layout_constraintTop_toTopOf="@+id/guideline12"
+                android:visibility="invisible"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"

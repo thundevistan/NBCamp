@@ -8,4 +8,8 @@ class ModifyInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_info)
     }
+
+    private fun isPasswordValid(password: String): Boolean {
+        return password.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,16}\$".toRegex())
+    }
 }

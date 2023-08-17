@@ -69,7 +69,6 @@ class SignupActivity : AppCompatActivity() {
     //정규식
     private val email =
         "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-    private val password = "^[A-Za-z0-9]{8,16}$"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -240,7 +239,7 @@ class SignupActivity : AppCompatActivity() {
     //비밀번호 edittext를 확인하고 widget을 변경
     private fun passwordCheck() {
         val passwordText = passwordEditText.text.toString().trim()
-        val passwordCheck = Pattern.matches(password, passwordText)
+        val passwordCheck = !passwordText.contains(" ") && passwordText.matches("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,16}\$".toRegex())
 
         if (passwordCheck) {
             passwordWarningText.visibility = View.INVISIBLE

@@ -10,6 +10,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,10 +24,17 @@ class ModifyInfoActivity : AppCompatActivity() {
 
     lateinit private var editImage: ImageView
     lateinit private var editImageButton: Button
+    lateinit private var backButton : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_info)
+
+        backButton = findViewById(R.id.modify_info_back_button)
+
+        backButton.setOnClickListener {
+            finish()
+        }
 
         initImageView()
 

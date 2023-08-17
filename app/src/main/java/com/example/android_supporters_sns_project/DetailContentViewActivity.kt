@@ -3,6 +3,7 @@ package com.example.android_supporters_sns_project
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -19,6 +20,11 @@ class DetailContentViewActivity : AppCompatActivity() {
         val txtID = findViewById<TextView>(R.id.detailContentView_id_textview)
         val imgContent = findViewById<ImageView>(R.id.detailContentView_contentimage_imageview)
         val txtContent = findViewById<TextView>(R.id.detailContentView_content_textview)
+        val backButton = findViewById<ImageButton>(R.id.detailContentView_backSpace_imageButton)
+
+        backButton.setOnClickListener {
+            finish()
+        }
 
         //intData에 따라 각 Data 설정
         when(intData) {

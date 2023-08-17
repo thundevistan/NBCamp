@@ -9,8 +9,11 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
 
 class TeamMateDetailPageActivity : AppCompatActivity() {
+
+	private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_team_mate_detail_page)
@@ -19,6 +22,8 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		val btnDetailContent1 = findViewById<ImageButton>(R.id.teamMateDetail_examPic1_imageButton)
 		val btnDetailContent2 = findViewById<ImageButton>(R.id.teamMateDetail_examPic2_imageButton)
 		val btnDetailContent3 = findViewById<ImageButton>(R.id.teamMateDetail_examPic3_imageButton)
+
+		val moveToModifyInfo = findViewById<ImageView>(R.id.teamMateDetail_profileEdit_imageView)
 
 		//각 버튼 클릭 시 해당하는 intData 전달
 		btnDetailContent1.setOnClickListener {
@@ -34,6 +39,11 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		btnDetailContent3.setOnClickListener {
 			val intent = Intent(this, DetailContentViewActivity::class.java)
 			intent.putExtra("intDataFromTeamMateDetail", 3)
+			startActivity(intent)
+		}
+
+		moveToModifyInfo.setOnClickListener {
+			val intent = Intent(this, ModifyInfoActivity::class.java)
 			startActivity(intent)
 		}
 

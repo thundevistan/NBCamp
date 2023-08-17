@@ -25,6 +25,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+8
+        MemberManager.addMember(
+            Member("choo901.naver.com", "a12345678", "이충환", "충환", null )
+        )
 
         loginButton = findViewById(R.id.login_signin_button)
         signupButton = findViewById(R.id.login_signup_button)

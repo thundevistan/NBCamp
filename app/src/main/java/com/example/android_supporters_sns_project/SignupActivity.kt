@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,13 +16,14 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.android_supporters_sns_project.dataclass.Member
 import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
 
-    var imageDataTemp : Uri? = null
+    var imageDataTemp: Uri? = null
 
     //각 Edittext 입력 여부에 따라 바뀌는 변수
     private var checkEmail = false
@@ -59,9 +59,9 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var nicknameWarningText: TextView
     private lateinit var nicknameConfirmCheck: ImageView
 
-    private lateinit var addPictureImage : ImageView
+    private lateinit var addPictureImage: ImageView
 
-    private lateinit var backButton : ImageView
+    private lateinit var backButton: ImageView
 
     private lateinit var confirmButton: Button
 
@@ -136,6 +136,7 @@ class SignupActivity : AppCompatActivity() {
                 ) == PackageManager.PERMISSION_GRANTED -> {
                     navigateGallery()
                 }
+
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                 -> {
                     showPermissionContextPopup()
@@ -150,7 +151,12 @@ class SignupActivity : AppCompatActivity() {
 
         confirmButton.setOnClickListener {
             createInstance()
-            finish()
+            val intent = Intent(this, LoginActivity::class.java).apply {
+                putExtra("id", emailEditText.text.toString())
+                putExtra("pw", passwordEditText.text.toString())
+            }
+            setResult(RESULT_OK, intent)
+            if (!isFinishing) finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 

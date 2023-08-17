@@ -1,26 +1,26 @@
 package com.example.android_supporters_sns_project
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.example.android_supporters_sns_project.dataclass.Member
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginButton : Button
-    private lateinit var signupButton : Button
-    private lateinit var emailEditText : EditText
+    private lateinit var loginButton: Button
+    private lateinit var signupButton: Button
+    private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
-    private lateinit var emailWarningMessage : TextView
-    private lateinit var passwordWarningMessage : TextView
-
-    var isEmail = false
-    var isPassword = false
+    private lateinit var emailWarningMessage: TextView
+    private lateinit var passwordWarningMessage: TextView
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,66 +33,82 @@ class LoginActivity : AppCompatActivity() {
         emailWarningMessage = findViewById(R.id.login_id_message)
         passwordWarningMessage = findViewById(R.id.login_password_message)
 
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == RESULT_OK) {
+                    val userId = it.data?.getStringExtra("id") ?: ""
+                    val userPw = it.data?.getStringExtra("pw") ?: ""
+                    emailEditText.setText(userId)
+                    passwordEditText.setText(userPw)
+                }
+            }
+
         loginButton.setOnClickListener {
-            intent = Intent(this, MainPageActivity::class.java)
-            startActivity(intent)
+            login()
         }
 
         signupButton.setOnClickListener {
-            intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+            emailWarningMessage.visibility = TextView.INVISIBLE
+            passwordWarningMessage.visibility = TextView.INVISIBLE
+            val intent = Intent(this, SignupActivity::class.java)
+            activityResultLauncher.launch(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
     }
 
-    private val loginEmailTextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-        override fun afterTextChanged(p0: Editable?) {
-            checkEmailEditText()
-        }
-    }
-
-    private val loginPasswordTextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            checkPasswordEditText()
-        }
-
-    }
-    private fun checkEmailEditText() {
-        val emailText = emailEditText.toString().trim()
-        if (emailText.isNotEmpty()) {
-            isEmail = true
-        }
-        else if (emailText.isEmpty()) {
-            isEmail = false
-        }
-    }
-    private fun checkPasswordEditText() {
-        val passwordText = passwordEditText.toString().trim()
-
-        if (passwordText.isNotEmpty()) {
-            isPassword = true
-        }
-        else if (passwordText.isEmpty()) {
-            isPassword = false
-        }
-    }
-
     private fun login() {
-        loginButton.isEnabled = isEmail&&isPassword
+        val email = emailEditText.text.toString().trim()
+        Log.d("LoginActivity", email)
+        val password = passwordEditText.text.toString().trim()
+        Log.d("LoginActivity", password)
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            emailWarningMessage.visibility = TextView.INVISIBLE
+            passwordWarningMessage.visibility = TextView.INVISIBLE
+            val member = MemberManager.getMemberList().find { it.email == email }
+            if (member != null) {
+                checkLogin(member, password)
+            } else {
+                emailNotExists()
+            }
+        } else {
+            notFilled()
+        }
     }
+
+    private fun checkLogin(
+        member: Member, password: String
+    ) {
+        if (member.password == password) {
+            // 로그인 성공
+            Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+            intent = Intent(this, MainPageActivity::class.java)
+            startActivity(intent)
+        } else {
+            // 비밀번호가 일치하지 않음
+            passwordWarningMessage.text = "비밀번호가 일치하지 않습니다."
+            passwordWarningMessage.visibility = TextView.VISIBLE
+            Log.d("LoginActivity", "비밀번호가 일치하지 않습니다.")
+        }
+    }
+
+    private fun emailNotExists() {
+        // 이메일이 존재하지 않음
+        emailWarningMessage.text = "존재하지 않는 아이디입니다."
+        emailWarningMessage.visibility = TextView.VISIBLE
+        Log.d("LoginActivity", "존재하지 않는 아이디입니다.")
+    }
+
+    private fun notFilled() {
+        if (emailEditText.text.toString().trim().isEmpty()) {
+            emailWarningMessage.text = "이메일을 입력해주세요."
+            emailWarningMessage.visibility = TextView.VISIBLE
+        }
+        if (passwordEditText.text.toString().trim().isEmpty()) {
+            passwordWarningMessage.text = "비밀번호를 입력해주세요."
+            passwordWarningMessage.visibility = TextView.VISIBLE
+        }
+    }
+
 }
+

@@ -78,7 +78,10 @@
                     android:id="@+id/login_id_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/rouded_corner"
                     android:ems="10"
+                    android:hint="이메일을 입력해주세요"
+                    android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toTopOf="@+id/guideline3"
                     app:layout_constraintEnd_toStartOf="@+id/guideline14"
@@ -97,8 +100,7 @@
                 android:id="@+id/login_id_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="존재하지 않는 아이디입니다."
-                android:textColorHint="@color/red"
+                android:textColor="@color/red"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
                 app:layout_constraintTop_toTopOf="@+id/guideline3" />
@@ -137,7 +139,9 @@
                     android:id="@+id/login_password_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/rouded_corner"
                     android:ems="10"
+                    android:hint="비밀번호를 입력해주세요"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,8 +156,7 @@
                 android:id="@+id/login_password_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="비밀번호가 올바르지 않습니다."
-                android:textColorHint="@color/red"
+                android:textColor="@color/red"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
                 app:layout_constraintTop_toTopOf="@+id/guideline12" />

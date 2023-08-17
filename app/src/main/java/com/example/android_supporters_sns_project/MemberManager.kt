@@ -20,5 +20,7 @@ object MemberManager {
             )
         }
     }
-
+    fun getMemberList(): List<Member> {
+        return memberList.toList()
+    }
 }

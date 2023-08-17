@@ -99,9 +99,9 @@
                 android:layout_height="wrap_content"
                 android:hint="존재하지 않는 아이디입니다."
                 android:textColorHint="#FF0000"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintTop_toTopOf="@+id/guideline3"
-                android:visibility="invisible"/>
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
             <TextView
                 android:id="@+id/login_password_textview"
@@ -154,9 +154,9 @@
                 android:layout_height="wrap_content"
                 android:hint="비밀번호가 올바르지 않습니다."
                 android:textColorHint="#FF0000"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintTop_toTopOf="@+id/guideline12"
-                android:visibility="invisible"/>
+                app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"
@@ -167,12 +167,11 @@
 
             <android.widget.Button
                 android:id="@+id/login_signin_button"
+                style="@style/CustomButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="180dp"
-                android:background="@drawable/login_button"
                 android:text="로그인"
-                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline14"
@@ -189,13 +188,12 @@
 
             <android.widget.Button
                 android:id="@+id/login_signup_button"
+                style="@style/CustomButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="120dp"
-                android:background="@drawable/signup_button"
                 android:text="회원가입"
-                android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline14"

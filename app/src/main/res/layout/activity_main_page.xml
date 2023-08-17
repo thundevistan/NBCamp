@@ -44,14 +44,16 @@
             android:layout_marginBottom="8dp"
             android:text="@string/main_profileText"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:scrollbars="none"
-            tools:ignore="SpeakableTextPresentCheck">
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginHorizontal="20dp">
 
             <LinearLayout
                 android:id="@+id/main_addView_userContainer"
@@ -115,7 +117,8 @@
             android:layout_height="wrap_content"
             android:text="@string/main_postText"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
 
     <!-- 게시글 수직 ScrollView 영역 -->
@@ -125,7 +128,8 @@
         android:fillViewport="true"
         android:padding="8dp"
         android:scrollbars="none"
-        tools:ignore="SpeakableTextPresentCheck">
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginHorizontal="20dp">
 
         <!-- addView: activity_main_page_post 영역 -->
         <LinearLayout

@@ -85,6 +85,11 @@ class MainPageActivity : AppCompatActivity() {
 			postIcon.setImageResource(arrIcon[i])
 			postImageView.setImageResource(arrImage[i])
 			postContainer.addView(mainPost)
+
+			postImageView.setOnClickListener {
+				val detailIntent = Intent(this, DetailContentViewActivity::class.java)
+				startActivity(detailIntent)
+			}
 		}
 	}
 }

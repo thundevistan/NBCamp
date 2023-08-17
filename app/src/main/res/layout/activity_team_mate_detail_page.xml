@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Application"
+        android:text="@string/detail_titleText"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="분야"
+        android:text="@string/detail_fieldText"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/teamMateDetail_ID_textView"
         app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_ID_textView" />
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="회사"
+        android:text="@string/detail_companyText"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/teamMateDetail_area_textView"
         app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_area_textView" />
@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="한 줄 인사"
+        android:text="@string/detail_commentText"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/teamMateDetail_company_textView"
         app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_company_textView" />

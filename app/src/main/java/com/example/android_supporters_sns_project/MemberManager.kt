@@ -16,7 +16,7 @@ object MemberManager {
         for ((index, member) in memberList.withIndex()) {
             Log.d(
                 "MemberInfo",
-                "Index: $index, Email: ${member.email}, Password: ${member.password}, Name: ${member.name}, Nickname: ${member.nickname}"
+                "Index: $index, Email: ${member.email}, Password: ${member.password}, Name: ${member.name}, Nickname: ${member.nickname}, Picture: ${member.profile}"
             )
         }
     }

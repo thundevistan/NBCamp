@@ -61,6 +61,8 @@ class SignupActivity : AppCompatActivity() {
 
     private lateinit var addPictureImage : ImageView
 
+    private lateinit var backButton : ImageView
+
     private lateinit var confirmButton: Button
 
 
@@ -99,6 +101,8 @@ class SignupActivity : AppCompatActivity() {
 
         confirmButton = findViewById(R.id.signup_confirm_button)
 
+        backButton = findViewById(R.id.signup_backspace_imageview)
+
         //Email edittext, button에 리스너 부착
         emailEditText.addTextChangedListener(signupTextWatcher)
         passwordEditText.addTextChangedListener(signupTextWatcher)
@@ -116,6 +120,10 @@ class SignupActivity : AppCompatActivity() {
             nicknameConfirmCheck.visibility = View.VISIBLE
             checkNickname = true
             enableConfirmButton()
+        }
+
+        backButton.setOnClickListener {
+            finish()
         }
 
         //사진을 선택한 경우
@@ -142,8 +150,6 @@ class SignupActivity : AppCompatActivity() {
 
         confirmButton.setOnClickListener {
             createInstance()
-        }
-        confirmButton.setOnClickListener {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }

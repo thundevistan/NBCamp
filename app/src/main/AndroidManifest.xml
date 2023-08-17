@@ -19,13 +19,13 @@
             android:exported="false"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".DetailContentViewActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

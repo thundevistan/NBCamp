@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainPageActivity">
 
     <!-- appBar 영역 -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:padding="8dp">
 
         <TextView
@@ -19,7 +20,7 @@
             android:layout_centerInParent="true"
             android:text="@string/main_titletext"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/main_myPageIcon"
@@ -30,12 +31,22 @@
             android:src="@drawable/ic_main_test" />
     </RelativeLayout>
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/modifyInfo_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="@color/black"
+        />
+
+
+
     <!-- 팀원 수평 ScrollVew 영역 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:id="@+id/main_teamText"

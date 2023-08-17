@@ -23,8 +23,6 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		val btnDetailContent2 = findViewById<ImageButton>(R.id.teamMateDetail_examPic2_imageButton)
 		val btnDetailContent3 = findViewById<ImageButton>(R.id.teamMateDetail_examPic3_imageButton)
 
-		val moveToModifyInfo = findViewById<ImageView>(R.id.teamMateDetail_profileEdit_imageView)
-
 		//각 버튼 클릭 시 해당하는 intData 전달
 		btnDetailContent1.setOnClickListener {
 			val intent = Intent(this, DetailContentViewActivity::class.java)
@@ -42,42 +40,31 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 			startActivity(intent)
 		}
 
-		moveToModifyInfo.setOnClickListener {
-			val intent = Intent(this, ModifyInfoActivity::class.java)
-			startActivity(intent)
-		}
-
 		// MainPage 로부터 아이디 수신하여 프로필 이미지/아이디 결정
 		val profileImage = findViewById<ImageView>(R.id.teamMateDetail_profile_imageView)
 		val profileId = findViewById<TextView>(R.id.teamMateDetail_ID_textView)
-		val profileEdit = findViewById<ImageView>(R.id.teamMateDetail_profileEdit_imageView)
 		var id = intent.getStringExtra("id")
 		profileId.text = id
 
 		when (id) {
 			"이충환" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"이소연" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex2)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"윤승재" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex3)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"손현준" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex4)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"김민준" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex5)
-				profileEdit.visibility = View.INVISIBLE
 			}
 		}
 
@@ -85,15 +72,8 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		val btnBackSpace = findViewById<ImageButton>(R.id.teamMateDetail_backSpace_imageButton)
 
 		btnBackSpace.setOnClickListener {
-			profileEdit.visibility = View.INVISIBLE
 			finish()
 		}
 
-		var loginId = intent.getStringExtra("loginId")
-		if (loginId == "login") {
-			profileEdit.visibility = View.VISIBLE
-		} else {
-			profileEdit.visibility = View.INVISIBLE
-		}
 	}
 }

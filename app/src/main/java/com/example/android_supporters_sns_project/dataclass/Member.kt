@@ -4,8 +4,8 @@ import android.net.Uri
 
 data class Member(
     val email: String,
-    val password: String,
+    var password: String,
     val name: String,
-    val nickname: String,
+    var nickname: String,
     val profile: Uri?
 )

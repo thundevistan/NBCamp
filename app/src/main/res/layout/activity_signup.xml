@@ -20,13 +20,14 @@
 
     <ImageView
         android:id="@+id/signup_backspace_imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/ic_backspace"
+        android:background="@color/white"
+        android:src="@drawable/ic_teammatedetail_backbutton"
+        app:layout_constraintBottom_toBottomOf="@+id/signup_logo_edittext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/signup_logo_edittext"
-        android:focusable="true"/>
+        app:layout_constraintTop_toTopOf="@+id/signup_logo_edittext"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/signup_divider"

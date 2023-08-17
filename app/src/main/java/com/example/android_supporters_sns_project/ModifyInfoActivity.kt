@@ -6,10 +6,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,27 +20,88 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
+import com.example.android_supporters_sns_project.dataclass.Member
 import com.google.android.material.textfield.TextInputLayout
 
 class ModifyInfoActivity : AppCompatActivity() {
 
-    lateinit private var editImage: ImageView
-    lateinit private var editImageButton: Button
-    lateinit private var backButton : ImageButton
+    var isNickname = true
+    var isPassword = true
+    var isPasswordCheck = false
+
+    private lateinit var editImage: ImageView
+    private lateinit var editImageButton: Button
+    private lateinit var backButton : ImageButton
+    private lateinit var mainButton : Button
+    private lateinit var emailEditText : TextView
+    private lateinit var nameEditText : TextView
+    private lateinit var nicknameEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var passwordCheckEditText : EditText
+
+    private lateinit var passwordcheckWarningText : TextView
+    private lateinit var nicknameWarningText : TextView
+
+    private lateinit var passwordCheck : ImageView
+    private lateinit var passwordCheckCheck : ImageView
+    private lateinit var nicknameCheck : ImageView
+
+    private lateinit var nicknameCheckRepititionButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_info)
+
+        isNickname = true
+        isPassword = true
+        isPasswordCheck =false
+
+        emailEditText = findViewById(R.id.modify_info_email_edittext)
+        nameEditText = findViewById(R.id.modify_info_name_edittext)
+        nicknameEditText = findViewById(R.id.modify_info_nickname_edittext)
+        passwordEditText = findViewById(R.id.modify_info_password_edittext)
+        passwordCheck = findViewById(R.id.modify_password_check)
+        passwordCheckCheck = findViewById(R.id.modify_passwordcheck_check)
+        nicknameCheck = findViewById(R.id.modify_nickname_check)
+        passwordCheckEditText = findViewById(R.id.modify_info_passwordcheck_edittext)
+
+        passwordcheckWarningText = findViewById(R.id.modify_info_passwordcheck_error_message)
+        nicknameWarningText = findViewById(R.id.modify_nickname_error_message)
+
+        nicknameCheckRepititionButton = findViewById(R.id.modify_info_nicknamerepetition_button)
+
+        val emailData : String? = intent.getStringExtra("email")
+        val member : Member? = emailData?.let { MemberManager.getMemberByEmail(it) }
+
+        emailEditText.text = member?.email
+        nameEditText.text = member?.name
+        nicknameEditText.setText(member?.nickname)
+        passwordEditText.setText(member?.password)
 
         backButton = findViewById(R.id.modify_info_back_button)
 
         backButton.setOnClickListener {
             finish()
         }
+        passwordCheckEditText.addTextChangedListener(passwordCheckWatcher)
+        nicknameEditText.addTextChangedListener(nicknameTextWatcher)
+        nicknameCheckRepititionButton.setOnClickListener {
+            nicknameCheck.visibility = View.VISIBLE
+            nicknameWarningText.visibility = View.INVISIBLE
+        }
 
         initImageView()
-
         passwordTextWatcher()
+
+        mainButton = findViewById(R.id.modify_info_ok_button)
+        mainButton.setOnClickListener {
+            val saveNickname = nicknameEditText.text.toString().trim()
+            val savePassword = passwordEditText.text.toString().trim()
+            MemberManager.updateMember(emailData, savePassword, saveNickname)
+            finish()
+
+        }
     }
 
     // 이미지 수정 버튼을 눌렀을때 실행되는 함수
@@ -148,13 +211,73 @@ class ModifyInfoActivity : AppCompatActivity() {
                 ) {
                     errorMessageView.visibility = View.VISIBLE
                     errorMessageView.text = getString(R.string.modifyinfo_password_warning_text)
+                    isPassword = false
+                    passwordCheck.visibility = View.INVISIBLE
+                    activeButton()
+
                 } else {
                     errorMessageView.visibility = View.INVISIBLE
+                    isPassword = true
+                    activeButton()
+                    passwordCheck.visibility = View.VISIBLE
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
             }
         })
+    }
+
+    private val passwordCheckWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            if (passwordEditText.text.toString() == passwordCheckEditText.text.toString()) {
+                isPasswordCheck = true
+                passwordcheckWarningText.visibility = View.INVISIBLE
+                passwordCheckCheck.visibility = View.VISIBLE
+                activeButton()
+            }
+            else {
+                isPasswordCheck = false
+                passwordcheckWarningText.visibility = View.VISIBLE
+                passwordCheckCheck.visibility = View.INVISIBLE
+                activeButton()
+            }
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+
+        }
+    }
+
+    private val nicknameTextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            nicknameCheck.visibility = View.INVISIBLE
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+            if (nicknameEditText.text.toString().isNotEmpty()) {
+                nicknameWarningText.visibility = View.INVISIBLE
+                nicknameCheckRepititionButton.isEnabled = true
+                activeButton()
+            }
+            else if(nicknameEditText.text.toString().isEmpty()) {
+                nicknameWarningText.text = "닉네임을 입력해주세요"
+                nicknameWarningText.visibility = View.VISIBLE
+                nicknameCheckRepititionButton.isEnabled = false
+                activeButton()
+            }
+        }
+
+    }
+    private fun activeButton() {
+        mainButton.isEnabled = isPassword && isNickname && isPasswordCheck
     }
 }

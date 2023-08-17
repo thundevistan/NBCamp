@@ -18,6 +18,12 @@ class MainPageActivity : AppCompatActivity() {
 		"김민준"
 	)
 
+	private var arrIdContent = arrayOf(
+		"이충환",
+		"이소연",
+		"윤승재"
+	)
+
 	private var arrIcon = arrayListOf(
 		R.drawable.ic_main_ex,
 		R.drawable.ic_main_ex2,
@@ -38,7 +44,10 @@ class MainPageActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main_page)
 
+		val emailData : String? = intent.getStringExtra("email")
+
 		val intentDetail = Intent(this, TeamMateDetailPageActivity::class.java)
+		val intentPersonal = Intent(this,PersonalPageActivity::class.java)
 
 		val myPageIcon = findViewById<ImageView>(R.id.main_myPageIcon)
 		val userIcon = findViewById<ImageView>(R.id.main_userIcon)
@@ -49,8 +58,8 @@ class MainPageActivity : AppCompatActivity() {
 
 		// TeamMateDetailPage 이동 및 데이터 전달
 		myPageIcon.setOnClickListener {
-			intentDetail.putExtra("loginId", "login")
-			startActivity(intentDetail)
+			intentPersonal.putExtra("email", emailData)
+			startActivity(intentPersonal)
 		}
 
 		userIcon.setOnClickListener {
@@ -82,7 +91,7 @@ class MainPageActivity : AppCompatActivity() {
 		val inflater = LayoutInflater.from(this@MainPageActivity)
 
 		// 게시글 addView
-		for (i in 0 until arrId.size) {
+		for (i in arrIdContent.indices) {
 			val mainPost = inflater.inflate(R.layout.activity_main_page_post, null)
 			val postId = mainPost.findViewById<TextView>(R.id.main_postUserId)
 			val postIcon = mainPost.findViewById<ImageView>(R.id.main_postUserIcon)
@@ -95,6 +104,7 @@ class MainPageActivity : AppCompatActivity() {
 
 			postImageView.setOnClickListener {
 				val detailIntent = Intent(this, DetailContentViewActivity::class.java)
+				detailIntent.putExtra("intDataFromTeamMateDetail", i+1)
 				startActivity(detailIntent)
 			}
 		}

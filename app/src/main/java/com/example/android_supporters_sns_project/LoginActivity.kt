@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 8
         MemberManager.addMember(
-            Member("choo901.naver.com", "a12345678", "이충환", "충환", null )
+            Member("c", "a", "이충환", "충환", null )
         )
 
         loginButton = findViewById(R.id.login_signin_button)
@@ -87,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
             // 로그인 성공
             Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
             intent = Intent(this, MainPageActivity::class.java)
+            intent.putExtra("email", member.email)
             startActivity(intent)
         } else {
             // 비밀번호가 일치하지 않음

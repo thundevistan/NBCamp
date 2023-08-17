@@ -18,14 +18,13 @@
 
         <ImageButton
             android:id="@+id/modify_info_back_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="modify_info_back_button"
-            android:src="@drawable/ic_teammatedetail_backbutton" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_teammatedetail_backbutton"
+            app:layout_constraintBottom_toBottomOf="@+id/modify_info_logo_edittext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/modify_info_logo_edittext" />
 
         <TextView
             android:id="@+id/modify_info_logo_edittext"
@@ -61,8 +60,8 @@
 
             <ImageView
                 android:id="@+id/modify_info_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:contentDescription="image_modify_info_image"
                 android:src="@drawable/image_modify_info_profile"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +164,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
+                <TextView
+                    android:id="@+id/modify_nickname_error_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:text="닉네임을 입력해주세요"
+                    android:textColor="@color/red"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext"/>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/modify_info_nicknamerepetition_button"
                     style="@style/CustomButton"
@@ -175,7 +184,21 @@
                     android:text="@string/modify_doubleCheck"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname"
+                    android:enabled="false"/>
+
+
+
+                <ImageView
+                    android:id="@+id/modify_nickname_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_nickname_edittext"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_nickname_edittext"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_nickname_edittext"
+                    android:visibility="visible"/>
 
                 <TextView
                     android:id="@+id/modify_info_password"
@@ -217,6 +240,70 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/modify_password_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_password_textinputlayout"
+                    android:visibility="visible"
+                    />
+
+                <TextView
+                    android:id="@+id/modify_info_passwordcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/signup_passwordcheck_text"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password_textinputlayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/modify_info_passwordcheck_textinputlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_passwordcheck"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/modify_info_passwordcheck_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_modify_info"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:id="@+id/modify_info_passwordcheck_error_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingHorizontal="4dp"
+                        android:text="비밀번호가 일치하지 않습니다."
+                        android:textColor="@color/red"
+                        android:visibility="visible" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/modify_passwordcheck_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="15dp"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_passwordcheck_textinputlayout"
+                    android:visibility="invisible"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -243,7 +330,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/modify_confirmButton"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:enabled="false"/>
 
     </LinearLayout>
 

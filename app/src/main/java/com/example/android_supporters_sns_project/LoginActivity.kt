@@ -1,5 +1,6 @@
 package com.example.android_supporters_sns_project
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -31,6 +32,17 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.login_password_edittext)
         emailWarningMessage = findViewById(R.id.login_id_message)
         passwordWarningMessage = findViewById(R.id.login_password_message)
+
+        loginButton.setOnClickListener {
+            intent = Intent(this, MainPageActivity::class.java)
+            startActivity(intent)
+        }
+
+        signupButton.setOnClickListener {
+            intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
 
     }
 

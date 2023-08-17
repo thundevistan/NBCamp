@@ -23,6 +23,8 @@ import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
 
+    var imageDataTemp : Uri? = null
+
     //각 Edittext 입력 여부에 따라 바뀌는 변수
     private var checkEmail = false
     private var checkPassword = false
@@ -296,7 +298,8 @@ class SignupActivity : AppCompatActivity() {
             emailEditText.text.toString().trim(),
             passwordEditText.text.toString().trim(),
             nameEditText.text.toString().trim(),
-            nicknameEditText.text.toString().trim()
+            nicknameEditText.text.toString().trim(),
+            imageDataTemp
         )
 
         MemberManager.addMember(member) // 입력 받은 값을 추가
@@ -319,6 +322,7 @@ class SignupActivity : AppCompatActivity() {
                     val selectedImageUri: Uri? = data.data
                     if (selectedImageUri != null) {
                         addPictureImage.setImageURI(selectedImageUri)
+                        imageDataTemp = selectedImageUri
                     } else {
                         Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
                     }
@@ -337,6 +341,5 @@ class SignupActivity : AppCompatActivity() {
             .setNegativeButton("취소하기") { _, _ -> }
             .create()
             .show()
-
     }
 }

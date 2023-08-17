@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
     ) {
         if (member.password == password) {
             // 로그인 성공
-            Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
             intent = Intent(this, MainPageActivity::class.java)
             intent.putExtra("email", member.email)
             startActivity(intent)

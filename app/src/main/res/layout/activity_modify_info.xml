@@ -167,6 +167,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/modify_info_nicknamerepetition_button"
                     style="@style/CustomButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

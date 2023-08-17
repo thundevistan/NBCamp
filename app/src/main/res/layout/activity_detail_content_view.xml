@@ -104,7 +104,8 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview"
+                />
 
             <EditText
                 android:id="@+id/detailContentView_reply_edittext"

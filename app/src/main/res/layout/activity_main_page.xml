@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainPageActivity">
 
     <!-- appBar 영역 -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:padding="8dp">
 
         <TextView
@@ -19,23 +20,33 @@
             android:layout_centerInParent="true"
             android:text="@string/main_titletext"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/main_myPageIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:adjustViewBounds="true"
-            android:src="@drawable/ic_main_test" />
+            android:src="@drawable/ic_main_personalicon" />
     </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/modifyInfo_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="@color/black"
+        />
+
+
 
     <!-- 팀원 수평 ScrollVew 영역 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:id="@+id/main_teamText"
@@ -44,14 +55,16 @@
             android:layout_marginBottom="8dp"
             android:text="@string/main_profileText"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"/>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:scrollbars="none"
-            tools:ignore="SpeakableTextPresentCheck">
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginHorizontal="20dp">
 
             <LinearLayout
                 android:id="@+id/main_addView_userContainer"
@@ -64,7 +77,7 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex" />
+                    android:src="@drawable/ic_main_ex"/>
 
                 <ImageView
                     android:id="@+id/main_userIcon2"
@@ -115,7 +128,8 @@
             android:layout_height="wrap_content"
             android:text="@string/main_postText"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"/>
     </LinearLayout>
 
     <!-- 게시글 수직 ScrollView 영역 -->
@@ -125,7 +139,8 @@
         android:fillViewport="true"
         android:padding="8dp"
         android:scrollbars="none"
-        tools:ignore="SpeakableTextPresentCheck">
+        tools:ignore="SpeakableTextPresentCheck"
+        android:layout_marginHorizontal="20dp">
 
         <!-- addView: activity_main_page_post 영역 -->
         <LinearLayout

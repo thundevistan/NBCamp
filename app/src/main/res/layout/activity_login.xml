@@ -50,7 +50,7 @@
                 android:id="@+id/login_id_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ID"
+                android:text="Email"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline15"
                 app:layout_constraintEnd_toStartOf="@+id/guideline14"
@@ -80,7 +80,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/rouded_corner"
                     android:ems="10"
-                    android:hint="이메일을 입력해주세요"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toTopOf="@+id/guideline3"
@@ -141,7 +140,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/rouded_corner"
                     android:ems="10"
-                    android:hint="비밀번호를 입력해주세요"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 

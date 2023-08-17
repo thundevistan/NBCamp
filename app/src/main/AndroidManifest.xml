@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Android_Supporters_SNS_Project"
         tools:targetApi="31">
         <activity
+            android:name=".PersonalPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".TeamMateDetailPageActivity"
             android:exported="false" />
         <activity

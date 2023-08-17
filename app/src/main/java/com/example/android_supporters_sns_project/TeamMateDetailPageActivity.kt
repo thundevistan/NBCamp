@@ -9,8 +9,11 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
 
 class TeamMateDetailPageActivity : AppCompatActivity() {
+
+	private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_team_mate_detail_page)
@@ -40,34 +43,28 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		// MainPage 로부터 아이디 수신하여 프로필 이미지/아이디 결정
 		val profileImage = findViewById<ImageView>(R.id.teamMateDetail_profile_imageView)
 		val profileId = findViewById<TextView>(R.id.teamMateDetail_ID_textView)
-		val profileEdit = findViewById<ImageView>(R.id.teamMateDetail_profileEdit_imageView)
 		var id = intent.getStringExtra("id")
 		profileId.text = id
 
 		when (id) {
 			"이충환" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"이소연" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex2)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"윤승재" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex3)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"손현준" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex4)
-				profileEdit.visibility = View.INVISIBLE
 			}
 
 			"김민준" -> {
 				profileImage.setImageResource(R.drawable.ic_main_ex5)
-				profileEdit.visibility = View.INVISIBLE
 			}
 		}
 
@@ -75,15 +72,8 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		val btnBackSpace = findViewById<ImageButton>(R.id.teamMateDetail_backSpace_imageButton)
 
 		btnBackSpace.setOnClickListener {
-			profileEdit.visibility = View.INVISIBLE
 			finish()
 		}
 
-		var loginId = intent.getStringExtra("loginId")
-		if (loginId == "login") {
-			profileEdit.visibility = View.VISIBLE
-		} else {
-			profileEdit.visibility = View.INVISIBLE
-		}
 	}
 }

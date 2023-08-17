@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android_Supporters_SNS_Project</string>
+    <string name="signup_profile_picture_text">Profile image</string>
+    <string name="signup_email_text">E-mail</string>
+    <string name="signup_email_repetition_text">check</string>
+    <string name="signup_email_warning_text">Incorrect E-mail format</string>
+    <string name="signup_password_text">Password(8~16 characters/number)</string>
+    <string name="signup_password_warning_text">Incorrect password format</string>
+    <string name="signup_passwordcheck_text">Verify password</string>
+    <string name="signup_password_check_warning_text">Password mismatch</string>
+    <string name="signup_name_text">Name</string>
+    <string name="signup_name_warning_text">Enter your name</string>
+    <string name="signup_nickname_text">Username(no more than 15 characters)</string>
+    <string name="signup_nickname_repetition_button_text">check</string>
+    <string name="signup_nickname_warning_text">Check for the availability of the username</string>
+    <string name="signup_confirmbutton_text">Confirm</string>
+    <string name="detailContentView_content_example">Test text</string>
+    <string name="detailContentView_reply_hint">Comment</string>
+    <string name="detailContentView_reply_confirm_button">Confirm</string>
+    <string name="main_profileText">Teammate</string>
+    <string name="main_postText">Post</string>
+    <string name="modifyinfo_password_warning_text">Incorrect password format</string>
+    <string name="login_loginText">Login</string>
+    <string name="login_signupText">Sign up</string>
+    <string name="modify_modifyText">Modify</string>
+    <string name="modify_emailText">E-mail</string>
+    <string name="modify_nameText">Name</string>
+    <string name="modify_nicknameText">Username</string>
+    <string name="modify_doubleCheck">check</string>
+    <string name="modify_passwordText">Password(8~16characters/number)</string>
+    <string name="modify_confirmButton">Confirm</string>
+    <string name="detail_fieldText">Field</string>
+    <string name="detail_companyText">Company</string>
+    <string name="detail_commentText">Comment</string>
+</resources>

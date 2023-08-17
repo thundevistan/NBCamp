@@ -13,9 +13,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@color/white"
+        android:src="@drawable/ic_teammatedetail_backbutton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_teammatedetail_backbutton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/teamMateDetail_title_textView"
@@ -30,15 +30,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/teamMateDetail_profileEdit_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageView
         android:id="@+id/teamMateDetail_profile_imageView"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/imageview_teammatedetail_borderline"
+        android:src="@drawable/ic_teammatedetail_person"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_backSpace_imageButton"
-        android:src="@drawable/ic_teammatedetail_person" />
+        app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_backSpace_imageButton" />
 
     <TextView
         android:id="@+id/teamMateDetail_ID_textView"
@@ -84,8 +94,8 @@
         android:id="@+id/teamMateDetail_space_view"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,9 +126,9 @@
                     android:id="@+id/teamMateDetail_examPic1_imageButton"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
-                    android:padding="3dp"
                     android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/exampic1_teammatedetail_imageview" />
 
             </androidx.cardview.widget.CardView>
@@ -129,9 +139,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:textSize="15sp" />
 
             <androidx.cardview.widget.CardView
@@ -143,9 +153,9 @@
                     android:id="@+id/teamMateDetail_examPic2_imageButton"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
-                    android:padding="2dp"
                     android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/exampic2_teammatedetail_imageview" />
 
             </androidx.cardview.widget.CardView>
@@ -156,9 +166,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:textSize="15sp" />
 
             <androidx.cardview.widget.CardView
@@ -170,9 +180,9 @@
                     android:id="@+id/teamMateDetail_examPic3_imageButton"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:scaleType="fitXY"
-                    android:padding="2dp"
                     android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/exampic3_teammatedetail_imageview" />
 
             </androidx.cardview.widget.CardView>
@@ -183,9 +193,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
                 android:textSize="15sp" />
 
         </LinearLayout>

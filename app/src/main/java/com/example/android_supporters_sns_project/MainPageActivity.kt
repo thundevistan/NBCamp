@@ -38,37 +38,44 @@ class MainPageActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main_page)
 
-		val intent = Intent(this, TeamMateDetailPageActivity::class.java)
+		val intentDetail = Intent(this, TeamMateDetailPageActivity::class.java)
+
+		val myPageIcon = findViewById<ImageView>(R.id.main_myPageIcon)
 		val userIcon = findViewById<ImageView>(R.id.main_userIcon)
 		val userIcon2 = findViewById<ImageView>(R.id.main_userIcon2)
 		val userIcon3 = findViewById<ImageView>(R.id.main_userIcon3)
 		val userIcon4 = findViewById<ImageView>(R.id.main_userIcon4)
 		val userIcon5 = findViewById<ImageView>(R.id.main_userIcon5)
 
-		// 팀원 클릭 시 TeamMateDetailPage 이동 및 데이터 전달
+		// TeamMateDetailPage 이동 및 데이터 전달
+		myPageIcon.setOnClickListener {
+			intentDetail.putExtra("loginId", "login")
+			startActivity(intentDetail)
+		}
+
 		userIcon.setOnClickListener {
-			intent.putExtra("id", arrId[0])
-			startActivity(intent)
+			intentDetail.putExtra("id", arrId[0])
+			startActivity(intentDetail)
 		}
 
 		userIcon2.setOnClickListener {
-			intent.putExtra("id", arrId[1])
-			startActivity(intent)
+			intentDetail.putExtra("id", arrId[1])
+			startActivity(intentDetail)
 		}
 
 		userIcon3.setOnClickListener {
-			intent.putExtra("id", arrId[2])
-			startActivity(intent)
+			intentDetail.putExtra("id", arrId[2])
+			startActivity(intentDetail)
 		}
 
 		userIcon4.setOnClickListener {
-			intent.putExtra("id", arrId[3])
-			startActivity(intent)
+			intentDetail.putExtra("id", arrId[3])
+			startActivity(intentDetail)
 		}
 
 		userIcon5.setOnClickListener {
-			intent.putExtra("id", arrId[4])
-			startActivity(intent)
+			intentDetail.putExtra("id", arrId[4])
+			startActivity(intentDetail)
 		}
 
 		val postContainer = findViewById<LinearLayout>(R.id.main_addView_postContainer)

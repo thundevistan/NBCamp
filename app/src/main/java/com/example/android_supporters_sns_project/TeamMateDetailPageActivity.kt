@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,9 +14,6 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_team_mate_detail_page)
-
-		val btnBackSpace = findViewById<ImageButton>(R.id.teamMateDetail_backSpace_imageButton)
-		btnBackSpace.setOnClickListener { finish() }
 
 		//각 변수와 이미지 버튼 연동 (변수명은 임의로 설정했는데 작성 룰이 있다면 변경 부탁드립니다)
 		val btnDetailContent1 = findViewById<ImageButton>(R.id.teamMateDetail_examPic1_imageButton)
@@ -42,15 +40,50 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		// MainPage 로부터 아이디 수신하여 프로필 이미지/아이디 결정
 		val profileImage = findViewById<ImageView>(R.id.teamMateDetail_profile_imageView)
 		val profileId = findViewById<TextView>(R.id.teamMateDetail_ID_textView)
+		val profileEdit = findViewById<ImageView>(R.id.teamMateDetail_profileEdit_imageView)
 		var id = intent.getStringExtra("id")
 		profileId.text = id
 
 		when (id) {
-			"이충환" -> profileImage.setImageResource(R.drawable.ic_main_ex)
-			"이소연" -> profileImage.setImageResource(R.drawable.ic_main_ex2)
-			"윤승재" -> profileImage.setImageResource(R.drawable.ic_main_ex3)
-			"손현준" -> profileImage.setImageResource(R.drawable.ic_main_ex4)
-			"김민준" -> profileImage.setImageResource(R.drawable.ic_main_ex5)
+			"이충환" -> {
+				profileImage.setImageResource(R.drawable.ic_main_ex)
+				profileEdit.visibility = View.INVISIBLE
+			}
+
+			"이소연" -> {
+				profileImage.setImageResource(R.drawable.ic_main_ex2)
+				profileEdit.visibility = View.INVISIBLE
+			}
+
+			"윤승재" -> {
+				profileImage.setImageResource(R.drawable.ic_main_ex3)
+				profileEdit.visibility = View.INVISIBLE
+			}
+
+			"손현준" -> {
+				profileImage.setImageResource(R.drawable.ic_main_ex4)
+				profileEdit.visibility = View.INVISIBLE
+			}
+
+			"김민준" -> {
+				profileImage.setImageResource(R.drawable.ic_main_ex5)
+				profileEdit.visibility = View.INVISIBLE
+			}
+		}
+
+		// 뒤로 가기 및 본인 프로필 편집
+		val btnBackSpace = findViewById<ImageButton>(R.id.teamMateDetail_backSpace_imageButton)
+
+		btnBackSpace.setOnClickListener {
+			profileEdit.visibility = View.INVISIBLE
+			finish()
+		}
+
+		var loginId = intent.getStringExtra("loginId")
+		if (loginId == "login") {
+			profileEdit.visibility = View.VISIBLE
+		} else {
+			profileEdit.visibility = View.INVISIBLE
 		}
 	}
 }

@@ -1,11 +1,13 @@
 package com.example.android_supporters_sns_project
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+
 
 class MainPageActivity : AppCompatActivity() {
 	private var arrId = arrayListOf(
@@ -35,6 +37,39 @@ class MainPageActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main_page)
+
+		val intent = Intent(this, TeamMateDetailPageActivity::class.java)
+		val userIcon = findViewById<ImageView>(R.id.main_userIcon)
+		val userIcon2 = findViewById<ImageView>(R.id.main_userIcon2)
+		val userIcon3 = findViewById<ImageView>(R.id.main_userIcon3)
+		val userIcon4 = findViewById<ImageView>(R.id.main_userIcon4)
+		val userIcon5 = findViewById<ImageView>(R.id.main_userIcon5)
+
+		// 팀원 클릭 시 TeamMateDetailPage 이동 및 데이터 전달
+		userIcon.setOnClickListener {
+			intent.putExtra("id", arrId[0])
+			startActivity(intent)
+		}
+
+		userIcon2.setOnClickListener {
+			intent.putExtra("id", arrId[1])
+			startActivity(intent)
+		}
+
+		userIcon3.setOnClickListener {
+			intent.putExtra("id", arrId[2])
+			startActivity(intent)
+		}
+
+		userIcon4.setOnClickListener {
+			intent.putExtra("id", arrId[3])
+			startActivity(intent)
+		}
+
+		userIcon5.setOnClickListener {
+			intent.putExtra("id", arrId[4])
+			startActivity(intent)
+		}
 
 		val postContainer = findViewById<LinearLayout>(R.id.main_addView_postContainer)
 		val inflater = LayoutInflater.from(this@MainPageActivity)

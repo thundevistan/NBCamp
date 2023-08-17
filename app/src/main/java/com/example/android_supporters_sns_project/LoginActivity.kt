@@ -7,7 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android_supporters_sns_project.dataclass.Member
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var emailWarningMessage: TextView
     private lateinit var passwordWarningMessage: TextView
+    private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,35 +33,28 @@ class LoginActivity : AppCompatActivity() {
         emailWarningMessage = findViewById(R.id.login_id_message)
         passwordWarningMessage = findViewById(R.id.login_password_message)
 
+        activityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == RESULT_OK) {
+                    val userId = it.data?.getStringExtra("id") ?: ""
+                    val userPw = it.data?.getStringExtra("pw") ?: ""
+                    emailEditText.setText(userId)
+                    passwordEditText.setText(userPw)
+                }
+            }
+
         loginButton.setOnClickListener {
             login()
         }
 
         signupButton.setOnClickListener {
-            intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+            emailWarningMessage.visibility = TextView.INVISIBLE
+            passwordWarningMessage.visibility = TextView.INVISIBLE
+            val intent = Intent(this, SignupActivity::class.java)
+            activityResultLauncher.launch(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
-    }
-
-    private fun checkEmailEditText() {
-        if (emailEditText.text.toString().trim().isEmpty()) {
-            emailWarningMessage.text = "이메일을 입력해주세요."
-            emailWarningMessage.visibility = TextView.VISIBLE
-        } else {
-            emailWarningMessage.visibility = TextView.INVISIBLE
-        }
-    }
-
-    private fun checkPasswordEditText() {
-        if (passwordEditText.text.toString().trim().isEmpty()) {
-            passwordWarningMessage.text = "비밀번호를 입력해주세요."
-            passwordWarningMessage.visibility = TextView.VISIBLE
-        } else {
-            passwordWarningMessage.visibility = TextView.INVISIBLE
-
-        }
     }
 
     private fun login() {
@@ -70,27 +67,48 @@ class LoginActivity : AppCompatActivity() {
             passwordWarningMessage.visibility = TextView.INVISIBLE
             val member = MemberManager.getMemberList().find { it.email == email }
             if (member != null) {
-                if (member.password == password) {
-                    // 로그인 성공
-                    Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
-                    intent = Intent(this, MainPageActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    // 비밀번호가 일치하지 않음
-                    passwordWarningMessage.text = "비밀번호가 일치하지 않습니다."
-                    passwordWarningMessage.visibility = TextView.VISIBLE
-                    Log.d("LoginActivity", "비밀번호가 일치하지 않습니다.")
-                }
+                checkLogin(member, password)
             } else {
-                // 이메일이 존재하지 않음
-                emailWarningMessage.text = "존재하지 않는 아이디입니다."
-                emailWarningMessage.visibility = TextView.VISIBLE
-                Log.d("LoginActivity", "존재하지 않는 아이디입니다.")
+                emailNotExists()
             }
         } else {
-            checkPasswordEditText()
-            checkEmailEditText()
+            notFilled()
         }
     }
+
+    private fun checkLogin(
+        member: Member, password: String
+    ) {
+        if (member.password == password) {
+            // 로그인 성공
+            Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+            intent = Intent(this, MainPageActivity::class.java)
+            startActivity(intent)
+        } else {
+            // 비밀번호가 일치하지 않음
+            passwordWarningMessage.text = "비밀번호가 일치하지 않습니다."
+            passwordWarningMessage.visibility = TextView.VISIBLE
+            Log.d("LoginActivity", "비밀번호가 일치하지 않습니다.")
+        }
+    }
+
+    private fun emailNotExists() {
+        // 이메일이 존재하지 않음
+        emailWarningMessage.text = "존재하지 않는 아이디입니다."
+        emailWarningMessage.visibility = TextView.VISIBLE
+        Log.d("LoginActivity", "존재하지 않는 아이디입니다.")
+    }
+
+    private fun notFilled() {
+        if (emailEditText.text.toString().trim().isEmpty()) {
+            emailWarningMessage.text = "이메일을 입력해주세요."
+            emailWarningMessage.visibility = TextView.VISIBLE
+        }
+        if (passwordEditText.text.toString().trim().isEmpty()) {
+            passwordWarningMessage.text = "비밀번호를 입력해주세요."
+            passwordWarningMessage.visibility = TextView.VISIBLE
+        }
+    }
+
 }
 

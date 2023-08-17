@@ -3,6 +3,7 @@
     <style name="Base.Theme.Android_Supporters_SNS_Project" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Theme.Android_Supporters_SNS_Project" parent="Base.Theme.Android_Supporters_SNS_Project" />

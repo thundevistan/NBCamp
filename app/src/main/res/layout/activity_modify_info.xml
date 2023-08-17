@@ -212,7 +212,7 @@
                         android:layout_marginTop="4dp"
                         android:paddingHorizontal="4dp"
                         android:text=""
-                        android:textColor="@android:color/holo_red_dark"
+                        android:textColor="@color/red"
                         android:visibility="invisible" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -227,7 +227,7 @@
         android:id="@+id/modify_info_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"

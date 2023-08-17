@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PersonalPageActivity">
+
+    <ImageButton
+        android:id="@+id/personalPage_backSpace_imageButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_teammatedetail_backbutton"
+        app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/personalPage_title_textView" />
+
+    <TextView
+        android:id="@+id/personalPage_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail_titleText"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/personalPage_divider" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/personalPage_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        app:dividerColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_title_textView" />
+
+    <ImageView
+        android:id="@+id/personalPage_profileEdit_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/personalPage_title_textView"
+        app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageView
+        android:id="@+id/personalPage_profile_imageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/imageview_teammatedetail_borderline"
+        android:src="@drawable/ic_teammatedetail_person"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_backSpace_imageButton" />
+
+    <TextView
+        android:id="@+id/personalPage_ID_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="아이디"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/personalPage_profile_imageView"
+        app:layout_constraintTop_toTopOf="@+id/personalPage_profile_imageView" />
+
+    <TextView
+        android:id="@+id/personalPage_area_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/detail_fieldText"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/personalPage_ID_textView"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_ID_textView" />
+
+    <TextView
+        android:id="@+id/personalPage_company_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/detail_companyText"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/personalPage_area_textView"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_area_textView" />
+
+    <TextView
+        android:id="@+id/personalPage_greet_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/detail_commentText"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/personalPage_company_textView"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_company_textView" />
+
+    <View
+        android:id="@+id/personalPage_space_view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personalPage_profile_imageView" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/personalPage_space_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginHorizontal="40dp">
+
+                <ImageButton
+                    android:id="@+id/personalPage_examPic1_imageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="3dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/exampic1_teammatedetail_imageview" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/personalPage_examText1_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:textSize="15sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginHorizontal="40dp">
+
+                <ImageButton
+                    android:id="@+id/personalPage_examPic2_imageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/exampic2_teammatedetail_imageview" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/personalPage_examText2_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:textSize="15sp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                android:layout_marginHorizontal="40dp">
+
+                <ImageButton
+                    android:id="@+id/personalPage_examPic3_imageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/imageview_teammatedetail_borderline"
+                    android:padding="2dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/exampic3_teammatedetail_imageview" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/personalPage_examText3_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:textSize="15sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

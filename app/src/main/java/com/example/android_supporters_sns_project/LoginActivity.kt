@@ -88,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this, MainPageActivity::class.java)
             intent.putExtra("email", member.email)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         } else {
             // 비밀번호가 일치하지 않음
             passwordWarningMessage.text = getString(R.string.login_passwordWarningMessage)

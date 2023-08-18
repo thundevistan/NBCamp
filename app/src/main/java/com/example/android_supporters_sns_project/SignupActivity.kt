@@ -123,6 +123,7 @@ class SignupActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         //사진을 선택한 경우

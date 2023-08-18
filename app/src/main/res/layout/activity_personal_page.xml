@@ -10,7 +10,7 @@
         android:id="@+id/personalPage_backSpace_imageButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_teammatedetail_backbutton"
         app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +20,13 @@
         android:id="@+id/personalPage_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fasthand_regular"
         android:text="@string/detail_titleText"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/personalPage_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/personalPage_divider" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/personalPage_divider"
@@ -40,9 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/personalPage_title_textView"
-        app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -51,6 +52,7 @@
         android:layout_height="140dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:background="@drawable/ic_circular_image"
         android:src="@drawable/ic_teammatedetail_person"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personalPage_backSpace_imageButton" />
@@ -92,11 +94,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/personalPage_space_view"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp">
+        app:layout_constraintTop_toTopOf="@+id/personalPage_space_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,8 +110,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:layout_marginHorizontal="40dp">
+                android:layout_marginHorizontal="40dp"
+                app:cardCornerRadius="20dp">
 
                 <ImageButton
                     android:id="@+id/personalPage_examPic1_imageButton"
@@ -137,8 +139,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:layout_marginHorizontal="40dp">
+                android:layout_marginHorizontal="40dp"
+                app:cardCornerRadius="20dp">
 
                 <ImageButton
                     android:id="@+id/personalPage_examPic2_imageButton"
@@ -165,8 +167,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                android:layout_marginHorizontal="40dp">
+                android:layout_marginHorizontal="40dp"
+                app:cardCornerRadius="20dp">
 
                 <ImageButton
                     android:id="@+id/personalPage_examPic3_imageButton"

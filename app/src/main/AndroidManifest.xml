@@ -41,7 +41,8 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".MainPageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".DetailContentViewActivity"
             android:exported="false" />

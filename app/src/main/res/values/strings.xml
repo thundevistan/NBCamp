@@ -28,6 +28,10 @@
     <string name="login_titleText" translatable="false">application</string>
     <string name="login_loginText">로그인</string>
     <string name="login_signupText">회원가입</string>
+    <string name="login_passwordWarningMessage">비밀번호가 일치하지 않습니다.</string>
+    <string name="login_emailWarningMessage">존재하지 않는 아이디입니다.</string>
+    <string name="login_emailEnterMessage">이메일을 입력해주세요.</string>
+    <string name="login_passwordEnterMessage">비밀번호를 입력해주세요.</string>
     <string name="modify_titleText" translatable="false">Application</string>
     <string name="modify_modifyText">수정</string>
     <string name="modify_emailText">이메일</string>
@@ -36,6 +40,14 @@
     <string name="modify_doubleCheck">중복확인</string>
     <string name="modify_passwordText">비밀번호(8~16자/영어,숫자)</string>
     <string name="modify_confirmButton">확인</string>
+    <string name="modify_enterNickname">닉네임을 입력해주세요</string>
+    <string name="modify_passwordMismatch">비밀번호가 일치하지 않습니다.</string>
+    <string name="modify_permission">권한을 거부하셨습니다.</string>
+    <string name="modify_pictureFailed">사진을 가져오지 못했습니다.</string>
+    <string name="modify_permissionRequired">권한이 필요합니다.</string>
+    <string name="modify_profilePermission">프로필 이미지를 바꾸기 위해서는 갤러리 접근 권한이 필요합니다.</string>
+    <string name="modify_agree">동의하기</string>
+    <string name="modify_cancel">취소하기</string>
     <string name="detail_titleText" translatable="false">Application</string>
     <string name="detail_fieldText">분야</string>
     <string name="detail_companyText">회사</string>

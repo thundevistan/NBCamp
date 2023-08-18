@@ -81,6 +81,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/rouded_corner"
                     android:ems="10"
+                    android:imeOptions="flagNoExtractUi"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     app:layout_constraintBottom_toTopOf="@+id/guideline3"
@@ -141,6 +142,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/rouded_corner"
                     android:ems="10"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 

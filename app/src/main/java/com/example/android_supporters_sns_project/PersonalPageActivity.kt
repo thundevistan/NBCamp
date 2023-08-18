@@ -1,34 +1,35 @@
 package com.example.android_supporters_sns_project
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.android_supporters_sns_project.dataclass.Member
+import androidx.appcompat.app.AppCompatActivity
 
 class PersonalPageActivity : AppCompatActivity() {
 
     private lateinit var backButton: ImageButton
-    private lateinit var moveToEditButton : ImageView
+    private lateinit var moveToEditButton: ImageView
+    private lateinit var logoutButton: Button
 
-    private lateinit var btnDetailContent1 : ImageButton
-    private lateinit var btnDetailContent2 : ImageButton
-    private lateinit var btnDetailContent3 : ImageButton
+    private lateinit var btnDetailContent1: ImageButton
+    private lateinit var btnDetailContent2: ImageButton
+    private lateinit var btnDetailContent3: ImageButton
 
-    private lateinit var profilePicture : ImageView
-    private lateinit var profileName : TextView
+    private lateinit var profilePicture: ImageView
+    private lateinit var profileName: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_page)
 
-        val emailData : String? = intent.getStringExtra("email")
+        val emailData: String? = intent.getStringExtra("email")
 
         backButton = findViewById(R.id.personalPage_backSpace_imageButton)
         moveToEditButton = findViewById(R.id.personalPage_profileEdit_imageView)
+        logoutButton = findViewById(R.id.personalPage_logout_button)
 
         btnDetailContent1 = findViewById(R.id.personalPage_examPic1_imageButton)
         btnDetailContent2 = findViewById(R.id.personalPage_examPic2_imageButton)
@@ -68,7 +69,12 @@ class PersonalPageActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
-        profileName.text = emailData?.let { MemberManager.getMemberByEmail(it)?.name}
+        profileName.text = emailData?.let { MemberManager.getMemberByEmail(it)?.name }
 
+        logoutButton.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        }
     }
 }

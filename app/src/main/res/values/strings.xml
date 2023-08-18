@@ -52,4 +52,6 @@
     <string name="detail_fieldText">상태 메세지</string>
     <string name="detail_companyText">회사</string>
     <string name="detail_commentText">한 줄 인사</string>
+    <string name="splash_titleText" translatable="false">Supporterz</string>
+    <string name="splash_subtitleText" translatable="false">teammates</string>
 </resources>

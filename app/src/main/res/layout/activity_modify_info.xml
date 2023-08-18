@@ -169,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="4dp"
-                    android:text="닉네임을 입력해주세요"
+                    android:text="@string/modify_enterNickname"
                     android:textColor="@color/red"
                     android:visibility="invisible"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext"/>
@@ -285,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:paddingHorizontal="4dp"
-                        android:text="비밀번호가 일치하지 않습니다."
+                        android:text="@string/modify_passwordMismatch"
                         android:textColor="@color/red"
                         android:visibility="visible" />
 

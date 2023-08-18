@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -91,29 +90,28 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             // 비밀번호가 일치하지 않음
-            passwordWarningMessage.text = "비밀번호가 일치하지 않습니다."
+            passwordWarningMessage.text = getString(R.string.login_passwordWarningMessage)
             passwordWarningMessage.visibility = TextView.VISIBLE
-            Log.d("LoginActivity", "비밀번호가 일치하지 않습니다.")
+            Log.d("LoginActivity", getString(R.string.login_passwordWarningMessage))
         }
     }
 
     private fun emailNotExists() {
         // 이메일이 존재하지 않음
-        emailWarningMessage.text = "존재하지 않는 아이디입니다."
+        emailWarningMessage.text = getString(R.string.login_emailWarningMessage)
         emailWarningMessage.visibility = TextView.VISIBLE
-        Log.d("LoginActivity", "존재하지 않는 아이디입니다.")
+        Log.d("LoginActivity", getString(R.string.login_emailWarningMessage))
     }
 
     private fun notFilled() {
         if (emailEditText.text.toString().trim().isEmpty()) {
-            emailWarningMessage.text = "이메일을 입력해주세요."
+            emailWarningMessage.text = getString(R.string.login_emailEnterMessage)
             emailWarningMessage.visibility = TextView.VISIBLE
         }
         if (passwordEditText.text.toString().trim().isEmpty()) {
-            passwordWarningMessage.text = "비밀번호를 입력해주세요."
+            passwordWarningMessage.text = getString(R.string.login_passwordEnterMessage)
             passwordWarningMessage.visibility = TextView.VISIBLE
         }
     }
-
 }
 

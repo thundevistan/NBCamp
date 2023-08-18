@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/fasthand_regular"
             android:text="@string/main_titletext"
             android:textAlignment="center"
             android:textSize="24sp" />

@@ -20,6 +20,7 @@
         android:id="@+id/teamMateDetail_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fasthand_regular"
         android:text="@string/detail_titleText"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailPage_divider"

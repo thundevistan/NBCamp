@@ -1,6 +1,5 @@
 package com.example.android_supporters_sns_project
 
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,12 +21,10 @@ class DetailContentViewActivity : AppCompatActivity() {
         val imgContent = findViewById<ImageView>(R.id.detailContentView_contentimage_imageview)
         val txtContent = findViewById<TextView>(R.id.detailContentView_content_textview)
         val backButton = findViewById<ImageButton>(R.id.detailContentView_backSpace_imageButton)
+        val likeButton = findViewById<ImageButton>(R.id.like_button)
         val txtSeeMore = findViewById<TextView>(R.id.detailContentView_seeMore_textview)
 
-        backButton.setOnClickListener {
-            finish()
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
+        var isLiked = false // 초기 상태: 좋아요X
 
         //intData에 따라 각 Data 설정
         when(intData) {
@@ -50,8 +47,19 @@ class DetailContentViewActivity : AppCompatActivity() {
                 txtContent.setText("팝콘 냠냠🍿")
             }
         }
+
+        likeButton.setOnClickListener {
+            isLiked = !isLiked // 상태 토글
+            likeButton.isSelected = isLiked // isLiked에 따라 버튼의 선택 상태 설정
+        }
+
+        backButton.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+
         seeMoreView(txtContent, txtSeeMore)
     }
+
     private fun seeMoreView(txtContent: TextView, txtSeeMore: TextView) {
         txtContent.post {
             val lineCount = txtContent.layout.lineCount

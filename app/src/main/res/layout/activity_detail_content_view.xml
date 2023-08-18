@@ -96,6 +96,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailContentView_id_textview" />
 
+            <ImageButton
+                android:id="@+id/like_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/heart_selector"
+                app:layout_constraintStart_toStartOf="@+id/detailContentView_content_textview"
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
+
             <TextView
                 android:id="@+id/detailContentView_content_textview"
                 android:layout_width="0dp"

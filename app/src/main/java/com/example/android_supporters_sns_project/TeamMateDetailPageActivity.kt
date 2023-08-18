@@ -48,23 +48,23 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 
 		when (id) {
 			"이충환" -> {
-				profileImage.setImageResource(R.drawable.ic_main_ex)
+				profileImage.setImageResource(R.drawable.img_profile1)
 			}
 
 			"이소연" -> {
-				profileImage.setImageResource(R.drawable.ic_main_ex2)
+				profileImage.setImageResource(R.drawable.img_profile2)
 			}
 
 			"윤승재" -> {
-				profileImage.setImageResource(R.drawable.ic_main_ex3)
+				profileImage.setImageResource(R.drawable.img_profile3)
 			}
 
 			"손현준" -> {
-				profileImage.setImageResource(R.drawable.ic_main_ex4)
+				profileImage.setImageResource(R.drawable.img_profile4)
 			}
 
 			"김민준" -> {
-				profileImage.setImageResource(R.drawable.ic_main_ex5)
+				profileImage.setImageResource(R.drawable.img_profile5)
 			}
 		}
 

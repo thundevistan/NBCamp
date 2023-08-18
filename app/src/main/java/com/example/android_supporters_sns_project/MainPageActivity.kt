@@ -25,19 +25,19 @@ class MainPageActivity : AppCompatActivity() {
 	)
 
 	private var arrIcon = arrayListOf(
-		R.drawable.ic_main_ex,
-		R.drawable.ic_main_ex2,
-		R.drawable.ic_main_ex3,
-		R.drawable.ic_main_ex4,
-		R.drawable.ic_main_ex5
+		R.drawable.img_profile1,
+		R.drawable.img_profile2,
+		R.drawable.img_profile3,
+		R.drawable.img_profile4,
+		R.drawable.img_profile5
 	)
 
 	private var arrImage = arrayListOf(
-		R.drawable.ic_main_ex,
-		R.drawable.ic_main_ex2,
-		R.drawable.ic_main_ex3,
-		R.drawable.ic_main_ex4,
-		R.drawable.ic_main_ex5
+		R.drawable.img_post1,
+		R.drawable.img_post2,
+		R.drawable.img_post3,
+		R.drawable.img_post4,
+		R.drawable.img_post5
 	)
 
 	override fun onCreate(savedInstanceState: Bundle?) {

@@ -29,22 +29,22 @@ class DetailContentViewActivity : AppCompatActivity() {
         //intData에 따라 각 Data 설정
         when(intData) {
             1 -> {
-                imgProfile.setImageResource(R.drawable.ic_teammatedetail_person)
+                imgProfile.setImageResource(R.drawable.img_profile1)
                 txtID.setText("아이디1")
-                imgContent.setImageResource(R.drawable.exampic1_teammatedetail_imageview)
-                txtContent.setText("게시물 텍스트1")
+                imgContent.setImageResource(R.drawable.img_post1)
+                txtContent.setText("Tea Time☕")
             }
             2 -> {
-                imgProfile.setImageResource(R.drawable.ic_teammatedetail_person)
+                imgProfile.setImageResource(R.drawable.img_profile2)
                 txtID.setText("아이디2")
-                imgContent.setImageResource(R.drawable.exampic2_teammatedetail_imageview)
-                txtContent.setText("게시물 텍스트2")
+                imgContent.setImageResource(R.drawable.img_post2)
+                txtContent.setText("sad bmo😢")
             }
             3 -> {
-                imgProfile.setImageResource(R.drawable.ic_teammatedetail_person)
+                imgProfile.setImageResource(R.drawable.img_profile3)
                 txtID.setText("아이디3")
-                imgContent.setImageResource(R.drawable.exampic3_teammatedetail_imageview)
-                txtContent.setText("게시물 텍스트3")
+                imgContent.setImageResource(R.drawable.img_post3)
+                txtContent.setText("팝콘 냠냠🍿")
             }
         }
     }

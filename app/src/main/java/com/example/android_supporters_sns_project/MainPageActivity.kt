@@ -60,31 +60,37 @@ class MainPageActivity : AppCompatActivity() {
 		myPageIcon.setOnClickListener {
 			intentPersonal.putExtra("email", emailData)
 			startActivity(intentPersonal)
+			overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 		}
 
 		userIcon.setOnClickListener {
 			intentDetail.putExtra("id", arrId[0])
 			startActivity(intentDetail)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		userIcon2.setOnClickListener {
 			intentDetail.putExtra("id", arrId[1])
 			startActivity(intentDetail)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		userIcon3.setOnClickListener {
 			intentDetail.putExtra("id", arrId[2])
 			startActivity(intentDetail)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		userIcon4.setOnClickListener {
 			intentDetail.putExtra("id", arrId[3])
 			startActivity(intentDetail)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		userIcon5.setOnClickListener {
 			intentDetail.putExtra("id", arrId[4])
 			startActivity(intentDetail)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		val postContainer = findViewById<LinearLayout>(R.id.main_addView_postContainer)
@@ -106,6 +112,7 @@ class MainPageActivity : AppCompatActivity() {
 				val detailIntent = Intent(this, DetailContentViewActivity::class.java)
 				detailIntent.putExtra("intDataFromTeamMateDetail", i+1)
 				startActivity(detailIntent)
+				overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 			}
 		}
 	}

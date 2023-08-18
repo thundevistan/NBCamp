@@ -81,6 +81,7 @@ class ModifyInfoActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         passwordCheckEditText.addTextChangedListener(passwordCheckWatcher)
         nicknameEditText.addTextChangedListener(nicknameTextWatcher)
@@ -98,6 +99,7 @@ class ModifyInfoActivity : AppCompatActivity() {
             val savePassword = passwordEditText.text.toString().trim()
             MemberManager.updateMember(emailData, savePassword, saveNickname)
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
         }
     }

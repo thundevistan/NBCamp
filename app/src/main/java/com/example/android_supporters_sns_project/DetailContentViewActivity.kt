@@ -24,6 +24,7 @@ class DetailContentViewActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
         }
 
         //intData에 따라 각 Data 설정

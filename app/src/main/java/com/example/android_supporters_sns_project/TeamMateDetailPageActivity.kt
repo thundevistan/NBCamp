@@ -28,16 +28,19 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 			val intent = Intent(this, DetailContentViewActivity::class.java)
 			intent.putExtra("intDataFromTeamMateDetail", 1)
 			startActivity(intent)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 		btnDetailContent2.setOnClickListener {
 			val intent = Intent(this, DetailContentViewActivity::class.java)
 			intent.putExtra("intDataFromTeamMateDetail", 2)
 			startActivity(intent)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 		btnDetailContent3.setOnClickListener {
 			val intent = Intent(this, DetailContentViewActivity::class.java)
 			intent.putExtra("intDataFromTeamMateDetail", 3)
 			startActivity(intent)
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 		// MainPage 로부터 아이디 수신하여 프로필 이미지/아이디 결정
@@ -73,6 +76,7 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 
 		btnBackSpace.setOnClickListener {
 			finish()
+			overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
 		}
 
 	}

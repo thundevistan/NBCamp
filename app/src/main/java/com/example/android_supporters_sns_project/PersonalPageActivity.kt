@@ -2,10 +2,13 @@ package com.example.android_supporters_sns_project
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class PersonalPageActivity : AppCompatActivity() {
@@ -69,12 +72,36 @@ class PersonalPageActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
+
         profileName.text = emailData?.let { MemberManager.getMemberByEmail(it)?.name }
 
         logoutButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            //로그아웃 버튼을 누르면 로그아웃 여부를 묻는 AlertDialog가 뜸.
+            AlertDialog.Builder(this).setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
+                .setPositiveButton("확인") { _, _ ->
+                    // 프로그레스 바를 나타내는 AlertDialog 생성
+                    val progressDialog = AlertDialog.Builder(this).apply {
+                        setCancelable(false)
+                        setView(R.layout.progress_dialog)
+                        setTitle("로그아웃 중입니다.")
+                    }.create()
+                    progressDialog.show()
+
+                    // 비동기 작업을 수행하는 동안 프로그레스바가 표시됩니다(2초 대기)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        progressDialog.dismiss()
+                        //확인을 누르면 로그인 화면으로 이동
+                        AlertDialog.Builder(this).setTitle("로그아웃").setMessage("로그아웃 되었습니다.")
+                            .setPositiveButton("확인") { _, _ ->
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                                overridePendingTransition(
+                                    R.anim.slide_in_left, R.anim.slide_out_right
+                                )
+                            }.show()
+                    }, 1500)
+
+                }.setNegativeButton("취소") { _, _ -> }.show()
         }
     }
 }

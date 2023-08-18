@@ -20,7 +20,7 @@
             android:id="@+id/modify_info_back_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/image_button_pressed"
             android:src="@drawable/ic_teammatedetail_backbutton"
             app:layout_constraintBottom_toBottomOf="@+id/modify_info_logo_edittext"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        app:dividerColor="@color/black"
+        app:dividerColor="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/modify_info_toolbar" />
 
 

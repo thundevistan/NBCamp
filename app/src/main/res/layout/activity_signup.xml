@@ -24,18 +24,19 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/image_button_pressed"
         android:src="@drawable/ic_teammatedetail_backbutton"
         app:layout_constraintBottom_toBottomOf="@+id/signup_logo_edittext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/signup_logo_edittext" />
+        app:layout_constraintTop_toTopOf="@+id/signup_logo_edittext"
+        />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/signup_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
-        app:dividerColor="@color/black"
+        app:dividerColor="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/signup_logo_edittext" />
 
     <androidx.core.widget.NestedScrollView
@@ -103,18 +104,19 @@
                 app:layout_constraintStart_toStartOf="@+id/signup_passwordlayout_edittext"
                 app:layout_constraintTop_toBottomOf="@+id/signup_email_textview" />
 
+
             <android.widget.Button
                 android:id="@+id/signup_emailrepetition_button"
                 style="@style/CustomButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:padding="10dp"
                 android:text="@string/signup_email_repetition_text"
                 app:layout_constraintBottom_toBottomOf="@+id/signup_email_edittext"
                 app:layout_constraintStart_toStartOf="@id/singup_vertical_guideline"
-                app:layout_constraintTop_toTopOf="@+id/signup_email_edittext" />
-
+                app:layout_constraintTop_toTopOf="@+id/signup_email_edittext"
+                app:layout_constraintEnd_toEndOf="@+id/signup_passwordlayout_edittext" />
 
             <TextView
                 android:id="@+id/signup_emailwarning_textview"
@@ -323,14 +325,15 @@
             <android.widget.Button
                 android:id="@+id/signup_nicknamerepetition_button"
                 style="@style/CustomButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:padding="10dp"
                 android:text="@string/signup_nickname_repetition_button_text"
                 app:layout_constraintBottom_toBottomOf="@+id/signup_nickname_edittext"
                 app:layout_constraintStart_toStartOf="@id/singup_vertical_guideline"
-                app:layout_constraintTop_toTopOf="@+id/signup_nickname_edittext" />
+                app:layout_constraintTop_toTopOf="@+id/signup_nickname_edittext"
+                app:layout_constraintEnd_toEndOf="@+id/signup_name_edittext"/>
 
 
             <TextView

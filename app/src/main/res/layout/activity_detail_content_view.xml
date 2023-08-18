@@ -10,7 +10,7 @@
         android:id="@+id/detailContentView_backSpace_imageButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/image_button_pressed"
         android:src="@drawable/ic_teammatedetail_backbutton"
         app:layout_constraintBottom_toBottomOf="@+id/detailContentView_title_textView"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
-        app:dividerColor="@color/black"
+        app:dividerColor="@color/gray"
         app:layout_constraintTop_toBottomOf="@+id/detailContentView_title_textView" />
 
     <ScrollView

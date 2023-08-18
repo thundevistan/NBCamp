@@ -20,7 +20,7 @@
             android:id="@+id/modify_info_back_button"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_teammatedetail_backbutton"
             app:layout_constraintBottom_toBottomOf="@+id/modify_info_logo_edittext"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +58,13 @@
             android:paddingVertical="30dp">
 
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/modify_info_image"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:contentDescription="image_modify_info_image"
                 android:src="@drawable/image_modify_info_profile"
+                app:civ_border_overlay="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -172,33 +173,32 @@
                     android:text="닉네임을 입력해주세요"
                     android:textColor="@color/red"
                     android:visibility="invisible"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext"/>
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/modify_info_nicknamerepetition_button"
                     style="@style/CustomButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:paddingHorizontal="0dp"
                     android:paddingVertical="13dp"
                     android:text="@string/modify_doubleCheck"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname"
-                    android:enabled="false"/>
-
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
 
 
                 <ImageView
                     android:id="@+id/modify_nickname_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_check"
                     android:layout_marginEnd="10dp"
-                    app:layout_constraintRight_toRightOf="@id/modify_info_nickname_edittext"
-                    app:layout_constraintTop_toTopOf="@id/modify_info_nickname_edittext"
+                    android:src="@drawable/ic_check"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@id/modify_info_nickname_edittext"
-                    android:visibility="visible"/>
+                    app:layout_constraintRight_toRightOf="@id/modify_info_nickname_edittext"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_nickname_edittext" />
 
                 <TextView
                     android:id="@+id/modify_info_password"
@@ -244,14 +244,13 @@
                     android:id="@+id/modify_password_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_check"
                     android:layout_marginEnd="40dp"
                     android:layout_marginBottom="15dp"
-                    app:layout_constraintRight_toRightOf="@id/modify_info_password_textinputlayout"
-                    app:layout_constraintTop_toTopOf="@id/modify_info_password_textinputlayout"
-                    app:layout_constraintBottom_toBottomOf="@id/modify_info_password_textinputlayout"
+                    android:src="@drawable/ic_check"
                     android:visibility="visible"
-                    />
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_password_textinputlayout" />
 
                 <TextView
                     android:id="@+id/modify_info_passwordcheck"
@@ -295,14 +294,13 @@
                     android:id="@+id/modify_passwordcheck_check"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_check"
                     android:layout_marginEnd="40dp"
                     android:layout_marginBottom="15dp"
-                    app:layout_constraintRight_toRightOf="@id/modify_info_passwordcheck_textinputlayout"
-                    app:layout_constraintTop_toTopOf="@id/modify_info_passwordcheck_textinputlayout"
-                    app:layout_constraintBottom_toBottomOf="@id/modify_info_passwordcheck_textinputlayout"
+                    android:src="@drawable/ic_check"
                     android:visibility="invisible"
-                    />
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_passwordcheck_textinputlayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -328,10 +326,10 @@
             android:layout_gravity="center_vertical"
             android:layout_marginHorizontal="60dp"
             android:layout_weight="1"
+            android:enabled="false"
             android:gravity="center"
             android:text="@string/modify_confirmButton"
-            android:textStyle="bold"
-            android:enabled="false"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

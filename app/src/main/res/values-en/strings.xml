@@ -11,9 +11,9 @@
     <string name="signup_password_check_warning_text">Password mismatch</string>
     <string name="signup_name_text">Name</string>
     <string name="signup_name_warning_text">Enter your name</string>
-    <string name="signup_nickname_text">Username(no more than 15 characters)</string>
+    <string name="signup_nickname_text">Enter your username.</string>
     <string name="signup_nickname_repetition_button_text">check</string>
-    <string name="signup_nickname_warning_text">Check for the availability of the username</string>
+    <string name="signup_nickname_warning_text">Enter your username.</string>
     <string name="signup_confirmbutton_text">Confirm</string>
     <string name="detailContentView_content_example">Test text</string>
     <string name="detailContentView_reply_hint">Comment</string>
@@ -23,6 +23,10 @@
     <string name="modifyinfo_password_warning_text">Incorrect password format</string>
     <string name="login_loginText">Login</string>
     <string name="login_signupText">Sign up</string>
+    <string name="login_passwordWarningMessage">Password mismatch</string>
+    <string name="login_emailWarningMessage">ID does not exist.</string>
+    <string name="login_emailEnterMessage">Enter your password.</string>
+    <string name="login_passwordEnterMessage">Enter your password.</string>
     <string name="modify_modifyText">Modify</string>
     <string name="modify_emailText">E-mail</string>
     <string name="modify_nameText">Name</string>
@@ -33,4 +37,12 @@
     <string name="detail_fieldText">Field</string>
     <string name="detail_companyText">Company</string>
     <string name="detail_commentText">Comment</string>
+    <string name="modify_enterNickname">Enter your username.</string>
+    <string name="modify_passwordMismatch">Password mismatch</string>
+    <string name="modify_permission">" Permission denied"</string>
+    <string name="modify_pictureFailed">Failed to get picture.</string>
+    <string name="modify_permissionRequired">are required.</string>
+    <string name="modify_profilePermission">Gallery access is required to replace profile images.</string>
+    <string name="modify_agree">agree</string>
+    <string name="modify_cancel">cancel</string>
 </resources>

@@ -108,12 +108,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <EditText
                     android:id="@+id/modify_info_email_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
                     android:padding="15dp"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -132,12 +133,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
 
-                <TextView
+                <EditText
                     android:id="@+id/modify_info_name_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
                     android:padding="15dp"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -160,6 +162,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="text"
                     android:padding="15dp"
                     app:layout_constraintEnd_toEndOf="@+id/modify_info_vertical_guideline"
@@ -227,6 +230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_modify_info"
+                        android:imeOptions="flagNoExtractUi"
                         android:inputType="textPassword" />
 
                     <TextView
@@ -277,6 +281,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/edittext_modify_info"
+                        android:imeOptions="flagNoExtractUi"
                         android:inputType="textPassword" />
 
                     <TextView

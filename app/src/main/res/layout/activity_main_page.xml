@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainPageActivity">
 
@@ -22,94 +22,92 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/main_myPageIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_main_personalicon" />
+            android:src="@drawable/ic_main_personalicon"
+            app:civ_border_overlay="true" />
     </RelativeLayout>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/modifyInfo_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:dividerColor="@color/black"
-        />
-
+        app:dividerColor="@color/black" />
 
 
     <!-- 팀원 수평 ScrollVew 영역 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
-        android:padding="8dp"
-        android:layout_marginTop="15dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/main_teamText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="8dp"
             android:text="@string/main_profileText"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginHorizontal="20dp"/>
+            android:textStyle="bold" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
             android:fillViewport="true"
             android:scrollbars="none"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:layout_marginHorizontal="20dp">
+            tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
                 android:id="@+id/main_addView_userContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex" />
+                    android:src="@drawable/ic_main_ex"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex2" />
+                    android:src="@drawable/ic_main_ex2"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon3"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex3" />
+                    android:src="@drawable/ic_main_ex3"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon4"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex4" />
+                    android:src="@drawable/ic_main_ex4"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon5"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_main_ex5" />
+                    android:src="@drawable/ic_main_ex5"
+                    app:civ_border_overlay="true" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -126,21 +124,21 @@
             android:id="@+id/main_postText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:text="@string/main_postText"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginHorizontal="20dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- 게시글 수직 ScrollView 영역 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
         android:fillViewport="true"
         android:padding="8dp"
         android:scrollbars="none"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:layout_marginHorizontal="20dp">
+        tools:ignore="SpeakableTextPresentCheck">
 
         <!-- addView: activity_main_page_post 영역 -->
         <LinearLayout

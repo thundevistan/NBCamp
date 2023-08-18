@@ -45,13 +45,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/main_teamText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="28dp"
             android:layout_marginBottom="8dp"
             android:text="@string/main_profileText"
             android:textSize="16sp"
@@ -60,7 +61,6 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
             android:fillViewport="true"
             android:scrollbars="none"
             tools:ignore="SpeakableTextPresentCheck">
@@ -68,7 +68,8 @@
             <LinearLayout
                 android:id="@+id/main_addView_userContainer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingStart="24dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon"
@@ -76,7 +77,8 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:src="@drawable/img_profile1"
-                    app:civ_border_overlay="true" />
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon2"
@@ -84,7 +86,8 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:src="@drawable/img_profile2"
-                    app:civ_border_overlay="true" />
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon3"
@@ -92,7 +95,8 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:src="@drawable/img_profile3"
-                    app:civ_border_overlay="true" />
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon4"
@@ -100,7 +104,8 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:src="@drawable/img_profile4"
-                    app:civ_border_overlay="true" />
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon5"
@@ -108,7 +113,8 @@
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
                     android:src="@drawable/img_profile5"
-                    app:civ_border_overlay="true" />
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="2dp" />
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -145,7 +151,9 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
         android:fillViewport="true"
-        android:padding="8dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
         android:scrollbars="none"
         tools:ignore="SpeakableTextPresentCheck">
 

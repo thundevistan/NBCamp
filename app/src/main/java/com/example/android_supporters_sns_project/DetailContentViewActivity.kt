@@ -58,17 +58,16 @@ class DetailContentViewActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-
-            seeMoreView(txtContent, txtSeeMore)
         }
+        seeMoreView(txtContent, txtSeeMore)
     }
 
-        private fun seeMoreView(txtContent: TextView, txtSeeMore: TextView) {
+    //더보기 기능 함수
+    private fun seeMoreView(txtContent: TextView, txtSeeMore: TextView) {
             txtContent.post {
                 val lineCount = txtContent.layout.lineCount
                 if(lineCount > 0) {
                     if(txtContent.layout.getEllipsisCount(lineCount - 1) > 0) {
-                        //더보기 표시
                         txtSeeMore.visibility = View.VISIBLE
 
                         txtSeeMore.setOnClickListener {

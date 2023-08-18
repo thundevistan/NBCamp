@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import com.example.android_supporters_sns_project.dataclass.Member
 
 class PersonalPageActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class PersonalPageActivity : AppCompatActivity() {
     private lateinit var btnDetailContent3 : ImageButton
 
     private lateinit var profilePicture : ImageView
+    private lateinit var profileName : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class PersonalPageActivity : AppCompatActivity() {
         btnDetailContent3 = findViewById(R.id.personalPage_examPic3_imageButton)
 
         profilePicture = findViewById(R.id.personalPage_profile_imageView)
+        profileName = findViewById(R.id.personalPage_ID_textView)
 
         btnDetailContent1.setOnClickListener {
             val intent = Intent(this, DetailContentViewActivity::class.java)
@@ -64,6 +67,8 @@ class PersonalPageActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+
+        profileName.text = emailData?.let { MemberManager.getMemberByEmail(it)?.name}
 
     }
 }

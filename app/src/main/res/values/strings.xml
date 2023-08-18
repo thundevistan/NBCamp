@@ -48,8 +48,8 @@
     <string name="modify_profilePermission">프로필 이미지를 바꾸기 위해서는 갤러리 접근 권한이 필요합니다.</string>
     <string name="modify_agree">동의하기</string>
     <string name="modify_cancel">취소하기</string>
-    <string name="detail_titleText" translatable="false">Supporterz</string>
-    <string name="detail_fieldText">분야</string>
+    <string name="detail_titleText" translatable="false">Application</string>
+    <string name="detail_fieldText">상태 메세지</string>
     <string name="detail_companyText">회사</string>
     <string name="detail_commentText">한 줄 인사</string>
 </resources>

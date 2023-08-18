@@ -20,6 +20,7 @@
         android:id="@+id/detailContentView_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fasthand_regular"
         android:text="@string/detailContentView_title"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/detailContentView_divider"
@@ -113,9 +114,23 @@
                 android:padding="10dp"
                 android:text="@string/detailContentView_content_example"
                 android:textSize="15sp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
                 app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
+
+            <TextView
+                android:id="@+id/detailContentView_seeMore_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="더보기"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_content_textview" />
 
             <EditText
                 android:id="@+id/detailContentView_reply_edittext"
@@ -138,6 +153,7 @@
                 android:text="@string/detailContentView_reply_confirm_button"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
                 app:layout_constraintTop_toBottomOf="@+id/detailContentView_reply_edittext" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

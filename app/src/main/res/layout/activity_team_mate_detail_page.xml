@@ -20,6 +20,7 @@
         android:id="@+id/teamMateDetail_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fasthand_regular"
         android:text="@string/detail_titleText"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/detailPage_divider"
@@ -55,7 +56,8 @@
         android:text="아이디"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/teamMateDetail_profile_imageView"
-        app:layout_constraintTop_toTopOf="@+id/teamMateDetail_profile_imageView" />
+        app:layout_constraintTop_toTopOf="@+id/teamMateDetail_profile_imageView"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/teamMateDetail_area_textView"
@@ -63,29 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/detail_fieldText"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/teamMateDetail_ID_textView"
         app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_ID_textView" />
-
-    <TextView
-        android:id="@+id/teamMateDetail_company_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/detail_companyText"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/teamMateDetail_area_textView"
-        app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_area_textView" />
-
-    <TextView
-        android:id="@+id/teamMateDetail_greet_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/detail_commentText"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/teamMateDetail_company_textView"
-        app:layout_constraintTop_toBottomOf="@+id/teamMateDetail_company_textView" />
 
     <View
         android:id="@+id/teamMateDetail_space_view"

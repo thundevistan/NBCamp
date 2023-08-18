@@ -46,28 +46,35 @@ class TeamMateDetailPageActivity : AppCompatActivity() {
 		// MainPage 로부터 아이디 수신하여 프로필 이미지/아이디 결정
 		val profileImage = findViewById<ImageView>(R.id.teamMateDetail_profile_imageView)
 		val profileId = findViewById<TextView>(R.id.teamMateDetail_ID_textView)
+		val stateMessage = findViewById<TextView>(R.id.teamMateDetail_area_textView)
+
 		var id = intent.getStringExtra("id")
 		profileId.text = id
 
 		when (id) {
 			"이충환" -> {
 				profileImage.setImageResource(R.drawable.img_profile1)
+				stateMessage.text = "자리 비움"
 			}
 
 			"이소연" -> {
 				profileImage.setImageResource(R.drawable.img_profile2)
+				stateMessage.text = ""
 			}
 
 			"윤승재" -> {
 				profileImage.setImageResource(R.drawable.img_profile3)
+				stateMessage.text = "휴식 중"
 			}
 
 			"손현준" -> {
 				profileImage.setImageResource(R.drawable.img_profile4)
+				stateMessage.text = "자리 비움"
 			}
 
 			"김민준" -> {
 				profileImage.setImageResource(R.drawable.img_profile5)
+				stateMessage.text = "과제 중.."
 			}
 		}
 

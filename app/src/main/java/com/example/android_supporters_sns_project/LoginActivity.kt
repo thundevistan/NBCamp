@@ -1,6 +1,7 @@
 package com.example.android_supporters_sns_project
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -114,5 +115,9 @@ class LoginActivity : AppCompatActivity() {
             passwordWarningMessage.visibility = TextView.VISIBLE
         }
     }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+    }
+
 }
 

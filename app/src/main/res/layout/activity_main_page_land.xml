@@ -38,6 +38,20 @@
         android:layout_height="1dp"
         app:dividerColor="@color/black" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:fillViewport="true"
+        android:padding="8dp"
+        android:scrollbars="none"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
 
     <!-- 팀원 수평 ScrollVew 영역 -->
     <LinearLayout
@@ -140,14 +154,7 @@
     </LinearLayout>
 
     <!-- 게시글 수직 ScrollView 영역 -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:fillViewport="true"
-        android:padding="8dp"
-        android:scrollbars="none"
-        tools:ignore="SpeakableTextPresentCheck">
+
 
         <!-- addView: activity_main_page_post 영역 -->
         <LinearLayout
@@ -155,6 +162,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

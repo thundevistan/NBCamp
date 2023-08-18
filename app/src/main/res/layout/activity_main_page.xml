@@ -113,6 +113,14 @@
         </HorizontalScrollView>
     </LinearLayout>
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/personalPage_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:dividerColor="@color/black" />
+
     <!-- 게시글 TextView 영역 -->
     <LinearLayout
         android:id="@+id/linearLayout"

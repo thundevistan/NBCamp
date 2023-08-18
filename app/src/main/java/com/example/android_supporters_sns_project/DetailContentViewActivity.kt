@@ -30,19 +30,19 @@ class DetailContentViewActivity : AppCompatActivity() {
         when(intData) {
             1 -> {
                 imgProfile.setImageResource(R.drawable.img_profile1)
-                txtID.setText("아이디1")
+                txtID.setText("이충환")
                 imgContent.setImageResource(R.drawable.img_post1)
                 txtContent.setText("Tea Time☕")
             }
             2 -> {
                 imgProfile.setImageResource(R.drawable.img_profile2)
-                txtID.setText("아이디2")
+                txtID.setText("이소연")
                 imgContent.setImageResource(R.drawable.img_post2)
                 txtContent.setText("sad bmo😢")
             }
             3 -> {
                 imgProfile.setImageResource(R.drawable.img_profile3)
-                txtID.setText("아이디3")
+                txtID.setText("윤승재")
                 imgContent.setImageResource(R.drawable.img_post3)
                 txtContent.setText("팝콘 냠냠🍿")
             }

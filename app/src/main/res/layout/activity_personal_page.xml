@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/personalPage_title_textView"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/personalPage_profile_imageView"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -63,7 +63,8 @@
         android:text="아이디"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/personalPage_profile_imageView"
-        app:layout_constraintTop_toTopOf="@+id/personalPage_profile_imageView" />
+        app:layout_constraintTop_toTopOf="@+id/personalPage_profile_imageView"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/personalPage_area_textView"
@@ -71,29 +72,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/detail_fieldText"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/personalPage_ID_textView"
         app:layout_constraintTop_toBottomOf="@+id/personalPage_ID_textView" />
-
-    <TextView
-        android:id="@+id/personalPage_company_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/detail_companyText"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/personalPage_area_textView"
-        app:layout_constraintTop_toBottomOf="@+id/personalPage_area_textView" />
-
-    <TextView
-        android:id="@+id/personalPage_greet_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/detail_commentText"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/personalPage_company_textView"
-        app:layout_constraintTop_toBottomOf="@+id/personalPage_company_textView" />
 
     <View
         android:id="@+id/personalPage_space_view"
@@ -150,7 +131,8 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Tea Time☕"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

@@ -19,6 +19,7 @@
         android:id="@+id/detailContentView_title_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/fasthand_regular"
         android:text="@string/detailContentView_title"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@id/detailContentView_divider"

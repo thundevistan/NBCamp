@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,7 +9,7 @@
         android:id="@+id/detailContentView_backSpace_imageButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@color/white"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_teammatedetail_backbutton"
         app:layout_constraintBottom_toBottomOf="@+id/detailContentView_title_textView"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,16 +61,16 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.9" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/detailContentView_profile_imageView"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/imageview_teammatedetail_borderline"
+                android:background="@drawable/ic_circular_image"
                 android:src="@drawable/ic_teammatedetail_person"
+                app:civ_border_overlay="true"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
-                app:layout_constraintTop_toTopOf="@+id/inner_layout"
-                />
+                app:layout_constraintTop_toTopOf="@+id/inner_layout" />
 
             <TextView
                 android:id="@+id/detailContentView_id_textview"
@@ -91,6 +90,7 @@
                 android:layout_marginTop="80dp"
                 android:src="@drawable/ic_teammatedetail_person"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.486"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailContentView_id_textview" />
 
@@ -105,8 +105,7 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
 
             <EditText
                 android:id="@+id/detailContentView_reply_edittext"

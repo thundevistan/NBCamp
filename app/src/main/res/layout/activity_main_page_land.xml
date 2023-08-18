@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainPageActivity">
+
+    <!-- appBar 영역 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_appName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/fasthand_regular"
+            android:text="@string/main_titletext"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/main_myPageIcon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_main_personalicon"
+            app:civ_border_overlay="true" />
+    </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/modifyInfo_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="@color/gray" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:fillViewport="true"
+        android:padding="8dp"
+        android:scrollbars="none"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+    <!-- 팀원 수평 ScrollVew 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_teamText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/main_profileText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <LinearLayout
+                android:id="@+id/main_addView_userContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_userIcon"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:src="@drawable/img_profile1"
+                    app:civ_border_overlay="true" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_userIcon2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:src="@drawable/img_profile2"
+                    app:civ_border_overlay="true" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_userIcon3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:src="@drawable/img_profile3"
+                    app:civ_border_overlay="true" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_userIcon4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:src="@drawable/img_profile4"
+                    app:civ_border_overlay="true" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/main_userIcon5"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="20sp"
+                    android:src="@drawable/img_profile5"
+                    app:civ_border_overlay="true" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/personalPage_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:dividerColor="@color/gray" />
+
+    <!-- 게시글 TextView 영역 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/main_postText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/main_postText"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 게시글 수직 ScrollView 영역 -->
+
+
+        <!-- addView: activity_main_page_post 영역 -->
+        <LinearLayout
+            android:id="@+id/main_addView_postContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

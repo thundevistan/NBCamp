@@ -3,7 +3,20 @@
     <style name="Base.Theme.Android_Supporters_SNS_Project" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Theme.Android_Supporters_SNS_Project" parent="Base.Theme.Android_Supporters_SNS_Project" />
+    
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_style</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CustomButton2" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_style2</item>
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

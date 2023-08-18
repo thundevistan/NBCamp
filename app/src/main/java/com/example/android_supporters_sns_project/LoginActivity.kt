@@ -1,7 +1,6 @@
 package com.example.android_supporters_sns_project
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -25,9 +24,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-8
         MemberManager.addMember(
-            Member("c", "a", "이충환", "충환", null )
+            Member("c", "a", "이충환", "충환", null)
         )
 
         loginButton = findViewById(R.id.login_signin_button)
@@ -63,13 +61,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         val email = emailEditText.text.toString().trim()
-        Log.d("LoginActivity", email)
         val password = passwordEditText.text.toString().trim()
-        Log.d("LoginActivity", password)
+        val member = MemberManager.getMemberList().find { it.email == email }
+        emailWarningMessage.visibility = TextView.INVISIBLE
+        passwordWarningMessage.visibility = TextView.INVISIBLE
         if (email.isNotEmpty() && password.isNotEmpty()) {
-            emailWarningMessage.visibility = TextView.INVISIBLE
-            passwordWarningMessage.visibility = TextView.INVISIBLE
-            val member = MemberManager.getMemberList().find { it.email == email }
             if (member != null) {
                 checkLogin(member, password)
             } else {
@@ -84,8 +80,6 @@ class LoginActivity : AppCompatActivity() {
         member: Member, password: String
     ) {
         if (member.password == password) {
-            // 로그인 성공
-//            Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
             intent = Intent(this, MainPageActivity::class.java)
             intent.putExtra("email", member.email)
             startActivity(intent)
@@ -99,10 +93,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun emailNotExists() {
-        // 이메일이 존재하지 않음
-        emailWarningMessage.text = getString(R.string.login_emailWarningMessage)
-        emailWarningMessage.visibility = TextView.VISIBLE
-        Log.d("LoginActivity", getString(R.string.login_emailWarningMessage))
+        if (!emailEditText.text.contains("@")) {
+            emailWarningMessage.text = getString(R.string.login_emailWarningMessage)
+            emailWarningMessage.visibility = TextView.VISIBLE
+            passwordWarningMessage.visibility = TextView.INVISIBLE
+        }
     }
 
     private fun notFilled() {
@@ -114,9 +109,6 @@ class LoginActivity : AppCompatActivity() {
             passwordWarningMessage.text = getString(R.string.login_passwordEnterMessage)
             passwordWarningMessage.visibility = TextView.VISIBLE
         }
-    }
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
     }
 
 }

@@ -22,13 +22,13 @@
             android:textAlignment="center"
             android:textSize="24sp" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/main_myPageIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_main_personalicon" />
+            android:src="@drawable/ic_main_personalicon"
+            app:civ_border_overlay="true" />
     </RelativeLayout>
 
     <com.google.android.material.divider.MaterialDivider
@@ -69,45 +69,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/img_profile1" />
+                    android:src="@drawable/img_profile1"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/img_profile2" />
+                    android:src="@drawable/img_profile2"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon3"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/img_profile3" />
+                    android:src="@drawable/img_profile3"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon4"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/img_profile4" />
+                    android:src="@drawable/img_profile4"
+                    app:civ_border_overlay="true" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon5"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/img_profile5" />
+                    android:src="@drawable/img_profile5"
+                    app:civ_border_overlay="true" />
 
             </LinearLayout>
         </HorizontalScrollView>

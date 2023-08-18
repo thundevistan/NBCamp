@@ -4,9 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -19,8 +17,8 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import com.example.android_supporters_sns_project.dataclass.Member
 import com.google.android.material.textfield.TextInputLayout
 
@@ -148,7 +146,7 @@ class ModifyInfoActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     navigateGallery()
                 else
-                    Toast.makeText(this, "권한을 거부하셨습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.modify_permission), Toast.LENGTH_SHORT).show()
             }
 
             else -> {
@@ -173,7 +171,7 @@ class ModifyInfoActivity : AppCompatActivity() {
                     if (selectedImageUri != null) {
                         editImage.setImageURI(selectedImageUri)
                     } else {
-                        Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.modify_pictureFailed), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -182,12 +180,12 @@ class ModifyInfoActivity : AppCompatActivity() {
     // 권한 요청 팝업
     private fun showPermissionContextPopup() {
         AlertDialog.Builder(this)
-            .setTitle("권한이 필요합니다.")
-            .setMessage("프로필 이미지를 바꾸기 위해서는 갤러리 접근 권한이 필요합니다.")
-            .setPositiveButton("동의하기") { _, _ ->
+            .setTitle(getString(R.string.modify_permissionRequired))
+            .setMessage(getString(R.string.modify_profilePermission))
+            .setPositiveButton(getString(R.string.modify_agree)) { _, _ ->
                 requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
             }
-            .setNegativeButton("취소하기") { _, _ -> }
+            .setNegativeButton(getString(R.string.modify_cancel)) { _, _ -> }
             .create()
             .show()
     }
@@ -269,7 +267,7 @@ class ModifyInfoActivity : AppCompatActivity() {
                 activeButton()
             }
             else if(nicknameEditText.text.toString().isEmpty()) {
-                nicknameWarningText.text = "닉네임을 입력해주세요"
+                nicknameWarningText.text = getString(R.string.modify_enterNickname)
                 nicknameWarningText.visibility = View.VISIBLE
                 nicknameCheckRepititionButton.isEnabled = false
                 activeButton()

@@ -74,7 +74,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:src="@drawable/ic_main_ex"
+                    android:src="@drawable/img_profile1"
                     app:civ_border_overlay="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -82,7 +82,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:src="@drawable/ic_main_ex2"
+                    android:src="@drawable/img_profile2"
                     app:civ_border_overlay="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -90,7 +90,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:src="@drawable/ic_main_ex3"
+                    android:src="@drawable/img_profile3"
                     app:civ_border_overlay="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -98,7 +98,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:src="@drawable/ic_main_ex4"
+                    android:src="@drawable/img_profile4"
                     app:civ_border_overlay="true" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -106,7 +106,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_marginEnd="20sp"
-                    android:src="@drawable/ic_main_ex5"
+                    android:src="@drawable/img_profile5"
                     app:civ_border_overlay="true" />
 
             </LinearLayout>
@@ -145,6 +145,8 @@
             android:id="@+id/main_addView_postContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

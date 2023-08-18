@@ -127,7 +127,7 @@
                     android:background="@drawable/imageview_teammatedetail_borderline"
                     android:padding="3dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/exampic1_teammatedetail_imageview" />
+                    android:src="@drawable/img_post1" />
 
             </androidx.cardview.widget.CardView>
 
@@ -139,7 +139,7 @@
                 android:layout_marginBottom="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:text="Tea Time☕"
                 android:textSize="15sp" />
 
             <androidx.cardview.widget.CardView
@@ -155,7 +155,7 @@
                     android:background="@drawable/imageview_teammatedetail_borderline"
                     android:padding="2dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/exampic2_teammatedetail_imageview" />
+                    android:src="@drawable/img_post2" />
 
             </androidx.cardview.widget.CardView>
 
@@ -167,7 +167,7 @@
                 android:layout_marginBottom="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:text="sad bmo😢"
                 android:textSize="15sp" />
 
             <androidx.cardview.widget.CardView
@@ -183,7 +183,7 @@
                     android:background="@drawable/imageview_teammatedetail_borderline"
                     android:padding="2dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/exampic3_teammatedetail_imageview" />
+                    android:src="@drawable/img_post3" />
 
             </androidx.cardview.widget.CardView>
 
@@ -195,7 +195,7 @@
                 android:layout_marginBottom="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="귀여운 강아지 사진입니다.귀여운 강아지 사진입니다.귀여운 강아지 사진입니다."
+                android:text="팝콘 냠냠🍿"
                 android:textSize="15sp" />
 
         </LinearLayout>

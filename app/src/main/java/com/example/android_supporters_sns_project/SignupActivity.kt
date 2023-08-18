@@ -335,7 +335,7 @@ class SignupActivity : AppCompatActivity() {
                         addPictureImage.setImageURI(selectedImageUri)
                         imageDataTemp = selectedImageUri
                     } else {
-                        Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.modify_pictureFailed), Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -344,12 +344,12 @@ class SignupActivity : AppCompatActivity() {
     //권한 설정 팝업
     private fun showPermissionContextPopup() {
         AlertDialog.Builder(this)
-            .setTitle("권한이 필요합니다.")
-            .setMessage("프로필 이미지를 바꾸기 위해서는 갤러리 접근 권한이 필요합니다.")
-            .setPositiveButton("동의하기") { _, _ ->
+            .setTitle(getString(R.string.modify_permissionRequired))
+            .setMessage(getString(R.string.modify_profilePermission))
+            .setPositiveButton(getString(R.string.modify_agree)) { _, _ ->
                 requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
             }
-            .setNegativeButton("취소하기") { _, _ -> }
+            .setNegativeButton(getString(R.string.modify_cancel)) { _, _ -> }
             .create()
             .show()
     }

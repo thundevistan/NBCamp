@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
@@ -119,22 +120,23 @@ class MainPageActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }
         }
+        this.onBackPressedDispatcher.addCallback(this, callback)
     }
-
 
     private var waitTime: Long = 0
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (System.currentTimeMillis() - waitTime >= 1500) {
-            waitTime = System.currentTimeMillis()
-            Toast.makeText(this, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        } else {
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-            moveTaskToBack(true) // 태스크를 백그라운드로 이동
-            finishAndRemoveTask() // 액티비티 종료 + 태스크 리스트에서 지우기
-            ActivityCompat.finishAffinity(this) // 액티비티 종료
+    private val callback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (System.currentTimeMillis() - waitTime >= 2000) {
+                waitTime = System.currentTimeMillis()
+                Toast.makeText(
+                    this@MainPageActivity,
+                    "뒤로가기 버튼을 한번 더 누르면 종료됩니다.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                finishAndRemoveTask() // 액티비티 종료 + 태스크 리스트에서 지우기
+                ActivityCompat.finishAffinity(this@MainPageActivity) // 액티비티 종료
+            }
         }
     }
-
 }

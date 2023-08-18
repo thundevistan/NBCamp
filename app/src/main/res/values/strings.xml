@@ -13,7 +13,7 @@
     <string name="signup_name_warning_text">이름을 입력해주세요.</string>
     <string name="signup_nickname_text">닉네임(최대 15자)</string>
     <string name="signup_nickname_repetition_button_text">중복확인</string>
-    <string name="signup_nickname_warning_text">중복 닉네임입니다.</string>
+    <string name="signup_nickname_warning_text">닉네임을 작성해주세요</string>
     <string name="signup_confirmbutton_text">확인</string>
     <string name="detailContentView_title" translatable="false">Application</string>
     <string name="detailContentView_id_example" translatable="false">choong901@naver.com</string>

@@ -70,7 +70,8 @@
                 android:background="@drawable/imageview_teammatedetail_borderline"
                 android:src="@drawable/ic_teammatedetail_person"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
-                app:layout_constraintTop_toTopOf="@+id/inner_layout" />
+                app:layout_constraintTop_toTopOf="@+id/inner_layout"
+                />
 
             <TextView
                 android:id="@+id/detailContentView_id_textview"

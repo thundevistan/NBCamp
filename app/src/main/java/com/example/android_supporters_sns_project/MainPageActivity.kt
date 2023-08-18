@@ -1,6 +1,7 @@
 package com.example.android_supporters_sns_project
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
@@ -42,7 +43,12 @@ class MainPageActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_main_page)
+
+		if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			setContentView(R.layout.activity_main_page)
+		} else {
+			setContentView(R.layout.activity_main_page_land)
+		}
 
 		val emailData : String? = intent.getStringExtra("email")
 

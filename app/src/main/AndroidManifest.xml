@@ -32,13 +32,15 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".MainPageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".DetailContentViewActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

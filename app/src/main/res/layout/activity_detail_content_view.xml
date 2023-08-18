@@ -48,25 +48,32 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/detailContentView_title_textView">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/button_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7"/>
+
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/vertical_guideLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/vertical_guideLine_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintGuide_percent="0.95" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/detailContentView_profile_imageView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_circular_image"
                 android:src="@drawable/ic_teammatedetail_person"
@@ -78,23 +85,37 @@
                 android:id="@+id/detailContentView_id_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="16dp"
                 android:text="@string/detailContentView_id_example"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/detailContentView_profile_imageView"
                 app:layout_constraintStart_toEndOf="@+id/detailContentView_profile_imageView"
                 app:layout_constraintTop_toTopOf="@+id/detailContentView_profile_imageView" />
 
-            <ImageView
-                android:id="@+id/detailContentView_contentimage_imageview"
-                android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_marginTop="80dp"
-                android:src="@drawable/ic_teammatedetail_person"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.486"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_id_textview" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailContentView_contentimage_imageview_outer"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="30dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="4dp"
+                app:layout_constraintTop_toBottomOf="@id/detailContentView_profile_imageView">
+
+                <ImageView
+                    android:id="@+id/detailContentView_contentimage_imageview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_main_test" />
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <ImageButton
                 android:id="@+id/like_button"
@@ -103,14 +124,14 @@
                 android:background="@android:color/transparent"
                 android:src="@drawable/heart_selector"
                 app:layout_constraintStart_toStartOf="@+id/detailContentView_content_textview"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview_outer" />
 
             <TextView
                 android:id="@+id/detailContentView_content_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:background="@color/gray"
+                android:background="@drawable/textfield_detail_content_view_content"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:padding="10dp"
@@ -118,7 +139,7 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview" />
+                app:layout_constraintTop_toBottomOf="@+id/detailContentView_contentimage_imageview_outer" />
 
             <TextView
                 android:id="@+id/detailContentView_seeMore_textview"
@@ -136,24 +157,25 @@
                 android:id="@+id/detailContentView_reply_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/edittext_signup"
                 android:hint="@string/detailContentView_reply_hint"
                 android:imeOptions="flagNoExtractUi"
                 android:padding="15dp"
-                app:layout_constraintEnd_toEndOf="@+id/detailContentView_content_textview"
+                app:layout_constraintEnd_toEndOf="@+id/button_guideline"
                 app:layout_constraintStart_toStartOf="@id/detailContentView_content_textview"
                 app:layout_constraintTop_toBottomOf="@id/detailContentView_content_textview" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/detailContentView_replyConfirm_button"
                 style="@style/CustomButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:text="@string/detailContentView_reply_confirm_button"
                 app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
-                app:layout_constraintTop_toBottomOf="@+id/detailContentView_reply_edittext" />
+                app:layout_constraintTop_toTopOf="@+id/detailContentView_reply_edittext"
+                app:layout_constraintBottom_toBottomOf="@+id/detailContentView_reply_edittext"
+                app:layout_constraintStart_toStartOf="@+id/button_guideline"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

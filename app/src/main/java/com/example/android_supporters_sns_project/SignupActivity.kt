@@ -28,6 +28,7 @@ import java.util.regex.Pattern
 class SignupActivity : AppCompatActivity() {
 
     var imageDataTemp: Uri? = null
+    var stateMessageTemp: String = "상태 메세지"
 
     //각 Edittext 입력 여부에 따라 바뀌는 변수
     private var checkEmail = false
@@ -315,7 +316,9 @@ class SignupActivity : AppCompatActivity() {
             passwordEditText.text.toString().trim(),
             nameEditText.text.toString().trim(),
             nicknameEditText.text.toString().trim(),
-            imageDataTemp
+            imageDataTemp,
+            stateMessageTemp
+
         )
 
         MemberManager.addMember(member) // 입력 받은 값을 추가

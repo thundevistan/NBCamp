@@ -7,5 +7,6 @@ data class Member(
     var password: String,
     val name: String,
     var nickname: String,
-    val profile: Uri?
+    val profile: Uri?,
+    var stateMessage: String?
 )

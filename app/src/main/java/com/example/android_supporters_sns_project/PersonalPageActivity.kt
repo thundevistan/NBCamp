@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android_supporters_sns_project.dataclass.Member
 
 class PersonalPageActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class PersonalPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_personal_page)
 
         val emailData: String? = intent.getStringExtra("email")
+        val member : Member? = emailData?.let { MemberManager.getMemberByEmail(it) }
 
         backButton = findViewById(R.id.personalPage_backSpace_imageButton)
         moveToEditButton = findViewById(R.id.personalPage_profileEdit_imageView)
@@ -79,11 +81,12 @@ class PersonalPageActivity : AppCompatActivity() {
         }
 
         editStateButton.setOnClickListener {
-            editStateDialog(stateMessage)
+            editStateDialog(stateMessage, emailData)
         }
 
 
         profileName.text = emailData?.let { MemberManager.getMemberByEmail(it)?.name }
+        stateMessage.text = emailData?.let { MemberManager.getMemberByEmail(it)?.stateMessage }
 
         logoutButton.setOnClickListener {
             //로그아웃 버튼을 누르면 로그아웃 여부를 묻는 AlertDialog가 뜸.
@@ -114,7 +117,7 @@ class PersonalPageActivity : AppCompatActivity() {
                 }.setNegativeButton("취소") { _, _ -> }.show()
         }
     }
-    private fun editStateDialog(stateMessage: TextView) {
+    private fun editStateDialog(stateMessage: TextView, emailData: String?) {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.alertdialog_personal, null)
@@ -123,6 +126,7 @@ class PersonalPageActivity : AppCompatActivity() {
         builder.setView(dialogView)
             .setPositiveButton("확인") { dialog, which ->
                 val inputText = editText.text.toString()
+                MemberManager.updateStateMessage(emailData, inputText)
                 stateMessage.setText(inputText)
             }
             .setNegativeButton("취소") { dialog, which ->

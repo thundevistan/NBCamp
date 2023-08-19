@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         MemberManager.addMember(
-            Member("c", "a", "이충환", "충환", null)
+            Member("c", "a", "이충환", "충환", null, "상태메세지")
         )
 
         loginButton = findViewById(R.id.login_signin_button)

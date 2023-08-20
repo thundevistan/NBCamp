@@ -46,21 +46,21 @@ class DetailContentViewActivity : AppCompatActivity() {
 				imgProfile.setImageResource(R.drawable.img_profile3)
 				txtID.setText("윤승재")
 				imgContent.setImageResource(R.drawable.img_post3)
-				txtContent.setText("팝콘 냠냠🍿")
+				txtContent.setText("진짜 재밌습니다... 무조건 보세요!")
 			}
 
 			4 -> {
 				imgProfile.setImageResource(R.drawable.img_profile4)
 				txtID.setText("손현준")
 				imgContent.setImageResource(R.drawable.img_post4)
-				txtContent.setText("")
+				txtContent.setText("제주도 여행")
 			}
 
 			5 -> {
 				imgProfile.setImageResource(R.drawable.img_profile5)
 				txtID.setText("김민준")
 				imgContent.setImageResource(R.drawable.img_post5)
-				txtContent.setText("")
+				txtContent.setText("팝콘 냠냠\uD83C\uDF7F")
 			}
 		}
 

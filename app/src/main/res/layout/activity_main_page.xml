@@ -229,6 +229,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:padding="8dp">
 
                 <TextView
@@ -240,17 +241,15 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-            </LinearLayout>
-
-            <!-- addView: activity_main_page_post 영역 -->
-            <LinearLayout
-                android:id="@+id/main_addView_postContainer"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingHorizontal="8dp">
+                <!-- addView: activity_main_page_post 영역 -->
+                <LinearLayout
+                    android:id="@+id/main_addView_postContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="8dp" />
 
             </LinearLayout>
         </LinearLayout>

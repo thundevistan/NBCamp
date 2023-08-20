@@ -80,7 +80,6 @@
                     app:civ_border_overlay="true"
                     app:civ_border_width="2dp" />
 
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/main_userIcon2"
                     android:layout_width="70dp"

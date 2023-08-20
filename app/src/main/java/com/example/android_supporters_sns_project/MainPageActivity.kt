@@ -20,7 +20,7 @@ class MainPageActivity : AppCompatActivity() {
     )
 
     private var arrIdContent = arrayOf(
-        "이충환", "이소연", "윤승재"
+        "이충환", "이소연", "윤승재", "손현준", "김민준"
     )
 
     private var arrIcon = arrayListOf(
@@ -55,11 +55,13 @@ class MainPageActivity : AppCompatActivity() {
         val intentPersonal = Intent(this, PersonalPageActivity::class.java)
 
         val myPageIcon = findViewById<ImageView>(R.id.main_myPageIcon)
-        val userIcon = findViewById<ImageView>(R.id.main_userIcon)
-        val userIcon2 = findViewById<ImageView>(R.id.main_userIcon2)
-        val userIcon3 = findViewById<ImageView>(R.id.main_userIcon3)
-        val userIcon4 = findViewById<ImageView>(R.id.main_userIcon4)
-        val userIcon5 = findViewById<ImageView>(R.id.main_userIcon5)
+        val userIconIds = listOf(
+            R.id.main_userIcon,
+            R.id.main_userIcon2,
+            R.id.main_userIcon3,
+            R.id.main_userIcon4,
+            R.id.main_userIcon5
+        )
 
         // TeamMateDetailPage 이동 및 데이터 전달
         myPageIcon.setOnClickListener {
@@ -68,34 +70,13 @@ class MainPageActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
-        userIcon.setOnClickListener {
-            intentDetail.putExtra("id", arrId[0])
-            startActivity(intentDetail)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
-
-        userIcon2.setOnClickListener {
-            intentDetail.putExtra("id", arrId[1])
-            startActivity(intentDetail)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
-
-        userIcon3.setOnClickListener {
-            intentDetail.putExtra("id", arrId[2])
-            startActivity(intentDetail)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
-
-        userIcon4.setOnClickListener {
-            intentDetail.putExtra("id", arrId[3])
-            startActivity(intentDetail)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
-
-        userIcon5.setOnClickListener {
-            intentDetail.putExtra("id", arrId[4])
-            startActivity(intentDetail)
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        userIconIds.forEachIndexed { index, iconId ->
+            val userIcon = findViewById<ImageView>(iconId)
+            userIcon.setOnClickListener {
+                intentDetail.putExtra("id", arrId[index])
+                startActivity(intentDetail)
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+            }
         }
 
         val postContainer = findViewById<LinearLayout>(R.id.main_addView_postContainer)
@@ -129,9 +110,7 @@ class MainPageActivity : AppCompatActivity() {
             if (System.currentTimeMillis() - waitTime >= 2000) {
                 waitTime = System.currentTimeMillis()
                 Toast.makeText(
-                    this@MainPageActivity,
-                    "뒤로가기 버튼을 한번 더 누르면 종료됩니다.",
-                    Toast.LENGTH_SHORT
+                    this@MainPageActivity, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT
                 ).show()
             } else {
                 finishAndRemoveTask() // 액티비티 종료 + 태스크 리스트에서 지우기

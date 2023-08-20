@@ -3,6 +3,8 @@ package com.example.android_supporters_sns_project
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         MemberManager.addMember(
-            Member("c", "a", "이충환", "충환", null)
+            Member("c", "a", "이충환", "충환", null, "상태메세지")
         )
 
         loginButton = findViewById(R.id.login_signin_button)
@@ -109,6 +111,13 @@ class LoginActivity : AppCompatActivity() {
             passwordWarningMessage.text = getString(R.string.login_passwordEnterMessage)
             passwordWarningMessage.visibility = TextView.VISIBLE
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        val imm: InputMethodManager =
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+        return super.dispatchTouchEvent(ev)
     }
 
 }

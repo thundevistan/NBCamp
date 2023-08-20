@@ -14,7 +14,7 @@ object MemberManager {
         for ((index, member) in memberList.withIndex()) {
             Log.d(
                 "MemberInfo",
-                "Index: $index, Email: ${member.email}, Password: ${member.password}, Name: ${member.name}, Nickname: ${member.nickname}, Picture: ${member.profile}"
+                "Index: $index, Email: ${member.email}, Password: ${member.password}, Name: ${member.name}, Nickname: ${member.nickname}, Picture: ${member.profile}, stateMessage: ${member.stateMessage}"
             )
         }
     }
@@ -33,6 +33,16 @@ object MemberManager {
             }
             if (newNickname != null) {
                 this.nickname = newNickname
+            }
+        }
+    }
+
+    fun updateStateMessage(email: String?, newStateMessage: String? = null) {
+        val memberToStateMessage = memberList.find {it.email == email}
+
+        memberToStateMessage?.apply {
+            if (newStateMessage != null) {
+                this.stateMessage = newStateMessage
             }
         }
     }

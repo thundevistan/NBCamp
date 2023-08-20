@@ -90,6 +90,7 @@ class ModifyInfoActivity : AppCompatActivity() {
         nicknameCheckRepititionButton.setOnClickListener {
             nicknameCheck.visibility = View.VISIBLE
             nicknameWarningText.visibility = View.INVISIBLE
+            isNickname = true
         }
 
         initImageView()

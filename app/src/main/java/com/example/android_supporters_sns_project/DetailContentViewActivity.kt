@@ -1,5 +1,6 @@
 package com.example.android_supporters_sns_project
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class DetailContentViewActivity : AppCompatActivity() {
+	@SuppressLint("SetTextI18n")
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_detail_content_view)

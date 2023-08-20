@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="28dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@string/main_profileText"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -88,7 +88,7 @@
                         android:paddingEnd="0dp">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:orientation="vertical">
@@ -113,7 +113,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:orientation="vertical">
@@ -138,7 +138,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:orientation="vertical">
@@ -163,7 +163,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:orientation="vertical">
@@ -188,7 +188,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
                             android:orientation="vertical">
@@ -235,10 +235,11 @@
                     android:id="@+id/main_postText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/main_postText"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
             <!-- addView: activity_main_page_post 영역 -->

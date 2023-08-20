@@ -97,6 +97,7 @@ class MainPageActivity : AppCompatActivity() {
             postImageView.setOnClickListener {
                 val detailIntent = Intent(this, DetailContentViewActivity::class.java)
                 detailIntent.putExtra("intDataFromTeamMateDetail", i + 1)
+                detailIntent.putExtra("email", emailData)
                 startActivity(detailIntent)
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
             }

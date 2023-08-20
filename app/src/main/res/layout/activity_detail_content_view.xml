@@ -77,7 +77,9 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_circular_image"
                 android:src="@drawable/ic_teammatedetail_person"
+                app:civ_border_color="@color/lightblue"
                 app:civ_border_overlay="true"
+                app:civ_border_width="2dp"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
                 app:layout_constraintTop_toTopOf="@+id/inner_layout" />
 
@@ -94,15 +96,14 @@
                 app:layout_constraintTop_toTopOf="@+id/detailContentView_profile_imageView" />
 
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/detailContentView_contentimage_imageview_outer"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="30dp"
-                app:cardCornerRadius="20dp"
+                android:layout_marginTop="16dp"
                 app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
                 app:layout_constraintTop_toBottomOf="@id/detailContentView_profile_imageView">
 
@@ -114,7 +115,6 @@
                     android:src="@drawable/ic_main_test" />
 
             </androidx.cardview.widget.CardView>
-
 
 
             <ImageButton
@@ -145,8 +145,8 @@
                 android:id="@+id/detailContentView_seeMore_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
                 android:text="더보기"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -164,10 +164,10 @@
                 android:hint="@string/detailContentView_reply_hint"
                 android:imeOptions="flagNoExtractUi"
                 android:padding="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/button_guideline"
                 app:layout_constraintStart_toStartOf="@id/detailContentView_content_textview"
-                app:layout_constraintTop_toBottomOf="@id/detailContentView_seeMore_textview"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/detailContentView_seeMore_textview" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/detailContentView_replyConfirm_button"
@@ -175,11 +175,10 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="@string/detailContentView_reply_confirm_button"
-                app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
-                app:layout_constraintTop_toTopOf="@+id/detailContentView_reply_edittext"
                 app:layout_constraintBottom_toBottomOf="@+id/detailContentView_reply_edittext"
-                app:layout_constraintStart_toStartOf="@+id/button_guideline"/>
-
+                app:layout_constraintEnd_toEndOf="@+id/vertical_guideLine_right"
+                app:layout_constraintStart_toStartOf="@+id/button_guideline"
+                app:layout_constraintTop_toTopOf="@+id/detailContentView_reply_edittext" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

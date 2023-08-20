@@ -20,7 +20,7 @@ class MainPageActivity : AppCompatActivity() {
     )
 
     private var arrIdContent = arrayOf(
-        "이충환", "이소연", "윤승재"
+        "이충환", "이소연", "윤승재", "손현준", "김민준"
     )
 
     private var arrIcon = arrayListOf(

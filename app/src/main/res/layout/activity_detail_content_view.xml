@@ -145,11 +145,12 @@
                 android:id="@+id/detailContentView_seeMore_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:text="더보기"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:visibility="gone"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="@+id/vertical_guideLine"
                 app:layout_constraintTop_toBottomOf="@+id/detailContentView_content_textview" />
 
@@ -157,14 +158,16 @@
                 android:id="@+id/detailContentView_reply_edittext"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/edittext_signup"
                 android:hint="@string/detailContentView_reply_hint"
                 android:imeOptions="flagNoExtractUi"
                 android:padding="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/button_guideline"
                 app:layout_constraintStart_toStartOf="@id/detailContentView_content_textview"
-                app:layout_constraintTop_toBottomOf="@id/detailContentView_content_textview" />
+                app:layout_constraintTop_toBottomOf="@id/detailContentView_seeMore_textview"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/detailContentView_replyConfirm_button"

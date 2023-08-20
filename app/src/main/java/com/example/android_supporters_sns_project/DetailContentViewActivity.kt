@@ -32,14 +32,14 @@ class DetailContentViewActivity : AppCompatActivity() {
 				imgProfile.setImageResource(R.drawable.img_profile1)
 				txtID.setText("이충환")
 				imgContent.setImageResource(R.drawable.img_post1)
-				txtContent.setText("더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다. 더보기 전용 예시 텍스트입니다.")
+				txtContent.setText("vertical, horizontal로 2가지 가이드 라인을 만든다. 이 두 가이드 라인은 퍼센트를 활용하여 만들었기 때문에 어떤 화면에서든 같은 비율로 존재한다. 이를 바탕으로 constraint를 지정해주면 반응형 UI를 만들 수 있다. ")
 			}
 
 			2 -> {
 				imgProfile.setImageResource(R.drawable.img_profile2)
 				txtID.setText("이소연")
 				imgContent.setImageResource(R.drawable.img_post2)
-				txtContent.setText("sad bmo😢")
+				txtContent.setText("tea time☕")
 			}
 
 			3 -> {
@@ -47,6 +47,20 @@ class DetailContentViewActivity : AppCompatActivity() {
 				txtID.setText("윤승재")
 				imgContent.setImageResource(R.drawable.img_post3)
 				txtContent.setText("팝콘 냠냠🍿")
+			}
+
+			4 -> {
+				imgProfile.setImageResource(R.drawable.img_profile4)
+				txtID.setText("손현준")
+				imgContent.setImageResource(R.drawable.img_post4)
+				txtContent.setText("")
+			}
+
+			5 -> {
+				imgProfile.setImageResource(R.drawable.img_profile5)
+				txtID.setText("김민준")
+				imgContent.setImageResource(R.drawable.img_post5)
+				txtContent.setText("")
 			}
 		}
 

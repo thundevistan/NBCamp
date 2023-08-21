@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Android_Supporters_SNS_Project</string>
+    <string name="app_name" translatable="false">Supporterz</string>
     <string name="signup_titletext" translatable="false">Supporterz</string>
     <string name="signup_profile_picture_text">프로필 사진</string>
     <string name="signup_email_text">이메일</string>

@@ -36,7 +36,7 @@ class ProductAdapter(private val productList: MutableList<Product>) :
 		holder.thumb.clipToOutline = true
 		holder.name.text = productList[position].name
 		holder.addr.text = productList[position].addr
-		holder.price.text = productList[position].price.toString()
+		holder.price.text = productList[position].dec()
 		holder.chatCnt.text = productList[position].chat.toString()
 		holder.favCnt.text = productList[position].fav.toString()
 	}

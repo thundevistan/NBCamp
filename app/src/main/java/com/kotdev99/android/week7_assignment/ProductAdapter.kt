@@ -33,6 +33,7 @@ class ProductAdapter(private val productList: MutableList<Product>) :
 			itemClick?.onClick(it, position)
 		}
 		holder.thumb.setImageResource(productList[position].thumb)
+		holder.thumb.clipToOutline = true
 		holder.name.text = productList[position].name
 		holder.addr.text = productList[position].addr
 		holder.price.text = productList[position].price.toString()

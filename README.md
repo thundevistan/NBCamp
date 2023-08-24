@@ -1,4 +1,9 @@
-# week7_assignment
+<div align="center">
+  
+  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=week7_assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
+  
+</div>
+
 💡 Goal : 사과마켓 앱 만들기 (feat. 당근마켓)
 
 <p align="center"><img

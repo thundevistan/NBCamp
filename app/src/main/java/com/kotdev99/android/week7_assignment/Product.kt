@@ -13,6 +13,7 @@ data class Product(
 	val fav: Int,
 	val chat: Int
 ) {
+	// Dec 처리
 	fun dec(): String {
 		val dec = DecimalFormat("#,###")
 

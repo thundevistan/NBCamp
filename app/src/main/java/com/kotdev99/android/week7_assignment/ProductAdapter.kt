@@ -46,9 +46,9 @@ class ProductAdapter(private val productList: MutableList<Product>) :
 		val name = binding.tvName
 		val addr = binding.tvAddr
 		val price = binding.tvPrice
-		val chat = binding.ivChat
+//		val chat = binding.ivChat
 		val chatCnt = binding.tvChatCnt
-		val fav = binding.ivFav
+//		val fav = binding.ivFav
 		val favCnt = binding.tvFavCnt
 	}
 }

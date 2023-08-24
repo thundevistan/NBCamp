@@ -1,8 +1,10 @@
 package com.kotdev99.android.week7_assignment
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 		val adapter = ProductAdapter(productList)
 		binding.rvMain.adapter = adapter
 		binding.rvMain.layoutManager = LinearLayoutManager(this)
-		binding.rvMain.setHasFixedSize(true)
+		binding.rvMain.setHasFixedSize(true)    // RecyclerView 사이즈 고정
 		binding.rvMain.addItemDecoration(
 			DividerItemDecoration(
-				this, LinearLayoutManager.VERTICAL
+				this, LinearLayoutManager.VERTICAL  // Divider
 			)
 		)
 
@@ -38,6 +40,33 @@ class MainActivity : AppCompatActivity() {
 		}
 	}
 
+	// Back 버튼
+	@Deprecated("Deprecated in Java")
+	override fun onBackPressed() {
+		dialog()
+	}
+
+	// Back 버튼 다이얼로그
+	private fun dialog() {
+		val builder = AlertDialog.Builder(this)
+		builder.setIcon(R.drawable.ic_chat)
+		builder.setTitle("종료")
+		builder.setMessage("정말 종료하시겠습니까?")
+
+		val listener = object : DialogInterface.OnClickListener {
+			override fun onClick(p0: DialogInterface?, p1: Int) {
+				when (p1) {
+					DialogInterface.BUTTON_POSITIVE -> finish()
+				}
+			}
+		}
+		builder.setPositiveButton("확인", listener)
+		builder.setNegativeButton("취소", listener)
+
+		builder.show()
+	}
+
+	// 원본 데이터 준비
 	private fun productList(): MutableList<Product> {
 		val productList = mutableListOf<Product>()
 

@@ -68,20 +68,18 @@ src="https://github.com/thundevistan/week7_assignment/assets/139092551/546cbfe9-
 - 플로팅 버튼을 누르면 스크롤을 최상단으로 이동시킵니다.
 - 플로팅 버튼은 나타나고 사라질때 fade 효과가 있습니다.
 - 플로팅 버튼을 클릭하면(pressed) 아이콘 색이 변경됩니다.
-- 참고 영상
-
-- 
+- 참고 영상[https://github.com/thundevistan/week7_assignment/issues/1#issue-1864819790]
 
 ### 2. 상품 삭제하기!
 
 - 상품을 롱클릭 했을때 삭제 여부를 묻는 다이얼로그를 띄우고
 - 확인을 선택시 해당 항목을 삭제하고 리스트를 업데이트한다.
 - 해당 상품이 삭제되었는지 확인!!
-- 참고 영상
+- 참고 영상[https://github.com/thundevistan/week7_assignment/issues/2#issue-1864820239]
 
 - ### *3. [찐도전과제] 좋아요 처리!!  ← 많은 고민이 필요합니다.*
 
 - 상품 상세 화면에서 좋아요 선택시 아이콘 변경 및 Snackbar 메세지 표시
 - 메인 화면으로 돌아오면 해당 상품에 좋아요 표시 및 좋아요 카운트 +1
 - 상세 화면에서 좋아요 해제시 이전 상태로 되돌림
-- 참고 영상
+- 참고 영상[https://github.com/thundevistan/week7_assignment/issues/3#issue-1864821022]

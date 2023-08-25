@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 		adapter.itemClick = object : ProductAdapter.ItemClick {
 			override fun onClick(view: View, position: Int) {
 				val intent = Intent(this@MainActivity, DetailActivity::class.java)
-				intent.putParcelableArrayListExtra("product", productList)
+				intent.putExtra("product", productList[position])
 				startActivity(intent)
 			}
 		}

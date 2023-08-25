@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kotdev99.android.week7_assignment.databinding.ItemMainBinding
 
 
-class ProductAdapter(private val productList: MutableList<Product>) :
+class ProductAdapter(private val productList: ArrayList<Product>) :
 	RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
 	interface ItemClick {

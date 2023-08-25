@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
 		adapter.itemClick = object : ProductAdapter.ItemClick {
 			override fun onClick(view: View, position: Int) {
 				val intent = Intent(this@MainActivity, DetailActivity::class.java)
+				intent.putParcelableArrayListExtra("product", productList)
 				startActivity(intent)
 			}
 		}
@@ -90,8 +91,8 @@ class MainActivity : AppCompatActivity() {
 					this, "알림을 받으 려면 권한을 허용해 주세요!", Toast.LENGTH_SHORT
 				).show()
 
-				val intent = Intent(ACTION_SETTINGS);
-				startActivity(intent);
+				val intent = Intent(ACTION_SETTINGS)
+				startActivity(intent)
 			}
 		}
 	}
@@ -146,11 +147,9 @@ class MainActivity : AppCompatActivity() {
 		builder.setTitle("종료")
 		builder.setMessage("정말 종료하시겠습니까?")
 
-		val listener = object : DialogInterface.OnClickListener {
-			override fun onClick(p0: DialogInterface?, p1: Int) {
-				when (p1) {
-					DialogInterface.BUTTON_POSITIVE -> finish()
-				}
+		val listener = DialogInterface.OnClickListener { _, p1 ->
+			when (p1) {
+				DialogInterface.BUTTON_POSITIVE -> finish()
 			}
 		}
 		builder.setPositiveButton("확인", listener)
@@ -160,8 +159,9 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	// 원본 데이터 준비
-	private fun productList(): MutableList<Product> {
-		val productList = mutableListOf<Product>()
+	private fun productList(): ArrayList<Product> {
+
+		val productList = ArrayList<Product>()
 
 		productList.add(
 			Product(

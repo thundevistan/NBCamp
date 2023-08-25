@@ -16,7 +16,15 @@ class DetailActivity : AppCompatActivity() {
 		setContentView(binding.root)
 
 		productList = intent.getParcelableArrayListExtra<Product>("product") as ArrayList<Product>
-		binding.tvTitle.text = productList[0].name
+		val unicode = 0x1F61C
 
+
+		binding.ivThumbDetail.setImageResource(productList[0].thumb)
+		binding.tvSeller.text = productList[0].seller
+		binding.tvAddrDetail.text = productList[0].addr
+		val emoji = String(Character.toChars(unicode))
+		binding.tvEmoji.text = emoji    // 이모지
+		binding.tvNameDetail.text = productList[6].name
+		binding.tvDescription.text = productList[6].description
 	}
 }

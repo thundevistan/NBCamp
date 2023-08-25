@@ -20,6 +20,10 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		return productList.size
 	}
 
+	override fun getItemId(position: Int): Long {
+		return position.toLong()
+	}
+
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductAdapter.ViewHolder {
 		return ViewHolder(
 			ItemMainBinding.inflate(
@@ -46,9 +50,11 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		val name = binding.tvName
 		val addr = binding.tvAddr
 		val price = binding.tvPrice
-//		val chat = binding.ivChat
+
+		//		val chat = binding.ivChat
 		val chatCnt = binding.tvChatCnt
-//		val fav = binding.ivFav
+
+		//		val fav = binding.ivFav
 		val favCnt = binding.tvFavCnt
 	}
 }

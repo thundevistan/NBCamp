@@ -1,13 +1,12 @@
 package com.kotdev99.android.week7_assignment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.kotdev99.android.week7_assignment.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityDetailBinding
-	private lateinit var productList: ArrayList<Product>
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -15,16 +14,26 @@ class DetailActivity : AppCompatActivity() {
 		binding = ActivityDetailBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		productList = intent.getParcelableArrayListExtra<Product>("product") as ArrayList<Product>
+		var product = intent.getParcelableExtra<Product>("product")
+
+		binding.ivThumbDetail.setImageResource(product!!.thumb)
+		binding.tvSeller.text = product.seller
+		binding.tvAddrDetail.text = product.addr
+		binding.tvNameDetail.text = product.name
+		binding.tvDescription.text = product.description
+		emoji()
+
+		binding.ivBack.setOnClickListener {
+			finish()
+		}
+
+	}
+
+	// 이모지
+	private fun emoji() {
 		val unicode = 0x1F61C
-
-
-		binding.ivThumbDetail.setImageResource(productList[0].thumb)
-		binding.tvSeller.text = productList[0].seller
-		binding.tvAddrDetail.text = productList[0].addr
 		val emoji = String(Character.toChars(unicode))
-		binding.tvEmoji.text = emoji    // 이모지
-		binding.tvNameDetail.text = productList[6].name
-		binding.tvDescription.text = productList[6].description
+
+		binding.tvEmoji.text = emoji
 	}
 }

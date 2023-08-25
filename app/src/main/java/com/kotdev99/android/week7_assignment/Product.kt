@@ -1,7 +1,10 @@
 package com.kotdev99.android.week7_assignment
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.text.DecimalFormat
 
+@Parcelize
 data class Product(
 	val no: Int,
 	val thumb: Int,
@@ -12,7 +15,7 @@ data class Product(
 	val addr: String,
 	val fav: Int,
 	val chat: Int
-) {
+) : Parcelable {
 	// Dec 처리
 	fun dec(): String {
 		val dec = DecimalFormat("#,###")

@@ -11,6 +11,7 @@ import com.kotdev99.android.contactlist.databinding.ActivityItemFavBinding
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 	private var items = ArrayList<ContactData>()
 
+	// 한 번 클릭
 	interface ItemClick {
 		fun onClick(view: View, position: Int)
 	}
@@ -37,10 +38,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 		)
 	}
 
+	@SuppressLint("NotifyDataSetChanged")
 	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 		holder.itemView.setOnClickListener {
 			itemClick?.onClick(it, position)
 		}
+
 		when (items[position].viewType) {
 			ViewType.view_type1 -> {
 				(holder as ViewHolder).bind(items[position])
@@ -50,6 +53,10 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 				(holder as ViewHolderFav).bind(items[position])
 			}
 		}
+	}
+
+	override fun getItemId(position: Int): Long {
+		return position.toLong()
 	}
 
 	override fun getItemCount(): Int {

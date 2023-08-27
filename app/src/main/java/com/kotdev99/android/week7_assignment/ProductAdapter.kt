@@ -13,8 +13,12 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 	interface ItemClick {
 		fun onClick(view: View, position: Int)
 	}
-
 	var itemClick: ItemClick? = null
+
+	interface ItemLongClick {
+		fun onLongClick(view: View, position: Int)
+	}
+	var itemLongClick: ItemLongClick? = null
 
 	override fun getItemCount(): Int {
 		return productList.size
@@ -36,6 +40,11 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		holder.itemView.setOnClickListener {
 			itemClick?.onClick(it, position)
 		}
+		holder.itemView.setOnLongClickListener(View.OnLongClickListener {
+			itemLongClick?.onLongClick(it, position)
+			return@OnLongClickListener true
+		})
+
 		holder.thumb.setImageResource(productList[position].thumb)
 		holder.thumb.clipToOutline = true
 		holder.name.text = productList[position].name
@@ -51,6 +60,7 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		val addr = binding.tvAddr
 		val price = binding.tvPrice
 		val chatCnt = binding.tvChatCnt
+		val fav = binding.ivFav
 		val favCnt = binding.tvFavCnt
 	}
 }

@@ -1,3 +1,9 @@
+<div align="center">
+  
+  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=week3_mini_assignment&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
+  
+</div>
+
 # 3주차 과제
 
 ### **연락처 리스트 앱 만들기 (RecyclerView 활용)**

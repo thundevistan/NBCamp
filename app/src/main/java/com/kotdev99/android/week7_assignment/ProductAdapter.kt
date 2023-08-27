@@ -50,11 +50,7 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		val name = binding.tvName
 		val addr = binding.tvAddr
 		val price = binding.tvPrice
-
-		//		val chat = binding.ivChat
 		val chatCnt = binding.tvChatCnt
-
-		//		val fav = binding.ivFav
 		val favCnt = binding.tvFavCnt
 	}
 }

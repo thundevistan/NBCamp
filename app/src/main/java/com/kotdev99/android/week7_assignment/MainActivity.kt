@@ -12,7 +12,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings.ACTION_SETTINGS
+import android.util.Log
 import android.view.View
+import android.view.animation.AlphaAnimation
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -21,6 +23,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kotdev99.android.week7_assignment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -68,6 +71,8 @@ class MainActivity : AppCompatActivity() {
 			requestNotificationPermission()
 			notification()
 		}
+
+		fabClick()
 	}
 
 	// Notification 권한
@@ -81,14 +86,14 @@ class MainActivity : AppCompatActivity() {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 				if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
 					Toast.makeText(
-						this, "알림을 받으 려면 권한을 허용해 주세요!", Toast.LENGTH_SHORT
+						this, "알림을 받으려면 권한을 허용해 주세요!", Toast.LENGTH_SHORT
 					).show()
 				} else {
 					requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
 				}
 			} else {
 				Toast.makeText(
-					this, "알림을 받으 려면 권한을 허용해 주세요!", Toast.LENGTH_SHORT
+					this, "알림을 받으려면 권한을 허용해 주세요!", Toast.LENGTH_SHORT
 				).show()
 
 				val intent = Intent(ACTION_SETTINGS)
@@ -132,6 +137,37 @@ class MainActivity : AppCompatActivity() {
 			setContentText("설정한 키워드에 대한 알림이 도착했습니다!!")
 		}
 		manager.notify(11, builder.build())
+	}
+
+	// FAB
+	private fun fabClick() {
+		val fadeIn = AlphaAnimation(0f, 1f).apply { duration = 500 }
+		val fadeOut = AlphaAnimation(1f, 0f).apply { duration = 500 }
+		var isTop = true
+
+		binding.rvMain.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+				super.onScrollStateChanged(recyclerView, newState)
+				if (!binding.rvMain.canScrollVertically(-1)
+					&& newState == RecyclerView.SCROLL_STATE_IDLE
+				) {
+					binding.fab.startAnimation(fadeOut)
+					binding.fab.visibility = View.GONE
+					isTop = true
+					Log.d("isTop?", "True")
+				} else {
+					if (isTop) {
+						binding.fab.visibility = View.VISIBLE
+						binding.fab.startAnimation(fadeIn)
+						isTop = false
+						Log.d("isTop?", "False")
+					}
+				}
+			}
+		})
+		binding.fab.setOnClickListener {
+			binding.rvMain.smoothScrollToPosition(0)
+		}
 	}
 
 	// Back 버튼

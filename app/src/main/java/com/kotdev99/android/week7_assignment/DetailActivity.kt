@@ -26,7 +26,6 @@ class DetailActivity : AppCompatActivity() {
 		binding.ivBack.setOnClickListener {
 			finish()
 		}
-
 	}
 
 	// 이모지

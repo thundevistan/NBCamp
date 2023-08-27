@@ -1,11 +1,13 @@
 package com.kotdev99.android.week7_assignment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
@@ -15,12 +17,15 @@ import android.provider.Settings.ACTION_SETTINGS
 import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,11 +64,43 @@ class MainActivity : AppCompatActivity() {
 			)
 		)
 
-		adapter.itemClick = object : ProductAdapter.ItemClick {
-			override fun onClick(view: View, position: Int) {
-				val intent = Intent(this@MainActivity, DetailActivity::class.java)
-				intent.putExtra("product", productList[position])
-				startActivity(intent)
+		adapter.apply {
+			itemClick = object : ProductAdapter.ItemClick {
+				override fun onClick(view: View, position: Int) {
+					val intent = Intent(this@MainActivity, DetailActivity::class.java)
+					intent.putExtra("product", productList[position])
+					startActivity(intent)
+				}
+			}
+			itemLongClick = object : ProductAdapter.ItemLongClick {
+				@SuppressLint("NotifyDataSetChanged")
+				override fun onLongClick(view: View, position: Int) {
+					var builder = AlertDialog.Builder(this@MainActivity)
+					builder.setIcon(R.drawable.ic_chat)
+					builder.setTitle("상품 삭제")
+					builder.setMessage("상품을 정말로 삭제하시겠습니까?")
+
+					val listener = DialogInterface.OnClickListener { _, p1 ->
+						when (p1) {
+							DialogInterface.BUTTON_POSITIVE -> {
+								productList.removeAt(position)
+								notifyDataSetChanged()
+							}
+						}
+					}
+
+					builder.setPositiveButton("확인", listener)
+					builder.setNegativeButton("취소", listener)
+
+					builder.show().apply {
+						findViewById<TextView>(android.R.id.button1)?.apply {
+							setTextColor(context.getColor(android.R.color.holo_purple))
+						}
+						findViewById<TextView>(android.R.id.button2)?.apply {
+							setTextColor(context.getColor(android.R.color.holo_purple))
+						}
+					}
+				}
 			}
 		}
 

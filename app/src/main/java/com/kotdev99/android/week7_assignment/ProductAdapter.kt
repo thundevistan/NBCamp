@@ -1,5 +1,6 @@
 package com.kotdev99.android.week7_assignment
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,13 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 	interface ItemClick {
 		fun onClick(view: View, position: Int)
 	}
+
 	var itemClick: ItemClick? = null
 
 	interface ItemLongClick {
 		fun onLongClick(view: View, position: Int)
 	}
+
 	var itemLongClick: ItemLongClick? = null
 
 	override fun getItemCount(): Int {
@@ -36,6 +39,7 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		)
 	}
 
+	@SuppressLint("NotifyDataSetChanged")
 	override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
 		holder.itemView.setOnClickListener {
 			itemClick?.onClick(it, position)
@@ -51,6 +55,7 @@ class ProductAdapter(private val productList: ArrayList<Product>) :
 		holder.addr.text = productList[position].addr
 		holder.price.text = productList[position].dec()
 		holder.chatCnt.text = productList[position].chat.toString()
+		holder.fav.setImageResource(if (productList[position].isFav) {R.drawable.ic_isfav} else {R.drawable.ic_fav})
 		holder.favCnt.text = productList[position].fav.toString()
 	}
 

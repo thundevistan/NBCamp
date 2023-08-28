@@ -13,8 +13,9 @@ data class Product(
 	val seller: String,
 	val price: Int,
 	val addr: String,
-	val fav: Int,
-	val chat: Int
+	var fav: Int,
+	val chat: Int,
+	var isFav: Boolean = false
 ) : Parcelable {
 	// Dec 처리
 	fun dec(): String {

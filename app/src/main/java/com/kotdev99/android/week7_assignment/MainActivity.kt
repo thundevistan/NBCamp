@@ -7,7 +7,6 @@ import android.app.NotificationManager
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
@@ -19,13 +18,12 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,7 +31,8 @@ import com.kotdev99.android.week7_assignment.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-	private lateinit var binding: ActivityMainBinding
+	private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+	private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
 	private val requestNotificationPermissionLauncher =
 		registerForActivityResult(
@@ -46,10 +45,9 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
+	@SuppressLint("NotifyDataSetChanged")
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
 		val productList = productList()
@@ -68,8 +66,9 @@ class MainActivity : AppCompatActivity() {
 			itemClick = object : ProductAdapter.ItemClick {
 				override fun onClick(view: View, position: Int) {
 					val intent = Intent(this@MainActivity, DetailActivity::class.java)
+					intent.putExtra("INDEX", position)
 					intent.putExtra("product", productList[position])
-					startActivity(intent)
+					resultLauncher.launch(intent)
 				}
 			}
 			itemLongClick = object : ProductAdapter.ItemLongClick {
@@ -108,6 +107,25 @@ class MainActivity : AppCompatActivity() {
 			requestNotificationPermission()
 			notification()
 		}
+
+		resultLauncher =
+			registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+				if (result.resultCode == RESULT_OK) {
+					val position: Int = result.data?.getIntExtra("INDEX",0) as Int
+					val isLike: Boolean = result.data?.getBooleanExtra("isLike", false) as Boolean
+
+					if (isLike) {
+						productList[position].isFav = true
+						productList[position].fav += 1
+					} else {
+						if (productList[position].isFav) {
+							productList[position].isFav = false
+							productList[position].fav -= 1
+						}
+					}
+				}
+				adapter.notifyDataSetChanged()
+			}
 
 		fabClick()
 	}

@@ -1,3 +1,8 @@
+<div align="center">
+  
+  ![header](https://capsule-render.vercel.app/api?type=Waving&height=200&text=thundevistan&fontColor=d5e6f5&color=timeGradient&animation=fadeIn)
+</div>
+
 # 4주차 과제
 
 ### **과제: 간단한 뉴스 리더 앱 만들기**

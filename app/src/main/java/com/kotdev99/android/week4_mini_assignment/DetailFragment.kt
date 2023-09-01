@@ -34,8 +34,13 @@ class DetailFragment : Fragment() {
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_detail, container, false)
+	}
 
-		val view = inflater.inflate(R.layout.fragment_detail, container, false)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
 		val titleDetail = view.findViewById<TextView>(R.id.tv_titleDetail)
 		val articleDetail = view.findViewById<TextView>(R.id.tv_articleDetail)
 
@@ -46,8 +51,6 @@ class DetailFragment : Fragment() {
 			titleDetail.text = title
 			articleDetail.text = article
 		}
-
-		return view
 	}
 
 	companion object {

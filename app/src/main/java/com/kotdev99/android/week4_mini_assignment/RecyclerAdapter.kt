@@ -18,7 +18,7 @@ class RecyclerAdapter(private val datas: ArrayList<NewsItem>) :
 	var itemClick: ItemClick? = null
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
-		Log.d("RecyclerAdapter", "onCreateViewHolder()")
+		Log.d("RecyclerAdapter", "onCreateViewHolder")
 		return ViewHolder(
 			ItemRecyclerBinding.inflate(
 				LayoutInflater.from(parent.context),
@@ -30,11 +30,11 @@ class RecyclerAdapter(private val datas: ArrayList<NewsItem>) :
 
 	override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
 		holder.bind(datas[position])
-		Log.d("RecyclerAdapter", "onBindViewHolder()")
+		Log.d("RecyclerAdapter", "onBindViewHolder")
 
 		holder.itemView.setOnClickListener {
 			itemClick?.onClick(it, position)
-			Log.d("RecyclerAdapter", "onClick()")
+			Log.d("RecyclerAdapter", "onClick")
 		}
 	}
 
@@ -56,7 +56,7 @@ class RecyclerAdapter(private val datas: ArrayList<NewsItem>) :
 
 			title.text = item.title
 			article.text = item.article
-			Log.d("RecyclerAdapter", "bind()")
+			Log.d("RecyclerAdapter", "bind")
 		}
 	}
 }

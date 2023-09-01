@@ -1,6 +1,6 @@
 package com.kotdev99.android.week4_mini_assignment
 
-import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -62,7 +62,6 @@ class TitleFragment : Fragment() {
 		Log.d("TitleFragment", "onViewCreated()")
 
 		adapter.itemClick = object : RecyclerAdapter.ItemClick {
-			@SuppressLint("CommitTransaction")
 			override fun onClick(view: View, position: Int) {
 				val title = data[position].title
 				val article = data[position].article
@@ -73,6 +72,7 @@ class TitleFragment : Fragment() {
 				bundle.putString("title", title)
 				bundle.putString("article", article)
 				detailFragment.arguments = bundle
+
 				transaction?.apply {
 					replace(R.id.fragment_content, detailFragment)
 					setReorderingAllowed(true)

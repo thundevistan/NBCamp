@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun fabButton() {
-        binding.fabButton.setOnClickListener {
-            DialogFragment().show(
-                supportFragmentManager, "DialogFrag"
-            )
-        }
-    }
+	private fun fabButton() {
+		binding.fabButton.setOnClickListener {
+			DialogFragment().show(
+				supportFragmentManager, "DialogFrag"
+			)
+		}
+	}
 }

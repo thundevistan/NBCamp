@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Contract</string>
+    <string name="dialog_name">Name</string>
+    <string name="dialog_phone">Phone</string>
+    <string name="dialog_email">E-mail</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_save">Save</string>
 </resources>

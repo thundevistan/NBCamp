@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 		})
 	}
 
-	fun fabButton() {
+	private fun fabButton() {
 		binding.fabButton.setOnClickListener {
 			DialogFragment().show(
 				supportFragmentManager, "DialogFrag"

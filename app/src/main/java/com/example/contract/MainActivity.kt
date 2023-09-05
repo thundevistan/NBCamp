@@ -11,6 +11,9 @@ import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.databinding.ActivityMainBinding
@@ -198,16 +201,18 @@ class MainActivity : AppCompatActivity() {
     private fun showPopupMenu(view: View) {
         val popupMenu = PopupMenu(this, view)
         popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
+        val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
 
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_grid -> {
-
+                    val spanCount = 4
+                    contactRv.layoutManager = GridLayoutManager(this, spanCount)
                     true
                 }
 
                 R.id.menu_list -> {
-
+                    contactRv.layoutManager = LinearLayoutManager(this)
                     true
                 }
 

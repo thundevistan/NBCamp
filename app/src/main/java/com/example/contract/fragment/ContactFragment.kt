@@ -36,16 +36,7 @@ class ContactFragment : Fragment() {
         val root = binding.root
 
         ContactManager.apply {
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+
         }
 
         val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)

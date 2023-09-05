@@ -3,14 +3,19 @@ package com.example.contract
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.databinding.ActivityMainBinding
+import com.example.contract.fragment.ExitDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewPager2: ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
@@ -20,9 +25,11 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = null
 
         val tabLayout = binding.tabLayout
-        val viewPager2 = binding.viewPager
+        viewPager2 = binding.viewPager
 
         // 어댑터 생성
         val adapter = ContractAdapter(this)
@@ -52,21 +59,60 @@ class MainActivity : AppCompatActivity() {
                 when (position) {
                     0 -> {
                         binding.fabButton.show()
+                        binding.menuButton.visibility = View.VISIBLE
+                        binding.backButton.setOnClickListener {
+                            onBackPressed()
+                        }
+                        binding.menuButton.setOnClickListener { view ->
+                            showPopupMenu(view)
+                        }
                     }
 
                     1 -> {
                         binding.fabButton.hide()
+                        binding.menuButton.visibility = View.INVISIBLE
                     }
                 }
             }
         })
     }
 
-	private fun fabButton() {
-		binding.fabButton.setOnClickListener {
-			DialogFragment().show(
-				supportFragmentManager, "DialogFrag"
-			)
-		}
-	}
+    private fun fabButton() {
+        binding.fabButton.setOnClickListener {
+            DialogFragment().show(
+                supportFragmentManager, "DialogFrag"
+            )
+        }
+    }
+
+    override fun onBackPressed() {
+        if (viewPager2.currentItem == 0) {
+            val dialogFragment = ExitDialogFragment()
+            dialogFragment.show(supportFragmentManager, "ExitDialogFragment")
+        } else {
+            viewPager2.currentItem = 0
+        }
+    }
+
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_grid -> {
+
+                    true
+                }
+
+                R.id.menu_list -> {
+
+                    true
+                }
+
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
 }

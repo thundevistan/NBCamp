@@ -37,9 +37,10 @@
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:src="@drawable/ic_menu"
+                android:scaleType="centerCrop"
                 android:contentDescription="메뉴"
                 android:layout_gravity="end"
-                android:layout_marginRight="15sp"
+                android:layout_marginRight="20sp"
                 app:tint="#FFFFFF"
                 />
 
@@ -51,7 +52,7 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
@@ -60,7 +61,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/tab_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,24 +1,33 @@
 package com.example.contract
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.Manifest
+import android.content.pm.PackageManager
+import android.database.Cursor
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.databinding.ActivityMainBinding
 import com.example.contract.fragment.ExitDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewPager2: ViewPager2
+
+    private val CONTACTS_PERMISSION_CODE = 101
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initView()
+        requestContactsPermission()
         fabButton()
     }
 
@@ -85,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (viewPager2.currentItem == 0) {
             val dialogFragment = ExitDialogFragment()
@@ -92,6 +102,46 @@ class MainActivity : AppCompatActivity() {
         } else {
             viewPager2.currentItem = 0
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CONTACTS_PERMISSION_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // 연락처 권한이 허용된 경우
+            readContacts()
+        }
+    }
+
+    private fun readContacts() {
+        val contentResolver = contentResolver
+        val projection = arrayOf(
+            ContactsContract.Contacts._ID,
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.Contacts.PHOTO_URI
+        )
+
+        val cursor: Cursor? = contentResolver.query(
+            ContactsContract.Contacts.CONTENT_URI,
+            projection,
+            null,
+            null,
+            null
+        )
+        if (cursor!!.moveToFirst()) {
+            do {
+                val mobileNumber =
+                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                val name =
+                    cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+                Log.d("test", mobileNumber)
+                Log.d("name", name)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
     }
 
     private fun showPopupMenu(view: View) {
@@ -114,5 +164,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
         popupMenu.show()
+    }
+
+    private fun requestContactsPermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_CONTACTS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_CONTACTS),
+                CONTACTS_PERMISSION_CODE
+            )
+        }
     }
 }

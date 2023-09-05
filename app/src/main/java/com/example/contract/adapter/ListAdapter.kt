@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contract.R
-import com.example.contract.adapter.ContactItem.Companion.VIEW_TYPE_LEFT
-import com.example.contract.adapter.ContactItem.Companion.VIEW_TYPE_RIGHT
-import com.example.contract.databinding.FragmentContractBinding
+import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
+import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_RIGHT
 import com.example.contract.databinding.ListViewLeftBinding
 import com.example.contract.databinding.ListViewRightBinding
+import com.example.contract.sampledata.ContactItem
 
 class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

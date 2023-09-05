@@ -1,11 +1,11 @@
-package com.example.contract.adapter
+package com.example.contract.sampledata
 
 data class ContactItem(
     val profileImage: Int,
     val listName: String,
-    val groupName: String,
+    val groupName: String? = "HOME",
     var isFavorite: Boolean,
-    val phoneNumber: Int = 0,
+    val phoneNumber: String? = null,
     val email: String = "",
     val event: String = "",
 ) {

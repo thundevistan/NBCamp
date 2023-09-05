@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contract.adapter.ContactItem
+import com.example.contract.sampledata.ContactItem
 import com.example.contract.adapter.ListAdapter
 import com.example.contract.R
 import com.example.contract.databinding.FragmentContractBinding
-import com.example.contract.databinding.ListViewLeftBinding
+import com.example.contract.sampledata.ContactManager
 
 class ContactFragment : Fragment() {
 
@@ -33,20 +33,21 @@ class ContactFragment : Fragment() {
         binding = FragmentContractBinding.inflate(inflater, container, false)
         val root = binding.root
 
-        val dataList = mutableListOf<ContactItem>()
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        ContactManager.apply {
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+            addContact(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+        }
 
         val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-        val listAdapter = ListAdapter(dataList)
+        val listAdapter = ListAdapter(ContactManager.getContact())
         contactRv.adapter = listAdapter
         contactRv.layoutManager = LinearLayoutManager(context)
 

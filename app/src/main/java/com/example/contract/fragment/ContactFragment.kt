@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.contract.adapter.ContactItem
 import com.example.contract.adapter.ListAdapter
 import com.example.contract.R
+import com.example.contract.databinding.FragmentContractBinding
+import com.example.contract.databinding.ListViewLeftBinding
 
 class ContactFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: FragmentContractBinding
 
     // Fragment가 처음으로 생성될 때 호출됩니다.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,34 +30,35 @@ class ContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Fragment의 레이아웃을 인플레이트하고 반환합니다.
-        val view = inflater.inflate(R.layout.fragment_contract, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        return view
+        binding = FragmentContractBinding.inflate(inflater, container, false)
+        val root = binding.root
+
+        val dataList = mutableListOf<ContactItem>()
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
+
+        val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+        val listAdapter = ListAdapter(dataList)
+        contactRv.adapter = listAdapter
+        contactRv.layoutManager = LinearLayoutManager(context)
+
+        val decoration = ListAdapter.AddressAdapterDecoration()
+        binding.contactRv.addItemDecoration(decoration)
+
+        return root
     }
 
     // onCreateView에서 반환된 뷰가 생성된 후 호출됩니다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val layoutManager = LinearLayoutManager(context)
-        recyclerView.layoutManager = layoutManager
-
-        val dataList = mutableListOf<ContactItem>()
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",true))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-        dataList.add(ContactItem(R.drawable.img_profile,"daeulzzang","Home",false))
-
-        val listAdapter = ListAdapter(dataList)
-        recyclerView.adapter = listAdapter
-
-
         // onViewCreated에서 뷰에 대한 조작 및 이벤트 처리를 수행합니다.
     }
 

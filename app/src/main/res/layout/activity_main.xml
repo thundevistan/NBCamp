@@ -27,22 +27,21 @@
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/back"
+                android:layout_gravity="start"
                 android:contentDescription="뒤로가기"
-                android:layout_gravity="start" />
+                android:src="@drawable/back" />
 
             <!-- 메뉴 버튼 -->
             <ImageView
                 android:id="@+id/menuButton"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
-                android:src="@drawable/ic_menu"
-                android:scaleType="centerCrop"
-                android:contentDescription="메뉴"
                 android:layout_gravity="end"
                 android:layout_marginRight="20sp"
-                app:tint="#FFFFFF"
-                />
+                android:contentDescription="메뉴"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_menu"
+                app:tint="#FFFFFF" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -76,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:backgroundTint="#45B874"
-        app:layout_constraintBottom_toBottomOf="@id/viewPager"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:shapeAppearanceOverlay="@style/circle_btn"
         app:srcCompat="@drawable/account_plus" />

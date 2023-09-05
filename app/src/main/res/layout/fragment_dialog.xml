@@ -5,11 +5,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_dialog_border"
-    tools:context=".DialogFragment">
+    tools:context=".fragment.DialogFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
-        android:layout_height="400dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_dialogProfile"
@@ -67,15 +67,32 @@
             android:ems="10"
             android:hint="@string/dialog_email"
             android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/edit_dialogEvent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_dialogPhone" />
+
+        <EditText
+            android:id="@+id/edit_dialogEvent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/selector_dialog_edit"
+            android:ems="10"
+            android:hint="@string/dialog_event"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/btn_dialogCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEmail" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_dialogCancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/selector_dialog_btn"
@@ -83,23 +100,23 @@
             android:textColor="@drawable/selector_dialog_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_dialogSave"
-            app:layout_constraintStart_toStartOf="@+id/edit_dialogEmail"
-            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEmail" />
+            app:layout_constraintStart_toStartOf="@+id/edit_dialogEvent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEvent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_dialogSave"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/selector_dialog_btn"
             android:text="@string/dialog_save"
             android:textColor="@drawable/selector_dialog_btn"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/edit_dialogEmail"
+            app:layout_constraintEnd_toEndOf="@+id/edit_dialogEvent"
             app:layout_constraintStart_toEndOf="@+id/btn_dialogCancel"
-            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEvent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

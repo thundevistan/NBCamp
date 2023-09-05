@@ -1,15 +1,13 @@
 package com.example.contract
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.databinding.ActivityMainBinding
+import com.example.contract.fragment.DialogFragment
 import com.example.contract.fragment.ExitDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 

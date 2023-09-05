@@ -4,7 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <!-- AppBarLayout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#202429"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <!-- 뒤로가기 버튼 -->
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back"
+                android:contentDescription="뒤로가기"
+                android:layout_gravity="start" />
+
+            <!-- 메뉴 버튼 -->
+            <ImageView
+                android:id="@+id/menuButton"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/ic_menu"
+                android:contentDescription="메뉴"
+                android:layout_gravity="end"
+                android:layout_marginRight="15sp"
+                app:tint="#FFFFFF"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <!-- ViewPager2 -->
     <androidx.viewpager2.widget.ViewPager2
@@ -14,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <!-- TabLayout -->
     <com.google.android.material.tabs.TabLayout

@@ -5,4 +5,5 @@
     <string name="dialog_email">E-mail</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_save">Save</string>
+    <string name="ok">Ok</string>
 </resources>

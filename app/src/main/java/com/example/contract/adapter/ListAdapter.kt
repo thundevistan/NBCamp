@@ -21,6 +21,7 @@ import com.example.contract.databinding.ListViewLeftBinding
 import com.example.contract.databinding.ListViewRightBinding
 import com.example.contract.sampledata.ContactItem
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_GRID
+import com.example.contract.sampledata.ContactManager
 
 class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface ItemClick {
@@ -37,6 +38,14 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
         fun bindLeft(item: ContactItem) {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
+                val contactList = ContactManager.getContact()
+                val contact = contactList[adapterPosition]
+                intent.putExtra("profileImage", contact.profileImage)
+                intent.putExtra("listName", contact.listName)
+                intent.putExtra("phoneNumber", contact.phoneNumber)
+                intent.putExtra("email", contact.email)
+                intent.putExtra("event", contact.event)
+
                 context.startActivity(intent)
             }
             profileImage.setImageResource(item.profileImage)
@@ -58,6 +67,14 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
         fun bindRight(item: ContactItem) {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
+                val contactList = ContactManager.getContact()
+                val contact = contactList[adapterPosition]
+                intent.putExtra("profileImage", contact.profileImage)
+                intent.putExtra("listName", contact.listName)
+                intent.putExtra("phoneNumber", contact.phoneNumber)
+                intent.putExtra("email", contact.email)
+                intent.putExtra("event", contact.event)
+
                 context.startActivity(intent)
             }
             profileImage.setImageResource(item.profileImage)
@@ -79,6 +96,14 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
         fun bindGrid(item: ContactItem) {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
+                val contactList = ContactManager.getContact()
+                val contact = contactList[adapterPosition]
+                intent.putExtra("profileImage", contact.profileImage)
+                intent.putExtra("listName", contact.listName)
+                intent.putExtra("phoneNumber", contact.phoneNumber)
+                intent.putExtra("email", contact.email)
+                intent.putExtra("event", contact.event)
+
                 context.startActivity(intent)
             }
             profileImage.setImageResource(item.profileImage)

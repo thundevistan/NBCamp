@@ -14,7 +14,7 @@
 
 
         <ImageView
-            android:id="@+id/tv_ItemImage"
+            android:id="@+id/profileImageView"
             android:layout_width="102dp"
             android:layout_height="102dp"
             android:layout_marginTop="40dp"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/listNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="daeulzzang"
@@ -33,7 +33,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ItemImage" />
+            app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
         <TextView
             android:id="@+id/textView2"
@@ -45,7 +45,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+            app:layout_constraintTop_toTopOf="@+id/listNameTextView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint2"
@@ -139,7 +139,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_phone"
+                    android:id="@+id/phoneNumberTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -176,7 +176,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_email"
+                    android:id="@+id/emailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -211,7 +211,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_event"
+                    android:id="@+id/eventTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10분후에 알림"

@@ -12,5 +12,6 @@ data class ContactItem(
 	companion object {
 		const val VIEW_TYPE_LEFT = 0
 		const val VIEW_TYPE_RIGHT = 1
+		const val VIEW_TYPE_GRID = 2
 	}
 }

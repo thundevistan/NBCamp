@@ -1,5 +1,6 @@
 package com.example.contract.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint

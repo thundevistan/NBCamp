@@ -284,22 +284,20 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.menu_grid -> {
                     val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-                    val listAdapter = ListAdapter(ContactManager.getContact())
+                    val listAdapter = ListAdapter(ContactManager.getContact(), this)
                     contactRv.layoutManager = GridLayoutManager(this, 3)
                     listAdapter.setGridLayout(true)
                     contactRv.adapter = listAdapter
                     true
                 }
-
                 R.id.menu_list -> {
                     val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-                    val listAdapter = ListAdapter(ContactManager.getContact())
+                    val listAdapter = ListAdapter(ContactManager.getContact(), this)
                     contactRv.layoutManager = LinearLayoutManager(this)
                     listAdapter.setGridLayout(false)
                     contactRv.adapter = listAdapter
                     true
                 }
-
                 else -> false
             }
         }

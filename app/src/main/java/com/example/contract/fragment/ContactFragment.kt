@@ -1,5 +1,6 @@
 package com.example.contract.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +14,17 @@ import com.example.contract.R
 import com.example.contract.databinding.FragmentContractBinding
 import com.example.contract.sampledata.ContactManager
 
+
+private const val ARG_PARAM1 = "param1"
+
+
+
 class ContactFragment : Fragment() {
 
     private lateinit var binding: FragmentContractBinding
+
+
+
 
     // Fragment가 처음으로 생성될 때 호출됩니다.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +43,7 @@ class ContactFragment : Fragment() {
         val root = binding.root
 
         val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-        val listAdapter = ListAdapter(ContactManager.getContact())
+        val listAdapter = ListAdapter(ContactManager.getContact(), requireContext())
         contactRv.adapter = listAdapter
         contactRv.layoutManager = LinearLayoutManager(context)
 

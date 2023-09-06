@@ -3,24 +3,22 @@ package com.example.contract
 import android.Manifest
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.View
 import android.widget.PopupMenu
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.databinding.ActivityMainBinding
+import com.example.contract.fragment.ContactFragment
 import com.example.contract.fragment.DialogFragment
 import com.example.contract.fragment.ExitDialogFragment
-import com.example.contract.sampledata.ContactItem
-import com.example.contract.sampledata.ContactManager
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -249,18 +247,23 @@ class MainActivity : AppCompatActivity() {
 	private fun showPopupMenu(view: View) {
 		val popupMenu = PopupMenu(this, view)
 		popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
+
 		val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
 
 		popupMenu.setOnMenuItemClickListener { menuItem ->
 			when (menuItem.itemId) {
 				R.id.menu_grid -> {
+
 					val spanCount = 4
 					contactRv.layoutManager = GridLayoutManager(this, spanCount)
+
 					true
 				}
 
 				R.id.menu_list -> {
+
 					contactRv.layoutManager = LinearLayoutManager(this)
+
 					true
 				}
 

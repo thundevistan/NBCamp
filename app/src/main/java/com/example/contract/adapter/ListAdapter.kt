@@ -19,11 +19,13 @@ import com.example.contract.sampledata.ContactItem
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_GRID
 
 class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     inner class LeftViewHolder(private val binding: ListViewLeftBinding) : RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
+
         fun bindLeft(item: ContactItem) {
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName

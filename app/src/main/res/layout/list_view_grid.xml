@@ -12,6 +12,7 @@
         android:layout_height="65dp"
         app:cardCornerRadius="18dp"
         app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,31 +28,33 @@
         android:id="@+id/listName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="10dp"
         android:text="daeulzzang"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
         android:id="@+id/groupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
         android:text="Home"
         android:textColor="@color/light_gray"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/listName"
+        app:layout_constraintStart_toStartOf="@+id/listName"
         app:layout_constraintTop_toBottomOf="@+id/listName" />
 
     <ImageView
         android:id="@+id/favoritButton"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginTop="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/groupName"
+        app:layout_constraintStart_toStartOf="@+id/groupName"
+        app:layout_constraintTop_toBottomOf="@+id/groupName"
         app:srcCompat="@drawable/ic_love_empty" />
 </androidx.constraintlayout.widget.ConstraintLayout>

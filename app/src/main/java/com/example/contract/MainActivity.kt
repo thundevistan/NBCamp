@@ -13,12 +13,18 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
+import com.example.contract.adapter.ListAdapter
 import com.example.contract.databinding.ActivityMainBinding
 import com.example.contract.fragment.ContactFragment
 import com.example.contract.fragment.DialogFragment
 import com.example.contract.fragment.ExitDialogFragment
+import com.example.contract.sampledata.ContactItem
+import com.example.contract.sampledata.ContactManager
 import com.google.android.material.tabs.TabLayoutMediator
 
 
@@ -248,25 +254,24 @@ class MainActivity : AppCompatActivity() {
 		val popupMenu = PopupMenu(this, view)
 		popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
 
-		val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-
 		popupMenu.setOnMenuItemClickListener { menuItem ->
 			when (menuItem.itemId) {
 				R.id.menu_grid -> {
-
-					val spanCount = 4
-					contactRv.layoutManager = GridLayoutManager(this, spanCount)
-
+					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+					val listAdapter = ListAdapter(ContactManager.getContact())
+					contactRv.layoutManager = GridLayoutManager(this, 3)
+					listAdapter.setGridLayout(true)
+					contactRv.adapter = listAdapter
 					true
 				}
-
 				R.id.menu_list -> {
-
+					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+					val listAdapter = ListAdapter(ContactManager.getContact())
 					contactRv.layoutManager = LinearLayoutManager(this)
-
+					listAdapter.setGridLayout(false)
+					contactRv.adapter = listAdapter
 					true
 				}
-
 				else -> false
 			}
 		}

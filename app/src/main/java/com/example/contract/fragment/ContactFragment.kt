@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contract.sampledata.ContactItem
 import com.example.contract.adapter.ListAdapter
 import com.example.contract.R
 import com.example.contract.databinding.FragmentContractBinding
@@ -44,10 +42,6 @@ class ContactFragment : Fragment() {
         binding = FragmentContractBinding.inflate(inflater, container, false)
         val root = binding.root
 
-        ContactManager.apply {
-
-        }
-
         val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
         val listAdapter = ListAdapter(ContactManager.getContact(), requireContext())
         contactRv.adapter = listAdapter
@@ -55,6 +49,11 @@ class ContactFragment : Fragment() {
 
         val decoration = ListAdapter.AddressAdapterDecoration()
         binding.contactRv.addItemDecoration(decoration)
+
+        // 스와이프 기능...
+        val itemTouchHelperCallback = CustomItemTouchHelper(requireContext(), listAdapter)
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(contactRv)
 
         return root
     }

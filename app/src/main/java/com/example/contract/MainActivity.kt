@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
 	private val CONTACTS_PERMISSION_CODE = 101
 
-	@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		requestContactsPermission()
@@ -140,22 +139,68 @@ class MainActivity : AppCompatActivity() {
 			null
 		)
 
-		if (cursor != null) {
-			val idColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
-			val nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
+        if (cursor != null) {
+            val idColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
+            val nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
+            val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+            val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
 
-			while (cursor.moveToNext()) {
-				val contactId = cursor.getLong(idColumnIndex)
-				val contactName = cursor.getString(nameColumnIndex)
+            while (cursor.moveToNext()) {
+                val contactId = cursor.getLong(idColumnIndex)
+                val contactName = cursor.getString(nameColumnIndex)
+                val phoneNumber = getPhoneNumber(contactId)
+                val emailAddress = getEmailAddress(contactId)
 
-				// 연락처 ID와 이름을 사용하여 작업 수행
-				Log.d("test", "ID: $contactId, Name: $contactName")
-			}
+                Log.d(
+                    "test",
+                    "ID: $contactId, Name: $contactName, Phone: $phoneNumber, Email: $emailAddress"
+                )
+
+                ContactManager.addContact(
+                    ContactItem(
+                        0,
+                        contactName,
+                        "",
+                        false,
+                        phoneNumber,
+                        emailAddress!!,
+                        ""
+                    )
+                )
+            }
 
 			cursor.close()
 		}
 	}
 
+	private fun getEmailAddress(contactId: Long): String? {
+		val contentResolver = contentResolver
+		val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
+
+		val selection = "${ContactsContract.CommonDataKinds.Email.CONTACT_ID} = ?"
+		val selectionArgs = arrayOf(contactId.toString())
+
+		val emailCursor: Cursor? = contentResolver.query(
+			ContactsContract.CommonDataKinds.Email.CONTENT_URI,
+			emailProjection,
+			selection,
+			selectionArgs,
+			null
+		)
+
+		var emailAddress: String? = null
+
+		if (emailCursor != null) {
+			val emailColumnIndex =
+				emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA)
+			if (emailColumnIndex != -1 && emailCursor.moveToFirst()) {
+				emailAddress = emailCursor.getString(emailColumnIndex)
+			}
+			emailCursor.close()
+		}
+
+		return emailAddress
+	}
 
 	private fun getPhoneNumber(contactId: Long): String? {
 		val contentResolver = contentResolver
@@ -203,14 +248,21 @@ class MainActivity : AppCompatActivity() {
 		val popupMenu = PopupMenu(this, view)
 		popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
 
+		val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+
 		popupMenu.setOnMenuItemClickListener { menuItem ->
 			when (menuItem.itemId) {
 				R.id.menu_grid -> {
+
+					val spanCount = 4
+					contactRv.layoutManager = GridLayoutManager(this, spanCount)
 
 					true
 				}
 
 				R.id.menu_list -> {
+
+					contactRv.layoutManager = LinearLayoutManager(this)
 
 					true
 				}

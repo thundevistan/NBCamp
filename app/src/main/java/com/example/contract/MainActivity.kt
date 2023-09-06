@@ -20,7 +20,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.contract.adapter.ContractAdapter
 import com.example.contract.adapter.ListAdapter
 import com.example.contract.databinding.ActivityMainBinding
-import com.example.contract.fragment.ContactFragment
 import com.example.contract.fragment.DialogFragment
 import com.example.contract.fragment.ExitDialogFragment
 import com.example.contract.sampledata.ContactItem
@@ -258,7 +257,7 @@ class MainActivity : AppCompatActivity() {
 			when (menuItem.itemId) {
 				R.id.menu_grid -> {
 					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-					val listAdapter = ListAdapter(ContactManager.getContact())
+					val listAdapter = ListAdapter(ContactManager.getContact(), this)
 					contactRv.layoutManager = GridLayoutManager(this, 3)
 					listAdapter.setGridLayout(true)
 					contactRv.adapter = listAdapter
@@ -266,7 +265,7 @@ class MainActivity : AppCompatActivity() {
 				}
 				R.id.menu_list -> {
 					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-					val listAdapter = ListAdapter(ContactManager.getContact())
+					val listAdapter = ListAdapter(ContactManager.getContact(), this)
 					contactRv.layoutManager = LinearLayoutManager(this)
 					listAdapter.setGridLayout(false)
 					contactRv.adapter = listAdapter
@@ -277,4 +276,5 @@ class MainActivity : AppCompatActivity() {
 		}
 		popupMenu.show()
 	}
+
 }

@@ -1,6 +1,8 @@
 package com.example.contract.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -8,7 +10,9 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.contract.DetailActivity
 import com.example.contract.R
 import com.example.contract.databinding.ListViewGridBinding
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
@@ -18,13 +22,23 @@ import com.example.contract.databinding.ListViewRightBinding
 import com.example.contract.sampledata.ContactItem
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_GRID
 
-class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    interface ItemClick {
+        fun onClick(view: View, position: Int)
+    }
+    var itemClick: ItemClick? = null
+
     inner class LeftViewHolder(private val binding: ListViewLeftBinding) : RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
+
         fun bindLeft(item: ContactItem) {
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailActivity::class.java)
+                context.startActivity(intent)
+            }
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
@@ -42,6 +56,10 @@ class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Ad
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
         fun bindRight(item: ContactItem) {
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailActivity::class.java)
+                context.startActivity(intent)
+            }
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
@@ -59,6 +77,10 @@ class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Ad
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
         fun bindGrid(item: ContactItem) {
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailActivity::class.java)
+                context.startActivity(intent)
+            }
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
@@ -91,6 +113,7 @@ class ListAdapter(private val items: MutableList<ContactItem>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
+
         when (holder) {
             is LeftViewHolder -> holder.bindLeft(item)
             is RightViewHolder -> holder.bindRight(item)

@@ -14,6 +14,20 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        // 좋아요 버튼에 대한 클릭 리스너 추가
+        val likeButton = findViewById<ImageView>(R.id.ll_detail_like)
+        var isLiked = false // 초기 상태는 좋아요가 되지 않은 상태
+
+        likeButton.setOnClickListener {
+            // 아이콘 토글
+            if (isLiked) {
+                likeButton.setImageResource(R.drawable.ic_love_empty)
+            } else {
+                likeButton.setImageResource(R.drawable.ic_love_filled)
+            }
+
+            isLiked = !isLiked // 상태를 토글
+        }
 
         // 인텐트로부터 데이터 받기
         val profileImage = intent.getIntExtra("profileImage", R.drawable.img_profile)

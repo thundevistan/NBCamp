@@ -51,6 +51,15 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+            favoritButton.setOnClickListener {
+                // 아이템의 좋아요 상태를 토글
+                item.isFavorite = !item.isFavorite
+                if (item.isFavorite) {
+                    favoritButton.setImageResource(R.drawable.ic_love_filled)
+                } else {
+                    favoritButton.setImageResource(R.drawable.ic_love_empty)
+                }
+            }
             if (item.isFavorite) {
                 favoritButton.setImageResource(R.drawable.ic_love_filled)
             } else {
@@ -80,6 +89,15 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+            favoritButton.setOnClickListener {
+                // 아이템의 좋아요 상태를 토글
+                item.isFavorite = !item.isFavorite
+                if (item.isFavorite) {
+                    favoritButton.setImageResource(R.drawable.ic_love_filled)
+                } else {
+                    favoritButton.setImageResource(R.drawable.ic_love_empty)
+                }
+            }
             if (item.isFavorite) {
                 favoritButton.setImageResource(R.drawable.ic_love_filled)
             } else {
@@ -109,6 +127,15 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             profileImage.setImageResource(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+            favoritButton.setOnClickListener {
+                // 아이템의 좋아요 상태를 토글
+                item.isFavorite = !item.isFavorite
+                if (item.isFavorite) {
+                    favoritButton.setImageResource(R.drawable.ic_love_filled)
+                } else {
+                    favoritButton.setImageResource(R.drawable.ic_love_empty)
+                }
+            }
             if (item.isFavorite) {
                 favoritButton.setImageResource(R.drawable.ic_love_filled)
             } else {

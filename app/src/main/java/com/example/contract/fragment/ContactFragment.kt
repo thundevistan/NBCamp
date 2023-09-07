@@ -15,10 +15,6 @@ import com.example.contract.databinding.FragmentContractBinding
 import com.example.contract.sampledata.ContactManager
 
 
-private const val ARG_PARAM1 = "param1"
-
-
-
 class ContactFragment : Fragment() {
 
     private lateinit var binding: FragmentContractBinding
@@ -47,6 +43,8 @@ class ContactFragment : Fragment() {
         contactRv.adapter = listAdapter
         contactRv.layoutManager = LinearLayoutManager(context)
 
+
+
         val decoration = ListAdapter.AddressAdapterDecoration()
         binding.contactRv.addItemDecoration(decoration)
 
@@ -54,6 +52,8 @@ class ContactFragment : Fragment() {
         val itemTouchHelperCallback = CustomItemTouchHelper(requireContext(), listAdapter)
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(contactRv)
+
+
 
         return root
     }

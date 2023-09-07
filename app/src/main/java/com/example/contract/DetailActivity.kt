@@ -25,7 +25,6 @@ class DetailActivity : AppCompatActivity() {
             } else {
                 likeButton.setImageResource(R.drawable.ic_love_filled)
             }
-
             isLiked = !isLiked // 상태를 토글
         }
 
@@ -68,6 +67,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val messageButton = findViewById<Button>(R.id.btn_message)
+
         messageButton.setOnClickListener {
             // 전화 번호를 가져와서 문자 메시지 보내기 인텐트 생성
             val phone = findViewById<TextView>(R.id.phoneNumberTextView).text.toString()

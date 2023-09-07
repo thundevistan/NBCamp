@@ -1,6 +1,5 @@
 package com.example.contract.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
@@ -10,20 +9,20 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contract.DetailActivity
+import com.example.contract.NotifyChanged
 import com.example.contract.R
 import com.example.contract.databinding.ListViewGridBinding
-import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
-import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_RIGHT
 import com.example.contract.databinding.ListViewLeftBinding
 import com.example.contract.databinding.ListViewRightBinding
 import com.example.contract.sampledata.ContactItem
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_GRID
+import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
+import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_RIGHT
 import com.example.contract.sampledata.ContactManager
 
-class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), NotifyChanged {
     interface ItemClick {
         fun onClick(view: View, position: Int)
     }
@@ -197,5 +196,9 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             outRect.top = offset
             outRect.bottom = offset
         }
+    }
+
+    override fun notifyChanged() {
+        notifyDataSetChanged()
     }
 }

@@ -16,12 +16,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.DialogFragment
 import com.example.contract.MainActivity
+import com.example.contract.NotifyChanged
 import com.example.contract.R
 import com.example.contract.databinding.FragmentDialogBinding
 import com.example.contract.sampledata.ContactItem
@@ -167,6 +167,8 @@ class DialogFragment : DialogFragment() {
 				event
 			)
 		)
+
+
 	}
 
 	// Notification
@@ -195,5 +197,12 @@ class DialogFragment : DialogFragment() {
 			.setContentText("${name}에게 연락을 할 시간 입니다")
 			.setPriority(NotificationCompat.PRIORITY_DEFAULT)
 		NotificationManagerCompat.from(activity).notify(notificationId, builder.build())
+	}
+
+	fun notifyChanged() {
+		val notifyChanged: NotifyChanged = object : NotifyChanged {
+			override fun notifyChanged() {
+			}
+		}
 	}
 }

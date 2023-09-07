@@ -9,13 +9,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.contract.R
+import com.example.contract.databinding.ActivityDetailBinding
+import com.example.contract.databinding.ActivityMainBinding
 
 class DetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         // 좋아요 버튼에 대한 클릭 리스너 추가
-        val likeButton = findViewById<ImageView>(R.id.ll_detail_like)
+        val likeButton = binding.llDetailLike
         var isLiked = false // 초기 상태는 좋아요가 되지 않은 상태
 
         likeButton.setOnClickListener {
@@ -36,11 +42,11 @@ class DetailActivity : AppCompatActivity() {
         val event = intent.getStringExtra("event")
 
         // 받은 데이터를 사용하여 UI 업데이트
-        val profileImageView = findViewById<ImageView>(R.id.profileImageView)
-        val listNameTextView = findViewById<TextView>(R.id.listNameTextView)
-        val phoneNumberTextView = findViewById<TextView>(R.id.phoneNumberTextView)
-        val emailTextView = findViewById<TextView>(R.id.emailTextView)
-        val eventTextView = findViewById<TextView>(R.id.eventTextView)
+        val profileImageView = binding.profileImageView
+        val listNameTextView = binding.listNameTextView
+        val phoneNumberTextView = binding.phoneNumberTextView
+        val emailTextView = binding.emailTextView
+        val eventTextView = binding.eventTextView
 
         profileImageView.setImageResource(profileImage)
         listNameTextView.text = listName
@@ -49,10 +55,12 @@ class DetailActivity : AppCompatActivity() {
         eventTextView.text = event
 
         // 전화 걸기 버튼에 클릭 리스너 추가
-        val callButton = findViewById<Button>(R.id.btn_call)
+        val callButton = binding.btnCall
+
+        val phone = phoneNumberTextView.text.toString()
+
         callButton.setOnClickListener {
             // 전화 번호를 가져와서 전화 걸기 인텐트 생성
-            val phone = phoneNumberTextView.text.toString()
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = Uri.parse("tel:$phone")
 
@@ -70,12 +78,15 @@ class DetailActivity : AppCompatActivity() {
 
         messageButton.setOnClickListener {
             // 전화 번호를 가져와서 문자 메시지 보내기 인텐트 생성
-            val phone = findViewById<TextView>(R.id.phoneNumberTextView).text.toString()
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.data = Uri.parse("smsto:$phone")
 
             // 문자 메시지 앱을 실행
             startActivity(intent)
+        }
+
+        binding.backButton.setOnClickListener {
+            finish()
         }
     }
 }

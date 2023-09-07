@@ -1,6 +1,5 @@
 package com.example.contract.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contract.adapter.ListAdapter
 import com.example.contract.R
+import com.example.contract.adapter.ListAdapter
 import com.example.contract.databinding.FragmentContractBinding
 import com.example.contract.sampledata.ContactManager
 
@@ -42,7 +41,6 @@ class ContactFragment : Fragment() {
         val listAdapter = ListAdapter(ContactManager.getContact(), requireContext())
         contactRv.adapter = listAdapter
         contactRv.layoutManager = LinearLayoutManager(context)
-
 
 
         val decoration = ListAdapter.AddressAdapterDecoration()

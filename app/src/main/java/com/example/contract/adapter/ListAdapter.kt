@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contract.DetailActivity
-import com.example.contract.NotifyChanged
 import com.example.contract.R
 import com.example.contract.databinding.ListViewGridBinding
 import com.example.contract.databinding.ListViewLeftBinding
@@ -22,7 +21,7 @@ import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_RIGHT
 import com.example.contract.sampledata.ContactManager
 
-class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), NotifyChanged {
+class ListAdapter(private val items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface ItemClick {
         fun onClick(view: View, position: Int)
     }
@@ -161,7 +160,6 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
 
@@ -223,9 +221,5 @@ class ListAdapter(private val items: MutableList<ContactItem>, private val conte
             outRect.top = offset
             outRect.bottom = offset
         }
-    }
-
-    override fun notifyChanged() {
-        notifyDataSetChanged()
     }
 }

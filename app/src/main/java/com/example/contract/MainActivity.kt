@@ -26,281 +26,287 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var viewPager2: ViewPager2
+	private lateinit var binding: ActivityMainBinding
+	private lateinit var viewPager2: ViewPager2
 
-    private val CONTACTS_PERMISSION_CODE = 101
-    private val CALL_PERMISSION_CODE = 123
+	private val CONTACTS_PERMISSION_CODE = 101
+	private val CALL_PERMISSION_CODE = 123
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestContactsPermission()
-        requestCallPermission()
-        initView()
-        fabButton()
-    }
+	val listAdapter by lazy { ListAdapter(ContactManager.getContact(), this) }
+	val contactRv by lazy { binding.root.findViewById<RecyclerView>(R.id.contactRv) }
 
-    private fun initView() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.title = null
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		requestContactsPermission()
+		requestCallPermission()
+		initView()
+		fabButton()
+	}
 
-        val tabLayout = binding.tabLayout
-        viewPager2 = binding.viewPager
+	private fun initView() {
+		binding = ActivityMainBinding.inflate(layoutInflater)
+		setContentView(binding.root)
+		setSupportActionBar(binding.toolbar)
+		supportActionBar?.title = null
 
-        // 어댑터 생성
-        val adapter = ContractAdapter(this)
+		val tabLayout = binding.tabLayout
+		viewPager2 = binding.viewPager
 
-        // ViewPager2에 어댑터 설정
-        viewPager2.adapter = adapter
+		// 어댑터 생성
+		val adapter = ContractAdapter(this)
 
-        tabLayout.tabRippleColor = null
+		// ViewPager2에 어댑터 설정
+		viewPager2.adapter = adapter
 
-        // 연락처 불러오기
-        readContacts()
+		tabLayout.tabRippleColor = null
 
-        // TabLayoutMediator를 사용하여 ViewPager2와 TabLayout을 연결
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            when (position) {
-                0 -> {
-                    tab.text = "Contact"
-                }
+		// 연락처 불러오기
+		readContacts()
 
-                1 -> {
-                    tab.text = "My Page"
-                }
-            }
-        }.attach()
+		// TabLayoutMediator를 사용하여 ViewPager2와 TabLayout을 연결
+		TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+			when (position) {
+				0 -> {
+					tab.text = "Contact"
+				}
 
-        // ViewPager2의 페이지 변경 리스너 설정
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                when (position) {
-                    0 -> {
-                        binding.fabButton.show()
-                        binding.menuButton.visibility = View.VISIBLE
-                        binding.backButton.setOnClickListener {
-                            onBackPressed()
-                        }
-                        binding.menuButton.setOnClickListener { view ->
-                            showPopupMenu(view)
-                        }
-                    }
+				1 -> {
+					tab.text = "My Page"
+				}
+			}
+		}.attach()
 
-                    1 -> {
-                        binding.fabButton.hide()
-                        binding.menuButton.visibility = View.INVISIBLE
-                    }
-                }
-            }
-        })
-    }
+		// ViewPager2의 페이지 변경 리스너 설정
+		viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+			override fun onPageSelected(position: Int) {
+				super.onPageSelected(position)
+				when (position) {
+					0 -> {
+						binding.fabButton.show()
+						binding.menuButton.visibility = View.VISIBLE
+						binding.backButton.setOnClickListener {
+							onBackPressed()
+						}
+						binding.menuButton.setOnClickListener { view ->
+							showPopupMenu(view)
+						}
+					}
 
-    private fun fabButton() {
-        binding.fabButton.setOnClickListener {
-            DialogFragment().show(
-                supportFragmentManager, "DialogFrag"
-            )
-        }
-    }
+					1 -> {
+						binding.fabButton.hide()
+						binding.menuButton.visibility = View.INVISIBLE
+					}
+				}
+			}
+		})
+	}
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (viewPager2.currentItem == 0) {
-            val dialogFragment = ExitDialogFragment()
-            dialogFragment.show(supportFragmentManager, "ExitDialogFragment")
-        } else {
-            viewPager2.currentItem = 0
-        }
-    }
+	private fun fabButton() {
+		binding.fabButton.setOnClickListener {
+			DialogFragment().show(
+				supportFragmentManager, "DialogFrag"
+			)
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            CONTACTS_PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    readContacts()
-                } else {
-                    Log.d("test", "연락처 권한 거부됨")
-                }
-            }
+		}
+	}
 
-            CALL_PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 권한이 부여된 경우, 전화 걸기 동작 수행
-                    // 이 부분에 전화 걸기 코드를 넣으세요.
-                } else {
-                    Log.d("test", "전화 걸기 권한 거부됨")
-                }
-            }
-        }
-    }
+	@Deprecated("Deprecated in Java")
+	override fun onBackPressed() {
+		if (viewPager2.currentItem == 0) {
+			val dialogFragment = ExitDialogFragment()
+			dialogFragment.show(supportFragmentManager, "ExitDialogFragment")
+		} else {
+			viewPager2.currentItem = 0
+		}
+	}
 
-    private fun readContacts() {
-        val contentResolver = contentResolver
-        val projection = arrayOf(
-            ContactsContract.Contacts._ID,
-            ContactsContract.Contacts.DISPLAY_NAME
-        )
+	override fun onRequestPermissionsResult(
+		requestCode: Int,
+		permissions: Array<out String>,
+		grantResults: IntArray
+	) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+		when (requestCode) {
+			CONTACTS_PERMISSION_CODE -> {
+				if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					readContacts()
+				} else {
+					Log.d("test", "연락처 권한 거부됨")
+				}
+			}
 
-        val cursor: Cursor? = contentResolver.query(
-            ContactsContract.Contacts.CONTENT_URI,
-            projection,
-            null,
-            null,
-            null
-        )
+			CALL_PERMISSION_CODE -> {
+				if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					// 권한이 부여된 경우, 전화 걸기 동작 수행
+					// 이 부분에 전화 걸기 코드를 넣으세요.
+				} else {
+					Log.d("test", "전화 걸기 권한 거부됨")
+				}
+			}
+		}
+	}
 
-        if (cursor != null) {
-            val idColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
-            val nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
-            val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
+	private fun readContacts() {
+		val contentResolver = contentResolver
+		val projection = arrayOf(
+			ContactsContract.Contacts._ID,
+			ContactsContract.Contacts.DISPLAY_NAME
+		)
 
-            while (cursor.moveToNext()) {
-                val contactId = cursor.getLong(idColumnIndex)
-                val contactName = cursor.getString(nameColumnIndex)
-                val phoneNumber = getPhoneNumber(contactId)
-                val emailAddress = getEmailAddress(contactId)
+		val cursor: Cursor? = contentResolver.query(
+			ContactsContract.Contacts.CONTENT_URI,
+			projection,
+			null,
+			null,
+			null
+		)
 
-                Log.d(
-                    "test",
-                    "ID: $contactId, Name: $contactName, Phone: $phoneNumber, Email: $emailAddress"
-                )
+		if (cursor != null) {
+			val idColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
+			val nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
+			val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+			val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
 
-                ContactManager.addContact(
-                    ContactItem(
-                        0,
-                        contactName,
-                        "",
-                        false,
-                        phoneNumber,
-                        emailAddress!!,
-                        ""
-                    )
-                )
-            }
+			while (cursor.moveToNext()) {
+				val contactId = cursor.getLong(idColumnIndex)
+				val contactName = cursor.getString(nameColumnIndex)
+				val phoneNumber = getPhoneNumber(contactId)
+				val emailAddress = getEmailAddress(contactId)
 
-            cursor.close()
-        }
-    }
+				Log.d(
+					"test",
+					"ID: $contactId, Name: $contactName, Phone: $phoneNumber, Email: $emailAddress"
+				)
 
-    private fun getEmailAddress(contactId: Long): String? {
-        val contentResolver = contentResolver
-        val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
+				ContactManager.addContact(
+					ContactItem(
+						0,
+						contactName,
+						"",
+						false,
+						phoneNumber,
+						emailAddress!!,
+						""
+					)
+				)
+			}
 
-        val selection = "${ContactsContract.CommonDataKinds.Email.CONTACT_ID} = ?"
-        val selectionArgs = arrayOf(contactId.toString())
+			cursor.close()
+		}
+	}
 
-        val emailCursor: Cursor? = contentResolver.query(
-            ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-            emailProjection,
-            selection,
-            selectionArgs,
-            null
-        )
+	private fun getEmailAddress(contactId: Long): String? {
+		val contentResolver = contentResolver
+		val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
 
-        var emailAddress: String? = null
+		val selection = "${ContactsContract.CommonDataKinds.Email.CONTACT_ID} = ?"
+		val selectionArgs = arrayOf(contactId.toString())
 
-        if (emailCursor != null) {
-            val emailColumnIndex =
-                emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA)
-            if (emailColumnIndex != -1 && emailCursor.moveToFirst()) {
-                emailAddress = emailCursor.getString(emailColumnIndex)
-            }
-            emailCursor.close()
-        }
+		val emailCursor: Cursor? = contentResolver.query(
+			ContactsContract.CommonDataKinds.Email.CONTENT_URI,
+			emailProjection,
+			selection,
+			selectionArgs,
+			null
+		)
 
-        return emailAddress
-    }
+		var emailAddress: String? = null
 
-    private fun getPhoneNumber(contactId: Long): String? {
-        val contentResolver = contentResolver
-        val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
-        val selection = "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} = ?"
-        val selectionArgs = arrayOf(contactId.toString())
+		if (emailCursor != null) {
+			val emailColumnIndex =
+				emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA)
+			if (emailColumnIndex != -1 && emailCursor.moveToFirst()) {
+				emailAddress = emailCursor.getString(emailColumnIndex)
+			}
+			emailCursor.close()
+		}
 
-        val phoneCursor: Cursor? = contentResolver.query(
-            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-            phoneProjection,
-            selection,
-            selectionArgs,
-            null
-        )
+		return emailAddress
+	}
 
-        var phoneNumber: String? = null
+	private fun getPhoneNumber(contactId: Long): String? {
+		val contentResolver = contentResolver
+		val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
+		val selection = "${ContactsContract.CommonDataKinds.Phone.CONTACT_ID} = ?"
+		val selectionArgs = arrayOf(contactId.toString())
 
-        if (phoneCursor != null) {
-            val numberColumnIndex =
-                phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            if (numberColumnIndex != -1 && phoneCursor.moveToFirst()) {
-                phoneNumber = phoneCursor.getString(numberColumnIndex)
-            }
-            phoneCursor.close()
-        }
+		val phoneCursor: Cursor? = contentResolver.query(
+			ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+			phoneProjection,
+			selection,
+			selectionArgs,
+			null
+		)
 
-        return phoneNumber
-    }
+		var phoneNumber: String? = null
 
-    private fun requestCallPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CALL_PHONE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CALL_PHONE),
-                CALL_PERMISSION_CODE
-            )
-        }
-    }
+		if (phoneCursor != null) {
+			val numberColumnIndex =
+				phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+			if (numberColumnIndex != -1 && phoneCursor.moveToFirst()) {
+				phoneNumber = phoneCursor.getString(numberColumnIndex)
+			}
+			phoneCursor.close()
+		}
 
-    private fun requestContactsPermission() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_CONTACTS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_CONTACTS),
-                CONTACTS_PERMISSION_CODE
-            )
-        }
-    }
+		return phoneNumber
+	}
 
-    private fun showPopupMenu(view: View) {
-        val popupMenu = PopupMenu(this, view)
-        popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
+	private fun requestCallPermission() {
+		if (ContextCompat.checkSelfPermission(
+				this,
+				Manifest.permission.CALL_PHONE
+			) != PackageManager.PERMISSION_GRANTED
+		) {
+			ActivityCompat.requestPermissions(
+				this,
+				arrayOf(Manifest.permission.CALL_PHONE),
+				CALL_PERMISSION_CODE
+			)
+		}
+	}
 
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu_grid -> {
-                    val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-                    val listAdapter = ListAdapter(ContactManager.getContact(), this)
-                    contactRv.layoutManager = GridLayoutManager(this, 3)
-                    listAdapter.setGridLayout(true)
-                    contactRv.adapter = listAdapter
-                    true
-                }
-                R.id.menu_list -> {
-                    val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
-                    val listAdapter = ListAdapter(ContactManager.getContact(), this)
-                    contactRv.layoutManager = LinearLayoutManager(this)
-                    listAdapter.setGridLayout(false)
-                    contactRv.adapter = listAdapter
-                    true
-                }
-                else -> false
-            }
-        }
-        popupMenu.show()
-    }
+	private fun requestContactsPermission() {
+		if (ContextCompat.checkSelfPermission(
+				this,
+				Manifest.permission.READ_CONTACTS
+			) != PackageManager.PERMISSION_GRANTED
+		) {
+			ActivityCompat.requestPermissions(
+				this,
+				arrayOf(Manifest.permission.READ_CONTACTS),
+				CONTACTS_PERMISSION_CODE
+			)
+		}
+	}
+
+	private fun showPopupMenu(view: View) {
+		val popupMenu = PopupMenu(this, view)
+		popupMenu.menuInflater.inflate(R.menu.menu_list_type, popupMenu.menu)
+
+		popupMenu.setOnMenuItemClickListener { menuItem ->
+			when (menuItem.itemId) {
+				R.id.menu_grid -> {
+					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+					val listAdapter = ListAdapter(ContactManager.getContact(), this)
+					contactRv.layoutManager = GridLayoutManager(this, 3)
+					listAdapter.setGridLayout(true)
+					contactRv.adapter = listAdapter
+					true
+				}
+
+				R.id.menu_list -> {
+					val contactRv = binding.root.findViewById<RecyclerView>(R.id.contactRv)
+					val listAdapter = ListAdapter(ContactManager.getContact(), this)
+					contactRv.layoutManager = LinearLayoutManager(this)
+					listAdapter.setGridLayout(false)
+					contactRv.adapter = listAdapter
+					true
+				}
+
+				else -> false
+			}
+		}
+		popupMenu.show()
+	}
 }

@@ -16,7 +16,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.ListAdapter
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -103,6 +102,13 @@ class DialogFragment : DialogFragment() {
 							}
 						}
 						addContact()
+
+						// (1) 컨텍스트를 액티비티로 캐스팅
+						// (2) (1).전역번수로뺀어댑터.notifyDataSetChanged
+						val contactRv = (context as MainActivity).contactRv
+						val listAdapter = (context as MainActivity).listAdapter
+						contactRv.adapter = listAdapter
+						listAdapter.notifyDataSetChanged()
 
 						dismiss()
 					}

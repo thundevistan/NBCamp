@@ -38,7 +38,7 @@
 
 # ☑️ Implementation Function
 
-![image](https://github.com/Team14Contract/contractZZang/assets/139092551/963d357d-3377-4d97-b573-08e27ca37804)
+![image](https://github.com/Team14Contract/contractZZang/assets/139092551/c3c0526f-f936-4418-851f-d2e015624a07)
 
 ### 필수 구현 기능
 - [X] TabLayout 와 ViewPager

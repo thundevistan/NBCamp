@@ -49,6 +49,6 @@
 
 ### 추가 구현 기능 (선택)
 - [X] ItemViewType 변경 적용
-- [ ] Event 시간에 맞춰 Notification 표시
-- [ ] Swipe-to-Action
-- [ ] 실제 폰에 있는 연락처 불러오기
+- [X] Event 시간에 맞춰 Notification 표시
+- [X] Swipe-to-Action
+- [X] 실제 폰에 있는 연락처 불러오기

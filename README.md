@@ -1,10 +1,11 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=0:6e45e2,100:88d3ce&height=290&section=header&text=[NBCamp]%20Week9%20Assignmnet&fontColor=ffffff&fontSize=50&animation=blink&fontAlignY=38&desc=[내배캠]%2014조%20내.또.코)
 
 
-# 🎧 Team Members
+# 🎧 Team Intro
 
 - 팀명 :  **내.또.코**
 - 팀 소개 : **내일 또 코딩...**
+- 팀 노션 : **[[Notion]](https://www.notion.so/14-1087157bac2444f396524100973d439e?pvs=4)**
 
 | 이름   | 역할 | MBTI        | BLOG                                               | GitHub                                                  | 
 | ------ | ---- | ---------- | -------------------------------------------------- | -------------------------------------------------------- |

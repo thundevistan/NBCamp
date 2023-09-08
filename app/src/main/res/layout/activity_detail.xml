@@ -269,7 +269,7 @@
                 app:layout_constraintVertical_bias="0.988">
 
                 <ImageView
-                    android:id="@+id/ll_detail_like"
+                    android:id="@+id/like"
                     android:layout_width="103dp"
                     android:layout_height="41dp"
                     android:layout_weight="1"

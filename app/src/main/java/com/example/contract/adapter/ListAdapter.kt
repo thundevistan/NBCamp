@@ -58,7 +58,12 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
 
             }
 
-            profileImage.setImageURI(item.profileImage)
+            if (item.profileImage == null) {
+                profileImage.setImageResource(R.drawable.ic_account)
+            } else {
+                profileImage.setImageURI(item.profileImage)
+            }
+
             listName.text = item.listName
             groupName.text = item.groupName
 

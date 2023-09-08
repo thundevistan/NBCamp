@@ -5,6 +5,7 @@ import android.util.Log
 
 object ContactManager {
     private val contactList = ArrayList<ContactItem>()
+    private var index = 0
     private val drawableResName = "img_profile" // Drawable 리소스 이름 (파일명과 동일)
     private val pakageName = "com.example.contract"
     private val uri = Uri.parse("android.resource://$pakageName/drawable/$drawableResName")
@@ -12,6 +13,8 @@ object ContactManager {
     init {
         addContact(
             ContactItem(
+                index++,
+                -1,
                 uri,
                 "daeulzzang1",
                 "Home",

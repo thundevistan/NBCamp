@@ -149,6 +149,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun readContacts() {
+
+        val contactList = ContactManager.getContact()
+
         val contentResolver = contentResolver
         val projection = arrayOf(
             ContactsContract.Contacts._ID,
@@ -181,14 +184,21 @@ class MainActivity : AppCompatActivity() {
                     "ID: $contactId, Name: $contactName, Phone: $phoneNumber, Email: $emailAddress"
                 )
 
-                ContactManager.addContact(
-                    ContactItem(
-                        profileImage = contactImageUri, // 프로필 사진 Uri 설정
-                        listName = contactName,
-                        phoneNumber = phoneNumber,
-                        email = emailAddress!!,
+                if (contactList.any { it.contactId == contactId }) {
+                    continue
+                } else {
+                    val listSize = ContactManager.getContact().size
+                    ContactManager.addContact(
+                        ContactItem(
+                            profileImage = contactImageUri, // 프로필 사진 Uri 설정
+                            listName = contactName,
+                            phoneNumber = phoneNumber,
+                            email = emailAddress!!,
+                            contactId = contactId,
+                            id = listSize - 1,
+                        )
                     )
-                )
+                }
             }
             cursor.close()
         }

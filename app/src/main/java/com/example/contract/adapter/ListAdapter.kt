@@ -38,24 +38,30 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
         private val favoritButton = binding.favoritButton
 
         fun bindLeft(item: ContactItem) {
+
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
                 val contactList = ContactManager.getContact()
-                val contact = items[adapterPosition]
+                val contact = items[bindingAdapterPosition]
+
+                // 값 넣기
+                intent.putExtra("position", bindingAdapterPosition)
                 intent.putExtra("profileImage", contact.profileImage)
                 intent.putExtra("listName", contact.listName)
                 intent.putExtra("phoneNumber", contact.phoneNumber)
                 intent.putExtra("email", contact.email)
                 intent.putExtra("event", contact.event)
                 intent.putExtra("isFavorite", contact.isFavorite)
-                Log.d("like", "adapterPosition = $adapterPosition")
+                Log.d("like", "adapterPosition = $bindingAdapterPosition")
                 Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
 
             }
+
             profileImage.setImageURI(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+
             favoritButton.setOnClickListener {
                 // 아이템의 좋아요 상태를 토글
                 Log.d("like", "Position = $position")
@@ -70,9 +76,7 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
                 itemClick?.onClick(favoritButton, adapterPosition, item.isFavorite)
-
             }
-
         }
     }
 
@@ -86,7 +90,10 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
                 val contactList = ContactManager.getContact()
-                val contact = items[adapterPosition]
+                val contact = items[bindingAdapterPosition]
+
+                // 값 넣기
+                intent.putExtra("position", bindingAdapterPosition)
                 intent.putExtra("profileImage", contact.profileImage)
                 intent.putExtra("listName", contact.listName)
                 intent.putExtra("phoneNumber", contact.phoneNumber)
@@ -130,7 +137,10 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
                 val contactList = ContactManager.getContact()
-                val contact = items[adapterPosition]
+                val contact = items[bindingAdapterPosition]
+
+                // 값 넣기
+                intent.putExtra("position", bindingAdapterPosition)
                 intent.putExtra("profileImage", contact.profileImage)
                 intent.putExtra("listName", contact.listName)
                 intent.putExtra("phoneNumber", contact.phoneNumber)

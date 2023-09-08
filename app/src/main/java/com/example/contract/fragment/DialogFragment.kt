@@ -49,6 +49,7 @@ class DialogFragment : DialogFragment() {
     private val chipGroup by lazy { binding.chipGroup }
     private val cancel by lazy { binding.btnDialogCancel }
     private val save by lazy { binding.btnDialogSave }
+    private lateinit var profileImg: Uri
     var noti: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -181,17 +182,17 @@ class DialogFragment : DialogFragment() {
         Log.d("addContact", "name: $name, phone: $phone, email: $email, event: $event")
 
 
-//		ContactManager.addContact(
-//			ContactItem(
-//				R.drawable.ic_sample,
-//				name,
-//				null,
-//				false,
-//				phone,
-//				email,
-//				event
-//			)
-//		)
+        ContactManager.addContact(
+            ContactItem(
+                profileImg,
+                name,
+                null,
+                false,
+                phone,
+                email,
+                event
+            )
+        )
     }
 
     // Notification
@@ -227,6 +228,7 @@ class DialogFragment : DialogFragment() {
 
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
             val selectedImageUri: Uri? = data.data
+            profileImg = selectedImageUri!!
 
             if (selectedImageUri != null) {
                 // Uri에서 비트맵으로 이미지 로드

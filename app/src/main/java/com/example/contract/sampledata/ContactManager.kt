@@ -1,22 +1,26 @@
 package com.example.contract.sampledata
 
+import android.net.Uri
 import android.util.Log
-import com.example.contract.R
 
 object ContactManager {
     private val contactList = ArrayList<ContactItem>()
+    private val drawableResName = "img_profile" // Drawable 리소스 이름 (파일명과 동일)
+    private val pakageName = "com.example.contract"
+    private val uri = Uri.parse("android.resource://$pakageName/drawable/$drawableResName")
 
     init {
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang1", "Home", false, "010-1111-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang2", "Home", false, "010-2222-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang3", "Home", false, "010-3333-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang4", "Home", false, "010-4444-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang5", "Home", false, "010-5555-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang6", "Home", false, "010-6666-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang7", "Home", false, "010-7777-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang8", "Home", false, "010-8888-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang9", "Home", false, "010-9999-8598", "ball1241@naver.com", "10분후에 알림"))
-        addContact(ContactItem(R.drawable.img_profile, "daeulzzang10", "Home", false, "010-0000-8598", "ball1241@naver.com", "10분후에 알림"))
+        addContact(
+            ContactItem(
+                uri,
+                "daeulzzang1",
+                "Home",
+                false,
+                "010-1111-8598",
+                "ball1241@naver.com",
+                "10분후에 알림"
+            )
+        )
     }
 
     fun addContact(contact: ContactItem) {

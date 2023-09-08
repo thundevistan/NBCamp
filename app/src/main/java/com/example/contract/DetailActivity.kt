@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import com.example.contract.databinding.ActivityDetailBinding
+import com.example.contract.sampledata.ContactManager
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -20,9 +21,9 @@ class DetailActivity : AppCompatActivity() {
         var isLiked = intent.getBooleanExtra("isFavorite", false)
 
 
-
         // 인텐트로부터 데이터 받기
-        val profileImage = intent.getIntExtra("profileImage", R.drawable.img_profile)
+        val position = intent.getIntExtra("position", 0)
+        val profileImage = ContactManager.getContact()[position].profileImage
         val listName = intent.getStringExtra("listName")
         val phoneNumber = intent.getStringExtra("phoneNumber")
         val email = intent.getStringExtra("email")
@@ -48,7 +49,7 @@ class DetailActivity : AppCompatActivity() {
             isLiked = !isLiked // 상태를 토글
         }
 
-        profileImageView.setImageResource(profileImage)
+        profileImageView.setImageURI(profileImage)
         listNameTextView.text = listName
         phoneNumberTextView.text = phoneNumber
         emailTextView.text = email

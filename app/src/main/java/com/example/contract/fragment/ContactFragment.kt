@@ -18,9 +18,6 @@ class ContactFragment : Fragment() {
 
     private lateinit var binding: FragmentContractBinding
 
-
-
-
     // Fragment가 처음으로 생성될 때 호출됩니다.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,8 +47,6 @@ class ContactFragment : Fragment() {
         val itemTouchHelperCallback = CustomItemTouchHelper(requireContext(), listAdapter)
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(contactRv)
-
-
 
         return root
     }

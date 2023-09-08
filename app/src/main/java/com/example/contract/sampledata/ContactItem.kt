@@ -9,7 +9,7 @@ data class ContactItem(
 	val profileImage: Int,
 	val listName: String,
 	val groupName: String? = "HOME",
-	var isFavorite: Boolean,
+	var isFavorite: Boolean=false,
 	val phoneNumber: String? = "",
 	val email: String = "",
 	val event: String? = ""

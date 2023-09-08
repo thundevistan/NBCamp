@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,17 +44,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <ImageView
-                android:id="@+id/profileImageView"
-                android:layout_width="102dp"
-                android:layout_height="102dp"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:cardCornerRadius="18dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="@+id/cl_btmInfo"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_profile" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/listNameTextView"
@@ -62,85 +68,77 @@
                 android:text="daeulzzang"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                app:layout_constraintEnd_toEndOf="@+id/cardView"
+                app:layout_constraintStart_toStartOf="@+id/cardView" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
                 android:text="Home"
                 android:textColor="#807B7B"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/listNameTextView" />
+                app:layout_constraintEnd_toEndOf="@+id/listNameTextView"
+                app:layout_constraintStart_toStartOf="@+id/listNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/listNameTextView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
                 android:background="@drawable/shape_mypage"
                 android:backgroundTint="#202429"
                 android:orientation="vertical"
+                android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
-                tools:layout_editor_absoluteY="232dp">
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
 
 
                 <Button
                     android:id="@+id/btn_message"
-                    android:layout_width="150dp"
+                    android:layout_width="160dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="130dp"
                     android:backgroundTint="#393D42"
                     android:text="Message"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.164"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btn_call"
-                    android:layout_width="150dp"
+                    android:layout_width="160dp"
                     android:layout_height="45dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginBottom="130dp"
                     android:backgroundTint="#393D42"
                     android:text="Call"
                     android:textColor="#45B974"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.294"
-                    app:layout_constraintStart_toEndOf="@+id/btn_message"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.1" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="85dp"
                 android:background="@drawable/shape_mypage"
                 android:backgroundTint="#333A41"
                 android:orientation="vertical"
+                android:padding="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,9 +146,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:layout_marginTop="25dp"
                     android:background="@drawable/shape3_mypage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="14dp"
                         android:text="Mobile"
                         android:textColor="@color/black"
                         android:textSize="20dp"
@@ -174,18 +171,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="40dp"
                         android:text="010-1111-1111"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/shape3_mypage"
@@ -198,7 +194,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="14dp"
                         android:text="Email"
                         android:textColor="@color/black"
                         android:textSize="20dp"
@@ -211,16 +207,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="40dp"
                         android:text="22222@naver.com"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginTop="25dp"
                     android:background="@drawable/shape3_mypage"
@@ -233,7 +228,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="14dp"
                         android:text="Event"
                         android:textColor="@color/black"
                         android:textSize="20dp"
@@ -246,11 +241,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="40dp"
                         android:text="10분후에 알림"
-                        android:textSize="20dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -258,21 +252,18 @@
 
             <LinearLayout
                 android:id="@+id/cl_btmInfo"
-                android:layout_width="127dp"
-                android:layout_height="64dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:orientation="horizontal"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraint2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/profileImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.988">
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
                     android:id="@+id/like"
-                    android:layout_width="103dp"
-                    android:layout_height="41dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     app:srcCompat="@drawable/ic_love_empty" />
             </LinearLayout>
 

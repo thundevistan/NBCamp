@@ -3,17 +3,12 @@ package com.example.contract.fragment
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.contract.databinding.DialogExitBinding
-import com.example.contract.databinding.FragmentDialogBinding
 
 class ExitDialogFragment : DialogFragment() {
     private lateinit var binding: DialogExitBinding
@@ -27,7 +22,7 @@ class ExitDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
         binding = DialogExitBinding.inflate(inflater, container, false)

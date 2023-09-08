@@ -30,7 +30,7 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
 
     var itemClick: ItemClick? = null
 
-    inner class LeftViewHolder(private val binding: ListViewLeftBinding) :
+    inner class LeftViewHolder(binding: ListViewLeftBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
@@ -41,7 +41,6 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
 
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
-                val contactList = ContactManager.getContact()
                 val contact = items[bindingAdapterPosition]
 
                 // 값 넣기
@@ -52,12 +51,10 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 intent.putExtra("email", contact.email)
                 intent.putExtra("event", contact.event)
                 intent.putExtra("isFavorite", contact.isFavorite)
-                Log.d("like", "adapterPosition = $bindingAdapterPosition")
-                Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
-
             }
 
+            // 프로필 이미지 null값 체크
             if (item.profileImage == null) {
                 profileImage.setImageResource(R.drawable.ic_account)
             } else {
@@ -69,32 +66,33 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
 
             favoritButton.setOnClickListener {
                 // 아이템의 좋아요 상태를 토글
-                Log.d("like", "Position = $position")
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite = true
+                    items[bindingAdapterPosition].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite = false
+                    items[bindingAdapterPosition].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
-                itemClick?.onClick(favoritButton, adapterPosition, item.isFavorite)
+                itemClick?.onClick(favoritButton, bindingAdapterPosition, item.isFavorite)
             }
         }
     }
 
-    inner class RightViewHolder(private val binding: ListViewRightBinding) :
+    inner class RightViewHolder(binding: ListViewRightBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
+
         fun bindRight(item: ContactItem) {
+
+            // 아이템 클릭 시
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
-                val contactList = ContactManager.getContact()
                 val contact = items[bindingAdapterPosition]
 
                 // 값 넣기
@@ -105,43 +103,48 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 intent.putExtra("email", contact.email)
                 intent.putExtra("event", contact.event)
                 intent.putExtra("isFavorite", contact.isFavorite)
-                Log.d("like", "adapterPosition = $adapterPosition")
-                Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
+            }
+
+            // 프로필 이미지 null값 체크
+            if (item.profileImage == null) {
+                profileImage.setImageResource(R.drawable.ic_account)
+            } else {
+                profileImage.setImageURI(item.profileImage)
             }
 
             profileImage.setImageURI(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+
+            // 좋아요 버튼 클릭 시
             favoritButton.setOnClickListener {
                 // 아이템의 좋아요 상태를 토글
-                Log.d("like", "Position = $position")
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite = true
+                    items[bindingAdapterPosition].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite = false
+                    items[bindingAdapterPosition].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
-                itemClick?.onClick(favoritButton, adapterPosition, item.isFavorite)
-
+                itemClick?.onClick(favoritButton, bindingAdapterPosition, item.isFavorite)
             }
         }
     }
 
-    inner class GridViewHolder(private val binding: ListViewGridBinding) :
+    inner class GridViewHolder(binding: ListViewGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
         private val favoritButton = binding.favoritButton
+
         fun bindGrid(item: ContactItem) {
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)
-                val contactList = ContactManager.getContact()
                 val contact = items[bindingAdapterPosition]
 
                 // 값 넣기
@@ -152,8 +155,6 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 intent.putExtra("email", contact.email)
                 intent.putExtra("event", contact.event)
                 intent.putExtra("isFavorite", contact.isFavorite)
-                Log.d("like", "adapterPosition = $adapterPosition")
-                Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
             }
 
@@ -161,20 +162,26 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
             listName.text = item.listName
             groupName.text = item.groupName
 
+            // 프로필 이미지 null값 체크
+            if (item.profileImage == null) {
+                profileImage.setImageResource(R.drawable.ic_account)
+            } else {
+                profileImage.setImageURI(item.profileImage)
+            }
+
             favoritButton.setOnClickListener {
                 // 아이템의 좋아요 상태를 토글
-                Log.d("like", "Position = $position")
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite = true
+                    items[bindingAdapterPosition].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite = false
+                    items[bindingAdapterPosition].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
-                itemClick?.onClick(favoritButton, adapterPosition, item.isFavorite)
+                itemClick?.onClick(favoritButton, bindingAdapterPosition, item.isFavorite)
 
             }
         }

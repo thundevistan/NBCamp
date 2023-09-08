@@ -17,10 +17,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 좋아요 버튼에 대한 클릭 리스너 추가
-        var isLiked = intent.getBooleanExtra("isFavorite", false)
-
-
         // 인텐트로부터 데이터 받기
         val position = intent.getIntExtra("position", 0)
         val profileImage = ContactManager.getContact()[position].profileImage
@@ -29,7 +25,7 @@ class DetailActivity : AppCompatActivity() {
         val email = intent.getStringExtra("email")
         val event = intent.getStringExtra("event")
         val isfaVorite = intent.getBooleanExtra("isFavorite", false) // isFavorite 값을 받아옴
-        isLiked = isfaVorite
+        var isLiked = isfaVorite
 
         // 받은 데이터를 사용하여 UI 업데이트
         val profileImageView = binding.profileImageView

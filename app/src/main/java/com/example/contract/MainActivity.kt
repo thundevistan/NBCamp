@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val CALL_PERMISSION_CODE = 123
 
     val listAdapter by lazy { ListAdapter(ContactManager.getContact(), this) }
-    val contactRv by lazy { binding.root.findViewById<RecyclerView>(R.id.contactRv) }
+    val contactRv: RecyclerView by lazy { binding.root.findViewById(R.id.contactRv) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                         binding.fabButton.show()
                         binding.menuButton.visibility = View.VISIBLE
                         binding.backButton.setOnClickListener {
-                            onBackPressed()
+                            onBackPressedDispatcher.onBackPressed()
                         }
                         binding.menuButton.setOnClickListener { view ->
                             showPopupMenu(view)
@@ -169,8 +169,6 @@ class MainActivity : AppCompatActivity() {
         if (cursor != null) {
             val idColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
             val nameColumnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
-            val phoneProjection = arrayOf(ContactsContract.CommonDataKinds.Phone.NUMBER)
-            val emailProjection = arrayOf(ContactsContract.CommonDataKinds.Email.DATA)
 
             while (cursor.moveToNext()) {
                 val contactId = cursor.getLong(idColumnIndex)

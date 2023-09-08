@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.contract.adapter.ListAdapter
 import com.example.contract.sampledata.ContactManager
 
-class CustomItemTouchHelper(val context: Context, val adapter: ListAdapter) : ItemTouchHelper.SimpleCallback(
+class CustomItemTouchHelper(val context: Context, private val adapter: ListAdapter) : ItemTouchHelper.SimpleCallback(
     0, // 드래그 플래그 (0으로 설정하여 드래그 비활성화)
     ItemTouchHelper.RIGHT // 오른쪽 스와이프만 허용
 ) {

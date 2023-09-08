@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context.NOTIFICATION_SERVICE
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -160,19 +161,22 @@ class DialogFragment : DialogFragment() {
 		val phone = this.phone.text.toString()
 		val email = this.email.text.toString()
 		val event = this.event.text.toString()
+
 		Log.d("addContact", "name: $name, phone: $phone, email: $email, event: $event")
 
-		ContactManager.addContact(
-			ContactItem(
-				R.drawable.ic_sample,
-				name,
-				null,
-				false,
-				phone,
-				email,
-				event
-			)
-		)
+
+
+//		ContactManager.addContact(
+//			ContactItem(
+//				R.drawable.ic_sample,
+//				name,
+//				null,
+//				false,
+//				phone,
+//				email,
+//				event
+//			)
+//		)
 	}
 
 	// Notification

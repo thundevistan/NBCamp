@@ -22,13 +22,16 @@ import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_LEFT
 import com.example.contract.sampledata.ContactItem.Companion.VIEW_TYPE_RIGHT
 import com.example.contract.sampledata.ContactManager
 
-class ListAdapter(private var items: MutableList<ContactItem>, private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapter(private var items: MutableList<ContactItem>, private val context: Context) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface ItemClick {
         fun onClick(view: View, position: Int, isFavorite: Boolean)
     }
+
     var itemClick: ItemClick? = null
 
-    inner class LeftViewHolder(private val binding: ListViewLeftBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class LeftViewHolder(private val binding: ListViewLeftBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
@@ -50,7 +53,7 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 context.startActivity(intent)
 
             }
-            profileImage.setImageResource(item.profileImage)
+            profileImage.setImageURI(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
             favoritButton.setOnClickListener {
@@ -59,10 +62,10 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite=true
+                    items[position].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite=false
+                    items[position].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
@@ -73,7 +76,8 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
         }
     }
 
-    inner class RightViewHolder(private val binding: ListViewRightBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class RightViewHolder(private val binding: ListViewRightBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
@@ -93,7 +97,8 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
             }
-            profileImage.setImageResource(item.profileImage)
+
+            profileImage.setImageURI(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
             favoritButton.setOnClickListener {
@@ -102,10 +107,10 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite=true
+                    items[position].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite=false
+                    items[position].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
@@ -115,7 +120,8 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
         }
     }
 
-    inner class GridViewHolder(private val binding: ListViewGridBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class GridViewHolder(private val binding: ListViewGridBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private val profileImage = binding.profileImage
         private val listName = binding.listName
         private val groupName = binding.groupName
@@ -135,19 +141,21 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 Log.d("like", "contact.isFavorite = ${contact.isFavorite}")
                 context.startActivity(intent)
             }
-            profileImage.setImageResource(item.profileImage)
+
+            profileImage.setImageURI(item.profileImage)
             listName.text = item.listName
             groupName.text = item.groupName
+
             favoritButton.setOnClickListener {
                 // 아이템의 좋아요 상태를 토글
                 Log.d("like", "Position = $position")
                 item.isFavorite = !item.isFavorite
                 if (item.isFavorite) {
                     favoritButton.setImageResource(R.drawable.ic_love_filled)
-                    items[position].isFavorite=true
+                    items[position].isFavorite = true
                 } else {
                     favoritButton.setImageResource(R.drawable.ic_love_empty)
-                    items[position].isFavorite=false
+                    items[position].isFavorite = false
                 }
 
                 // 좋아요 상태 변경을 DetailActivity로 전달
@@ -164,17 +172,21 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 val binding = ListViewLeftBinding.inflate(inflater, parent, false)
                 LeftViewHolder(binding)
             }
+
             VIEW_TYPE_RIGHT -> {
                 val binding = ListViewRightBinding.inflate(inflater, parent, false)
                 RightViewHolder(binding)
             }
+
             VIEW_TYPE_GRID -> {
                 val binding = ListViewGridBinding.inflate(inflater, parent, false)
                 GridViewHolder(binding)
             }
+
             else -> throw IllegalArgumentException("Invalid view type")
         }
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
 
@@ -190,6 +202,7 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
         this.isGridLayout = isGridLayout
         notifyDataSetChanged()
     }
+
     override fun getItemViewType(position: Int): Int {
         return if (isGridLayout) {
             VIEW_TYPE_GRID
@@ -205,11 +218,14 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
     override fun getItemCount(): Int {
         return items.size
     }
+
     class AddressAdapterDecoration : RecyclerView.ItemDecoration() {
         private val paint = Paint()
+
         init {
             paint.color = Color.GRAY
         }
+
         override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
             super.onDraw(c, parent, state)
 
@@ -225,6 +241,7 @@ class ListAdapter(private var items: MutableList<ContactItem>, private val conte
                 c.drawRect(left, top, right, bottom, paint)
             }
         }
+
         override fun getItemOffsets(
             outRect: Rect,
             view: View,

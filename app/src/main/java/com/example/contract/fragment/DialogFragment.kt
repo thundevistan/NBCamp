@@ -49,7 +49,7 @@ class DialogFragment : DialogFragment() {
     private val chipGroup by lazy { binding.chipGroup }
     private val cancel by lazy { binding.btnDialogCancel }
     private val save by lazy { binding.btnDialogSave }
-    private lateinit var profileImg: Uri
+    private var profileImg: Uri? = null
     var noti: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +98,7 @@ class DialogFragment : DialogFragment() {
                 } else {
                     email.setBackgroundResource(R.drawable.selector_dialog_edit)
                     isSaved()
+                    Log.d("save", "save 기능 활성화")
                 }
 
                 // Save 버튼 이벤트 처리
@@ -120,6 +121,7 @@ class DialogFragment : DialogFragment() {
                             }
                         }
                         addContact()
+
 
                         // (1) 컨텍스트를 액티비티로 캐스팅
                         // (2) (1).전역번수로뺀어댑터.notifyDataSetChanged
@@ -163,9 +165,9 @@ class DialogFragment : DialogFragment() {
 
     // Save 버튼 활성화 로직
     fun isSaved() {
-        var isName = TextUtils.isEmpty(name.text.toString())
-        var isPhone = TextUtils.isEmpty(phone.text.toString())
-        var isEmail = TextUtils.isEmpty(email.text.toString())
+        val isName = TextUtils.isEmpty(name.text.toString())
+        val isPhone = TextUtils.isEmpty(phone.text.toString())
+        val isEmail = TextUtils.isEmpty(email.text.toString())
 
         if (!isName && !isPhone && !isEmail) {
             save.isEnabled = true
@@ -179,11 +181,15 @@ class DialogFragment : DialogFragment() {
         val email = this.email.text.toString()
         val event = this.event.text.toString()
 
+        val listSize = ContactManager.getContact().size
+
         Log.d("addContact", "name: $name, phone: $phone, email: $email, event: $event")
 
 
         ContactManager.addContact(
             ContactItem(
+                listSize - 1,
+                ContactManager.getContact().size.toLong() - 1,
                 profileImg,
                 name,
                 null,

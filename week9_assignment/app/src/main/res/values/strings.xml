@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Contract</string>
+    <string name="dialog_name">Name</string>
+    <string name="dialog_phone">Phone</string>
+    <string name="dialog_email">E-mail</string>
+    <string name="dialog_event">Event</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_noti">OFF</string>
+    <string name="dialog_noti2">5분 뒤 알림</string>
+    <string name="dialog_noti3">10분 뒤 알림</string>
+    <string name="dialog_noti4">30분 뒤 알림</string>
+    <string name="ok">Ok</string>
+</resources>

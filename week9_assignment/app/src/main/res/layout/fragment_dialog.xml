@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_border"
+    tools:context=".fragment.DialogFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:padding="30dp">
+
+        <ImageView
+            android:id="@+id/iv_dialogProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shape_dialog_profile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_sample"
+            app:layout_constraintBottom_toTopOf="@+id/edit_dialogName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_dialogName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_dialog_edit"
+            android:ems="10"
+            android:hint="@string/dialog_name"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/edit_dialogPhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_dialogProfile" />
+
+        <EditText
+            android:id="@+id/edit_dialogPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_dialog_edit"
+            android:ems="10"
+            android:hint="@string/dialog_phone"
+            android:inputType="phone"
+            app:layout_constraintBottom_toTopOf="@+id/edit_dialogEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogName" />
+
+        <EditText
+            android:id="@+id/edit_dialogEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_dialog_edit"
+            android:ems="10"
+            android:hint="@string/dialog_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/edit_dialogEvent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogPhone" />
+
+        <EditText
+            android:id="@+id/edit_dialogEvent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_dialog_edit"
+            android:ems="10"
+            android:hint="@string/dialog_event"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEmail" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_dialogCancel"
+            app:layout_constraintEnd_toEndOf="@+id/edit_dialogEvent"
+            app:layout_constraintStart_toStartOf="@+id/edit_dialogEvent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_dialogEvent"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_dialogNoti"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_noti" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_dialogNoti2"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_noti2" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_dialogNoti3"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_noti3" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_dialogNoti4"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_noti4" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialogCancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/selector_dialog_btn"
+            android:text="@string/dialog_cancel"
+            android:textColor="@drawable/selector_dialog_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_dialogSave"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dialogSave"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/selector_dialog_btn"
+            android:text="@string/dialog_save"
+            android:textColor="@drawable/selector_dialog_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintStart_toEndOf="@+id/btn_dialogCancel"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

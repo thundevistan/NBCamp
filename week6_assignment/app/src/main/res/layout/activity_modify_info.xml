@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModifyInfoActivity">
+
+    <!-- 상단바 -->
+    <RelativeLayout
+        android:id="@+id/modify_info_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/modify_info_back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/image_button_pressed"
+            android:src="@drawable/ic_teammatedetail_backbutton"
+            app:layout_constraintBottom_toBottomOf="@+id/modify_info_logo_edittext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/modify_info_logo_edittext" />
+
+        <TextView
+            android:id="@+id/modify_info_logo_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/fasthand_regular"
+            android:text="@string/modify_titleText"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/modifyInfo_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        app:dividerColor="@color/gray"
+        app:layout_constraintTop_toBottomOf="@+id/modify_info_toolbar" />
+
+
+    <ScrollView
+        android:id="@+id/modify_info_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/modify_info_bottom_bar"
+        app:layout_constraintTop_toBottomOf="@+id/modifyInfo_divider">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="40dp"
+            android:paddingVertical="30dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/modify_info_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/ic_teammatedetail_person"
+                app:civ_border_color="@color/lightblue"
+                app:civ_border_overlay="true"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/modify_info_image_edit"
+                style="@style/CustomButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/modify_modifyText"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modify_info_image" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/modify_info_main_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/modify_info_image_edit">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/modify_info_vertical_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.7" />
+
+                <TextView
+                    android:id="@+id/modify_info_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/modify_emailText"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/modify_info_email_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_email" />
+
+                <TextView
+                    android:id="@+id/modify_info_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/modify_nameText"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_email_edittext" />
+
+                <TextView
+                    android:id="@+id/modify_info_name_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
+                    android:padding="15dp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_name" />
+
+                <TextView
+                    android:id="@+id/modify_info_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/modify_nicknameText"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_name_edittext" />
+
+                <EditText
+                    android:id="@+id/modify_info_nickname_edittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_modify_info"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/modify_info_vertical_guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
+
+                <TextView
+                    android:id="@+id/modify_nickname_error_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:text="@string/modify_enterNickname"
+                    android:textColor="@color/red"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/modify_info_nicknamerepetition_button"
+                    style="@style/CustomButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:paddingHorizontal="0dp"
+                    android:paddingVertical="13dp"
+                    android:text="@string/modify_doubleCheck"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/modify_info_vertical_guideline"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname" />
+
+
+                <ImageView
+                    android:id="@+id/modify_nickname_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_nickname_edittext"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_nickname_edittext"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_nickname_edittext" />
+
+                <TextView
+                    android:id="@+id/modify_info_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/modify_passwordText"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_nickname_edittext" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/modify_info_password_textinputlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/modify_info_password_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_modify_info"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:id="@+id/modify_info_password_error_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingHorizontal="4dp"
+                        android:text=""
+                        android:textColor="@color/red"
+                        android:visibility="invisible" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/modify_password_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_password_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_password_textinputlayout" />
+
+                <TextView
+                    android:id="@+id/modify_info_passwordcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/signup_passwordcheck_text"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_password_textinputlayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/modify_info_passwordcheck_textinputlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/modify_info_passwordcheck"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/modify_info_passwordcheck_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_modify_info"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="textPassword" />
+
+                    <TextView
+                        android:id="@+id/modify_info_passwordcheck_error_message"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:paddingHorizontal="4dp"
+                        android:text="@string/modify_passwordMismatch"
+                        android:textColor="@color/red"
+                        android:visibility="visible" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/modify_passwordcheck_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/ic_check"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintRight_toRightOf="@id/modify_info_passwordcheck_textinputlayout"
+                    app:layout_constraintTop_toTopOf="@id/modify_info_passwordcheck_textinputlayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/modify_info_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/modify_info_ok_button"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="60dp"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@string/modify_confirmButton"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

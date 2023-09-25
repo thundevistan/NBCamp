@@ -10,4 +10,5 @@
     <color name="common_sub_text_grey">#C4C7C5</color>
     <color name="main_button_category_top">#383b47</color>
     <color name="main_button_category_bottom">#242734</color>
+    <color name="common_btn_grey">#F9F9F9</color>
 </resources>

@@ -14,10 +14,10 @@ class MainActivity : AppCompatActivity() {
 		fun newIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
 	}
 
-	private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(binding.root)
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
 		initView()
 

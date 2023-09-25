@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 
@@ -27,6 +28,15 @@ class DetailFragment : Fragment() {
 
     private fun initView()=with(binding) {
 
+        detailPlayBtn.setOnClickListener {
+            Toast.makeText(context,"* 하단 스크롤 예정 *",Toast.LENGTH_SHORT).show()
+        }
+        detailBookmarkBtn.setOnClickListener{
+            Toast.makeText(context,"* 북마크 추가 구현 예정 *",Toast.LENGTH_SHORT).show()
+        }
+        detailShareBtn.setOnClickListener {
+            Toast.makeText(context,"* 공유 기능 구현 예정 *",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroy() {

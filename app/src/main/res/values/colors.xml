@@ -4,8 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="common_background_navy">#1a1c29</color>
     <color name="common_tab_navy">#1a1c29</color>
+    <color name="common_btn_grey">#F9F9F9</color>
+    <color name="common_text_grey">#F9F9F9</color>
     <color name="common_tab_unclicked_icon_grey">#9fa0a7</color>
-    <color name="common_sub_text_grey">#53545c</color>
+    <color name="common_sub_text_grey">#C4C7C5</color>
     <color name="main_button_category_top">#383b47</color>
     <color name="main_button_category_bottom">#242734</color>
 </resources>

@@ -34,5 +34,4 @@ class BookmarkFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

@@ -9,7 +9,7 @@ import bootcamp.sparta.disneym.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        fun newIntent(context: Context) : Intent = Intent(context, MainActivity::class.java)
+        fun newIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
     }
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
-    private fun initView()=with(binding) {
+    private fun initView() = with(binding) {
 
     }
 }

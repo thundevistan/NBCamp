@@ -1,0 +1,16 @@
+package bootcamp.sparta.disneym.viewmodel.detail
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import bootcamp.sparta.disneym.model.DetailModel
+/*
+ * Copyright 2023 추민수, Inc.
+ * 비즈니스 로직 캡슐화
+ * UI에 사용될 상태를 처리, UI Layer에 상채를 알림
+ * 주요 이점은 상태를 저장하여 구성이 변경되어도 이를 유지하는 것 ( 화면 회전 시에도 UI가 데이터를 다시 가져오지 않아도 됨 )
+ */
+class DetailViewModel : ViewModel(){
+    private val _list : MutableLiveData<List<DetailModel>> = MutableLiveData()
+    val list : LiveData<List<DetailModel>> get() = _list
+}

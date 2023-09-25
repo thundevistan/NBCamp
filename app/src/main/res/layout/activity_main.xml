@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.fragment.app.FragmentContainerView>
+    </androidx.viewpager2.widget.ViewPager2>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentContainerView"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager"
         app:tabIconTint="@color/selector_tab_icon"
         app:tabIndicator="@null"
         app:tabRippleColor="@null"

@@ -2,38 +2,54 @@ package bootcamp.sparta.disneym.ui
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.commit
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.ActivityMainBinding
-import bootcamp.sparta.disneym.ui.home.HomeFragment
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 	companion object {
 		fun newIntent(context: Context): Intent = Intent(context, MainActivity::class.java)
 	}
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+	private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(binding.root)
 
 		initView()
 
-		// 테스트
-		setFrag()
+		// viewPager <-> tabLayout
+		tabLayoutMediator(binding.tabLayout, binding.viewpager)
 	}
 
 	private fun initView() = with(binding) {
 
 	}
 
-	// HomeFragment 테스트
-	private fun setFrag() {
-		supportFragmentManager.commit {
-			replace(R.id.fragmentContainerView, HomeFragment())
-			setReorderingAllowed(true)
-		}
+	// viewPager <-> tabLayout 연결하는 함수
+	private fun tabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2) {
+		binding.viewpager.adapter = ViewPagerAdapter(this)
+
+		TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+			when (position) {
+				0 -> tab.icon =
+					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_home, theme)
+
+				1 -> tab.icon =
+					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_search, theme)
+
+				2 -> tab.icon =
+					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_download, theme)
+
+				3 -> tab.icon =
+					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_search, theme)
+			}
+		}.attach()
 	}
 }

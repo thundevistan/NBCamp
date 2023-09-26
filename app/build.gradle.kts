@@ -94,4 +94,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
+    // Player
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
 }

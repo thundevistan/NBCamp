@@ -1,14 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/common_gradient_background"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
     tools:context=".ui.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/main_title_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/disney_font"
+        android:text="@string/main_title_Disney"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_upper_recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_middle_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_title_textView" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_middle_container"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/main_lower_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_upper_recyclerView">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_trending_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_trending"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/main_shopping_btn"
+            app:layout_constraintEnd_toStartOf="@+id/main_shopping_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_shopping_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_shopping_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_shopping"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/main_gaming_btn"
+            app:layout_constraintEnd_toStartOf="@+id/main_music_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/main_trending_btn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_music_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_music"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/main_shopping_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/main_shopping_btn"
+            app:layout_constraintTop_toTopOf="@+id/main_shopping_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_movies_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_movies"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/main_gaming_btn"
+            app:layout_constraintEnd_toStartOf="@+id/main_gaming_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_gaming_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_gaming_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_gaming"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/main_learning_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/main_movies_btn"
+            app:layout_constraintTop_toBottomOf="@+id/main_shopping_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/main_learning_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_explore_btn"
+            android:text="@string/main_explore_learning"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/main_gaming_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/main_gaming_btn"
+            app:layout_constraintTop_toTopOf="@+id/main_gaming_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_lower_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_middle_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

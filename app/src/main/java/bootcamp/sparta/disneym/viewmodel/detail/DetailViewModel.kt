@@ -12,5 +12,5 @@ import bootcamp.sparta.disneym.model.DetailModel
  */
 class DetailViewModel : ViewModel(){
     private val _list : MutableLiveData<List<DetailModel>> = MutableLiveData()
-    val list : LiveData<List<DetailModel>> get() = _list
+    val list : LiveData<List<DetailModel>> get() = _list // 읽기 전용
 }

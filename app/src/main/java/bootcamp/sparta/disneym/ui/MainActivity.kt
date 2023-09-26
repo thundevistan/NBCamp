@@ -3,6 +3,7 @@ package bootcamp.sparta.disneym.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -36,16 +37,20 @@ class MainActivity : AppCompatActivity() {
 	private fun tabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2) {
 		binding.viewpager.adapter = ViewPagerAdapter(this)
 
+
 		TabLayoutMediator(tabLayout, viewPager) { tab, position ->
 			when (position) {
 				0 -> tab.icon =
 					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_home, theme)
 
+
 				1 -> tab.icon =
 					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_search, theme)
 
+
 				2 -> tab.icon =
 					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_download, theme)
+
 
 				3 -> tab.icon =
 					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_search, theme)

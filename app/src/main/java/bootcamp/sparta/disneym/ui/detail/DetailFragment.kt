@@ -1,11 +1,11 @@
 package bootcamp.sparta.disneym.ui.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +13,9 @@ import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModelFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
@@ -33,6 +36,19 @@ class DetailFragment : Fragment() {
 
         initView()
         initViewModel()
+        initPlayer()
+    }
+
+    private fun initPlayer() = with(binding) {
+        detailPlayer.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+                // https://www.youtube.com/watch?v=KhEAe2_T-4c&t=4652s 링크 -> ID값 [KhEAe2_T-4c]
+                val videoId = "KhEAe2_T-4c"
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
     }
 
     private fun initViewModel() {

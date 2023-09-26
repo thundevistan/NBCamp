@@ -4,10 +4,15 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import bootcamp.sparta.disneym.R
+import android.util.Log
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import bootcamp.sparta.disneym.databinding.ActivityMainBinding
+import bootcamp.sparta.disneym.repository.MainRepository
 
 class MainActivity : AppCompatActivity() {
+
+
     companion object {
         fun newIntent(context: Context) : Intent = Intent(context, MainActivity::class.java)
     }
@@ -17,10 +22,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
         initView()
     }
 
     private fun initView()=with(binding) {
 
+
     }
+
 }

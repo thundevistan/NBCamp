@@ -125,8 +125,8 @@ class BookmarkFragment : Fragment() {
                 DialogInterface.BUTTON_NEGATIVE -> {}
             }
         }
-        builder.setPositiveButton("Positive", listener)
-        builder.setNegativeButton("Negative", listener)
+        builder.setPositiveButton("확인", listener)
+        builder.setNegativeButton("취소", listener)
 
         builder.show()
     }

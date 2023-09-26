@@ -55,7 +55,7 @@ class DetailFragment : Fragment() {
     private fun initView() = with(binding) {
 
         detailPlayBtn.setOnClickListener {
-            Toast.makeText(context, "* 하단 스크롤 예정 *", Toast.LENGTH_SHORT).show()
+            detailScrollview.smoothScrollTo(0,detailScrollview.bottom)// 하단 스크롤
         }
         detailBookmarkBtn.setOnClickListener {
             Toast.makeText(context, "* 북마크 추가 구현 예정 *", Toast.LENGTH_SHORT).show()

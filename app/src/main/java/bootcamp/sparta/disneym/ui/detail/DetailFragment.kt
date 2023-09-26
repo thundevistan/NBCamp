@@ -1,11 +1,11 @@
 package bootcamp.sparta.disneym.ui.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -13,6 +13,8 @@ import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModelFactory
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
@@ -33,13 +35,33 @@ class DetailFragment : Fragment() {
 
         initView()
         initViewModel()
+        initPlayer()
     }
 
+    /*
+     * 추민수
+     * Youtube Video Player Library 사용
+     * https://github.com/PierfrancescoSoffritti/android-youtube-player
+     */
+    private fun initPlayer() = with(binding) {
+        detailPlayer.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+                // https://www.youtube.com/watch?v=KhEAe2_T-4c&t=4652s 링크 -> ID값 [KhEAe2_T-4c]
+                // https://www.youtube.com/watch?v=42fmMP81EvA&t=2296s -> 42fmMP81EvA
+                // 나중에 변환해주는 함수 추가 예정
+                val videoId = "42fmMP81EvA"
+                youTubePlayer.loadVideo(videoId, 0f)
+            }
+        })
+    }
+
+    /*
+     * 추민수
+     * viewModel 상의 LiveData의 변경을 관찰해 값이 변하는 경우 Event 처리
+     */
     private fun initViewModel() {
-        /*
-        * 추민수
-        * viewModel 상의 LiveData의 변경을 관찰해 값이 변하는 경우 Event 처리
-        */
         with(viewModel) {
             list.observe(viewLifecycleOwner, Observer {
                 // list 변경 감지 시 처리 추가 예정
@@ -55,7 +77,7 @@ class DetailFragment : Fragment() {
     private fun initView() = with(binding) {
 
         detailPlayBtn.setOnClickListener {
-            Toast.makeText(context, "* 하단 스크롤 예정 *", Toast.LENGTH_SHORT).show()
+            detailScrollview.smoothScrollTo(0, detailScrollview.bottom)// 하단 스크롤
         }
         detailBookmarkBtn.setOnClickListener {
             Toast.makeText(context, "* 북마크 추가 구현 예정 *", Toast.LENGTH_SHORT).show()

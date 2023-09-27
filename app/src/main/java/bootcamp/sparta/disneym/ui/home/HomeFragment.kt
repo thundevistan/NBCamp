@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
@@ -26,15 +27,16 @@ class HomeFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 		upperViewPager()
+		lowerRecycler()
 	}
 
 	// 위쪽 viewpager 출력
 	private fun upperViewPager() {
-		val upperAdapter = HomeRecyclerAdapter(requireContext())
+		val adapter = HomeViewPagerAdapter(requireActivity())
 		val transform = CompositePageTransformer()
 
 		binding.mainUpperViewPager.apply {
-			adapter = upperAdapter
+			this.adapter = adapter
 			offscreenPageLimit = 3
 			getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
 			setPageTransformer(transform)
@@ -48,7 +50,13 @@ class HomeFragment : Fragment() {
 		}
 	}
 
-	override fun onDestroy() {
-		super.onDestroy()
+	private fun lowerRecycler() {
+		val adapter = HomeRecyclerAdapter(requireActivity())
+
+		binding.mainLowerRecycler.apply {
+			this.adapter = adapter
+			layoutManager = LinearLayoutManager(requireActivity())
+			setHasFixedSize(true)
+		}
 	}
 }

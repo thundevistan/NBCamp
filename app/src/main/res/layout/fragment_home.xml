@@ -40,7 +40,7 @@
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_lower_container"
+        app:layout_constraintBottom_toTopOf="@+id/main_lower_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_upper_viewPager">
@@ -130,8 +130,8 @@
             app:layout_constraintTop_toTopOf="@+id/main_gaming_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_lower_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_lower_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"

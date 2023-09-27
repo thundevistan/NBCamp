@@ -4,15 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import bootcamp.sparta.disneym.databinding.HomeRecyclerItemBinding
+import bootcamp.sparta.disneym.databinding.HomeViewpagerItemBinding
 import bootcamp.sparta.disneym.model.Get
 import bootcamp.sparta.disneym.model.HomeModel
 import com.bumptech.glide.Glide
 
-class HomeRecyclerAdapter(val context: Context) :
-	RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
+class HomeViewPagerAdapter(val context: Context) :
+	RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>() {
 
 	private val get = Get()
 	private val dataList = get.getter()
@@ -25,8 +24,10 @@ class HomeRecyclerAdapter(val context: Context) :
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		return ViewHolder(
-			HomeRecyclerItemBinding.inflate(
-				LayoutInflater.from(parent.context), parent, false
+			HomeViewpagerItemBinding.inflate(
+				LayoutInflater.from(parent.context),
+				parent,
+				false
 			)
 		)
 	}
@@ -39,18 +40,13 @@ class HomeRecyclerAdapter(val context: Context) :
 		return dataList.size
 	}
 
-	inner class ViewHolder(binding: HomeRecyclerItemBinding) :
+	inner class ViewHolder(binding: HomeViewpagerItemBinding) :
 		RecyclerView.ViewHolder(binding.root) {
 
-		private val homeLinearLayout = binding.homeLowerLinear
-		private val imageView = ImageView(context)
+		private val thumbnail = binding.homeTestImageView
 
 		fun bind(item: HomeModel) {
-
-			Glide.with(context).load(item.thumbnail).override(300, 300).into(imageView)
-
-			imageView.adjustViewBounds = true
-			homeLinearLayout.addView(imageView)
+			Glide.with(context).load(item.thumbnail).into(thumbnail)
 		}
 	}
 }

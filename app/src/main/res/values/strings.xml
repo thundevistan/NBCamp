@@ -14,4 +14,9 @@
     <string name="detail_test_datetime">2023 • 08/23</string>
     <string name="detail_play">PLAY</string>
     <string name="detail_test_description">Avengers: Infinity War is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers.</string>
+    <string name="search_hint">Search</string>
+    <string name="search_main_explore">Explore</string>
+    <string name="search_originals_btn">Originals</string>
+    <string name="search_movies_btn">Movies</string>
+    <string name="search_series_btn">Series</string>
 </resources>

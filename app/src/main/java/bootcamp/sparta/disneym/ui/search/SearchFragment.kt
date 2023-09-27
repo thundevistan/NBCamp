@@ -1,60 +1,135 @@
 package bootcamp.sparta.disneym.ui.search
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import bootcamp.sparta.disneym.R
+import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
+import com.bumptech.glide.load.engine.Resource
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
-	// TODO: Rename and change types of parameters
-	private var param1: String? = null
-	private var param2: String? = null
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		arguments?.let {
-			param1 = it.getString(ARG_PARAM1)
-			param2 = it.getString(ARG_PARAM2)
-		}
-	}
+	private lateinit var binding: FragmentSearchBinding
+	private lateinit var mainAdapter : SearchMainAdapter
+	private lateinit var viewAdapter: SearchViewAdapter
+	private lateinit var gridManager: StaggeredGridLayoutManager
+	private var searchViewVisible = false
+
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_search, container, false)
+		binding = FragmentSearchBinding.inflate(layoutInflater)
+
+		showMainView()
+
+//		binding.searchView.setOnClickListener {
+//			if (!searchViewVisible) {
+//				showViewView()
+//				searchViewVisible = true
+//			}
+//		}
+//
+
+
+
+
+		binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+			androidx.appcompat.widget.SearchView.OnQueryTextListener {
+			override fun onQueryTextSubmit(query: String?): Boolean {
+
+
+				return false
+			}
+
+			override fun onQueryTextChange(newText: String?): Boolean {
+				if (newText != null) {
+					if (newText.isNotEmpty()) {
+						showViewView()
+					} else {
+						showMainView()
+					}
+				}
+					//					if (searchViewVisible) {
+			//						showMainView()
+			//					} else {
+			//						showViewView()
+			//					}
+			//					searchViewVisible = !searchViewVisible
+			//				}
+						return true
+				}
+
+		})
+
+		binding.searchView.setOnCloseListener {
+			if (searchViewVisible) {
+				showMainView()
+				searchViewVisible = false
+			}
+			false
+		}
+
+		return binding.root
 	}
 
-	companion object {
-		/**
-		 * Use this factory method to create a new instance of
-		 * this fragment using the provided parameters.
-		 *
-		 * @param param1 Parameter 1.
-		 * @param param2 Parameter 2.
-		 * @return A new instance of fragment SearchFragment.
-		 */
-		// TODO: Rename and change types and number of parameters
-		@JvmStatic
-		fun newInstance(param1: String, param2: String) =
-			SearchFragment().apply {
-				arguments = Bundle().apply {
-					putString(ARG_PARAM1, param1)
-					putString(ARG_PARAM2, param2)
-				}
-			}
+	private fun showMainView() {
+		binding.searchMainRecycler.visibility = View.VISIBLE
+		binding.searchViewRecycler.visibility = View.INVISIBLE
+		binding.test123.visibility = View.VISIBLE
+
+		gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+		binding.searchMainRecycler.layoutManager = gridManager
+
+		val gridItemDecoration = GridItemDecoration(spanCount = 2, spacing = 16f.fromDptoPx())
+		binding.searchMainRecycler.addItemDecoration(gridItemDecoration)
+
+		val item = listOf(
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test)
+		)
+
+		mainAdapter = SearchMainAdapter(item)
+		binding.searchMainRecycler.adapter = mainAdapter
+
+		binding.searchMainRecycler.itemAnimator = null
 	}
+
+	private fun showViewView() {
+
+		binding.searchMainRecycler.visibility = View.INVISIBLE
+		binding.searchViewRecycler.visibility = View.VISIBLE
+		binding.test123.visibility = View.INVISIBLE
+
+		val item = listOf(
+			SearchViewTest(R.drawable.detail_test,"디지니 마이너스", "졸리조", "2023.09.27"),
+			SearchViewTest(R.drawable.detail_test,"디지니 마이너스마", "졸리조", "2023.09.27"),
+			SearchViewTest(R.drawable.detail_test,"디지니 마이너스이", "졸리조", "2023.09.27"),
+			SearchViewTest(R.drawable.detail_test,"디지니 마이너스너", "졸리조", "2023.09.27"),
+			SearchViewTest(R.drawable.detail_test,"디지니 마이너스스", "졸리조", "2023.09.27")
+
+			)
+
+		viewAdapter = SearchViewAdapter(item)
+		binding.searchViewRecycler.adapter = viewAdapter
+
+		val linearLayout = LinearLayoutManager(requireContext())
+		binding.searchViewRecycler.layoutManager = linearLayout
+
+		binding.searchViewRecycler.itemAnimator = null
+	}
+
+	fun Float.fromDptoPx() : Int =
+		(this * Resources.getSystem().displayMetrics.density).toInt()
 }

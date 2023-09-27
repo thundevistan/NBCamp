@@ -1,38 +1,54 @@
 package bootcamp.sparta.disneym.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import bootcamp.sparta.disneym.R
-import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
+import kotlin.math.abs
 
 class HomeFragment : Fragment() {
-    private var _binding : FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+	private lateinit var binding: FragmentHomeBinding
 
-        initView()
-    }
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {
+		binding = FragmentHomeBinding.inflate(inflater, container, false)
+		return binding.root
+	}
 
-    private fun initView()=with(binding) {
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-    }
+		upperViewPager()
+	}
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+	// 위쪽 viewpager 출력
+	private fun upperViewPager() {
+		val upperAdapter = HomeRecyclerAdapter(requireContext())
+		val transform = CompositePageTransformer()
 
+		binding.mainUpperViewPager.apply {
+			adapter = upperAdapter
+			offscreenPageLimit = 3
+			getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+			setPageTransformer(transform)
+		}
+
+		transform.apply {
+			addTransformer(ViewPager2.PageTransformer { view: View, fl: Float ->
+				val v = 1 - abs(fl)
+				view.scaleY = 0.8f + v * 0.2f
+			})
+		}
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+	}
 }

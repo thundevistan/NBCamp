@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
 	private fun tabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2) {
 		binding.viewpager.adapter = ViewPagerAdapter(this)
 
+
 		TabLayoutMediator(tabLayout, viewPager) { tab, position ->
 			when (position) {
 				0 -> tab.icon =
@@ -48,8 +49,11 @@ class MainActivity : AppCompatActivity() {
 					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_download, theme)
 
 				3 -> tab.icon =
-					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_search, theme)
+					ResourcesCompat.getDrawable(this.resources, R.drawable.ic_user, theme)
 			}
 		}.attach()
+
+		// 디자인 가이드라인에서는 사용자의 터치 스크롤로 인한 화면 변경을 금지하는 것을 추천하여 추가 했습니다
+		binding.viewpager.isUserInputEnabled = false
 	}
 }

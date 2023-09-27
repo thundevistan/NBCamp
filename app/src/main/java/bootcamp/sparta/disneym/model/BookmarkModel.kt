@@ -11,6 +11,7 @@ data class BookmarkModel(
     val imgUrl : String,
     val description : String,
     val datetime : String,
+    val isBookmarked : Boolean,
     val viewType: BookmarkViewType = BookmarkViewType.Normal, // RecyclerView Adapter의 ViewType 관리용
     val isChecked: Boolean = false, // RecyclerView Adapter의 체크박스 관리용
 )

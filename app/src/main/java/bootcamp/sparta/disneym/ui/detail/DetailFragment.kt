@@ -10,12 +10,21 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
+import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
 import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModelFactory
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
+/*
+* 추민수
+* 다른 Page에서 Item을 클릭 시 보여지는 Fragment입니다.
+* 하나의 Item의 모든 세부정보를 확인할 수 있고
+* MediaPlayer 기능을 사용해 영상을 바로 시청할 수 있습니다.
+* 북마크 추가 삭제 버튼을 제공하고 공유기능을 제공합니다.
+*/
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
@@ -63,13 +72,17 @@ class DetailFragment : Fragment() {
      */
     private fun initViewModel() {
         with(viewModel) {
-            list.observe(viewLifecycleOwner, Observer {
+            detailItem.observe(viewLifecycleOwner, Observer {
                 // list 변경 감지 시 처리 추가 예정
             })
         }
         with(sharedViewModel) {
-            detailEvent.observe(viewLifecycleOwner, Observer {
-                // sharedViewModel 상의 데이터 변경 시 화면에 값을 뿌려줄 예정
+            detailEvent.observe(viewLifecycleOwner, Observer { event ->
+                when (event) {
+                    is MainSharedEventForDetail.UpdateDetailItem -> {
+                        updateItem(event.item)
+                    }
+                }
             })
         }
     }
@@ -80,11 +93,20 @@ class DetailFragment : Fragment() {
             detailScrollview.smoothScrollTo(0, detailScrollview.bottom)// 하단 스크롤
         }
         detailBookmarkBtn.setOnClickListener {
-            Toast.makeText(context, "* 북마크 추가 구현 예정 *", Toast.LENGTH_SHORT).show()
+            detailBookmarkBtn.isSelected = !detailBookmarkBtn.isSelected
+
         }
         detailShareBtn.setOnClickListener {
             Toast.makeText(context, "* 공유 기능 구현 예정 *", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    /*
+     * 추민수
+     * 디테일 item update
+     */
+    private fun updateItem(item: DetailModel) {
+        viewModel.updateDetailItem(item)
     }
 
     override fun onDestroy() {

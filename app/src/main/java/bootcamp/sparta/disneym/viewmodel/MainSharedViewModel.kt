@@ -20,8 +20,7 @@ class MainSharedViewModel : ViewModel() {
     private val _detailEvent: MutableLiveData<MainSharedEventForDetail> = MutableLiveData()
     val detailEvent: LiveData<MainSharedEventForDetail> get() = _detailEvent //읽기 전용
 
-    private val _bookmarkEvent: MutableLiveData<List<MainSharedEventForBookmark>> =
-        MutableLiveData()
+    private val _bookmarkEvent: MutableLiveData<List<MainSharedEventForBookmark>> = MutableLiveData()
     val bookmarkEvent: LiveData<List<MainSharedEventForBookmark>> get() = _bookmarkEvent //읽기 전용
 
     /*
@@ -41,15 +40,29 @@ class MainSharedViewModel : ViewModel() {
 
     /*
      * 추민수
-     * DetailModel에서 BookmarkModel로 매핑하여 전달해주는 코드
-     *
+     * DetailModel -> BookmarkModel 매핑 하여 전달 하는 코드
+     * bookmark 여부에 따라서 _bookmarkEvent 에서 추가 삭제
      */
     fun updateBookmarkItems(detailModel: DetailModel) {
+        val currentList = bookmarkEvent.value.orEmpty().toMutableList()
         if (detailModel.isBookmarked) {
-            MainSharedEventForBookmark.UpdateBookmarkItem(detailModel.toBookmarkModel())
+            currentList.add(MainSharedEventForBookmark.UpdateBookmarkItem(detailModel.toBookmarkModel()))
+        }
+        else{
+            val findPosition = findIndex(currentList,detailModel.toBookmarkModel())
+            currentList.removeAt(findPosition)
+        }
+        _bookmarkEvent.value = currentList
+    }
+
+    // index값을 찾아서 return
+    private fun findIndex(currentList: MutableList<MainSharedEventForBookmark>, toBookmarkModel: BookmarkModel): Int {
+        return currentList.indexOfFirst { item ->
+            item is MainSharedEventForBookmark.UpdateBookmarkItem && item.item == toBookmarkModel
         }
     }
 }
+
 
 sealed interface MainSharedEventForDetail {
     data class UpdateDetailItem(
@@ -59,6 +72,6 @@ sealed interface MainSharedEventForDetail {
 
 sealed interface MainSharedEventForBookmark {
     data class UpdateBookmarkItem(
-        val items: BookmarkModel
+        val item: BookmarkModel
     ) : MainSharedEventForBookmark
 }

@@ -14,6 +14,13 @@ import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import com.bumptech.glide.load.engine.Resource
 
+/*
+* Copyright 2023 김현준, Inc.
+*
+* 검색 프래그먼트(SearchView, MainView)
+* 추가 예정
+*
+* */
 
 class SearchFragment : Fragment() {
 
@@ -39,8 +46,6 @@ class SearchFragment : Fragment() {
 //			}
 //		}
 //
-
-
 
 
 		binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
@@ -90,8 +95,8 @@ class SearchFragment : Fragment() {
 		gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 		binding.searchMainRecycler.layoutManager = gridManager
 
-		val gridItemDecoration = GridItemDecoration(spanCount = 2, spacing = 16f.fromDptoPx())
-		binding.searchMainRecycler.addItemDecoration(gridItemDecoration)
+//		val gridItemDecoration = GridItemDecoration(spanCount = 2, spacing = 16f.fromDptoPx())
+//		binding.searchMainRecycler.addItemDecoration(gridItemDecoration)
 
 		val item = listOf(
 			SearchTestModel(R.drawable.detail_test),
@@ -100,8 +105,21 @@ class SearchFragment : Fragment() {
 			SearchTestModel(R.drawable.detail_test)
 		)
 
-		mainAdapter = SearchMainAdapter(item)
+		mainAdapter = SearchMainAdapter(item.toMutableList())
 		binding.searchMainRecycler.adapter = mainAdapter
+
+		val newItems = listOf(
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test),
+			SearchTestModel(R.drawable.detail_test)
+		)
+
+		mainAdapter.set(newItems)
 
 		binding.searchMainRecycler.itemAnimator = null
 	}

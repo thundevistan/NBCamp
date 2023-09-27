@@ -5,9 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
 
+/*
+* Copyright 2023 김현준, Inc.
+*
+* search_recycler_view_item xml파일로 search main 나타내기 위한 어댑터.
+* 추가 예정
+*
+* */
+
 class SearchViewAdapter(private val items: List<SearchViewTest>): RecyclerView.Adapter<SearchViewAdapter.ViewHolder>() {
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = SearchRecyclerViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

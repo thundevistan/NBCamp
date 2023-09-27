@@ -5,11 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerMainItemBinding
 
-class SearchMainAdapter(private val items: List<SearchTestModel>) : RecyclerView.Adapter<SearchMainAdapter.ViewHolder>() {
+/*
+* Copyright 2023 김현준, Inc.
+*
+* search_recycler_main_item xml파일로 search main 나타내기 위한 어댑터.
+* 추가 예정
+*
+* */
+
+class SearchMainAdapter(private val items: MutableList<SearchTestModel>) : RecyclerView.Adapter<SearchMainAdapter.ViewHolder>() {
 
 
-    fun set() {
-
+    fun set(newItems: List<SearchTestModel>) {
+        items.clear()
+        items.addAll(newItems)
         notifyDataSetChanged()
     }
 
@@ -33,13 +42,5 @@ class SearchMainAdapter(private val items: List<SearchTestModel>) : RecyclerView
         fun bind(item: SearchTestModel) {
             binding.searchMainThumbnail.setImageResource(item.thumbnails)
         }
-
-//        init {
-//            val layoutParams = binding.searchMainThumbnail.layoutParams
-//            layoutParams.width = 175
-//            layoutParams.height = 175
-//            binding.searchMainThumbnail.layoutParams = layoutParams
-//        }
-
     }
 }

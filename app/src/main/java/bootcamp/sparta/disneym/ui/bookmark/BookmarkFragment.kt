@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
 import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.util.Util
 import bootcamp.sparta.disneym.viewmodel.bookmark.BookmarkViewModel
 
 /*
@@ -108,7 +109,7 @@ class BookmarkFragment : Fragment() {
             return
         }
 
-        var builder = AlertDialog.Builder(context)
+        val builder = AlertDialog.Builder(context)
         builder.setTitle("삭제")
         builder.setMessage("정말 삭제하시겠습니까?")
         builder.setIcon(R.mipmap.ic_launcher)
@@ -118,6 +119,7 @@ class BookmarkFragment : Fragment() {
             when (p1) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     for (i in removes.indices) {
+//                        Util.removeBookmarkItemForSharedPrefs(requireContext(), removes[i])
                         viewModel.removeSelectedBookmarkItem(removes[i])
                     }
                 }

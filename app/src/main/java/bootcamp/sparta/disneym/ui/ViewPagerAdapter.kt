@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkFragment
+import bootcamp.sparta.disneym.ui.detail.DetailFragment
 import bootcamp.sparta.disneym.ui.home.HomeFragment
 import bootcamp.sparta.disneym.ui.mypage.MyPageFragment
 import bootcamp.sparta.disneym.ui.search.SearchFragment
@@ -15,7 +16,7 @@ class ViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
 	val fragments: List<Fragment>
 
 	init {
-		fragments = listOf(HomeFragment(), SearchFragment(), BookmarkFragment(), MyPageFragment())
+		fragments = listOf(HomeFragment(), SearchFragment(), BookmarkFragment(), DetailFragment())
 	}
 
 	override fun getItemCount(): Int {

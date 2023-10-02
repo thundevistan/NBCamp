@@ -1,19 +1,13 @@
 package bootcamp.sparta.disneym.model
 
-import bootcamp.sparta.disneym.R
+import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 
 data class HomeModel(
-	val thumbnail: Int
+	val id: String,
+	val title: String,
+	val description: String,
+	val imgUrl: String,
+	val datetime: String
+	val viewType: BookmarkViewType = BookmarkViewType.Normal, // RecyclerView Adapter의 ViewType 관리용
+	val isChecked: Boolean = false, // RecyclerView Adapter의 체크박스 관리용
 )
-
-class Get {
-	fun getter(): MutableList<HomeModel> {
-		val data = mutableListOf<HomeModel>()
-
-		for (i in 0..9) {
-			data.add(HomeModel(R.drawable.ic_home_sample))
-		}
-		return data
-	}
-}
-

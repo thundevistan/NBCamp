@@ -5,21 +5,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
+import bootcamp.sparta.disneym.viewmodel.Home.HomeViewModel
 import kotlin.math.abs
 
+/**
+ * Copyright 2023 김민준, Inc.
+ *
+ * 앱 실행 시 가장 먼저 보여지는 프래그먼트 입니다.
+ * 최상단부터 viewpager -> 카테고리 버튼 -> scrollView 순서의 구조입니다.
+ */
 class HomeFragment : Fragment() {
 
-	private lateinit var binding: FragmentHomeBinding
+	private var _binding: FragmentHomeBinding? = null
+	private val binding get() = _binding!!
+	private val viewModel: HomeViewModel by viewModels()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		binding = FragmentHomeBinding.inflate(inflater, container, false)
+		_binding = FragmentHomeBinding.inflate(inflater, container, false)
 		return binding.root
 	}
 

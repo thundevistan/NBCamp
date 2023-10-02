@@ -3,9 +3,12 @@ package bootcamp.sparta.disneym.ui.viewmodel.bookmark
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import bootcamp.sparta.disneym.DisneyMinusApp
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
+import bootcamp.sparta.disneym.util.Util
+import java.util.concurrent.atomic.AtomicLong
 
 /*
 * 작성자: 서정한
@@ -22,14 +25,16 @@ class BookmarkViewModel : ViewModel() {
     // 더미데이터 init
     private fun initData(): List<BookmarkModel> {
         val list: MutableList<BookmarkModel> = mutableListOf()
+        val genId = AtomicLong(1L)
         for (i in 0 until 10) {
             list.add(
                 BookmarkModel(
+                    id = genId.getAndIncrement().toString(),
                     title = "영상제목${i}",
                     imgUrl = "https://picsum.photos/150/100",
                     description = "영상설명영상설명영상설명영상설명${i}",
                     datetime = "2323년 9월 2${i}일",
-                    true
+                    isBookmarked = true,
                 )
             )
         }
@@ -53,6 +58,10 @@ class BookmarkViewModel : ViewModel() {
         }
         current.add(item)
         _list.value = current
+        Util.saveBookmarkItemForSharedPrefs(
+            DisneyMinusApp.getApp().applicationContext,
+            item
+        )
     }
 
     // item remove

@@ -15,3 +15,7 @@ data class BookmarkModel(
     val viewType: BookmarkViewType = BookmarkViewType.Normal, // RecyclerView Adapter의 ViewType 관리용
     val isChecked: Boolean = false, // RecyclerView Adapter의 체크박스 관리용
 )
+
+fun BookmarkModel.toHomeModel() = HomeModel(
+    title
+)

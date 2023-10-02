@@ -24,3 +24,6 @@ fun DetailModel.toBookmarkModel() : BookmarkModel{
         isChecked = false
     )
 }
+
+fun DetailModel.toHomeModel() : HomeModel = HomeModel(
+)

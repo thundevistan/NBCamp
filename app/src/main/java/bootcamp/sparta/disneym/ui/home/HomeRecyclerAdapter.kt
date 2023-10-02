@@ -1,13 +1,11 @@
 package bootcamp.sparta.disneym.ui.home
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.HomeRecyclerItemBinding
 import bootcamp.sparta.disneym.model.HomeModel
-import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
 import com.bumptech.glide.Glide
 
 /**
@@ -15,46 +13,43 @@ import com.bumptech.glide.Glide
  *
  * HomeFragment 하단의 scrollView 안에 위치한 recyclerView의 어댑터
  */
-class HomeRecyclerAdapter(val context: Context) :
-    RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
+class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val dataList = HomeViewModel().films
+	private var oldItems = emptyList<HomeModel>()
 
-    interface ItemClick {
-        fun onClick(view: View, position: Int)
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+		val view = HomeRecyclerItemBinding.inflate(
+			LayoutInflater.from(parent.context),
+			parent,
+			false
+		)
+		return ViewHolder(view)
+	}
 
-    var itemClick: ItemClick? = null
+	override fun getItemCount(): Int {
+		return oldItems.size
+	}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            HomeRecyclerItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
-    }
+	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+		(holder as ViewHolder).setData(oldItems[position])
+	}
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (dataList.value == null) {
-            return
-        }
-        val itemList = dataList.value
-        val item = itemList?.get(position)
-        item?.let { holder.bind(it) }
-    }
+	inner class ViewHolder(itemView: HomeRecyclerItemBinding) :
+		RecyclerView.ViewHolder(itemView.root) {
 
-    override fun getItemCount(): Int {
-        return dataList.value.size
-    }
+		private val binding = itemView
 
-    inner class ViewHolder(binding: HomeRecyclerItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+		fun setData(data: HomeModel) {
+			Glide.with(binding.root)
+				.load(data.imgUrl)
+				.into(binding.homeThumbnailIv)
+		}
+	}
 
-        private val thumbnail = binding.homeThumbnailIv
-
-        fun bind(item: HomeModel) {
-
-            Glide.with(context).load(dataList).into(thumbnail)
-        }
-    }
+	fun setData(newList: List<HomeModel>) {
+		val videoDiff = DiffUtil(oldItems, newList)
+		val diff = DiffUtil.calculateDiff(videoDiff)
+		oldItems = newList
+		diff.dispatchUpdatesTo(this)
+	}
 }

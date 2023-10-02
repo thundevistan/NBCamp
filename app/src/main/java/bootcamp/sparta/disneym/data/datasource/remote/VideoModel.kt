@@ -9,86 +9,85 @@ import com.google.gson.annotations.SerializedName
 * */
 
 data class VideoModel(
-    @SerializedName("videos")
-    val videos: Videos
+	@SerializedName("videos")
+	val videos: Videos
 ) {
 
-    data class Videos(
-        @SerializedName("kind")
-        val kind: String,
+	data class Videos(
+		@SerializedName("kind")
+		val kind: String,
 
-        @SerializedName("etag")
-        val etag : String,
+		@SerializedName("etag")
+		val etag: String,
 
-        @SerializedName("items")
-        val items: List<Items>
-    )
+		@SerializedName("items")
+		val items: List<Items>
+	)
 
-    data class Items(
+	data class Items(
 
-        @SerializedName("id")
-        val id: String,
+		@SerializedName("id")
+		val id: String,
 
-        // 동영상에 대한 세부정보
-        @SerializedName("snippet")
-        val snippet: SnippetYT,
+		// 동영상에 대한 세부정보
+		@SerializedName("snippet")
+		val snippet: SnippetYT,
 
-        @SerializedName("statistics")
-        val statistics: StatisticsYT
+		@SerializedName("statistics")
+		val statistics: StatisticsYT
 
-    )
+	)
 
-    data class SnippetYT(
-        @SerializedName("channelId")
-        val channelId: String,
+	data class SnippetYT(
+		@SerializedName("channelId")
+		val channelId: String,
 
-        @SerializedName("title")
-        val title: String,
+		@SerializedName("title")
+		val title: String,
 
-        @SerializedName("description")
-        val description: String,
+		@SerializedName("description")
+		val description: String,
 
-        @SerializedName("publishedAt")
-        val publishedAt: String,
+		@SerializedName("publishedAt")
+		val publishedAt: String,
 
-        @SerializedName("thumbnails")
-        val thumbnails: ThumbnailsYT,
+		@SerializedName("thumbnails")
+		val thumbnails: ThumbnailsYT,
 
-        @SerializedName("categoryId")
-        val categoryId: String,
+		@SerializedName("categoryId")
+		val categoryId: String,
 
-        @SerializedName("channelTitle")
-        val channelTitle: String,
+		@SerializedName("channelTitle")
+		val channelTitle: String,
 
 
-    )
+		)
 
-    data class ThumbnailsYT(
-        @SerializedName("high")
-        val high: High
-    ) {
-        data class High (
-            @SerializedName("url")
-            val url: String
+	data class ThumbnailsYT(
+		@SerializedName("high")
+		val high: High
+	) {
+		data class High(
+			@SerializedName("url")
+			val url: String
+		)
+	}
 
-        )
-    }
+	data class StatisticsYT(
 
-    data class StatisticsYT (
+		@SerializedName("viewCount")
+		val viewCount: Int,
 
-        @SerializedName("viewCount")
-        val viewCount: Int,
+		@SerializedName("likeCount")
+		val likeCount: Int,
 
-        @SerializedName("likeCount")
-        val likeCount: Int,
+		@SerializedName("dislikeCount")
+		val dislikeCount: Int,
 
-        @SerializedName("dislikeCount")
-        val dislikeCount: Int,
+		@SerializedName("favoriteCount")
+		val favoriteCount: Int,
 
-        @SerializedName("favoriteCount")
-        val favoriteCount: Int,
-
-        @SerializedName("commentCount")
-        val commentCount: Int
-    )
+		@SerializedName("commentCount")
+		val commentCount: Int
+	)
 }

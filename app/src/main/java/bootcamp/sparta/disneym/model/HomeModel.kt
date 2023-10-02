@@ -11,10 +11,10 @@ data class HomeModel(
 	val description: String,
 	val imgUrl: String,
 	val datetime: String,
-	val isBookmarked: Boolean,
+	val isBookmarked: Boolean = false,
 ) : Parcelable
 
-fun HomeModel.toBookmarkModel() : BookmarkModel =
+fun HomeModel.toBookmarkModel(): BookmarkModel =
 	BookmarkModel(
 		id = id,
 		title = title,

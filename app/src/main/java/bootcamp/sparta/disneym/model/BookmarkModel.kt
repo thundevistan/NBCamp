@@ -27,8 +27,6 @@ fun BookmarkModel.toDetailModel() = DetailModel(
     description = description,
     datetime = datetime,
     isBookmarked = isBookmarked,
-    viewType = viewType,
-    isChecked = isChecked
 )
 // 민수 : 모델 매핑 확장함수 Bookmark -> Home
 fun BookmarkModel.toHomeModel() = HomeModel(
@@ -38,6 +36,4 @@ fun BookmarkModel.toHomeModel() = HomeModel(
     description = description,
     datetime = datetime,
     isBookmarked = isBookmarked,
-    viewType = viewType,
-    isChecked = isChecked
 )

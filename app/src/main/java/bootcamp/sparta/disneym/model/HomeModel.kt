@@ -12,6 +12,16 @@ data class HomeModel(
 	val imgUrl: String,
 	val datetime: String,
 	val isBookmarked: Boolean,
-	val viewType: BookmarkViewType = BookmarkViewType.Normal, // RecyclerView Adapter의 ViewType 관리용
-	val isChecked: Boolean = false, // RecyclerView Adapter의 체크박스 관리용
 ) : Parcelable
+
+fun HomeModel.toBookmarkModel() : BookmarkModel =
+	BookmarkModel(
+		id = id,
+		title = title,
+		imgUrl = imgUrl,
+		description = description,
+		datetime = datetime,
+		isBookmarked = isBookmarked,
+		viewType = BookmarkViewType.Normal,
+		isChecked = false
+	)

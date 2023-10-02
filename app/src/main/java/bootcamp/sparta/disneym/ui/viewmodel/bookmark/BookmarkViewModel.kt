@@ -45,6 +45,16 @@ class BookmarkViewModel : ViewModel() {
         _list.value = current
     }
 
+    // 북마크 아이템 추가
+    fun addBookmarkItem(item: BookmarkModel) {
+        val current = list.value.orEmpty().toMutableList()
+        if(current.contains(item)) {
+            return
+        }
+        current.add(item)
+        _list.value = current
+    }
+
     // item remove
     fun removeSelectedBookmarkItem(item: BookmarkModel) {
         fun findIndex(item: BookmarkModel): Int? {

@@ -20,8 +20,8 @@ class MainSharedViewModel : ViewModel() {
     private val _detailEvent: MutableLiveData<MainSharedEventForDetail> = MutableLiveData()
     val detailEvent: LiveData<MainSharedEventForDetail> get() = _detailEvent //읽기 전용
 
-    private val _bookmarkEvent: MutableLiveData<List<MainSharedEventForBookmark>> = MutableLiveData()
-    val bookmarkEvent: LiveData<List<MainSharedEventForBookmark>> get() = _bookmarkEvent //읽기 전용
+    private val _bookmarkEvent: MutableLiveData<MainSharedEventForBookmark> = MutableLiveData()
+    val bookmarkEvent: LiveData<MainSharedEventForBookmark> get() = _bookmarkEvent //읽기 전용
 
     /*
      * 추민수
@@ -45,21 +45,11 @@ class MainSharedViewModel : ViewModel() {
      * list의 형태로 구현 했기 때문에 바로 가져다 쓰시면 될 것 같습니다 :)
      */
     fun updateBookmarkItems(detailModel: DetailModel) {
-        val currentList = bookmarkEvent.value.orEmpty().toMutableList()
         if (detailModel.isBookmarked) {
-            currentList.add(MainSharedEventForBookmark.UpdateBookmarkItem(detailModel.toBookmarkModel()))
+            _bookmarkEvent.value = MainSharedEventForBookmark.BookmarkItemForAdd(detailModel.toBookmarkModel())
         }
         else{
-            val findPosition = findIndex(currentList,detailModel.toBookmarkModel())
-            currentList.removeAt(findPosition)
-        }
-        _bookmarkEvent.value = currentList
-    }
-
-    // index값을 찾아서 return
-    private fun findIndex(currentList: MutableList<MainSharedEventForBookmark>, toBookmarkModel: BookmarkModel): Int {
-        return currentList.indexOfFirst { item ->
-            item is MainSharedEventForBookmark.UpdateBookmarkItem && item.item == toBookmarkModel
+            _bookmarkEvent.value = MainSharedEventForBookmark.BookmarkItemForRemove(detailModel.toBookmarkModel())
         }
     }
 }
@@ -72,7 +62,11 @@ sealed interface MainSharedEventForDetail {
 }
 
 sealed interface MainSharedEventForBookmark {
-    data class UpdateBookmarkItem(
+    data class BookmarkItemForAdd(
+        val item : BookmarkModel
+    ): MainSharedEventForBookmark
+
+    data class BookmarkItemForRemove(
         val item: BookmarkModel
-    ) : MainSharedEventForBookmark
+    ): MainSharedEventForBookmark
 }

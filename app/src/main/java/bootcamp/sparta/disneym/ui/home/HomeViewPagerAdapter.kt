@@ -10,6 +10,11 @@ import bootcamp.sparta.disneym.model.Get
 import bootcamp.sparta.disneym.model.HomeModel
 import com.bumptech.glide.Glide
 
+/**
+ * Copyright 2023 김민준, Inc.
+ *
+ * HomeFragment 상단에 위치한 viewpager의 어댑터
+ */
 class HomeViewPagerAdapter(val context: Context) :
 	RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>() {
 

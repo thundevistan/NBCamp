@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
 import bootcamp.sparta.disneym.model.BookmarkModel
-import bootcamp.sparta.disneym.util.Util
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForBookmark
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.bookmark.BookmarkViewModel
 
@@ -77,9 +77,16 @@ class BookmarkFragment : Fragment() {
         }
 
         with(sharedViewModel) {
-            bookmarkEvent.observe(viewLifecycleOwner) { list ->
-                // 민수 : viewModel상의 리스트를 교체해줄 코드가 필요합니다! :)
-                // 기능 구현 후 주석 삭제 부탁드립니다!! 🙏🏻🙏🏻🙏🏻
+            bookmarkEvent.observe(viewLifecycleOwner) { event ->
+                when (event) {
+                    is MainSharedEventForBookmark.BookmarkItemForAdd -> {
+                        viewModel.addBookmarkItem(event.item)
+                    }
+
+                    is MainSharedEventForBookmark.BookmarkItemForRemove -> {
+                        viewModel.removeSelectedBookmarkItem(event.item)
+                    }
+                }
             }
         }
     }

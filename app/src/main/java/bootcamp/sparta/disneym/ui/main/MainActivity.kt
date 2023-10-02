@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.ui
+package bootcamp.sparta.disneym.ui.main
 
 import android.content.Context
 import android.content.Intent

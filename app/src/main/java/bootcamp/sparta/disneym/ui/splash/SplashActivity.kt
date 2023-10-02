@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import bootcamp.sparta.disneym.databinding.ActivitySplashBinding
-import bootcamp.sparta.disneym.ui.MainActivity
+import bootcamp.sparta.disneym.ui.main.MainActivity
 
 
 class SplashActivity : AppCompatActivity() {

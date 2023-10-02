@@ -5,13 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bootcamp.sparta.disneym.BuildConfig
-import bootcamp.sparta.disneym.data.datasource.remote.VideoModel
+import bootcamp.sparta.disneym.data.datasource.remote.Videos
 import bootcamp.sparta.disneym.model.HomeModel
 import bootcamp.sparta.disneym.repository.MainRepository
 import kotlinx.coroutines.launch
 
 const val PART = "snippet"
 const val CHART = "mostPopular"
+const val MAXRESULT = 50
+const val REGIONCOLDE = "KR"
 const val FILM = 1
 const val PETS = 15
 const val MUSIC = 10
@@ -53,10 +55,17 @@ class HomeViewModel : ViewModel() {
 	private fun getFilm() {
 
 		viewModelScope.launch {
-			val response: VideoModel? =
-				repository.getVideos(PART, CHART, FILM, BuildConfig.YOUTUBE_API_KEY).body()
+			val response: Videos? =
+				repository.getVideos(
+					PART,
+					CHART,
+					BuildConfig.YOUTUBE_API_KEY,
+					MAXRESULT,
+					FILM,
+					REGIONCOLDE
+				).body()
 
-			val filmList: List<HomeModel>? = response?.videos?.items?.map {
+			val filmList: List<HomeModel> = response!!.items.map {
 				HomeModel(
 					it.id,
 					it.snippet.title,

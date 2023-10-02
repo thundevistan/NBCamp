@@ -13,9 +13,12 @@ import androidx.fragment.app.viewModels
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
 import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.model.toBookmarkModel
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForBookmark
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForHome
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.bookmark.BookmarkViewModel
+import bootcamp.sparta.disneym.util.Util
 
 /*
 * 작성자: 서정한
@@ -87,6 +90,18 @@ class BookmarkFragment : Fragment() {
                     }
                 }
             }
+
+            homeEvent.observe(viewLifecycleOwner) {event ->
+                when(event) {
+                    is MainSharedEventForHome.UpdateHomeItem -> {
+                        if(event.item.isBookmarked) {
+                            viewModel.addBookmarkItem(event.item.toBookmarkModel())
+                        } else {
+                            viewModel.removeSelectedBookmarkItem(event.item.toBookmarkModel())
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -138,8 +153,13 @@ class BookmarkFragment : Fragment() {
             when (p1) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     for (i in removes.indices) {
-//                        Util.removeBookmarkItemForSharedPrefs(requireContext(), removes[i])
+                        Util.removeBookmarkItemForSharedPrefs(requireContext(), removes[i])
                         viewModel.removeSelectedBookmarkItem(removes[i])
+                        sharedViewModel.updateHomeItems(
+                            removes[i].copy(
+                                isBookmarked = false
+                            )
+                        )
                     }
                 }
 

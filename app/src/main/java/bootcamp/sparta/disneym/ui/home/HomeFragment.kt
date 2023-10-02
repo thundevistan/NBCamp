@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.viewmodel.Home.HomeViewModel
 import kotlin.math.abs
 
@@ -25,6 +28,8 @@ class HomeFragment : Fragment() {
 	private val binding get() = _binding!!
 	private val viewModel: HomeViewModel by viewModels()
 
+	private val sharedViewModel : MainSharedViewModel by activityViewModels()
+
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
@@ -38,6 +43,18 @@ class HomeFragment : Fragment() {
 
 		upperViewPager()
 		lowerRecycler()
+		initViewModel()
+	}
+
+	private fun initViewModel() {
+		with(sharedViewModel){
+			homeEvent.observe(viewLifecycleOwner, Observer {
+				// sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
+				// 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
+				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
+				it
+			})
+		}
 	}
 
 	// 위쪽 viewpager 출력

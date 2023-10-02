@@ -75,17 +75,22 @@ class DetailFragment : Fragment() {
      * viewModel 상의 LiveData의 변경을 관찰해 값이 변하는 경우 Event 처리
      */
     private fun initViewModel() {
+
         with(viewModel) {
+            // viewModel의 DetailItem이 변했을 경우
             detailItem.observe(viewLifecycleOwner, Observer {
+                // bookmarkItem Update
                 sharedViewModel.updateBookmarkItems(it)
+                // homeItem Update
+                sharedViewModel.updateHomeItems(viewModel.detailItem)
             })
         }
         with(sharedViewModel) {
+            // sharedViewModel의 데이터가 변경이 일어나면 viewModel의 DetailItem 설정
             detailEvent.observe(viewLifecycleOwner, Observer { event ->
                 when (event) {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
-
                     }
                 }
             })
@@ -98,12 +103,17 @@ class DetailFragment : Fragment() {
             detailScrollview.smoothScrollTo(0, detailScrollview.bottom)// 하단 스크롤
         }
         detailBookmarkBtn.setOnClickListener {
+            // isbookmarked btn Update
             detailBookmarkBtn.isSelected = !detailBookmarkBtn.isSelected
+            // detailItem Update
+            viewModel.isBookmarkedItem(detailBookmarkBtn.isSelected)
 
         }
         detailShareBtn.setOnClickListener {
-            // context를 넣어줄 때 널체크를 해줌으로써 안정성을 높여줌
-            // requireContext를 사용했을 땐 context가 null일 경우 IllegalStateException 발생
+            /* 추민수
+             * context를 넣어줄 때 널체크를 해줌으로써 안정성을 높여줌
+             * requireContext를 사용했을 땐 context가 null일 경우 IllegalStateException 발생
+             */
             activity?.let { context ->
                 viewModel.detailItem.value?.let { detailItem ->
                     Util.shareUrl(context, detailItem.imgUrl)

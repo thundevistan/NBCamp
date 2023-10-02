@@ -1,6 +1,7 @@
 package bootcamp.sparta.disneym.model
 
 import android.os.Parcelable
+import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import kotlinx.parcelize.Parcelize
 
 /*
@@ -10,19 +11,23 @@ import kotlinx.parcelize.Parcelize
 */
 @Parcelize
 data class TestModel2(
+    val id: String,
     val title: String,
     val imgUrl: String,
     val description: String,
     val datetime: String,
-    val isBookmarked : Boolean
+    val isBookmarked: Boolean,
+    val viewType: BookmarkViewType = BookmarkViewType.Normal,
+    val isChecked: Boolean = false,
 ) : Parcelable
 
-fun TestModel2.toDetailModel(): DetailModel {
-    return DetailModel(
-        title = title,
-        imgUrl = imgUrl,
-        description = description,
-        datetime = datetime,
-        isBookmarked = isBookmarked,
-    )
-}
+fun TestModel2.toDetailModel() = DetailModel(
+    id = id,
+    title = title,
+    imgUrl = imgUrl,
+    description = description,
+    datetime = datetime,
+    isBookmarked = isBookmarked,
+    viewType = viewType,
+    isChecked = isChecked
+)

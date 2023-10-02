@@ -18,4 +18,8 @@ class DetailViewModel : ViewModel(){
         _detailItem.value = item
     }
 
+    fun isBookmarkedItem(isBookmarked : Boolean){
+        detailItem.value?.let{ _detailItem.value = it.copy( isBookmarked = !isBookmarked) }
+    }
+
 }

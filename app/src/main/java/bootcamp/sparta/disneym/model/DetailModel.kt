@@ -1,29 +1,40 @@
 package bootcamp.sparta.disneym.model
 
 import android.os.Parcelable
-import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import kotlinx.android.parcel.Parcelize
+import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 
 @Parcelize
 data class DetailModel(
+    val id: String,
     val title: String,
-    val imgUrl : String,
-    val description : String,
-    val datetime : String,
-    val isBookmarked : Boolean
+    val imgUrl: String,
+    val description: String,
+    val datetime: String,
+    val isBookmarked: Boolean,
+    val viewType: BookmarkViewType = BookmarkViewType.Normal,
+    val isChecked: Boolean = false,
 ) : Parcelable
 
-fun DetailModel.toBookmarkModel() : BookmarkModel{
-    return BookmarkModel(
-        title = title,
-        imgUrl = imgUrl,
-        description = description,
-        datetime = datetime,
-        isBookmarked = isBookmarked,
-        viewType = BookmarkViewType.Normal,
-        isChecked = false
-    )
-}
-
-fun DetailModel.toHomeModel() : HomeModel = HomeModel(
+// 민수 : 모델 매핑 확장함수 Detail -> Bookmark
+fun DetailModel.toBookmarkModel() = BookmarkModel(
+    id = id,
+    title = title,
+    imgUrl = imgUrl,
+    description = description,
+    datetime = datetime,
+    isBookmarked = isBookmarked,
+    viewType = viewType,
+    isChecked = isChecked
+)
+// 민수 : 모델 매핑 확장함수 Detail -> Home
+fun DetailModel.toHomeModel() = HomeModel(
+    id = id,
+    title = title,
+    imgUrl = imgUrl,
+    description = description,
+    datetime = datetime,
+    isBookmarked = isBookmarked,
+    viewType = viewType,
+    isChecked = isChecked
 )

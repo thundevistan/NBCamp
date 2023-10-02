@@ -68,7 +68,6 @@ class MainSharedViewModel : ViewModel() {
             is BookmarkModel -> updateModel.toHomeModel()
             else -> return
         }
-
         _homeEvent.value = MainSharedEventForHome.UpdateHomeItem(homeModel)
     }
 }

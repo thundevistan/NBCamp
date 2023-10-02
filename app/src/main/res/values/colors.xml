@@ -10,4 +10,9 @@
     <color name="common_sub_text_grey">#C4C7C5</color>
     <color name="main_button_category_top">#383b47</color>
     <color name="main_button_category_bottom">#242734</color>
+    <color name="my_page_account">#30333D</color>
+    <color name="point_text_blue">#74BADC</color>
+    <color name="transparent">#00FF0000</color>
+
+
 </resources>

@@ -88,6 +88,7 @@ class DetailFragment : Fragment() {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
                     }
+                    else -> Unit
                 }
             })
         }

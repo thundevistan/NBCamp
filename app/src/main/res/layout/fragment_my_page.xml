@@ -1,14 +1,269 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mypage.MyPageFragment">
+    android:background="@drawable/common_gradient_background">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="mypage" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/my_profile_cv"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/cardview_dark_background"
+                app:cardCornerRadius="150dp">
+
+                <ImageView
+                    android:id="@+id/my_profile_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile_elemental1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/my_edit"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_account_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/my_page_account"
+            app:layout_constraintTop_toBottomOf="@id/my_profile_cv">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/my_page_account_details"
+                android:textColor="@color/common_sub_text_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/my_id_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="null"
+            android:inputType="textEmailAddress"
+            android:text="@string/my_page_id"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/my_account_detail_layout" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/my_edit_id"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_btn_edit"
+            app:layout_constraintBottom_toBottomOf="@id/my_id_et"
+            app:layout_constraintEnd_toEndOf="@id/my_id_et"
+            app:layout_constraintTop_toTopOf="@id/my_id_et" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/common_tab_unclicked_icon_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/my_id_et"
+            app:layout_constraintTop_toBottomOf="@id/my_id_et" />
+
+        <TextView
+            android:id="@+id/pw_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/password"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/view1"
+            app:layout_constraintTop_toBottomOf="@id/view1" />
+
+        <EditText
+            android:id="@+id/my_pw_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:background="null"
+            android:inputType="numberPassword"
+            android:text="@string/my_page_pw"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pw_tv"
+            app:layout_constraintTop_toTopOf="@id/pw_tv" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/my_edit_pw"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_btn_edit"
+            app:layout_constraintBottom_toBottomOf="@id/my_pw_et"
+            app:layout_constraintEnd_toEndOf="@id/my_pw_et"
+            app:layout_constraintTop_toTopOf="@id/my_pw_et" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/common_tab_unclicked_icon_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/pw_tv"
+            app:layout_constraintTop_toBottomOf="@id/pw_tv" />
+
+        <TextView
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/my_log_out"
+            android:textColor="@color/point_text_blue"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/view2"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_subscription_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/my_page_account"
+            app:layout_constraintTop_toBottomOf="@id/log_out">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/my_subscription"
+                android:textColor="@color/common_sub_text_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/my_monthly_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/my_subscription_title"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_subscription_detail_layout" />
+
+        <TextView
+            android:id="@+id/my_monthly_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_monthly_description_tv"
+            android:textColor="@color/common_sub_text_grey"
+            app:layout_constraintStart_toStartOf="@id/my_monthly_tv"
+            app:layout_constraintTop_toBottomOf="@id/my_monthly_tv" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/common_tab_unclicked_icon_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/my_monthly_description_tv"
+            app:layout_constraintTop_toBottomOf="@id/my_monthly_description_tv" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/subscription_cv"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/common_tab_unclicked_icon_grey"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view3">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:backgroundTint="@color/common_background_navy"
+                app:cardCornerRadius="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/my_subscription_text"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/my_version_detail_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/my_page_account"
+            app:layout_constraintTop_toBottomOf="@id/subscription_cv">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/my_version"
+                android:textColor="@color/common_sub_text_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/my_version_text"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_version_detail_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</ScrollView>

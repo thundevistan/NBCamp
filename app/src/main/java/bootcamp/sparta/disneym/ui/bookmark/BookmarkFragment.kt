@@ -82,7 +82,6 @@ class BookmarkFragment : Fragment() {
                     is MainSharedEventForBookmark.BookmarkItemForAdd -> {
                         viewModel.addBookmarkItem(event.item)
                     }
-
                     is MainSharedEventForBookmark.BookmarkItemForRemove -> {
                         viewModel.removeSelectedBookmarkItem(event.item)
                     }

@@ -16,40 +16,45 @@ import com.bumptech.glide.Glide
  * HomeFragment 하단의 scrollView 안에 위치한 recyclerView의 어댑터
  */
 class HomeRecyclerAdapter(val context: Context) :
-	RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
+    RecyclerView.Adapter<HomeRecyclerAdapter.ViewHolder>() {
 
-	private val dataList = HomeViewModel().films
+    private val dataList = HomeViewModel().films
 
-	interface ItemClick {
-		fun onClick(view: View, position: Int)
-	}
+    interface ItemClick {
+        fun onClick(view: View, position: Int)
+    }
 
-	var itemClick: ItemClick? = null
+    var itemClick: ItemClick? = null
 
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		return ViewHolder(
-			HomeRecyclerItemBinding.inflate(
-				LayoutInflater.from(parent.context), parent, false
-			)
-		)
-	}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            HomeRecyclerItemBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
+    }
 
-	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-		holder.bind(dataList[position])
-	}
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (dataList.value == null) {
+            return
+        }
+        val itemList = dataList.value
+        val item = itemList?.get(position)
+        item?.let { holder.bind(it) }
+    }
 
-	override fun getItemCount(): Int {
-		return dataList.value.size
-	}
+    override fun getItemCount(): Int {
+        return dataList.value.size
+    }
 
-	inner class ViewHolder(binding: HomeRecyclerItemBinding) :
-		RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: HomeRecyclerItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-		private val thumbnail = binding.homeThumbnailIv
+        private val thumbnail = binding.homeThumbnailIv
 
-		fun bind(item: HomeModel) {
+        fun bind(item: HomeModel) {
 
-			Glide.with(context).load(dataList).into(thumbnail)
-		}
-	}
+            Glide.with(context).load(dataList).into(thumbnail)
+        }
+    }
 }

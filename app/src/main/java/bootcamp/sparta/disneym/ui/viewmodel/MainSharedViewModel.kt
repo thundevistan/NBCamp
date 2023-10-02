@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.viewmodel
+package bootcamp.sparta.disneym.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,7 +41,8 @@ class MainSharedViewModel : ViewModel() {
     /*
      * 추민수
      * DetailModel -> BookmarkModel 매핑 하여 전달 하는 코드
-     * bookmark 여부에 따라서 _bookmarkEvent 에서 추가 삭제
+     * bookmark 여부에 따라서 _bookmarkEvent 에서 추가 or 삭제
+     * list의 형태로 구현 했기 때문에 바로 가져다 쓰시면 될 것 같습니다 :)
      */
     fun updateBookmarkItems(detailModel: DetailModel) {
         val currentList = bookmarkEvent.value.orEmpty().toMutableList()

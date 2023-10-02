@@ -1,11 +1,11 @@
-package bootcamp.sparta.disneym.viewmodel.bookmark
+package bootcamp.sparta.disneym.ui.viewmodel.bookmark
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
-import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
 
 /*
 * 작성자: 서정한
@@ -29,6 +29,7 @@ class BookmarkViewModel : ViewModel() {
                     imgUrl = "https://picsum.photos/150/100",
                     description = "영상설명영상설명영상설명영상설명${i}",
                     datetime = "2323년 9월 2${i}일",
+                    true
                 )
             )
         }

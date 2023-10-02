@@ -55,7 +55,7 @@ class HomeViewModel : ViewModel() {
 	private fun getFilm() {
 
 		viewModelScope.launch {
-			val response: Videos? =
+			val response: Videos =
 				repository.getVideos(
 					PART,
 					CHART,
@@ -63,9 +63,9 @@ class HomeViewModel : ViewModel() {
 					MAXRESULT,
 					FILM,
 					REGIONCOLDE
-				).body()
+				).body()!!
 
-			val filmList: List<HomeModel> = response!!.items.map {
+			val filmList: List<HomeModel> = response.items.map {
 				HomeModel(
 					it.id,
 					it.snippet.title,

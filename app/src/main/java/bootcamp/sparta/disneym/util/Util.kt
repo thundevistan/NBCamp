@@ -25,7 +25,7 @@ object Util {
         val list = ArrayList<BookmarkModel>()
         val getAllData: Map<String, *> = pref.all
         val gson = Gson()
-        getAllData.forEach() { (key, value) ->
+        getAllData.forEach() { (_, value) ->
             val item = gson.fromJson(value as String, BookmarkModel::class.java)
             list.add(item)
         }

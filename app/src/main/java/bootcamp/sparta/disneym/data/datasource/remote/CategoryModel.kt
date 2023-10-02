@@ -8,43 +8,39 @@ import com.google.gson.annotations.SerializedName
 * Json에서 여러 필드와 매핑하여 카테고리 목록에 대한 정보를 가져옴
 * */
 
-data class CategoryModel (
-    @SerializedName("videoCategories")
-    val videoCategories : VideoCategories
-) {
-    data class VideoCategories(
-        @SerializedName("kind")
-        val kind: String,
 
-        @SerializedName("etag")
-        val etag: String,
+data class VideoCategories(
+    @SerializedName("kind")
+    val kind: String,
 
-        @SerializedName("items")
-        val items: List<Items>
-    )
+    @SerializedName("etag")
+    val etag: String,
 
-    data class Items(
-        @SerializedName("kind")
-        val kind: String,
+    @SerializedName("items")
+    val items: List<Items>
+)
 
-        @SerializedName("etag")
-        val etag: String,
+data class Items(
+    @SerializedName("kind")
+    val kind: String,
 
-        @SerializedName("id")
-        val id: String,
+    @SerializedName("etag")
+    val etag: String,
 
-        @SerializedName("snippet")
-        val snippet: SnippetCG
-    )
+    @SerializedName("id")
+    val id: String,
 
-    data class SnippetCG(
-        @SerializedName("title")
-        val title: String,
+    @SerializedName("snippet")
+    val snippet: SnippetCG
+)
 
-        @SerializedName("assignable")
-        val assignable: Boolean,
+data class SnippetCG(
+    @SerializedName("title")
+    val title: String,
 
-        @SerializedName("channelId")
-        val channelId: String
-    )
-}
+    @SerializedName("assignable")
+    val assignable: Boolean,
+
+    @SerializedName("channelId")
+    val channelId: String
+)

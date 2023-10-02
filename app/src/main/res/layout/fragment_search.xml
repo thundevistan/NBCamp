@@ -27,7 +27,7 @@
         android:id="@+id/test123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
@@ -45,48 +45,94 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/search_popular_btn"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:background="@color/common_tab_navy"
             android:drawableTop="@drawable/search_star_btn"
-            android:padding="25dp"
-            android:text="@string/search_originals_btn"
+            android:padding="30dp"
+            android:text="@string/search_mostPopular"
             android:textColor="@color/white"
             android:textSize="9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton2"
+            android:id="@+id/search_sports_btn"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:background="@color/common_tab_navy"
-            android:drawableTop="@drawable/search_movie_btn"
-            android:padding="25dp"
-            android:text="@string/search_movies_btn"
+            android:drawableTop="@drawable/ic_search_movie"
+            android:padding="30dp"
+            android:text="@string/search_sports"
             android:textColor="@color/white"
             android:textSize="9dp"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton"
+            app:layout_constraintStart_toEndOf="@+id/search_popular_btn"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_shorts_btn"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:background="@color/common_tab_navy"
-            android:drawableTop="@drawable/search_series_btn"
-            android:padding="25dp"
-            android:text="@string/search_series_btn"
+            android:drawableTop="@drawable/search_movie_btn"
+            android:padding="30dp"
+            android:text="@string/search_shorts"
             android:textColor="@color/white"
             android:textSize="9dp"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton2"
+            app:layout_constraintStart_toEndOf="@+id/search_sports_btn"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_news_btn"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@color/common_tab_navy"
+            android:drawableTop="@drawable/ic_search_news"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="30dp"
+            android:text="@string/search_news_btn"
+            android:textColor="@color/white"
+            android:textSize="9dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_popular_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_comedy_btn"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@color/common_tab_navy"
+            android:drawableTop="@drawable/ic_search_comedy"
+            android:padding="30dp"
+            android:text="@string/search_comedy"
+            android:textColor="@color/white"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="9dp"
+            app:layout_constraintStart_toEndOf="@+id/search_news_btn"
+            app:layout_constraintTop_toBottomOf="@+id/search_sports_btn" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_pets_btn"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/common_tab_navy"
+            android:drawableTop="@drawable/ic_search_pet"
+            android:padding="30dp"
+            android:text="@string/search_pets_btn"
+            android:textColor="@color/white"
+            android:textSize="9dp"
+            app:layout_constraintStart_toEndOf="@+id/search_comedy_btn"
+            app:layout_constraintTop_toBottomOf="@+id/search_shorts_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,15 +145,16 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_main_recycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

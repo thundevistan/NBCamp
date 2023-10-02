@@ -1,12 +1,11 @@
 package bootcamp.sparta.disneym.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class DetailModel(
-    val id: String,
+    val id: String? = null,
     val title: String,
     val imgUrl: String,
     val description: String,
@@ -16,7 +15,7 @@ data class DetailModel(
 
 // 민수 : 모델 매핑 확장함수 Detail -> Bookmark
 fun DetailModel.toBookmarkModel() = BookmarkModel(
-    id = id,
+    id = id!!,
     title = title,
     imgUrl = imgUrl,
     description = description,
@@ -25,7 +24,7 @@ fun DetailModel.toBookmarkModel() = BookmarkModel(
 )
 // 민수 : 모델 매핑 확장함수 Detail -> Home
 fun DetailModel.toHomeModel() = HomeModel(
-    id = id,
+    id = id!!,
     title = title,
     imgUrl = imgUrl,
     description = description,

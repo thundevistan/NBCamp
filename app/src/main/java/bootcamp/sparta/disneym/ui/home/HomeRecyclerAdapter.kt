@@ -43,6 +43,7 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 			Glide.with(binding.root)
 				.load(data.imgUrl)
 				.into(binding.homeThumbnailIv)
+
 		}
 	}
 

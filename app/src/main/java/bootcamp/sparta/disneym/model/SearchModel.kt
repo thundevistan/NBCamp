@@ -10,20 +10,22 @@ import kotlinx.parcelize.Parcelize
 * 확장함수를 통해 디테일 페이지로 데이터를 전달할 때 매핑해주는 함수를 포함하고 있습니다.
 */
 @Parcelize
-data class TestModel2(
-    val id: String,
+
+data class SearchModel(
     val title: String,
     val imgUrl: String,
     val description: String,
     val datetime: String,
+    val channelTitle: String,
     val isBookmarked: Boolean,
 ) : Parcelable
 
-fun TestModel2.toDetailModel() = DetailModel(
-    id = id,
-    title = title,
-    imgUrl = imgUrl,
-    description = description,
-    datetime = datetime,
-    isBookmarked = isBookmarked,
-)
+fun SearchModel.toDetailModel(): DetailModel {
+    return DetailModel(
+        title = title,
+        imgUrl = imgUrl,
+        description = description,
+        datetime = datetime,
+        isBookmarked = isBookmarked,
+    )
+}

@@ -2,8 +2,12 @@ package bootcamp.sparta.disneym.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
+import bootcamp.sparta.disneym.model.SearchModel
+import com.bumptech.glide.Glide
 
 /*
 * Copyright 2023 김현준, Inc.
@@ -13,29 +17,40 @@ import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
 *
 * */
 
-class SearchViewAdapter(private val items: List<SearchViewTest>): RecyclerView.Adapter<SearchViewAdapter.ViewHolder>() {
+class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
+    object : DiffUtil.ItemCallback<SearchModel>() {
+        override fun areItemsTheSame(oldItem: SearchModel, newItem: SearchModel): Boolean {
+            return oldItem.imgUrl == newItem.imgUrl
+        }
+
+        override fun areContentsTheSame(oldItem: SearchModel, newItem: SearchModel): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+) {
+
+    class ViewHolder(private val binding: SearchRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind (item: SearchModel)= with(binding) {
+            Glide.with(itemView)
+                .load(item.imgUrl)
+                .into(searchViewThumbnail)
+
+            searchViewTitle.text = item.title
+            searchViewChannelname.text = item.channelTitle
+            searchViewViews.text = item.datetime
+        }
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = SearchRecyclerViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
-        holder.bind(item)
-    }
-
-    inner class ViewHolder(private val binding: SearchRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind (item: SearchViewTest ) {
-            binding.searchViewThumbnail.setImageResource(item.thumbnail)
-            binding.searchViewTitle.text = item.title
-            binding.searchViewChannelname.text = item.channelName
-            binding.searchViewViews.text = item.dataTime
-        }
+        holder.bind(getItem(position))
     }
 }
+

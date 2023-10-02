@@ -17,6 +17,11 @@
     <string name="search_hint">Search</string>
     <string name="search_main_explore">Explore</string>
     <string name="search_originals_btn">Originals</string>
-    <string name="search_movies_btn">Movies</string>
-    <string name="search_series_btn">Series</string>
+    <string name="search_pets_btn">pets</string>
+    <string name="search_news_btn">news</string>
+    <string name="search_mostPopular">most popular</string>
+    <string name="search_shorts">shorts</string>
+    <string name="search_sports">sports</string>
+    <string name="search_comedy">comedy</string>
+
 </resources>

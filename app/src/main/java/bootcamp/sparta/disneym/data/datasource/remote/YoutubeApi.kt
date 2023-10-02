@@ -16,33 +16,36 @@ import retrofit2.http.Query
 * */
 interface YoutubeApi {
 
-	@GET("youtube/v3/videos")
-	suspend fun getPopularVideos(
-		@Query("key") key: String = API_KEY.AUTH_KEY,
-		@Query("part") part: String,
-		@Query("chart") chart: String,
-		@Query("videoCategoryId") categoryId: Int? = null
-	): Response<VideoModel>
 
-	@GET("youtube/v3/videoCategories")
-	suspend fun getVideoCategory(
-		@Query("key") key: String = API_KEY.AUTH_KEY,
-		@Query("part") part: String,
-		@Query("regionCode") regionCode: String
-	): Response<CategoryModel>
+    @GET("youtube/v3/videos")
+    suspend fun getPopularVideos (
+        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("part") part : String,
+        @Query("chart") chart : String,
+        @Query("maxResults") maxResults: Int,
+        @Query("videoCategoryId") videoCategoryId: Int,
+        @Query("regionCode") regionCode: String
+    ) : Response<Videos>
 
-	@GET("youtube/v3/channels")
-	suspend fun getYoutubeChanel(
-		@Query("key") key: String = API_KEY.AUTH_KEY,
-		@Query("part") part: String,
-		@Query("id") id: String
-	): Response<ChannelModel>
+    @GET("youtube/v3/videoCategories")
+    suspend fun getVideoCategory (
+        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("part") part : String,
+        @Query("regionCode") regionCode : String
+        ) : Response<VideoCategories>
 
-	@GET("youtube/v3/search")
-	suspend fun getSearch(
-		@Query("key") key: String = API_KEY.AUTH_KEY,
-		@Query("q") q: String,
-		@Query("part") part: String,
-		@Query("maxResults") maxResults: Int
-	): Response<SearchModel>
+    @GET("youtube/v3/channels")
+    suspend fun getYoutubeChanel (
+        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("part") part : String,
+        @Query("id") id : String
+        ) : Response<Channels>
+
+    @GET("youtube/v3/search")
+    suspend fun getSearch (
+        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("q") q: String,
+        @Query("part") part: String,
+        @Query("maxResults") maxResults: Int
+    ) : Response<Search>
 }

@@ -149,7 +149,7 @@ class BookmarkFragment : Fragment() {
         builder.setIcon(R.mipmap.ic_launcher)
 
         // 버튼 클릭시에 무슨 작업을 할 것인가!
-        val listener = DialogInterface.OnClickListener { p0, p1 ->
+        val listener = DialogInterface.OnClickListener { _, p1 ->
             when (p1) {
                 DialogInterface.BUTTON_POSITIVE -> {
                     for (i in removes.indices) {

@@ -1,9 +1,9 @@
 package bootcamp.sparta.disneym.repository
 
-import bootcamp.sparta.disneym.data.datasource.remote.CategoryModel
-import bootcamp.sparta.disneym.data.datasource.remote.ChannelModel
-import bootcamp.sparta.disneym.data.datasource.remote.SearchModel
-import bootcamp.sparta.disneym.data.datasource.remote.VideoModel
+import bootcamp.sparta.disneym.data.datasource.remote.Channels
+import bootcamp.sparta.disneym.data.datasource.remote.Search
+import bootcamp.sparta.disneym.data.datasource.remote.VideoCategories
+import bootcamp.sparta.disneym.data.datasource.remote.Videos
 import bootcamp.sparta.disneym.data.datasource.remote.YoutubeRetrofit
 import retrofit2.Response
 
@@ -13,43 +13,19 @@ import retrofit2.Response
 * YoutubeRetrofit 객체로 초기화한 API에서 각각의 목록과 정보를 요청하고 반환한다 */
 
 class MainRepository {
+    suspend fun getVideos(part: String, chart: String, key: String, maxResults: Int, videoCategoryId: Int, regionCode: String) : Response<Videos> {
+        return YoutubeRetrofit.youtubeApi.getPopularVideos(part = part, chart = chart, key = key, maxResults = maxResults, videoCategoryId= videoCategoryId, regionCode = regionCode)
+    }
 
-	suspend fun getVideos(
-		part: String,
-		chart: String,
-		categoryId: Int,
-		key: String
-	): Response<VideoModel> {
-		return YoutubeRetrofit.youtubeApi.getPopularVideos(
-			part = part,
-			chart = chart,
-			categoryId = categoryId,
-			key = key
-		)
-	}
+    suspend fun getCategories(part: String, regionCode: String, key: String) : Response<VideoCategories> {
+        return YoutubeRetrofit.youtubeApi.getVideoCategory(part = part, regionCode = regionCode, key = key)
+    }
 
-	suspend fun getCategories(
-		part: String,
-		regionCode: String,
-		key: String
-	): Response<CategoryModel> {
-		return YoutubeRetrofit.youtubeApi.getVideoCategory(
-			part = part,
-			regionCode = regionCode,
-			key = key
-		)
-	}
+    suspend fun getChannels(part: String, id: String, key: String) : Response<Channels> {
+        return YoutubeRetrofit.youtubeApi.getYoutubeChanel(part = part, id = id, key = key)
+    }
 
-	suspend fun getChannels(part: String, id: String, key: String): Response<ChannelModel> {
-		return YoutubeRetrofit.youtubeApi.getYoutubeChanel(part = part, id = id, key = key)
-	}
-
-	suspend fun getSearch(
-		part: String,
-		q: String,
-		maxResults: Int,
-		key: String
-	): Response<SearchModel> {
-		return YoutubeRetrofit.youtubeApi.getSearch(part = part, q = q, maxResults = 50, key = key)
-	}
+    suspend fun getSearch(part: String, q: String, maxResults: Int, key: String) : Response<Search>{
+        return YoutubeRetrofit.youtubeApi.getSearch(part = part, q = q, maxResults = maxResults, key = key)
+    }
 }

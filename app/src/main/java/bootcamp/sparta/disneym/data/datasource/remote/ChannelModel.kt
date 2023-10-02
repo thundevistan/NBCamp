@@ -8,10 +8,7 @@ import com.google.gson.annotations.SerializedName
 * Json에서 여러 필드와 매핑하여 채널에 대한 정보를 가져옴
 * */
 
-data class ChannelModel(
-    @SerializedName("channels")
-    val channels : List<Channels>
-) {
+
 
     data class Channels(
         @SerializedName("kind")
@@ -21,13 +18,13 @@ data class ChannelModel(
         val etag : String,
 
         @SerializedName("items")
-        val items : List<Items>,
+        val items : List<ItemsChannel>,
 
         @SerializedName("pageInfo")
-        val pageInfo: PageInfo
+        val pageInfo: PageInfoChannel
     )
 
-    data class PageInfo(
+    data class PageInfoChannel(
         @SerializedName("totalResults")
         val totalResults: Int,
 
@@ -35,7 +32,7 @@ data class ChannelModel(
         val resultsPerPage: Int
     )
 
-    data class Items(
+    data class ItemsChannel(
         @SerializedName("kind")
         val kind: String,
 
@@ -60,6 +57,5 @@ data class ChannelModel(
         val publishedAt: String,
 
         @SerializedName("thumbnails")
-        val thumbnails: VideoModel.ThumbnailsYT
+        val thumbnails: ThumbnailsYT
     )
-}

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.model.HomeModel
+import bootcamp.sparta.disneym.model.SearchModel
 import bootcamp.sparta.disneym.model.TestModel1
-import bootcamp.sparta.disneym.model.TestModel2
 import bootcamp.sparta.disneym.model.toBookmarkModel
 import bootcamp.sparta.disneym.model.toDetailModel
 import bootcamp.sparta.disneym.model.toHomeModel
@@ -37,7 +37,7 @@ class MainSharedViewModel : ViewModel() {
     fun <T> updateDetailItem(updateModel: T) {
         val detailModel = when (updateModel) {
             is TestModel1 -> updateModel.toDetailModel()
-            is TestModel2 -> updateModel.toDetailModel()
+            is SearchModel -> updateModel.toDetailModel()
             else -> return // 다른 값이 들어왔을 경우
         }
         _detailEvent.value = MainSharedEventForDetail.UpdateDetailItem(detailModel)

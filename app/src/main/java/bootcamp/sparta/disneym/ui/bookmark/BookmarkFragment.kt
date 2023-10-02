@@ -14,8 +14,8 @@ import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.util.Util
-import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
-import bootcamp.sparta.disneym.viewmodel.bookmark.BookmarkViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.bookmark.BookmarkViewModel
 
 /*
 * 작성자: 서정한

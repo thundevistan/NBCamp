@@ -1,5 +1,7 @@
 package bootcamp.sparta.disneym.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.viewmodel.MainSharedEventForDetail
-import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
-import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
-import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModelFactory
+import bootcamp.sparta.disneym.ui.MainActivity
+import bootcamp.sparta.disneym.util.Util
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModelFactory
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -61,7 +65,7 @@ class DetailFragment : Fragment() {
                 // https://www.youtube.com/watch?v=42fmMP81EvA&t=2296s -> 42fmMP81EvA
                 // 나중에 변환해주는 함수 추가 예정
                 val videoId = "42fmMP81EvA"
-                youTubePlayer.loadVideo(videoId, 0f)
+                youTubePlayer.cueVideo(videoId, 0f)
             }
         })
     }
@@ -98,7 +102,13 @@ class DetailFragment : Fragment() {
 
         }
         detailShareBtn.setOnClickListener {
-            Toast.makeText(context, "* 공유 기능 구현 예정 *", Toast.LENGTH_SHORT).show()
+            // context를 넣어줄 때 널체크를 해줌으로써 안정성을 높여줌
+            // requireContext를 사용했을 땐 context가 null일 경우 IllegalStateException 발생
+            activity?.let { context ->
+                viewModel.detailItem.value?.let { detailItem ->
+                    Util.shareUrl(context, detailItem.imgUrl)
+                }
+            }
         }
     }
 

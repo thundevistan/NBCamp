@@ -1,11 +1,11 @@
-package bootcamp.sparta.disneym.viewmodel.bookmark
+package bootcamp.sparta.disneym.ui.viewmodel.bookmark
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
-import bootcamp.sparta.disneym.viewmodel.detail.DetailViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
 
 /*
 * 작성자: 서정한

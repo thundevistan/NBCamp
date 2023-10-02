@@ -16,11 +16,14 @@ import bootcamp.sparta.disneym.ui.search.SearchFragment
  * 4개의 주요 프래그먼트를 연결합니다.
  */
 class ViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
-	val fragments: List<Fragment>
+	val fragments = listOf<Fragment>(
+		HomeFragment(),
+		SearchFragment(),
+		BookmarkFragment(),
+		MyPageFragment(),
+	)
 
-	init {
-		fragments = listOf(HomeFragment(), SearchFragment(), BookmarkFragment(), MyPageFragment())
-	}
+	fun getDeatilFragment() : DetailFragment = DetailFragment.newInstance()
 
 	override fun getItemCount(): Int {
 		return fragments.size

@@ -65,7 +65,7 @@ class HomeViewModel : ViewModel() {
 					REGIONCOLDE
 				).body()
 
-			val filmList: List<HomeModel> = response!!.items.map {
+			val filmList: List<HomeModel> = response?.items?.map {
 				HomeModel(
 					it.id,
 					it.snippet.title,
@@ -73,7 +73,7 @@ class HomeViewModel : ViewModel() {
 					it.snippet.thumbnails.high.url,
 					it.snippet.publishedAt
 				)
-			}
+			}.orEmpty()
 
 			_films.value = filmList
 		}

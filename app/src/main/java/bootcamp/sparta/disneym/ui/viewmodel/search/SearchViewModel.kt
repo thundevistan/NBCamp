@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.viewmodel.search
+package bootcamp.sparta.disneym.ui.viewmodel.search
 
 import android.util.Log
 import androidx.lifecycle.LiveData

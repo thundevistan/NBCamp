@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.HomeRecyclerItemBinding
 import bootcamp.sparta.disneym.model.HomeModel
-import bootcamp.sparta.disneym.viewmodel.Home.HomeViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
 import com.bumptech.glide.Glide
 
 /**

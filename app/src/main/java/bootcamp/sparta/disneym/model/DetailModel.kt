@@ -12,8 +12,6 @@ data class DetailModel(
     val description: String,
     val datetime: String,
     val isBookmarked: Boolean,
-    val viewType: BookmarkViewType = BookmarkViewType.Normal,
-    val isChecked: Boolean = false,
 ) : Parcelable
 
 // 민수 : 모델 매핑 확장함수 Detail -> Bookmark
@@ -24,8 +22,6 @@ fun DetailModel.toBookmarkModel() = BookmarkModel(
     description = description,
     datetime = datetime,
     isBookmarked = isBookmarked,
-    viewType = viewType,
-    isChecked = isChecked
 )
 // 민수 : 모델 매핑 확장함수 Detail -> Home
 fun DetailModel.toHomeModel() = HomeModel(
@@ -35,6 +31,4 @@ fun DetailModel.toHomeModel() = HomeModel(
     description = description,
     datetime = datetime,
     isBookmarked = isBookmarked,
-    viewType = viewType,
-    isChecked = isChecked
 )

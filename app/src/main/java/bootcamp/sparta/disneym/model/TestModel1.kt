@@ -17,8 +17,6 @@ data class TestModel1(
     val description: String,
     val datetime: String,
     val isBookmarked: Boolean,
-    val viewType: BookmarkViewType = BookmarkViewType.Normal,
-    val isChecked: Boolean = false,
 ) : Parcelable
 
 fun TestModel1.toDetailModel() = DetailModel(
@@ -28,6 +26,4 @@ fun TestModel1.toDetailModel() = DetailModel(
     description = description,
     datetime = datetime,
     isBookmarked = isBookmarked,
-    viewType = viewType,
-    isChecked = isChecked
 )

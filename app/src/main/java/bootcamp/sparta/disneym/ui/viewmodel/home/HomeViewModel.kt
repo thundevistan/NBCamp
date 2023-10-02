@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.viewmodel.Home
+package bootcamp.sparta.disneym.ui.viewmodel.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,6 @@ import bootcamp.sparta.disneym.data.datasource.remote.VideoModel
 import bootcamp.sparta.disneym.model.HomeModel
 import bootcamp.sparta.disneym.repository.MainRepository
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 const val PART = "snippet"
 const val CHART = "mostPopular""

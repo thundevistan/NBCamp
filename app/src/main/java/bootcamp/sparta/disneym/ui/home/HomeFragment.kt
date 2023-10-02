@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
-import bootcamp.sparta.disneym.viewmodel.Home.HomeViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
 import kotlin.math.abs
 
 /**

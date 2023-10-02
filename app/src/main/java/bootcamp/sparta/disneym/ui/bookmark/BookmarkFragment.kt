@@ -8,11 +8,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.util.Util
+import bootcamp.sparta.disneym.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.viewmodel.bookmark.BookmarkViewModel
 
 /*
@@ -29,6 +31,8 @@ class BookmarkFragment : Fragment() {
         })
     }
     private val viewModel: BookmarkViewModel by viewModels()
+
+    private val sharedViewModel: MainSharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,9 +69,18 @@ class BookmarkFragment : Fragment() {
         }
     }
 
-    private fun initViewModel() = with(viewModel) {
-        list.observe(viewLifecycleOwner) { list ->
-            adapter.submitList(list)
+    private fun initViewModel() {
+        with(viewModel) {
+            list.observe(viewLifecycleOwner) { list ->
+                adapter.submitList(list)
+            }
+        }
+
+        with(sharedViewModel) {
+            bookmarkEvent.observe(viewLifecycleOwner) { list ->
+                // 민수 : viewModel상의 리스트를 교체해줄 코드가 필요합니다! :)
+                // 기능 구현 후 주석 삭제 부탁드립니다!! 🙏🏻🙏🏻🙏🏻
+            }
         }
     }
 

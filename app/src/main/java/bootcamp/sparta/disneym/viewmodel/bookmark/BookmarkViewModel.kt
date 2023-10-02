@@ -29,6 +29,7 @@ class BookmarkViewModel : ViewModel() {
                     imgUrl = "https://picsum.photos/150/100",
                     description = "영상설명영상설명영상설명영상설명${i}",
                     datetime = "2323년 9월 2${i}일",
+                    true
                 )
             )
         }

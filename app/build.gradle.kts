@@ -25,9 +25,6 @@ android {
 
         buildConfigField("String", "YOUTUBE_API_KEY", getApiKey("youtube_api_key"))
 
-
-
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

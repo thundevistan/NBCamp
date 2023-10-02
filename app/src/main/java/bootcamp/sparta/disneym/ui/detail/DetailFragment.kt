@@ -73,7 +73,7 @@ class DetailFragment : Fragment() {
     private fun initViewModel() {
         with(viewModel) {
             detailItem.observe(viewLifecycleOwner, Observer {
-                // list 변경 감지 시 처리 추가 예정
+                sharedViewModel.updateBookmarkItems(it)
             })
         }
         with(sharedViewModel) {
@@ -81,6 +81,7 @@ class DetailFragment : Fragment() {
                 when (event) {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
+
                     }
                 }
             })

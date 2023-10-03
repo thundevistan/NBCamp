@@ -37,4 +37,6 @@
     <string name="my_monthly_description_tv">Manage your subscription preferences by going to your\nGoogle Play account.</string>
     <string name="my_version">VERSION</string>
     <string name="my_version_text">1.17.1 (2107290)</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
 </resources>

@@ -63,13 +63,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/my_id_et"
+        <TextView
+            android:id="@+id/my_id_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@android:color/transparent"
-            android:inputType="textEmailAddress"
+            android:textSize="18sp"
             android:text="@string/my_page_id"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -82,9 +81,9 @@
             android:background="@color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_btn_edit"
-            app:layout_constraintBottom_toBottomOf="@id/my_id_et"
-            app:layout_constraintEnd_toEndOf="@id/my_id_et"
-            app:layout_constraintTop_toTopOf="@id/my_id_et" />
+            app:layout_constraintBottom_toBottomOf="@id/my_id_tv"
+            app:layout_constraintEnd_toEndOf="@id/my_id_tv"
+            app:layout_constraintTop_toTopOf="@id/my_id_tv" />
 
         <View
             android:id="@+id/view1"
@@ -93,8 +92,8 @@
             android:layout_marginTop="20dp"
             android:background="@color/common_tab_unclicked_icon_grey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/my_id_et"
-            app:layout_constraintTop_toBottomOf="@id/my_id_et" />
+            app:layout_constraintStart_toStartOf="@id/my_id_tv"
+            app:layout_constraintTop_toBottomOf="@id/my_id_tv" />
 
         <TextView
             android:id="@+id/pw_tv"
@@ -108,13 +107,11 @@
             app:layout_constraintStart_toStartOf="@id/view1"
             app:layout_constraintTop_toBottomOf="@id/view1" />
 
-        <EditText
-            android:id="@+id/my_pw_et"
+        <TextView
+            android:id="@+id/my_pw_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:background="@android:color/transparent"
-            android:inputType="numberPassword"
             android:text="@string/my_page_pw"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -130,9 +127,9 @@
             android:background="@color/transparent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_btn_edit"
-            app:layout_constraintBottom_toBottomOf="@id/my_pw_et"
-            app:layout_constraintEnd_toEndOf="@id/my_pw_et"
-            app:layout_constraintTop_toTopOf="@id/my_pw_et" />
+            app:layout_constraintBottom_toBottomOf="@id/my_pw_tv"
+            app:layout_constraintEnd_toEndOf="@id/my_pw_tv"
+            app:layout_constraintTop_toTopOf="@id/my_pw_tv" />
 
         <View
             android:id="@+id/view2"

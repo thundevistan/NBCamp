@@ -29,6 +29,8 @@
         android:layout_marginBottom="8dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:paddingStart="70dp"
+        android:paddingEnd="70dp"
         app:layout_constraintBottom_toTopOf="@+id/main_middle_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

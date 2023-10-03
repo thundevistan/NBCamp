@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
@@ -107,6 +108,7 @@ class HomeFragment : Fragment() {
 		}
 
 		transform.apply {
+			addTransformer(MarginPageTransformer(8))
 			addTransformer { view: View, fl: Float ->
 				val v = 1 - abs(fl)
 				view.scaleY = 0.8f + v * 0.2f

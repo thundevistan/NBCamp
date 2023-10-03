@@ -18,6 +18,17 @@ import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
  * 앱 실행 시 가장 먼저 보여지는 프래그먼트 입니다.
  * 최상단부터 viewpager -> 카테고리 버튼 -> scrollView 순서의 구조입니다.
  */
+
+enum class Category {
+	//	POPULAR,
+	FILM,
+	PETS,
+	MUSIC,
+	PEOPLE,
+	GAMING,
+	ENTERTAINMENT
+}
+
 class HomeFragment : Fragment() {
 
 	private var _binding: FragmentHomeBinding? = null
@@ -39,7 +50,6 @@ class HomeFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 //		upperViewPager()
-		lowerRecycler()
 		initViewModel()
 	}
 
@@ -51,6 +61,34 @@ class HomeFragment : Fragment() {
 				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
 				it
 			})
+		}
+
+		// 카테고리 버튼
+		binding.mainLowerRecycler.adapter = adapter
+		with(binding) {
+			mainFilmBtn.setOnClickListener {
+				categoryClick(Category.FILM)
+			}
+
+			mainPetsBtn.setOnClickListener {
+				categoryClick(Category.PETS)
+			}
+
+			mainMusicBtn.setOnClickListener {
+				categoryClick(Category.MUSIC)
+			}
+
+			mainMoviesBtn.setOnClickListener {
+				categoryClick(Category.PEOPLE)
+			}
+
+			mainGamingBtn.setOnClickListener {
+				categoryClick(Category.GAMING)
+			}
+
+			mainEducationBtn.setOnClickListener {
+				categoryClick(Category.ENTERTAINMENT)
+			}
 		}
 	}
 
@@ -74,12 +112,59 @@ class HomeFragment : Fragment() {
 //		}
 //	}
 
-	private fun lowerRecycler() = with(binding) {
-		mainLowerRecycler.adapter = adapter
+	// 카테고리 버튼 이벤트 처리
+	private fun categoryClick(category: Category) = when (category) {
+		Category.FILM -> {
+			viewModel.getFilm()
+			viewModel.films.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
+			}
+		}
 
-		viewModel.films.observe(viewLifecycleOwner) {
-			if (!it.isNullOrEmpty()) {
-				adapter.setData(it)
+		Category.PETS -> {
+			viewModel.getPets()
+			viewModel.pets.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
+			}
+		}
+
+		Category.MUSIC -> {
+			viewModel.getMusic()
+			viewModel.music.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
+			}
+		}
+
+		Category.PEOPLE -> {
+			viewModel.getPeople()
+			viewModel.people.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
+			}
+		}
+
+		Category.GAMING -> {
+			viewModel.getGaming()
+			viewModel.gaming.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
+			}
+		}
+
+		Category.ENTERTAINMENT -> {
+			viewModel.getEntertainment()
+			viewModel.entertainment.observe(viewLifecycleOwner) {
+				if (!it.isNullOrEmpty()) {
+					adapter.setData(it)
+				}
 			}
 		}
 	}

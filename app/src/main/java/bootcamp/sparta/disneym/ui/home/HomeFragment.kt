@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.CompositePageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
+import kotlin.math.abs
 
 /**
  * Copyright 2023 김민준, Inc.
@@ -34,7 +36,8 @@ class HomeFragment : Fragment() {
 	private var _binding: FragmentHomeBinding? = null
 	private val binding get() = _binding!!
 	private val viewModel: HomeViewModel by viewModels()
-	private val adapter = HomeRecyclerAdapter()
+	private val rvAdapter = HomeRecyclerAdapter()
+	private val vpAdapter = HomeViewPagerAdapter()
 
 	private val sharedViewModel: MainSharedViewModel by activityViewModels()
 
@@ -49,7 +52,7 @@ class HomeFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-//		upperViewPager()
+		upperViewPager()
 		initViewModel()
 	}
 
@@ -64,7 +67,7 @@ class HomeFragment : Fragment() {
 		}
 
 		// 카테고리 버튼
-		binding.mainLowerRecycler.adapter = adapter
+		binding.mainLowerRecycler.adapter = rvAdapter
 		with(binding) {
 			mainFilmBtn.setOnClickListener {
 				categoryClick(Category.FILM)
@@ -92,25 +95,31 @@ class HomeFragment : Fragment() {
 		}
 	}
 
-	// 위쪽 viewpager 출력
-//	private fun upperViewPager() {
-//		val adapter = HomeViewPagerAdapter(requireActivity())
-//		val transform = CompositePageTransformer()
-//
-//		binding.mainUpperViewPager.apply {
-//			this.adapter = adapter
-//			offscreenPageLimit = 3
-//			getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
-//			setPageTransformer(transform)
-//		}
-//
-//		transform.apply {
-//			addTransformer(ViewPager2.PageTransformer { view: View, fl: Float ->
-//				val v = 1 - abs(fl)
-//				view.scaleY = 0.8f + v * 0.2f
-//			})
-//		}
-//	}
+	// 최상단 viewpager 출력
+	private fun upperViewPager() {
+		val transform = CompositePageTransformer()
+
+		binding.mainUpperViewPager.apply {
+			this.adapter = vpAdapter
+			offscreenPageLimit = 3
+			getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+			setPageTransformer(transform)
+		}
+
+		transform.apply {
+			addTransformer { view: View, fl: Float ->
+				val v = 1 - abs(fl)
+				view.scaleY = 0.8f + v * 0.2f
+			}
+		}
+
+		viewModel.getPopular()
+		viewModel.popular.observe(viewLifecycleOwner) {
+			if (!it.isNullOrEmpty()) {
+				vpAdapter.setData(it)
+			}
+		}
+	}
 
 	// 카테고리 버튼 이벤트 처리
 	private fun categoryClick(category: Category) = when (category) {
@@ -118,7 +127,7 @@ class HomeFragment : Fragment() {
 			viewModel.getFilm()
 			viewModel.films.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}
@@ -127,7 +136,7 @@ class HomeFragment : Fragment() {
 			viewModel.getPets()
 			viewModel.pets.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}
@@ -136,7 +145,7 @@ class HomeFragment : Fragment() {
 			viewModel.getMusic()
 			viewModel.music.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}
@@ -145,7 +154,7 @@ class HomeFragment : Fragment() {
 			viewModel.getPeople()
 			viewModel.people.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}
@@ -154,7 +163,7 @@ class HomeFragment : Fragment() {
 			viewModel.getGaming()
 			viewModel.gaming.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}
@@ -163,7 +172,7 @@ class HomeFragment : Fragment() {
 			viewModel.getEntertainment()
 			viewModel.entertainment.observe(viewLifecycleOwner) {
 				if (!it.isNullOrEmpty()) {
-					adapter.setData(it)
+					rvAdapter.setData(it)
 				}
 			}
 		}

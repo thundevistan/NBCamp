@@ -34,7 +34,12 @@ class SearchFragment : Fragment() {
     private var searchViewVisible = false
 
     private lateinit var viewModel: SearchViewModel
-//	private lateinit var viewVideoModel by viewModels<>(): SearchPopularViewModel
+
+    private val part = "snippet"
+    private val key = API_KEY.AUTH_KEY
+    private val maxResults = 50
+    private val regionCode = "KR"
+    private val chart = "mostPopular"
 
 
     override fun onCreateView(
@@ -47,10 +52,10 @@ class SearchFragment : Fragment() {
             this,
             SearchViewModelFactory(MainRepository())
         ).get(SearchViewModel::class.java)
-//		viewVideoModel = ViewModelProvider(this, SearchPopularViewModel(MainRepository())).get(SearchPopularViewModel::class.java)
 
 
         showMainView()
+        clickBtn()
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
@@ -84,77 +89,6 @@ class SearchFragment : Fragment() {
             false
         }
 
-        binding.searchPopularBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResult = 50
-            val videoCategoryId =0
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResult, videoCategoryId, regionCode)
-        }
-
-        binding.searchSportsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 17
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchShortsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 1
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-            Log.d("search", "click")
-        }
-
-        binding.searchNewsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 25
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchComedyBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 23
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchPetsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 15
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-            Log.d("search", "click")
-
-        }
-
-
-
         return binding.root
     }
 
@@ -171,7 +105,7 @@ class SearchFragment : Fragment() {
 
         binding.searchMainRecycler.itemAnimator = null
 
-        searchVideo()
+        searchVideo(0)
     }
 
     private fun showViewView() {
@@ -190,10 +124,6 @@ class SearchFragment : Fragment() {
     }
 
     private fun performSearch(query: String) {
-        val part = "snippet"
-        val maxResults = 50
-        val key = API_KEY.AUTH_KEY
-
         val q = query
         Log.d("SearchFragment", "performSearch() 호출 - 검색어: $q")
 
@@ -205,18 +135,21 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun searchVideo() {
-        val part = "snippet"
-        val chart = "mostPopular"
-        val key = API_KEY.AUTH_KEY
-        val maxResults = 50
-        val videoCategoryId = 0
-        val regionCode = "KR"
+    private fun searchVideo(videoCategoryId: Int) {
 
         viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
 
         viewModel.getVideo.observe(viewLifecycleOwner, Observer {
             mainAdapter.submitList(it)
         })
+    }
+
+    private fun clickBtn()= with(binding) {
+        searchPopularBtn.setOnClickListener { searchVideo(0) }
+        searchSportsBtn.setOnClickListener { searchVideo(17) }
+        searchShortsBtn.setOnClickListener { searchVideo(1) }
+        searchNewsBtn.setOnClickListener { searchVideo(25) }
+        searchComedyBtn.setOnClickListener { searchVideo(23) }
+        searchPetsBtn.setOnClickListener { searchVideo(15) }
     }
 }

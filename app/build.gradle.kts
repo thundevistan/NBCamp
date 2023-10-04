@@ -75,6 +75,7 @@ dependencies {
 
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.fragment:fragment:1.6.1")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     //Hilt

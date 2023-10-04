@@ -1,6 +1,8 @@
 package bootcamp.sparta.disneym.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,12 @@ import com.bumptech.glide.Glide
 class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 	private var oldItems = emptyList<HomeModel>()
+
+	interface ItemClick {
+		fun onClick(view: View, position: Int)
+	}
+
+	var itemClick: ItemClick? = null
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 		val view = HomeRecyclerItemBinding.inflate(
@@ -43,7 +51,7 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 			Glide.with(binding.root)
 				.load(data.imgUrl)
 				.into(binding.homeThumbnailIv)
-
+			Log.d("imgUrl", data.imgUrl)
 		}
 	}
 

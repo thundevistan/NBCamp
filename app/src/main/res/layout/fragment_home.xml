@@ -29,6 +29,8 @@
         android:layout_marginBottom="8dp"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:paddingStart="80dp"
+        android:paddingEnd="80dp"
         app:layout_constraintBottom_toTopOf="@+id/main_middle_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,20 +48,20 @@
         app:layout_constraintTop_toBottomOf="@+id/main_upper_viewPager">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_trending_btn"
+            android:id="@+id/main_film_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_explore_btn"
             android:text="@string/main_explore_film"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/main_shopping_btn"
-            app:layout_constraintEnd_toStartOf="@+id/main_shopping_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/main_pets_btn"
+            app:layout_constraintEnd_toStartOf="@+id/main_pets_btn"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/main_shopping_btn" />
+            app:layout_constraintTop_toTopOf="@+id/main_pets_btn" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_shopping_btn"
+            android:id="@+id/main_pets_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -71,7 +73,7 @@
             app:layout_constraintBottom_toTopOf="@+id/main_gaming_btn"
             app:layout_constraintEnd_toStartOf="@+id/main_music_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/main_trending_btn"
+            app:layout_constraintStart_toEndOf="@+id/main_film_btn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -81,18 +83,18 @@
             android:background="@drawable/selector_explore_btn"
             android:text="@string/main_explore_music"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/main_shopping_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/main_pets_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/main_shopping_btn"
-            app:layout_constraintTop_toTopOf="@+id/main_shopping_btn" />
+            app:layout_constraintStart_toEndOf="@+id/main_pets_btn"
+            app:layout_constraintTop_toTopOf="@+id/main_pets_btn" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_movies_btn"
+            android:id="@+id/main_people_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_explore_btn"
-            android:text="@string/main_explore_movies"
+            android:text="@string/main_explore_people"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/main_gaming_btn"
             app:layout_constraintEnd_toStartOf="@+id/main_gaming_btn"
@@ -111,18 +113,20 @@
             android:text="@string/main_explore_gaming"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/main_learning_btn"
+            app:layout_constraintEnd_toStartOf="@+id/main_entertainment_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/main_movies_btn"
-            app:layout_constraintTop_toBottomOf="@+id/main_shopping_btn" />
+            app:layout_constraintStart_toEndOf="@+id/main_people_btn"
+            app:layout_constraintTop_toBottomOf="@+id/main_pets_btn" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/main_learning_btn"
+            android:id="@+id/main_entertainment_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/selector_explore_btn"
-            android:text="@string/main_explore_education"
+            android:maxLines="1"
+            android:text="@string/main_explore_entertainment"
             android:textColor="@color/white"
+            android:textSize="13dp"
             app:layout_constraintBottom_toBottomOf="@+id/main_gaming_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

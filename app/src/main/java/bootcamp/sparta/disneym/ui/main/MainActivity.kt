@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+	val viewPagerAdapter by lazy { ViewPagerAdapter(this) }
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -25,17 +26,17 @@ class MainActivity : AppCompatActivity() {
 
 		initView()
 
-		// viewPager <-> tabLayout
-		tabLayoutMediator(binding.tabLayout, binding.viewpager)
 	}
 
 	private fun initView() = with(binding) {
-
+		// viewPager <-> tabLayout
+		tabLayoutMediator(tabLayout, viewpager)
 	}
+
 
 	// viewPager <-> tabLayout 연결하는 함수
 	private fun tabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2) {
-		binding.viewpager.adapter = ViewPagerAdapter(this)
+		binding.viewpager.adapter = viewPagerAdapter
 
 
 		TabLayoutMediator(tabLayout, viewPager) { tab, position ->

@@ -1,12 +1,15 @@
 package bootcamp.sparta.disneym.ui.search
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
 import bootcamp.sparta.disneym.model.SearchModel
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import com.bumptech.glide.Glide
 
 /*
@@ -17,7 +20,7 @@ import com.bumptech.glide.Glide
 *
 * */
 
-class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
+class SearchViewAdapter(private val sharedViewModel: MainSharedViewModel) : ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<SearchModel>() {
         override fun areItemsTheSame(oldItem: SearchModel, newItem: SearchModel): Boolean {
             return oldItem.imgUrl == newItem.imgUrl
@@ -29,10 +32,14 @@ class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
 
     }
 ) {
+    fun setOnItemClickListener(listener: (SearchModel) -> Unit) {
+        onItemClickListener = listener
+    }
 
+    private var onItemClickListener: ((SearchModel) -> Unit)? = null
     class ViewHolder(private val binding: SearchRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind (item: SearchModel)= with(binding) {
+        fun bind (item: SearchModel, sharedViewModel: MainSharedViewModel)= with(binding) {
             Glide.with(itemView)
                 .load(item.imgUrl)
                 .into(searchViewThumbnail)
@@ -40,8 +47,8 @@ class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
             searchViewTitle.text = item.title
             searchViewChannelname.text = item.channelTitle
             searchViewViews.text = item.datetime
-        }
 
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -50,7 +57,15 @@ class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.bind(item, sharedViewModel)
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(item)
+            Log.d("shared", "추가 $item")
+        }
+
     }
+
 }
 

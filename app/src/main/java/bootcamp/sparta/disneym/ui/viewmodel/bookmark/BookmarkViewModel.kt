@@ -18,30 +18,6 @@ class BookmarkViewModel : ViewModel() {
     private var _list: MutableLiveData<List<BookmarkModel>> = MutableLiveData()
     val list get() = _list
 
-    init {
-        _list.value = initData()
-    }
-
-    // 더미데이터 init
-    private fun initData(): List<BookmarkModel> {
-        val list: MutableList<BookmarkModel> = mutableListOf()
-        val genId = AtomicLong(1L)
-        for (i in 0 until 10) {
-            list.add(
-                BookmarkModel(
-                    id = genId.getAndIncrement().toString(),
-                    title = "영상제목${i}",
-                    imgUrl = "https://picsum.photos/150/100",
-                    description = "영상설명영상설명영상설명영상설명${i}",
-                    datetime = "2323년 9월 2${i}일",
-                    isBookmarked = true,
-
-                )
-            )
-        }
-        return list.toList()
-    }
-
     // 북마크 타입 변경
     fun updateBookmarkListType(type: BookmarkViewType) {
         val current = list.value.orEmpty().toMutableList()

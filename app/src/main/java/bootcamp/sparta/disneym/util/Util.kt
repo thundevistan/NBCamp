@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.core.content.ContextCompat.startActivity
-import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.model.BookmarkModel
 import com.google.gson.Gson
 
@@ -53,4 +51,5 @@ object Util {
         }, null)
         context.startActivity(share)
     }
+
 }

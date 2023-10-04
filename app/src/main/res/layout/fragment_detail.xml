@@ -100,7 +100,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/detail_title"
-                app:layout_constraintTop_toBottomOf="@id/detail_datetime_tv" />
+                app:layout_constraintTop_toBottomOf="@id/detail_player_description" />
 
             <View
                 android:id="@+id/view1"
@@ -146,7 +146,7 @@
                 android:text="@string/detail_test_description"
                 android:textColor="@color/common_sub_text_grey"
                 app:layout_constraintStart_toStartOf="@id/detail_title"
-                app:layout_constraintTop_toBottomOf="@id/detail_player_title" />
+                app:layout_constraintTop_toBottomOf="@id/detail_datetime_tv" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

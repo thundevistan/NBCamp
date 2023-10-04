@@ -20,7 +20,10 @@ import com.bumptech.glide.Glide
 *
 * */
 
-class SearchViewAdapter(private val sharedViewModel: MainSharedViewModel) : ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
+class SearchViewAdapter(
+//    private val sharedViewModel: MainSharedViewModel
+    private val onItemClick : (SearchModel) -> Unit,
+) : ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<SearchModel>() {
         override fun areItemsTheSame(oldItem: SearchModel, newItem: SearchModel): Boolean {
             return oldItem.imgUrl == newItem.imgUrl
@@ -32,14 +35,17 @@ class SearchViewAdapter(private val sharedViewModel: MainSharedViewModel) : List
 
     }
 ) {
-    fun setOnItemClickListener(listener: (SearchModel) -> Unit) {
-        onItemClickListener = listener
-    }
+//    fun setOnItemClickListener(listener: (SearchModel) -> Unit) {
+//        onItemClickListener = listener
+//    }
+//
+//    private var onItemClickListener: ((SearchModel) -> Unit)? = null
+    class ViewHolder(
+    private val binding: SearchRecyclerViewItemBinding,
+    private val onItemClick: (SearchModel) -> Unit,
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-    private var onItemClickListener: ((SearchModel) -> Unit)? = null
-    class ViewHolder(private val binding: SearchRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind (item: SearchModel, sharedViewModel: MainSharedViewModel)= with(binding) {
+        fun bind (item: SearchModel)= with(binding) {
             Glide.with(itemView)
                 .load(item.imgUrl)
                 .into(searchViewThumbnail)
@@ -48,22 +54,28 @@ class SearchViewAdapter(private val sharedViewModel: MainSharedViewModel) : List
             searchViewChannelname.text = item.channelTitle
             searchViewViews.text = item.datetime
 
+            itemView.setOnClickListener {
+                onItemClick(item)
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = SearchRecyclerViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(
+            binding,
+            onItemClick
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, sharedViewModel)
+        holder.bind(item)
 
-        holder.itemView.setOnClickListener {
-            onItemClickListener?.invoke(item)
-            Log.d("shared", "추가 $item")
-        }
+//        holder.itemView.setOnClickListener {
+//            onItemClickListener?.invoke(item)
+//            Log.d("shared", "추가 $item")
+//        }
 
     }
 

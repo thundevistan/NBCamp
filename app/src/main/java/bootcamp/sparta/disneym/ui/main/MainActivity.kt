@@ -56,14 +56,11 @@ class MainActivity : AppCompatActivity() {
                 0 -> tab.icon =
                     ResourcesCompat.getDrawable(resources, R.drawable.ic_home, theme)
 
-
                 1 -> tab.icon =
                     ResourcesCompat.getDrawable(resources, R.drawable.ic_search, theme)
 
-
                 2 -> tab.icon =
                     ResourcesCompat.getDrawable(resources, R.drawable.ic_download, theme)
-
 
                 3 -> tab.icon =
                     ResourcesCompat.getDrawable(resources, R.drawable.ic_user, theme)

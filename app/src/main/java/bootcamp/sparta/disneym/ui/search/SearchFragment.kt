@@ -20,16 +20,12 @@ import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.model.SearchModel
-import bootcamp.sparta.disneym.model.toDetailModel
 import bootcamp.sparta.disneym.repository.MainRepository
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.detail.DetailFragment
 import bootcamp.sparta.disneym.ui.main.MainActivity
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
-import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
-import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModelFactory
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
@@ -42,6 +38,9 @@ import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 * */
 
 class SearchFragment : Fragment() {
+    companion object {
+        const val BUNDLE_DETAIL = "bundle_detail"
+    }
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
@@ -62,6 +61,7 @@ class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory(repository) }
     private val sharedViewModel: MainSharedViewModel by activityViewModels()
+
     private val detailLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -90,45 +90,16 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.searchViewRecycler.adapter = viewAdapter
+
         initView()
         initViewModel()
     }
 
-    private fun initViewModel() = with(viewModel) {
-//        sharedViewModel.updateDetailItem(updateModel = SearchModel(  ))
-
-//        viewAdapter.setOnItemClickListener { searchModel ->
-//            sharedViewModel.updateDetailItem(searchModel)
-//            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
-//        }
-
-        // detailEvent를 관찰하여 디테일 아이템이 업데이트될 때 화면을 열기
-        searchItem.observe(viewLifecycleOwner) { searchItem ->
-            viewAdapter.submitList(searchItem)
-        }
-
-        getVideo.observe(viewLifecycleOwner) { getVideoItem ->
-            mainAdapter.submitList(getVideoItem)
-        }
-
-        sharedViewModel.detailEvent.observe(viewLifecycleOwner, Observer { event ->
-            when (event) {
-                is MainSharedEventForDetail.UpdateDetailItem -> {
-                    detailLauncher.launch(
-                        DetailActivity.newIntent(
-                            requireContext(),
-                            event.item
-                        )
-                    )
-                }
-
-                else -> Unit
-            }
-        })
-    }
-
     private fun initView() = with(binding) {
         searchViewRecycler.adapter = viewAdapter
+
+
 
         showMainView()
         clickBtn()
@@ -193,6 +164,39 @@ class SearchFragment : Fragment() {
         binding.searchViewRecycler.itemAnimator = null
     }
 
+    private fun initViewModel() = with(viewModel) {
+//        sharedViewModel.updateDetailItem(updateModel = SearchModel(  ))
+
+//        viewAdapter.setOnItemClickListener { searchModel ->
+//            sharedViewModel.updateDetailItem(searchModel)
+//            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
+//        }
+
+        // detailEvent를 관찰하여 디테일 아이템이 업데이트될 때 화면을 열기
+        searchItem.observe(viewLifecycleOwner) { searchItem ->
+            viewAdapter.submitList(searchItem)
+        }
+
+        getVideo.observe(viewLifecycleOwner) { getVideoItem ->
+            mainAdapter.submitList(getVideoItem)
+        }
+
+        sharedViewModel.detailEvent.observe(viewLifecycleOwner, Observer { event ->
+            when (event) {
+                is MainSharedEventForDetail.UpdateDetailItem -> {
+                    detailLauncher.launch(
+                        DetailActivity.newIntent(
+                            requireContext(),
+                            event.item
+                        )
+                    )
+                }
+
+                else -> Unit
+            }
+        })
+    }
+
     private fun performSearch(query: String) {
         val q = query
         Log.d("SearchFragment", "performSearch() 호출 - 검색어: $q")
@@ -214,24 +218,13 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun clickBtn() = with(binding) {
+    private fun clickBtn()= with(binding) {
         searchPopularBtn.setOnClickListener { searchVideo(0) }
         searchSportsBtn.setOnClickListener { searchVideo(17) }
         searchShortsBtn.setOnClickListener { searchVideo(1) }
         searchNewsBtn.setOnClickListener { searchVideo(25) }
         searchComedyBtn.setOnClickListener { searchVideo(23) }
         searchPetsBtn.setOnClickListener { searchVideo(15) }
-    }
-
-    private fun showDetailFragment(detailModel: DetailModel) {
-        Log.d("SearchFragment", "showDetailFragment 호출 - detailModel: $detailModel")
-
-        val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.detail_layout, DetailFragment.newInstance(detailModel))
-        transaction.addToBackStack(null)
-        transaction.commit()
-
-        Log.d("SearchFragment", "디테일 프래그먼트로 전환 완료")
     }
 
     override fun onDestroy() {

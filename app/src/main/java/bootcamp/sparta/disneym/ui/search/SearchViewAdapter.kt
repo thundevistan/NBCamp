@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide
 * */
 
 class SearchViewAdapter(
-//    private val sharedViewModel: MainSharedViewModel
     private val onItemClick : (SearchModel) -> Unit,
 ) : ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<SearchModel>() {
@@ -35,14 +34,9 @@ class SearchViewAdapter(
 
     }
 ) {
-//    fun setOnItemClickListener(listener: (SearchModel) -> Unit) {
-//        onItemClickListener = listener
-//    }
-//
-//    private var onItemClickListener: ((SearchModel) -> Unit)? = null
     class ViewHolder(
-    private val binding: SearchRecyclerViewItemBinding,
-    private val onItemClick: (SearchModel) -> Unit,
+        private val binding: SearchRecyclerViewItemBinding,
+        private val onItemClick: (SearchModel) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind (item: SearchModel)= with(binding) {
@@ -71,13 +65,6 @@ class SearchViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
-
-//        holder.itemView.setOnClickListener {
-//            onItemClickListener?.invoke(item)
-//            Log.d("shared", "추가 $item")
-//        }
-
     }
-
 }
 

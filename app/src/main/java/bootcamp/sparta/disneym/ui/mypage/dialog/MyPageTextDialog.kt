@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.ui.mypage
+package bootcamp.sparta.disneym.ui.mypage.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -6,21 +6,22 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
-import bootcamp.sparta.disneym.databinding.MypageDialogBinding
+import bootcamp.sparta.disneym.databinding.MypageTextDialogBinding
 
 class MyPageTextDialog(
     context: Context,
-    text: String,
+    private val userInfo: String,
     private val okCallback: (String) -> Unit,
 ) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
 
-    private lateinit var binding: MypageDialogBinding
+    private lateinit var binding: MypageTextDialogBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 만들어놓은 dialog_profile.xml 뷰를 띄운다.
-        binding = MypageDialogBinding.inflate(layoutInflater)
+        binding = MypageTextDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.dialogText.setText(userInfo)
         initViews()
     }
 

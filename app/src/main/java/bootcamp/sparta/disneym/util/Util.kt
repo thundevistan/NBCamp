@@ -2,15 +2,8 @@ package bootcamp.sparta.disneym.util
 
 import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import android.view.LayoutInflater
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
-import bootcamp.sparta.disneym.R
-import bootcamp.sparta.disneym.R.layout.mypage_dialog
 import bootcamp.sparta.disneym.model.BookmarkModel
 import com.google.gson.Gson
 

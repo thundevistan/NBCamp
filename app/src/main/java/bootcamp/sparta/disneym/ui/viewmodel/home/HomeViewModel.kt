@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 const val PART = "snippet"
 const val CHART = "mostPopular"
-const val MAXRESULT = 50
+const val MAXRESULT = 51
 const val REGIONCODE = "KR"
 const val POPULAR = 0
 const val FILM = 1

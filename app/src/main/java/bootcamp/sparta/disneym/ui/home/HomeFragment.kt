@@ -1,5 +1,6 @@
 package bootcamp.sparta.disneym.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
+import bootcamp.sparta.disneym.ui.detail.DetailFragment
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
 import kotlin.math.abs
@@ -55,6 +58,24 @@ class HomeFragment : Fragment() {
 
 		upperViewPager()
 		initViewModel()
+
+
+		binding.mainLowerRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+			override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+				if (!recyclerView.canScrollVertically(-1)) {
+					binding.apply {
+						mainUpperViewPager.visibility = View.VISIBLE
+						mainMiddleContainer.visibility = View.VISIBLE
+					}
+				}
+//				else () {
+//					binding.apply {
+//						mainUpperViewPager.visibility = View.VISIBLE
+//						mainMiddleContainer.visibility = View.VISIBLE
+//					}
+//				}
+			}
+		})
 	}
 
 	private fun initViewModel() {
@@ -63,7 +84,7 @@ class HomeFragment : Fragment() {
 				// sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
 				// 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
 				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
-				it
+				
 			})
 		}
 
@@ -71,27 +92,49 @@ class HomeFragment : Fragment() {
 		binding.mainLowerRecycler.adapter = rvAdapter
 		with(binding) {
 			mainFilmBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.FILM)
 			}
 
 			mainPetsBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.PETS)
 			}
 
 			mainMusicBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.MUSIC)
 			}
 
-			mainMoviesBtn.setOnClickListener {
+			mainPeopleBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.PEOPLE)
 			}
 
 			mainGamingBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.GAMING)
 			}
 
-			mainEducationBtn.setOnClickListener {
+			mainEntertainmentBtn.setOnClickListener {
+				viewVisibility()
 				categoryClick(Category.ENTERTAINMENT)
+			}
+		}
+
+		// 아이템 클릭
+		rvAdapter.itemClick = object : HomeRecyclerAdapter.ItemClick {
+			override fun onClick(view: View, position: Int) {
+				val intent = Intent(requireActivity(), DetailFragment::class.java)
+				startActivity(intent)
+			}
+
+		}
+
+		vpAdapter.itemClick = object : HomeViewPagerAdapter.ItemClick {
+			override fun onClick(view: View, position: Int) {
+				val intent = Intent(requireActivity(), DetailFragment::class.java)
+				startActivity(intent)
 			}
 		}
 	}
@@ -177,6 +220,13 @@ class HomeFragment : Fragment() {
 					rvAdapter.setData(it)
 				}
 			}
+		}
+	}
+
+	private fun viewVisibility() {
+		binding.apply {
+			mainUpperViewPager.visibility = View.GONE
+			mainMiddleContainer.visibility = View.GONE
 		}
 	}
 }

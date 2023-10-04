@@ -28,7 +28,7 @@
     <string name="my_edit">EDIT</string>
     <string name="my_page_account_details">ACCOUNT DETAILS</string>
     <string name="my_page_id">disneym@gmail.com</string>
-    <string name="my_page_pw">00000000</string>
+    <string name="my_page_pw">********</string>
     <string name="password">Password : </string>
     <string name="my_log_out">Log out of All device</string>
     <string name="my_subscription">SUBSCRIPTION</string>
@@ -37,4 +37,7 @@
     <string name="my_monthly_description_tv">Manage your subscription preferences by going to your\nGoogle Play account.</string>
     <string name="my_version">VERSION</string>
     <string name="my_version_text">1.17.1 (2107290)</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="profile">PROFILE</string>
 </resources>

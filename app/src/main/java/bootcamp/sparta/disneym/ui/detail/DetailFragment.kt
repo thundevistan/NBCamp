@@ -15,6 +15,7 @@ import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModelFactory
+import com.bumptech.glide.Glide
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -26,6 +27,10 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 * 북마크 추가 삭제 버튼을 제공하고 공유기능을 제공합니다.
 */
 class DetailFragment : Fragment() {
+    companion object {
+        fun newInstance(): DetailFragment = DetailFragment()
+    }
+
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by viewModels { DetailViewModelFactory() }
@@ -99,13 +104,14 @@ class DetailFragment : Fragment() {
         detailPlayBtn.setOnClickListener {
             detailScrollview.smoothScrollTo(0, detailScrollview.bottom)// 하단 스크롤
         }
+
         detailBookmarkBtn.setOnClickListener {
             // isbookmarked btn Update
             detailBookmarkBtn.isSelected = !detailBookmarkBtn.isSelected
             // detailItem Update
             viewModel.isBookmarkedItem(detailBookmarkBtn.isSelected)
-
         }
+
         detailShareBtn.setOnClickListener {
             /* 추민수
              * context를 넣어줄 때 널체크를 해줌으로써 안정성을 높여줌
@@ -125,6 +131,18 @@ class DetailFragment : Fragment() {
      */
     private fun updateItem(item: DetailModel) {
         viewModel.updateDetailItem(item)
+    }
+
+    // 외부에서 onClick시 detailPage에 item 적용
+    fun onBind(item: DetailModel)=with(binding) {
+        Glide.with(requireContext())
+            .load(item.imgUrl)
+            .into(detailImageImageview)
+        detailTitle.text = item.title
+        detailDatetimeTv.text = item.datetime
+        detailPlayerTitle.text = item.title
+        detailPlayerDescription.text = item.description
+        //TODO Youtbue Player에 주소 업데이트기능추가
     }
 
     override fun onDestroy() {

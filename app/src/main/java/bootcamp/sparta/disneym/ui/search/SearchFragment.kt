@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import bootcamp.sparta.disneym.repository.MainRepository
-import bootcamp.sparta.disneym.viewmodel.search.SearchViewModel
-import bootcamp.sparta.disneym.viewmodel.search.SearchViewModelFactory
+import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
 /*
 * Copyright 2023 김현준, Inc.

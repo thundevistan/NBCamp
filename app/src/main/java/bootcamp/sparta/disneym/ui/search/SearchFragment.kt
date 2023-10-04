@@ -36,6 +36,10 @@ import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
 class SearchFragment : Fragment() {
 
+    companion object {
+        const val BUNDLE_DETAIL = "bundle_detail"
+    }
+
     private lateinit var binding: FragmentSearchBinding
     private lateinit var mainAdapter: SearchMainAdapter
     private lateinit var viewAdapter: SearchViewAdapter
@@ -185,7 +189,7 @@ class SearchFragment : Fragment() {
     private fun showDetailFragment(detailModel: DetailModel) {
         Log.d("SearchFragment", "showDetailFragment 호출 - detailModel: $detailModel")
         val bundle = Bundle()
-        bundle.putParcelable("detailModel", detailModel)
+        bundle.putParcelable(BUNDLE_DETAIL, detailModel)
 
         val detailFragment = (requireActivity() as MainActivity).viewPagerAdapter.getDeatilFragment()
         detailFragment.arguments = bundle

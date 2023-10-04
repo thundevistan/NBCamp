@@ -1,5 +1,6 @@
 package bootcamp.sparta.disneym.ui.detail
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.ui.search.SearchFragment
 import bootcamp.sparta.disneym.util.Util
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
@@ -35,6 +37,13 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: DetailViewModel by viewModels { DetailViewModelFactory() }
     private val sharedViewModel: MainSharedViewModel by activityViewModels()
+    private val searchBundle by lazy {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(SearchFragment.BUNDLE_DETAIL, DetailModel::class.java)
+        }else {
+            arguments?.getParcelable(SearchFragment.BUNDLE_DETAIL)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -122,6 +131,10 @@ class DetailFragment : Fragment() {
                     Util.shareUrl(context, detailItem.imgUrl)
                 }
             }
+        }
+
+        searchBundle?.let {
+            onBind(it)
         }
     }
 

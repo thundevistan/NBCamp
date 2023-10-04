@@ -74,26 +74,6 @@ class DetailFragment : Fragment() {
 
         initView()
         initViewModel()
-        initPlayer()
-    }
-
-    /*
-     * 추민수
-     * Youtube Video Player Library 사용
-     * https://github.com/PierfrancescoSoffritti/android-youtube-player
-     */
-    private fun initPlayer() = with(binding) {
-        detailPlayer.addYouTubePlayerListener(object :
-            AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                super.onReady(youTubePlayer)
-                // https://www.youtube.com/watch?v=KhEAe2_T-4c&t=4652s 링크 -> ID값 [KhEAe2_T-4c]
-                // https://www.youtube.com/watch?v=42fmMP81EvA&t=2296s -> 42fmMP81EvA
-                // 나중에 변환해주는 함수 추가 예정
-                val videoId = "42fmMP81EvA"
-                youTubePlayer.cueVideo(videoId, 0f)
-            }
-        })
     }
 
     /*
@@ -109,6 +89,7 @@ class DetailFragment : Fragment() {
                 sharedViewModel.updateBookmarkItems(it)
                 // homeItem Update
                 sharedViewModel.updateHomeItems(viewModel.detailItem)
+                onBind(it)
             })
         }
         with(sharedViewModel) {
@@ -118,7 +99,6 @@ class DetailFragment : Fragment() {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
                     }
-
                     else -> Unit
                 }
             })
@@ -172,7 +152,6 @@ class DetailFragment : Fragment() {
 
         searchBundle?.let {
             viewModel.addDetailItem(it)
-            onBind(it)
         }
     }
 
@@ -184,8 +163,7 @@ class DetailFragment : Fragment() {
         viewModel.updateDetailItem(item)
     }
 
-    // 외부에서 onClick시 detailPage에 item 적용
-    fun onBind(item: DetailModel) = with(binding) {
+    private fun onBind(item: DetailModel) = with(binding) {
         Glide.with(requireContext())
             .load(item.imgUrl)
             .into(detailImageImageview)
@@ -193,7 +171,25 @@ class DetailFragment : Fragment() {
         detailDatetimeTv.text = item.datetime
         detailPlayerTitle.text = item.title
         detailPlayerDescription.text = item.description
-        //TODO Youtbue Player에 주소 업데이트기능추가
+        item.id?.let { setPlayer(it) }
+    }
+
+    /*
+     * 추민수
+     * Youtube Video Player Library 사용
+     * https://github.com/PierfrancescoSoffritti/android-youtube-player
+     */
+    private fun setPlayer(videoId: String) = with(binding) {
+        detailPlayer.addYouTubePlayerListener(object :
+            AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+                // https://www.youtube.com/watch?v=KhEAe2_T-4c&t=4652s 링크 -> ID값 [KhEAe2_T-4c]
+                // https://www.youtube.com/watch?v=42fmMP81EvA&t=2296s -> 42fmMP81EvA
+                // 나중에 변환해주는 함수 추가 예정
+                youTubePlayer.cueVideo(videoId, 0f)
+            }
+        })
     }
 
     override fun onDestroy() {

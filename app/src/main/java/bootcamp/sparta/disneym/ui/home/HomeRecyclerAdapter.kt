@@ -66,41 +66,46 @@ import com.bumptech.glide.Glide
 //}
 
 class HomeRecyclerAdapter(
-	private val onItemClicked: (HomeModel) -> Unit,
+    private val onItemClicked: (HomeModel) -> Unit,
 ) : ListAdapter<HomeModel, HomeRecyclerAdapter.Holder>(
-	object: DiffUtil.ItemCallback<HomeModel>() {
-		override fun areItemsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
-			return oldItem.imgUrl == newItem.imgUrl
-		}
+    object : DiffUtil.ItemCallback<HomeModel>() {
+        override fun areItemsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
+            return oldItem.imgUrl == newItem.imgUrl
+        }
 
-		override fun areContentsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
-			return oldItem == newItem
-		}
-	}
+        override fun areContentsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
+            return oldItem == newItem
+        }
+    }
 ) {
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-		val view = HomeRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-		return Holder(view, onItemClicked)
-	}
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        val view =
+            HomeRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return Holder(view, onItemClicked)
+    }
 
-	override fun onBindViewHolder(holder: Holder, position: Int) {
-		holder.onBind(getItem(position))
-	}
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.onBind(getItem(position))
+    }
 
-	class Holder(
-		private val binding: HomeRecyclerItemBinding,
-		private val onItemClicked: (HomeModel) -> Unit
-	): RecyclerView.ViewHolder(binding.root) {
-		fun onBind(item: HomeModel)=with(binding) {
-			Glide.with(binding.root)
-				.load(item.imgUrl)
-				.into(binding.homeThumbnailIv)
+    class Holder(
+        private val binding: HomeRecyclerItemBinding,
+        private val onItemClicked: (HomeModel) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun onBind(item: HomeModel) = with(binding) {
+            Glide.with(binding.root)
+                .load(item.imgUrl)
+                .into(binding.homeThumbnailIv)
 
-			// 클릭이벤트
-			itemView.setOnClickListener {
-				onItemClicked(item)
-			}
-		}
-	}
+            // 공백을 제거, 문자열 길이가 10줄 이상이면 나머지는 "..."으로 대체
+            val truncatedText = item.title.take(10).trimEnd() + if (item.title.length > 10) "..." else ""
+            homeRvItemTitle.text = truncatedText
+
+            // 클릭이벤트
+            itemView.setOnClickListener {
+                onItemClicked(item)
+            }
+        }
+    }
 
 }

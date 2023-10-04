@@ -52,7 +52,8 @@ class SearchFragment : Fragment() {
         SearchViewAdapter(
             onItemClick = { item ->
                 sharedViewModel.updateDetailItem(item)
-            })
+            }
+        )
     }
 
     private val repository: MainRepository by lazy {
@@ -98,8 +99,6 @@ class SearchFragment : Fragment() {
 
     private fun initView() = with(binding) {
         searchViewRecycler.adapter = viewAdapter
-
-
 
         showMainView()
         clickBtn()

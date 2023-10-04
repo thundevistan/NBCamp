@@ -21,13 +21,13 @@ class SearchViewModel(private val repository: MainRepository): ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.getSearch(part, q, maxResults, key)
-
                 if(response.isSuccessful) {
                     val searchResults = response.body()
                     Log.d("Search", "response : ${response.body()}")
                     if(searchResults != null) {
                         val searchItems: List<SearchModel> = searchResults.items.map { item ->
                             SearchModel(
+                                id = item.id.videoId,
                                 title = item.snippet.title,
                                 imgUrl = item.snippet.thumbnails.high.url,
                                 description = item.snippet.description,
@@ -59,6 +59,7 @@ class SearchViewModel(private val repository: MainRepository): ViewModel() {
                     if (videoResult != null) {
                         var videoItems: List<SearchModel> = videoResult.items.map { item ->
                             SearchModel(
+                                id = item.id,
                                 title = item.snippet.title,
                                 imgUrl = item.snippet.thumbnails.high.url,
                                 description = item.snippet.description,

@@ -12,6 +12,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 
 data class SearchModel(
+    val id : String,
     val title: String,
     val imgUrl: String,
     val description: String,
@@ -22,6 +23,7 @@ data class SearchModel(
 
 fun SearchModel.toDetailModel(): DetailModel {
     return DetailModel(
+        id = id,
         title = title,
         imgUrl = imgUrl,
         description = description,

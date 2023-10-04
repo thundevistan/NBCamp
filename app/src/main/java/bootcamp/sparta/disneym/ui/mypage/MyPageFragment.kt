@@ -11,6 +11,8 @@ import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentMyPageBinding
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageProfileDialog
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageTextDialog
+import bootcamp.sparta.disneym.ui.viewmodel.my.EventForUserInfo
+import bootcamp.sparta.disneym.ui.viewmodel.my.MyPageViewModel
 
 /*
 * 추민수

@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.ui.mypage
+package bootcamp.sparta.disneym.ui.viewmodel.my
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

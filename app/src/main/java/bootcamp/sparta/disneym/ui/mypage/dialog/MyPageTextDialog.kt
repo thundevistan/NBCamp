@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
 import bootcamp.sparta.disneym.databinding.MypageTextDialogBinding
+import bootcamp.sparta.disneym.ui.mypage.EditDialogType
 
 /*
 * 추민수
@@ -18,6 +19,7 @@ import bootcamp.sparta.disneym.databinding.MypageTextDialogBinding
 class MyPageTextDialog(
     context: Context,
     private val userInfo: String,
+    private val type: Int,
     private val okCallback: (String) -> Unit,
 ) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
 
@@ -33,6 +35,13 @@ class MyPageTextDialog(
     }
 
     private fun initViews() = with(binding) {
+        when (type) {
+            EditDialogType.ID.ordinal -> dialogText.inputType =
+                android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+
+            EditDialogType.PW.ordinal -> dialogText.inputType =
+                android.text.InputType.TYPE_CLASS_NUMBER
+        }
 
         dialogText.inputType
 
@@ -43,16 +52,15 @@ class MyPageTextDialog(
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // 종료
-        dialogCancelBtn.setOnClickListener{
+        dialogCancelBtn.setOnClickListener {
             dismiss()
         }
 
         // Button 클릭에 대한 Callback 처리
-        dialogSaveBtn.setOnClickListener{
+        dialogSaveBtn.setOnClickListener {
             if (dialogText.text.isNullOrBlank()) {
                 Toast.makeText(context, "내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            } else {
                 okCallback(dialogText.text.toString())
                 dismiss()
             }

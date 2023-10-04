@@ -78,14 +78,14 @@ class MyPageFragment : Fragment() {
         }
         myEditId.setOnClickListener {
             activity?.let {
-                MyPageTextDialog(it, userId) { callBackId ->
+                MyPageTextDialog(it, userId, EditDialogType.ID.ordinal) { callBackId ->
                     viewModel.updateUserId(callBackId)
                 }.show()
             }
         }
         myEditPw.setOnClickListener {
             activity?.let {
-                MyPageTextDialog(it, userPw) { callBackPw ->
+                MyPageTextDialog(it, userPw, EditDialogType.PW.ordinal) { callBackPw ->
                     viewModel.updateUserPw(callBackPw)
                 }.show()
             }

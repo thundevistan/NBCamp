@@ -56,13 +56,13 @@ class BookmarkFragment : Fragment() {
         bookmarkRecyclerview.adapter = adapter
         // Edit
         bookmarkEditTextview.setOnClickListener {
-            val type: BookmarkViewType = BookmarkViewType.Edit
+            val type: Int = BookmarkViewType.Edit.INT
             changeVisibleForType(type)
             updateBookmarkListType(type)
         }
         // Close
         bookmarkCloseButton.setOnClickListener {
-            val type: BookmarkViewType = BookmarkViewType.Normal
+            val type: Int = BookmarkViewType.Normal.INT
             changeVisibleForType(type)
             updateBookmarkListType(type)
         }
@@ -107,15 +107,15 @@ class BookmarkFragment : Fragment() {
 
     // Edit Mode Selector. Edit버튼을 클릭할경우 EditMode로 View를 업데이트하여 보여줍니다.
     // Close 버튼을 클릭할경우 Edit모드가 종료되고 UI를 업데이트 합니다.
-    private fun changeVisibleForType(type: BookmarkViewType) = with(binding) {
+    private fun changeVisibleForType(type: Int) = with(binding) {
         when (type) {
-            BookmarkViewType.Edit -> {
+            BookmarkViewType.Edit.INT -> {
                 bookmarkCloseButton.visibility = View.VISIBLE
                 bookmarkRemoveButton.visibility = View.VISIBLE
                 bookmarkEditTextview.visibility = View.INVISIBLE
             }
 
-            BookmarkViewType.Normal -> {
+            BookmarkViewType.Normal.INT -> {
                 bookmarkEditTextview.visibility = View.VISIBLE
                 bookmarkCloseButton.visibility = View.INVISIBLE
                 bookmarkRemoveButton.visibility = View.INVISIBLE
@@ -124,7 +124,7 @@ class BookmarkFragment : Fragment() {
     }
 
     // Edit모드 여부에 따라 item의 viewType 데이터를 변경해줍니다.
-    private fun updateBookmarkListType(type: BookmarkViewType) {
+    private fun updateBookmarkListType(type: Int) {
         viewModel.updateBookmarkListType(type)
     }
 

@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import com.google.gson.Gson
 
 object Util {
@@ -13,8 +15,11 @@ object Util {
     fun saveBookmarkItemForSharedPrefs(context: Context, item: BookmarkModel) {
         val pref = context.getSharedPreferences(SHARED_PREFS_KEY, Activity.MODE_PRIVATE)
         val edit = pref.edit()
-        val jsonString = Gson().toJson(item)
-        edit.putString(item.imgUrl, jsonString)
+        val jsonString = Gson().toJson(
+            item.copy(
+                viewType = BookmarkViewType.Normal.INT
+        ))
+        edit.putString(item.imgUrl.toString(), jsonString)
         edit.apply()
     }
 
@@ -33,7 +38,7 @@ object Util {
     fun removeBookmarkItemForSharedPrefs(context: Context, item: BookmarkModel) {
         val pref = context.getSharedPreferences(SHARED_PREFS_KEY, Activity.MODE_PRIVATE)
         val edit = pref.edit()
-        edit.remove(item.imgUrl)
+        edit.remove(item.imgUrl.toString())
         edit.apply()
 
     }

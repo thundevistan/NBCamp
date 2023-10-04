@@ -74,16 +74,7 @@ class BookmarkListAdapter(private val onItemChecked: (Int, BookmarkModel) -> Uni
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position).viewType) {
-            BookmarkViewType.Edit -> {
-                BookmarkViewType.Edit.INT
-            }
-
-            BookmarkViewType.Normal -> {
-                BookmarkViewType.Normal.INT
-            }
-        }
-
+        return getItem(position).viewType
     }
 
     class Holder(private val binding: BookmarkRecyclerItemBinding) :
@@ -93,7 +84,6 @@ class BookmarkListAdapter(private val onItemChecked: (Int, BookmarkModel) -> Uni
                 .load(item.imgUrl)
                 .into(bookmarkItemImage)
             bookmarkItemTitle.text = item.title
-            bookmarkItemContent.text = item.description
         }
     }
 
@@ -106,7 +96,6 @@ class BookmarkListAdapter(private val onItemChecked: (Int, BookmarkModel) -> Uni
                 .load(item.imgUrl)
                 .into(bookmarkItemImage)
             bookmarkItemTitle.text = item.title
-            bookmarkItemContent.text = item.description
             bookmarkItemCheckbox.isChecked = item.isChecked
 
             // 체크박스 체크되어있을때만 ClickEvent 동작

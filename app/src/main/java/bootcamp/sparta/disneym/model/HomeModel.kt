@@ -22,7 +22,7 @@ fun HomeModel.toBookmarkModel(): BookmarkModel =
         description = description,
         datetime = datetime,
         isBookmarked = isBookmarked,
-        viewType = BookmarkViewType.Normal,
+        viewType = BookmarkViewType.Normal.INT,
         isChecked = false
     )
 

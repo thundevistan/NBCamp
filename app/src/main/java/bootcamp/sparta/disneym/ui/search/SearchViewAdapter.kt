@@ -1,12 +1,15 @@
 package bootcamp.sparta.disneym.ui.search
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
 import bootcamp.sparta.disneym.model.SearchModel
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import com.bumptech.glide.Glide
 
 /*
@@ -17,7 +20,9 @@ import com.bumptech.glide.Glide
 *
 * */
 
-class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
+class SearchViewAdapter(
+    private val onItemClick : (SearchModel) -> Unit,
+) : ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<SearchModel>() {
         override fun areItemsTheSame(oldItem: SearchModel, newItem: SearchModel): Boolean {
             return oldItem.imgUrl == newItem.imgUrl
@@ -29,8 +34,10 @@ class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
 
     }
 ) {
-
-    class ViewHolder(private val binding: SearchRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: SearchRecyclerViewItemBinding,
+        private val onItemClick: (SearchModel) -> Unit,
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind (item: SearchModel)= with(binding) {
             Glide.with(itemView)
@@ -40,17 +47,24 @@ class SearchViewAdapter: ListAdapter<SearchModel, SearchViewAdapter.ViewHolder>(
             searchViewTitle.text = item.title
             searchViewChannelname.text = item.channelTitle
             searchViewViews.text = item.datetime
-        }
 
+            itemView.setOnClickListener {
+                onItemClick(item)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = SearchRecyclerViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(
+            binding,
+            onItemClick
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        holder.bind(item)
     }
 }
 

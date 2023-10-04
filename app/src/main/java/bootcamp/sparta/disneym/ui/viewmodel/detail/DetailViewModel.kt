@@ -15,12 +15,23 @@ class DetailViewModel : ViewModel(){
     private val _detailItem : MutableLiveData<DetailModel> = MutableLiveData()
     val detailItem : LiveData<DetailModel> get() = _detailItem // 읽기 전용
 
+    fun addDetailItem(item: DetailModel) {
+        _detailItem.value = item
+    }
+
+    fun getItemBookmarked() : Boolean {
+        return if(detailItem.value == null) {
+            false
+        } else {
+            detailItem.value!!.isBookmarked
+        }
+    }
     fun updateDetailItem(item : DetailModel){
         _detailItem.value = item
     }
 
-    fun isBookmarkedItem(isBookmarked : Boolean){
-        detailItem.value?.let{ _detailItem.value = it.copy( isBookmarked = !isBookmarked) }
+    fun isBookmarkedItem(item: DetailModel){
+        _detailItem.value = item
     }
 
 }

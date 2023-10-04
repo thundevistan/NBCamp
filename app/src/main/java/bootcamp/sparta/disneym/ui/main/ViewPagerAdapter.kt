@@ -23,8 +23,6 @@ class ViewPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
 		MyPageFragment(),
 	)
 
-	fun getDeatilFragment() : DetailFragment = DetailFragment.newInstance()
-
 	override fun getItemCount(): Int {
 		return fragments.size
 	}

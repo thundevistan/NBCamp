@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 * */
 @Parcelize
 data class BookmarkModel(
-    val id: String,
+    val id: String? = null,
     val title: String,
     val imgUrl: String,
     val description: String,

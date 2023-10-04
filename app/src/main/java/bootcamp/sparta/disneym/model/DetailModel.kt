@@ -15,7 +15,7 @@ data class DetailModel(
 
 // 민수 : 모델 매핑 확장함수 Detail -> Bookmark
 fun DetailModel.toBookmarkModel() = BookmarkModel(
-    id = id!!,
+    id = id ?: "",
     title = title,
     imgUrl = imgUrl,
     description = description,
@@ -24,7 +24,7 @@ fun DetailModel.toBookmarkModel() = BookmarkModel(
 )
 // 민수 : 모델 매핑 확장함수 Detail -> Home
 fun DetailModel.toHomeModel() = HomeModel(
-    id = id!!,
+    id = id,
     title = title,
     imgUrl = imgUrl,
     description = description,

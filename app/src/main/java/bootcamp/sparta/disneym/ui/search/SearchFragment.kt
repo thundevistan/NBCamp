@@ -1,19 +1,31 @@
 package bootcamp.sparta.disneym.ui.search
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
+import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.repository.MainRepository
+import bootcamp.sparta.disneym.ui.detail.DetailActivity
+import bootcamp.sparta.disneym.ui.detail.DetailFragment
+import bootcamp.sparta.disneym.ui.main.MainActivity
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
+import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
@@ -26,33 +38,73 @@ import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 * */
 
 class SearchFragment : Fragment() {
+    companion object {
+        const val BUNDLE_DETAIL = "bundle_detail"
+    }
 
-    private lateinit var binding: FragmentSearchBinding
-    private lateinit var mainAdapter: SearchMainAdapter
-    private lateinit var viewAdapter: SearchViewAdapter
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+    private val mainAdapter by lazy {
+        SearchMainAdapter()
+    }
+    private val viewAdapter by lazy {
+        SearchViewAdapter(
+            onItemClick = { item ->
+                sharedViewModel.updateDetailItem(item)
+            })
+    }
+
+    private val repository: MainRepository by lazy {
+        MainRepository()
+    }
+
+    private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory(repository) }
+    private val sharedViewModel: MainSharedViewModel by activityViewModels()
+
+    private val detailLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+
+            }
+        }
+
     private lateinit var gridManager: StaggeredGridLayoutManager
     private var searchViewVisible = false
 
-    private lateinit var viewModel: SearchViewModel
-//	private lateinit var viewVideoModel by viewModels<>(): SearchPopularViewModel
+    private val part = "snippet"
+    private val key = API_KEY.AUTH_KEY
+    private val maxResults = 50
+    private val regionCode = "KR"
+    private val chart = "mostPopular"
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchBinding.inflate(layoutInflater)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        viewModel = ViewModelProvider(
-            this,
-            SearchViewModelFactory(MainRepository())
-        ).get(SearchViewModel::class.java)
-//		viewVideoModel = ViewModelProvider(this, SearchPopularViewModel(MainRepository())).get(SearchPopularViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.searchViewRecycler.adapter = viewAdapter
+
+        initView()
+        initViewModel()
+    }
+
+    private fun initView() = with(binding) {
+        searchViewRecycler.adapter = viewAdapter
+
 
 
         showMainView()
+        clickBtn()
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null && query.isNotEmpty()) {
@@ -73,89 +125,15 @@ class SearchFragment : Fragment() {
                 }
                 return true
             }
-
         })
 
-        binding.searchView.setOnCloseListener {
+        searchView.setOnCloseListener {
             if (searchViewVisible) {
                 showMainView()
                 searchViewVisible = false
             }
             false
         }
-
-        binding.searchPopularBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResult = 50
-            val videoCategoryId =0
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResult, videoCategoryId, regionCode)
-        }
-
-        binding.searchSportsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 17
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchShortsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 1
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-            Log.d("search", "click")
-        }
-
-        binding.searchNewsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 25
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchComedyBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 23
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-        }
-
-        binding.searchPetsBtn.setOnClickListener {
-            val part = "snippet"
-            val chart = "mostPopular"
-            val key = API_KEY.AUTH_KEY
-            val maxResults = 50
-            val videoCategoryId = 15
-            val regionCode = "KR"
-
-            viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
-            Log.d("search", "click")
-
-        }
-
-
-
-        return binding.root
     }
 
     private fun showMainView() {
@@ -166,12 +144,11 @@ class SearchFragment : Fragment() {
         gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.searchMainRecycler.layoutManager = gridManager
 
-        mainAdapter = SearchMainAdapter()
         binding.searchMainRecycler.adapter = mainAdapter
 
         binding.searchMainRecycler.itemAnimator = null
 
-        searchVideo()
+        searchVideo(0)
     }
 
     private fun showViewView() {
@@ -180,8 +157,6 @@ class SearchFragment : Fragment() {
         binding.searchViewRecycler.visibility = View.VISIBLE
         binding.test123.visibility = View.INVISIBLE
 
-        viewAdapter = SearchViewAdapter()
-        binding.searchViewRecycler.adapter = viewAdapter
 
         val linearLayout = LinearLayoutManager(requireContext())
         binding.searchViewRecycler.layoutManager = linearLayout
@@ -189,11 +164,40 @@ class SearchFragment : Fragment() {
         binding.searchViewRecycler.itemAnimator = null
     }
 
-    private fun performSearch(query: String) {
-        val part = "snippet"
-        val maxResults = 50
-        val key = API_KEY.AUTH_KEY
+    private fun initViewModel() = with(viewModel) {
+//        sharedViewModel.updateDetailItem(updateModel = SearchModel(  ))
 
+//        viewAdapter.setOnItemClickListener { searchModel ->
+//            sharedViewModel.updateDetailItem(searchModel)
+//            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
+//        }
+
+        // detailEvent를 관찰하여 디테일 아이템이 업데이트될 때 화면을 열기
+        searchItem.observe(viewLifecycleOwner) { searchItem ->
+            viewAdapter.submitList(searchItem)
+        }
+
+        getVideo.observe(viewLifecycleOwner) { getVideoItem ->
+            mainAdapter.submitList(getVideoItem)
+        }
+
+        sharedViewModel.detailEvent.observe(viewLifecycleOwner, Observer { event ->
+            when (event) {
+                is MainSharedEventForDetail.UpdateDetailItem -> {
+                    detailLauncher.launch(
+                        DetailActivity.newIntent(
+                            requireContext(),
+                            event.item
+                        )
+                    )
+                }
+
+                else -> Unit
+            }
+        })
+    }
+
+    private fun performSearch(query: String) {
         val q = query
         Log.d("SearchFragment", "performSearch() 호출 - 검색어: $q")
 
@@ -205,18 +209,26 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun searchVideo() {
-        val part = "snippet"
-        val chart = "mostPopular"
-        val key = API_KEY.AUTH_KEY
-        val maxResults = 50
-        val videoCategoryId = 0
-        val regionCode = "KR"
+    private fun searchVideo(videoCategoryId: Int) {
 
         viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
 
         viewModel.getVideo.observe(viewLifecycleOwner, Observer {
             mainAdapter.submitList(it)
         })
+    }
+
+    private fun clickBtn()= with(binding) {
+        searchPopularBtn.setOnClickListener { searchVideo(0) }
+        searchSportsBtn.setOnClickListener { searchVideo(17) }
+        searchShortsBtn.setOnClickListener { searchVideo(1) }
+        searchNewsBtn.setOnClickListener { searchVideo(25) }
+        searchComedyBtn.setOnClickListener { searchVideo(23) }
+        searchPetsBtn.setOnClickListener { searchVideo(15) }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

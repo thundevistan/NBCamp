@@ -1,6 +1,7 @@
 package bootcamp.sparta.disneym.ui.detail
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
@@ -46,12 +48,6 @@ class DetailFragment : Fragment() {
 
     private val viewModel: DetailViewModel by viewModels { DetailViewModelFactory() }
     private val sharedViewModel: MainSharedViewModel by activityViewModels()
-
-    private val mainLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-            }
-        }
 
     private val searchBundle by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -99,6 +95,7 @@ class DetailFragment : Fragment() {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
                     }
+
                     else -> Unit
                 }
             })
@@ -106,19 +103,19 @@ class DetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
-
         toolbar.setNavigationOnClickListener {
-            mainLauncher.launch(
-                searchBundle?.let { item ->
-                    MainActivity.newIntentForSearch(
-                        requireContext(),
+            searchBundle?.let { item ->
+                val intent = Intent().apply {
+                    putExtra(
+                        DetailActivity.EXTRA_DETAIL,
                         item.copy(
                             isBookmarked = viewModel.getItemBookmarked()
                         )
                     )
                 }
-            )
-            requireActivity().finish()
+                requireActivity().setResult(Activity.RESULT_OK, intent)
+                requireActivity().finish()
+            }
         }
 
         detailPlayBtn.setOnClickListener {

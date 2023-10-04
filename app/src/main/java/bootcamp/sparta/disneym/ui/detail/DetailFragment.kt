@@ -1,17 +1,19 @@
 package bootcamp.sparta.disneym.ui.detail
 
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
 import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.ui.search.SearchFragment
+import bootcamp.sparta.disneym.ui.main.MainActivity
 import bootcamp.sparta.disneym.util.Util
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
@@ -30,18 +32,32 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 */
 class DetailFragment : Fragment() {
     companion object {
-        fun newInstance(): DetailFragment = DetailFragment()
+        const val BUNDLE_DETAIL = "bundle_detail"
+
+        fun newInstance(item: DetailModel): DetailFragment = DetailFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(BUNDLE_DETAIL, item)
+            }
+        }
     }
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
+
     private val viewModel: DetailViewModel by viewModels { DetailViewModelFactory() }
     private val sharedViewModel: MainSharedViewModel by activityViewModels()
+
+    private val mainLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+            }
+        }
+
     private val searchBundle by lazy {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(SearchFragment.BUNDLE_DETAIL, DetailModel::class.java)
-        }else {
-            arguments?.getParcelable(SearchFragment.BUNDLE_DETAIL)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(BUNDLE_DETAIL, DetailModel::class.java)
+        } else {
+            arguments?.getParcelable(BUNDLE_DETAIL)
         }
     }
 
@@ -102,6 +118,7 @@ class DetailFragment : Fragment() {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
                     }
+
                     else -> Unit
                 }
             })
@@ -109,6 +126,20 @@ class DetailFragment : Fragment() {
     }
 
     private fun initView() = with(binding) {
+
+        toolbar.setNavigationOnClickListener {
+            mainLauncher.launch(
+                searchBundle?.let { item ->
+                    MainActivity.newIntentForSearch(
+                        requireContext(),
+                        item.copy(
+                            isBookmarked = viewModel.getItemBookmarked()
+                        )
+                    )
+                }
+            )
+            requireActivity().finish()
+        }
 
         detailPlayBtn.setOnClickListener {
             detailScrollview.smoothScrollTo(0, detailScrollview.bottom)// 하단 스크롤
@@ -118,7 +149,13 @@ class DetailFragment : Fragment() {
             // isbookmarked btn Update
             detailBookmarkBtn.isSelected = !detailBookmarkBtn.isSelected
             // detailItem Update
-            viewModel.isBookmarkedItem(detailBookmarkBtn.isSelected)
+            searchBundle?.let { item ->
+                viewModel.isBookmarkedItem(
+                    item.copy(
+                        isBookmarked = detailBookmarkBtn.isSelected
+                    )
+                )
+            }
         }
 
         detailShareBtn.setOnClickListener {
@@ -134,6 +171,7 @@ class DetailFragment : Fragment() {
         }
 
         searchBundle?.let {
+            viewModel.addDetailItem(it)
             onBind(it)
         }
     }
@@ -147,7 +185,7 @@ class DetailFragment : Fragment() {
     }
 
     // 외부에서 onClick시 detailPage에 item 적용
-    fun onBind(item: DetailModel)=with(binding) {
+    fun onBind(item: DetailModel) = with(binding) {
         Glide.with(requireContext())
             .load(item.imgUrl)
             .into(detailImageImageview)

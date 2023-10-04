@@ -8,6 +8,13 @@ import android.os.Bundle
 import android.widget.Toast
 import bootcamp.sparta.disneym.databinding.MypageTextDialogBinding
 
+/*
+* 추민수
+* 개인 페이지 ID, PW를 수정하기 위한 Dialog.
+* MyPageFragment에서 기존의 ID or PW를 받아와 상단에 띄워주고
+* 진입 타입에 따라 InputType이 달라지게 설정하였습니다.
+* Save 버튼을 눌러 Text를 저장 Cancel 버튼을 눌러 취소할 수 있습니다.
+*/
 class MyPageTextDialog(
     context: Context,
     private val userInfo: String,
@@ -26,12 +33,13 @@ class MyPageTextDialog(
     }
 
     private fun initViews() = with(binding) {
-        // 뒤로가기 버튼, 빈 화면 터치를 통해 dialog가 사라지지 않도록
+
+        dialogText.inputType
+
+        // 뒤로가기, 빈 화면 터치를 통해 dialog가 종료되지 않게하는 코드
         setCancelable(false)
 
-        // background를 투명하게 만듦
-        // (중요) Dialog는 내부적으로 뒤에 흰 사각형 배경이 존재하므로, 배경을 투명하게 만들지 않으면
-        // corner radius의 적용이 보이지 않는다.
+        // Dialog는 내부적으로 흰 배경이 존재하므로 Corner Radius 적용을 하려면 background 투명하게 해주어야 한다.
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // 종료
@@ -39,7 +47,7 @@ class MyPageTextDialog(
             dismiss()
         }
 
-        // OK Button 클릭에 대한 Callback 처리
+        // Button 클릭에 대한 Callback 처리
         dialogSaveBtn.setOnClickListener{
             if (dialogText.text.isNullOrBlank()) {
                 Toast.makeText(context, "내용을 입력해주세요!", Toast.LENGTH_SHORT).show()

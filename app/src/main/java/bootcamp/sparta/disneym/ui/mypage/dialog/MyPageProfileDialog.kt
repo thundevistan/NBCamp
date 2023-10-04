@@ -9,12 +9,18 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.MypageProfileDialogBinding
-
+/*
+* 추민수
+* 개인 페이지 Profile image 수정을 위한 Dialog.
+* MyPageFragment에서 기존의 profile을 받아와 상단에 띄워주고
+* recyclerView를 통해 프로필을 수정할 수 있게 구현하였습니다.
+* Save 버튼을 눌러 프로필 사진을 저장 Cancel 버튼을 눌러 취소할 수 있습니다.
+*/
 class MyPageProfileDialog(
     context: Context,
     private val profileUri: Int,
     private val okCallback: (Int) -> Unit,
-) : Dialog(context) { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
+) : Dialog(context) { // 뷰를 띄우기 위해 Context를 인자로 받아옴
 
     private lateinit var binding: MypageProfileDialogBinding
 
@@ -56,19 +62,14 @@ class MyPageProfileDialog(
     private fun initViews() = with(binding) {
 
         recyclerProfile.adapter = listAdapter
-//        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerProfile.adapter
-//        recyclerProfile.layoutManager =  layoutManager
-
 
         dialogProfile.setImageResource(profileUri)
 
-        // 뒤로가기 버튼, 빈 화면 터치를 통해 dialog가 사라지지 않도록
+        // 뒤로가기, 빈 화면 터치를 통해 dialog가 종료되지 않게하는 코드
         setCancelable(false)
 
-        // background 투명하게
-        // (중요) Dialog는 내부적으로 뒤에 흰 사각형 배경이 존재하므로, 배경을 투명하게 만들지 않으면
-        // corner radius의 적용이 보이지 않는다.
+        // Dialog는 내부적으로 흰 배경이 존재하므로 Corner Radius 적용을 하려면 background 투명하게 해주어야 한다.
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         // 종료
@@ -76,7 +77,7 @@ class MyPageProfileDialog(
             dismiss()
         }
 
-        // OK Button 클릭에 대한 Callback 처리
+        // Button 클릭에 대한 Callback 처리
         dialogSaveBtn.setOnClickListener {
             if(callBackPosition == -1){
                 Toast.makeText(context, "프로필을 변경해주세요!", Toast.LENGTH_SHORT).show()

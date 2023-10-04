@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.MypageRecyclerItemBinding
-
+/*
+* 추민수
+* List Adapter(RecyclerView Adapter)
+* 클릭 이벤트를 넘겨줌
+* */
 class ProfileListAdapter(
     private val onClickItem: (Int,ProfileDialogModel) -> Unit
 ) : ListAdapter<ProfileDialogModel, ProfileListAdapter.ViewHolder>(
@@ -54,7 +58,6 @@ class ProfileListAdapter(
                     item
                 )
             }
-
         }
     }
 }

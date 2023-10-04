@@ -1,6 +1,5 @@
 package bootcamp.sparta.disneym.ui.mypage
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +12,11 @@ import bootcamp.sparta.disneym.databinding.FragmentMyPageBinding
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageProfileDialog
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageTextDialog
 
+/*
+* 추민수
+* 개인의 정보를 보여주는 페이지
+* 수정 버튼을 눌러 정보를 수정할 수 있습니다.
+* */
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!

@@ -1,13 +1,17 @@
 package bootcamp.sparta.disneym.ui.search
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +23,13 @@ import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.model.SearchModel
 import bootcamp.sparta.disneym.model.toDetailModel
 import bootcamp.sparta.disneym.repository.MainRepository
+import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.detail.DetailFragment
 import bootcamp.sparta.disneym.ui.main.MainActivity
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
+import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModelFactory
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
@@ -36,18 +43,34 @@ import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModelFactory
 
 class SearchFragment : Fragment() {
 
-    companion object {
-        const val BUNDLE_DETAIL = "bundle_detail"
+    private var _binding: FragmentSearchBinding? = null
+    private val binding get() = _binding!!
+
+    private val mainAdapter by lazy {
+        SearchMainAdapter()
+    }
+    private val viewAdapter by lazy {
+        SearchViewAdapter(
+            onItemClick = { item ->
+                sharedViewModel.updateDetailItem(item)
+            })
     }
 
-    private lateinit var binding: FragmentSearchBinding
-    private lateinit var mainAdapter: SearchMainAdapter
-    private lateinit var viewAdapter: SearchViewAdapter
+    private val repository: MainRepository by lazy {
+        MainRepository()
+    }
+
+    private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory(repository) }
+    private val sharedViewModel: MainSharedViewModel by activityViewModels()
+    private val detailLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+
+            }
+        }
+
     private lateinit var gridManager: StaggeredGridLayoutManager
     private var searchViewVisible = false
-
-    private lateinit var viewModel: SearchViewModel
-    private val sharedViewModel: MainSharedViewModel by activityViewModels()
 
     private val part = "snippet"
     private val key = API_KEY.AUTH_KEY
@@ -60,39 +83,57 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSearchBinding.inflate(layoutInflater)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        viewModel = ViewModelProvider(
-            this,
-            SearchViewModelFactory(MainRepository())
-        ).get(SearchViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        initView()
+        initViewModel()
+    }
+
+    private fun initViewModel() = with(viewModel) {
 //        sharedViewModel.updateDetailItem(updateModel = SearchModel(  ))
-        viewAdapter = SearchViewAdapter(sharedViewModel)
 
-        viewAdapter.setOnItemClickListener { searchModel ->
-            sharedViewModel.updateDetailItem(searchModel)
-            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
-        }
-        binding.searchViewRecycler.adapter = viewAdapter
+//        viewAdapter.setOnItemClickListener { searchModel ->
+//            sharedViewModel.updateDetailItem(searchModel)
+//            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
+//        }
 
         // detailEvent를 관찰하여 디테일 아이템이 업데이트될 때 화면을 열기
+        searchItem.observe(viewLifecycleOwner) { searchItem ->
+            viewAdapter.submitList(searchItem)
+        }
+
+        getVideo.observe(viewLifecycleOwner) { getVideoItem ->
+            mainAdapter.submitList(getVideoItem)
+        }
+
         sharedViewModel.detailEvent.observe(viewLifecycleOwner, Observer { event ->
             when (event) {
                 is MainSharedEventForDetail.UpdateDetailItem -> {
-                    // 디테일 페이지 열기
-                    showDetailFragment(event.item)
-                    Log.d("SearchFragment", "showDetailFragment 호출 - item: ${event.item}")
+                    detailLauncher.launch(
+                        DetailActivity.newIntent(
+                            requireContext(),
+                            event.item
+                        )
+                    )
                 }
+
                 else -> Unit
             }
         })
+    }
 
+    private fun initView() = with(binding) {
+        searchViewRecycler.adapter = viewAdapter
 
         showMainView()
         clickBtn()
 
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null && query.isNotEmpty()) {
@@ -113,18 +154,15 @@ class SearchFragment : Fragment() {
                 }
                 return true
             }
-
         })
 
-        binding.searchView.setOnCloseListener {
+        searchView.setOnCloseListener {
             if (searchViewVisible) {
                 showMainView()
                 searchViewVisible = false
             }
             false
         }
-
-        return binding.root
     }
 
     private fun showMainView() {
@@ -135,7 +173,6 @@ class SearchFragment : Fragment() {
         gridManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.searchMainRecycler.layoutManager = gridManager
 
-        mainAdapter = SearchMainAdapter()
         binding.searchMainRecycler.adapter = mainAdapter
 
         binding.searchMainRecycler.itemAnimator = null
@@ -177,7 +214,7 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun clickBtn()= with(binding) {
+    private fun clickBtn() = with(binding) {
         searchPopularBtn.setOnClickListener { searchVideo(0) }
         searchSportsBtn.setOnClickListener { searchVideo(17) }
         searchShortsBtn.setOnClickListener { searchVideo(1) }
@@ -188,18 +225,17 @@ class SearchFragment : Fragment() {
 
     private fun showDetailFragment(detailModel: DetailModel) {
         Log.d("SearchFragment", "showDetailFragment 호출 - detailModel: $detailModel")
-        val bundle = Bundle()
-        bundle.putParcelable(BUNDLE_DETAIL, detailModel)
 
-        val detailFragment = (requireActivity() as MainActivity).viewPagerAdapter.getDeatilFragment()
-        detailFragment.arguments = bundle
-
-        // Fragment 전환
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.detail_layout, detailFragment)
+        transaction.replace(R.id.detail_layout, DetailFragment.newInstance(detailModel))
         transaction.addToBackStack(null)
         transaction.commit()
 
         Log.d("SearchFragment", "디테일 프래그먼트로 전환 완료")
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

@@ -2,6 +2,7 @@ package bootcamp.sparta.disneym.ui.home
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
+import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.model.toDetailModel
 import bootcamp.sparta.disneym.repository.MainRepository
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
@@ -51,6 +53,16 @@ class HomeFragment : Fragment() {
     private val detailLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                val item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    result.data?.getParcelableExtra(
+                        DetailActivity.EXTRA_DETAIL,
+                        DetailModel::class.java
+                    )
+                } else {
+                    result.data?.getParcelableExtra(DetailActivity.EXTRA_DETAIL)
+                }
+
+                sharedViewModel.updateHomeItems(item)
             }
         }
 
@@ -155,7 +167,7 @@ class HomeFragment : Fragment() {
             list.observe(viewLifecycleOwner) { list ->
                 rvAdapter.submitList(list)
             }
-            popular.observe(viewLifecycleOwner) {list ->
+            popular.observe(viewLifecycleOwner) { list ->
                 vpAdapter.setData(list)
             }
         }

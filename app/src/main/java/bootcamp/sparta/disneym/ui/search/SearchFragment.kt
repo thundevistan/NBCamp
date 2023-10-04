@@ -1,6 +1,7 @@
 package bootcamp.sparta.disneym.ui.search
 
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -67,7 +68,13 @@ class SearchFragment : Fragment() {
     private val detailLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
+                val item = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    result.data?.getParcelableExtra(DetailActivity.EXTRA_DETAIL, DetailModel::class.java)
+                } else {
+                    result.data?.getParcelableExtra(DetailActivity.EXTRA_DETAIL)
+                }
 
+                sharedViewModel.updateHomeItems(item)
             }
         }
 
@@ -220,7 +227,7 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private fun clickBtn()= with(binding) {
+    private fun clickBtn() = with(binding) {
         searchPopularBtn.setOnClickListener { searchVideo(0) }
         searchSportsBtn.setOnClickListener { searchVideo(17) }
         searchShortsBtn.setOnClickListener { searchVideo(1) }

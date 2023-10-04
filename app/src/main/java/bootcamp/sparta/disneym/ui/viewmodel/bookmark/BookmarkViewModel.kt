@@ -18,8 +18,14 @@ class BookmarkViewModel : ViewModel() {
     private var _list: MutableLiveData<List<BookmarkModel>> = MutableLiveData()
     val list get() = _list
 
+    init {
+        _list.value = loadBookmarkedSHaredPrefs()
+    }
+
+    private fun loadBookmarkedSHaredPrefs(): List<BookmarkModel> = Util.loadBookmarkItemForSharedPrefs(DisneyMinusApp.getApp().applicationContext).orEmpty()
+
     // 북마크 타입 변경
-    fun updateBookmarkListType(type: BookmarkViewType) {
+    fun updateBookmarkListType(type: Int) {
         val current = list.value.orEmpty().toMutableList()
         for (i in current.indices) {
             current[i] = current[i].copy(viewType = type)

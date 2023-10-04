@@ -89,6 +89,7 @@ class DetailFragment : Fragment() {
                 sharedViewModel.updateBookmarkItems(it)
                 // homeItem Update
                 sharedViewModel.updateHomeItems(viewModel.detailItem)
+                onBind(it)
             })
         }
         with(sharedViewModel) {
@@ -98,7 +99,6 @@ class DetailFragment : Fragment() {
                     is MainSharedEventForDetail.UpdateDetailItem -> {
                         updateItem(event.item)
                     }
-
                     else -> Unit
                 }
             })
@@ -152,7 +152,6 @@ class DetailFragment : Fragment() {
 
         searchBundle?.let {
             viewModel.addDetailItem(it)
-            onBind(it)
         }
     }
 
@@ -164,15 +163,7 @@ class DetailFragment : Fragment() {
         viewModel.updateDetailItem(item)
     }
 
-    // 외부에서 onClick시 detailPage에 item 적용
-
-    //    val id: String? = null,
-//    val title: String,
-//    val imgUrl: String,
-//    val description: String,
-//    val datetime: String,
-//    val isBookmarked: Boolean,
-    fun onBind(item: DetailModel) = with(binding) {
+    private fun onBind(item: DetailModel) = with(binding) {
         Glide.with(requireContext())
             .load(item.imgUrl)
             .into(detailImageImageview)

@@ -15,7 +15,7 @@ class MyPageFactory : ViewModelProvider.Factory {
     private val repository = MyPageRepositoryImpl()
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(UserModel::class.java)) {
+        if (modelClass.isAssignableFrom(MyPageViewModel::class.java)) {
             return MyPageViewModel(
                 LoadUserDataUseCase(repository),
                 SaveUserDataUseCase(repository),

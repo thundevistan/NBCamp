@@ -11,7 +11,7 @@ import com.google.gson.reflect.TypeToken
  * 실질적인 데이터를 관리하는 Repository 구현부
  * 데이터에 대한 처리를 다룸
  */
-class MyPageRepositoryImpl : MyPageRepository {
+class MyPageRepositoryImpl : HomeRepository {
 
     private val USER_SHARED_PREFS_KEY = "user_shared_prefs_key"
     private val USER_SHARED_PREFS_NAME = "user_shared_prefs_name"

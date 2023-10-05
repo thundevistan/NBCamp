@@ -1,7 +1,6 @@
 package bootcamp.sparta.disneym.domain.repository
 
 import bootcamp.sparta.disneym.data.datasource.remote.Channels
-import bootcamp.sparta.disneym.data.datasource.remote.MainRepository
 import bootcamp.sparta.disneym.data.datasource.remote.Search
 import bootcamp.sparta.disneym.data.datasource.remote.VideoCategories
 import bootcamp.sparta.disneym.data.datasource.remote.Videos
@@ -19,7 +18,5 @@ return YoutubeRetrofit.youtubeApi.getVideoCategory(part = part, regionCode = reg
 	override suspend fun getChannels(part: String, id: String, key: String): Response<Channels> {
 		return YoutubeRetrofit.youtubeApi.getYoutubeChanel(part = part, id = id, key = key)
 	}
-	override suspend fun getSearch(part: String, q: String, maxResults: Int, key: String): Response<Search> {
-		return YoutubeRetrofit.youtubeApi.getSearch(part = part, q = q, maxResults = maxResults, key = key)
-	}
+
 }

@@ -1,5 +1,9 @@
-package bootcamp.sparta.disneym.data.datasource.remote
+package bootcamp.sparta.disneym.domain.repository
 
+import bootcamp.sparta.disneym.data.datasource.remote.Channels
+import bootcamp.sparta.disneym.data.datasource.remote.Search
+import bootcamp.sparta.disneym.data.datasource.remote.VideoCategories
+import bootcamp.sparta.disneym.data.datasource.remote.Videos
 import retrofit2.Response
 
 /*
@@ -14,5 +18,4 @@ interface MainRepository {
 
     suspend fun getChannels(part: String, id: String, key: String) : Response<Channels>
 
-    suspend fun getSearch(part: String, q: String, maxResults: Int, key: String) : Response<Search>
 }

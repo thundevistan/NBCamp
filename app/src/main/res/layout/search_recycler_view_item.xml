@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/common_gradient_background"
-    android:layout_marginTop="10dp"
     android:layout_marginStart="5dp"
-    android:layout_marginEnd="5dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="5dp"
+    android:background="@drawable/common_gradient_background">
+
 
     <ImageView
         android:id="@+id/search_view_thumbnail"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
+        android:layout_marginStart="4dp"
         android:src="@drawable/detail_test"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/search_view_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Disney- and Test"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Disney- and T- and TestTestTestTestTestTTestTestTesteTestTeststTest"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/search_view_thumbnail"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/search_view_channelname"
@@ -44,9 +48,9 @@
         android:id="@+id/search_view_views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="조회수 1100만"
         android:textColor="@color/white"
-        android:layout_marginStart="5dp"
         app:layout_constraintStart_toEndOf="@+id/search_view_thumbnail"
         app:layout_constraintTop_toBottomOf="@+id/search_view_channelname" />
 

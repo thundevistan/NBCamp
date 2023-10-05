@@ -1,7 +1,8 @@
-package bootcamp.sparta.disneym.ui.search
+package bootcamp.sparta.disneym.domain.usecase.search
 
 import bootcamp.sparta.disneym.BuildConfig
 import bootcamp.sparta.disneym.data.datasource.remote.Search
+import bootcamp.sparta.disneym.domain.repository.SearchRepository
 import retrofit2.Response
 
 class SearchUseCase (private val repository: SearchRepository)

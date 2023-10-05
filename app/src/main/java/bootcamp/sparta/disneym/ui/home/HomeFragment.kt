@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,260 +37,179 @@ import kotlin.math.abs
  */
 
 enum class Category {
-    POPULAR,
-    FILM,
-    PETS,
-    MUSIC,
-    PEOPLE,
-    GAMING,
-    ENTERTAINMENT
+	POPULAR,
+	FILM,
+	PETS,
+	MUSIC,
+	PEOPLE,
+	GAMING,
+	ENTERTAINMENT
 }
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+	private var _binding: FragmentHomeBinding? = null
+	private val binding get() = _binding!!
 
-    private val detailLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    result.data?.getParcelableExtra(
-                        DetailActivity.EXTRA_DETAIL,
-                        DetailModel::class.java
-                    )
-                } else {
-                    result.data?.getParcelableExtra(DetailActivity.EXTRA_DETAIL)
-                }
+	private val detailLauncher =
+		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+			if (result.resultCode == Activity.RESULT_OK) {
+				val item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+					result.data?.getParcelableExtra(
+						DetailActivity.EXTRA_DETAIL,
+						DetailModel::class.java
+					)
+				} else {
+					result.data?.getParcelableExtra(DetailActivity.EXTRA_DETAIL)
+				}
 
-                sharedViewModel.updateHomeItems(item)
-            }
-        }
+				sharedViewModel.updateHomeItems(item)
+			}
+		}
 
-    private val rvAdapter by lazy {
-        HomeRecyclerAdapter(
-            onItemClicked = { item ->
-                detailLauncher.launch(
-                    DetailActivity.newIntent(
-                        requireContext(),
-                        item.toDetailModel()
-                    )
-                )
-            }
-        )
-    }
-    private val vpAdapter by lazy {
-        HomeViewPagerAdapter()
-    }
+	private val rvAdapter by lazy {
+		HomeRecyclerAdapter(
+			onItemClicked = { item ->
+				detailLauncher.launch(
+					DetailActivity.newIntent(
+						requireContext(),
+						item.toDetailModel()
+					)
+				)
+			}
+		)
+	}
+	private val vpAdapter by lazy {
+		HomeViewPagerAdapter(
+			onItemClicked = { item ->
+				detailLauncher.launch(
+					DetailActivity.newIntent(
+						requireContext(),
+						item.toDetailModel()
+					)
+				)
+			})
+	}
 
-    private val repository by lazy {
-        MainRepository()
-    }
-    private val viewModel: HomeViewModel by viewModels {
-        HomeViewModelFactory(repository)
-    }
+	private val repository by lazy {
+		MainRepository()
+	}
+	private val viewModel: HomeViewModel by viewModels {
+		HomeViewModelFactory(repository)
+	}
 
-    private val sharedViewModel: MainSharedViewModel by activityViewModels()
+	private val sharedViewModel: MainSharedViewModel by activityViewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View {
+		_binding = FragmentHomeBinding.inflate(inflater, container, false)
+		return binding.root
+	}
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
 
-        upperViewPager()
-        initView()
-        initViewModel()
+		upperViewPager()
+		initView()
+		initViewModel()
 
-        binding.mainLowerRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (!recyclerView.canScrollVertically(-1)) {
-                    binding.apply {
-                        mainUpperViewPager.visibility = View.VISIBLE
-                        mainMiddleContainer.visibility = View.VISIBLE
-                    }
-                }
-//				else () {
-//					binding.apply {
-//						mainUpperViewPager.visibility = View.VISIBLE
-//						mainMiddleContainer.visibility = View.VISIBLE
-//					}
-//				}
-            }
-        })
-    }
+		// 스크롤 Up/Down 판별
+		binding.mainLowerRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+			private var isScrolledDown = false
 
-    private fun initView() = with(binding) {
-        mainFilmBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(FILM)
-//                categoryClick(FILM)
-        }
+			override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+				super.onScrollStateChanged(recyclerView, newState)
 
-        mainPetsBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(PETS)
-//                categoryClick(PETS)
-        }
+				if (!recyclerView.canScrollVertically(-1) && !isScrolledDown) {
+					binding.mainMiddleContainer.visibility = View.VISIBLE
+					binding.mainUpperViewPager.visibility = View.VISIBLE
+				}
+				if (newState == RecyclerView.SCROLL_STATE_DRAGGING && isScrolledDown) {
+					binding.mainMiddleContainer.visibility = View.GONE
+					binding.mainUpperViewPager.visibility = View.GONE
+				}
+			}
 
-        mainMusicBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(MUSIC)
-//                categoryClick(MUSIC)
-        }
+			override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+				super.onScrolled(recyclerView, dx, dy)
 
-        mainPeopleBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(PEOPLE)
-//                categoryClick(PEOPLE)
-        }
+				isScrolledDown = dy > 0
+				Log.d("isScrolledDown", dy.toString())
+			}
+		})
+	}
 
-        mainGamingBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(GAMING)
-//                categoryClick(GAMING)
-        }
+	private fun initView() = with(binding) {
+		viewModel.getVideoForCategory(FILM)
 
-        mainEntertainmentBtn.setOnClickListener {
-            viewVisibility()
-            viewModel.getVideoForCategory(ENTERTAINMENT)
-//                categoryClick(ENTERTAINMENT)
-        }
-    }
+		mainFilmBtn.setOnClickListener {
+			viewModel.getVideoForCategory(FILM)
+		}
 
-    private fun initViewModel() {
-        with(viewModel) {
-            list.observe(viewLifecycleOwner) { list ->
-                rvAdapter.submitList(list)
-            }
-            popular.observe(viewLifecycleOwner) { list ->
-                vpAdapter.setData(list)
-            }
-        }
+		mainPetsBtn.setOnClickListener {
+			viewModel.getVideoForCategory(PETS)
+		}
 
-        with(sharedViewModel) {
-            homeEvent.observe(viewLifecycleOwner, Observer {
-                // sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
-                // 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
-                // 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
+		mainMusicBtn.setOnClickListener {
+			viewModel.getVideoForCategory(MUSIC)
+		}
 
-            })
-        }
+		mainPeopleBtn.setOnClickListener {
+			viewModel.getVideoForCategory(PEOPLE)
+		}
 
-        // 카테고리 버튼
-        binding.mainLowerRecycler.adapter = rvAdapter
+		mainGamingBtn.setOnClickListener {
+			viewModel.getVideoForCategory(GAMING)
+		}
 
-        // 아이템 클릭
-//        rvAdapter.itemClick = object : HomeRecyclerAdapter.ItemClick {
-//            override fun onClick(view: View, position: Int) {
-//                val intent = Intent(requireActivity(), DetailFragment::class.java)
-//                startActivity(intent)
-//            }
-//
-//        }
+		mainEntertainmentBtn.setOnClickListener {
+			viewModel.getVideoForCategory(ENTERTAINMENT)
+		}
+	}
 
-        vpAdapter.itemClick = object : HomeViewPagerAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                val intent = Intent(requireActivity(), DetailFragment::class.java)
-                startActivity(intent)
-            }
-        }
-    }
+	private fun initViewModel() {
+		binding.mainLowerRecycler.adapter = rvAdapter
 
-    // 최상단 viewpager 출력
-    private fun upperViewPager() {
-        val transform = CompositePageTransformer()
+		with(viewModel) {
+			list.observe(viewLifecycleOwner) { list ->
+				rvAdapter.submitList(list)
+			}
+			popular.observe(viewLifecycleOwner) { list ->
+				vpAdapter.submitList(list)
+			}
+		}
 
-        binding.mainUpperViewPager.apply {
-            this.adapter = vpAdapter
-            offscreenPageLimit = 3
-            getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
-            setPageTransformer(transform)
-        }
+		with(sharedViewModel) {
+			homeEvent.observe(viewLifecycleOwner, Observer {
+				// sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
+				// 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
+				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
 
-        transform.apply {
-            addTransformer(MarginPageTransformer(8))
-            addTransformer { view: View, fl: Float ->
-                val v = 1 - abs(fl)
-                view.scaleY = 0.8f + v * 0.2f
-            }
-        }
+			})
+		}
+	}
 
-        viewModel.getVideoForCategory(POPULAR)
-//        viewModel.getPopular()
-//        viewModel.popular.observe(viewLifecycleOwner) {
-//            if (!it.isNullOrEmpty()) {
-//                vpAdapter.setData(it)
-//            }
-//        }
-    }
+	// 최상단 viewpager 출력
+	private fun upperViewPager() {
+		val transform = CompositePageTransformer()
 
-    // 카테고리 버튼 이벤트 처리
-//    private fun categoryClick(category: Category) = when (category) {
-//        Category.FILM -> {
-//            viewModel.getFilm()
-//            viewModel.films.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//
-//        Category.PETS -> {
-//            viewModel.getPets()
-//            viewModel.pets.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//
-//        Category.MUSIC -> {
-//            viewModel.getMusic()
-//            viewModel.music.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//
-//        Category.PEOPLE -> {
-//            viewModel.getPeople()
-//            viewModel.people.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//
-//        Category.GAMING -> {
-//            viewModel.getGaming()
-//            viewModel.gaming.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//
-//        Category.ENTERTAINMENT -> {
-//            viewModel.getEntertainment()
-//            viewModel.entertainment.observe(viewLifecycleOwner) {
-//                if (!it.isNullOrEmpty()) {
-//                    rvAdapter.setData(it)
-//                }
-//            }
-//        }
-//    }
+		binding.mainUpperViewPager.apply {
+			this.adapter = vpAdapter
+			offscreenPageLimit = 3
+			getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+			setPageTransformer(transform)
+		}
 
-    private fun viewVisibility() {
-        binding.apply {
-            mainUpperViewPager.visibility = View.GONE
-            mainMiddleContainer.visibility = View.GONE
-        }
-    }
+		transform.apply {
+			addTransformer(MarginPageTransformer(8))
+			addTransformer { view: View, fl: Float ->
+				val v = 1 - abs(fl)
+				view.scaleY = 0.8f + v * 0.2f
+			}
+		}
+
+		viewModel.getVideoForCategory(POPULAR)
+	}
 }

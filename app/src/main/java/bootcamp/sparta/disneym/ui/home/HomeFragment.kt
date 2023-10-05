@@ -1,7 +1,6 @@
 package bootcamp.sparta.disneym.ui.home
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,18 +11,20 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
 import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.model.toDetailModel
-import bootcamp.sparta.disneym.repository.MainRepository
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
-import bootcamp.sparta.disneym.ui.detail.DetailFragment
-import bootcamp.sparta.disneym.ui.home.Category.*
+import bootcamp.sparta.disneym.ui.home.Category.ENTERTAINMENT
+import bootcamp.sparta.disneym.ui.home.Category.FILM
+import bootcamp.sparta.disneym.ui.home.Category.GAMING
+import bootcamp.sparta.disneym.ui.home.Category.MUSIC
+import bootcamp.sparta.disneym.ui.home.Category.PEOPLE
+import bootcamp.sparta.disneym.ui.home.Category.PETS
+import bootcamp.sparta.disneym.ui.home.Category.POPULAR
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.home.HomeViewModelFactory
@@ -91,11 +92,8 @@ class HomeFragment : Fragment() {
 			})
 	}
 
-	private val repository by lazy {
-		MainRepository()
-	}
 	private val viewModel: HomeViewModel by viewModels {
-		HomeViewModelFactory(repository)
+		HomeViewModelFactory()
 	}
 
 	private val sharedViewModel: MainSharedViewModel by activityViewModels()
@@ -123,12 +121,16 @@ class HomeFragment : Fragment() {
 				super.onScrollStateChanged(recyclerView, newState)
 
 				if (!recyclerView.canScrollVertically(-1) && !isScrolledDown) {
-					binding.mainMiddleContainer.visibility = View.VISIBLE
-					binding.mainUpperViewPager.visibility = View.VISIBLE
+					binding.apply {
+						mainMiddleContainer.visibility = View.VISIBLE
+						mainUpperViewPager.visibility = View.VISIBLE
+					}
 				}
 				if (newState == RecyclerView.SCROLL_STATE_DRAGGING && isScrolledDown) {
-					binding.mainMiddleContainer.visibility = View.GONE
-					binding.mainUpperViewPager.visibility = View.GONE
+					binding.apply {
+						mainMiddleContainer.visibility = View.GONE
+						mainUpperViewPager.visibility = View.GONE
+					}
 				}
 			}
 
@@ -179,15 +181,6 @@ class HomeFragment : Fragment() {
 			popular.observe(viewLifecycleOwner) { list ->
 				vpAdapter.submitList(list)
 			}
-		}
-
-		with(sharedViewModel) {
-			homeEvent.observe(viewLifecycleOwner, Observer {
-				// sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
-				// 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
-				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
-
-			})
 		}
 	}
 

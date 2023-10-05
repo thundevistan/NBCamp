@@ -76,13 +76,13 @@ object Util {
 
     fun shareUrl(context: Context, videoId : String){
 
-        val url = idToUrl(videoId)
+        val url = URL.format(videoId)
 
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, url)
             // (Optional) Here we're setting the title of the content
-            putExtra(Intent.EXTRA_TITLE, "YOUTUBE URL")
+            putExtra(Intent.EXTRA_TITLE, "Share Youtube URL")
             // (Optional) Here we're passing a content URI to an image to be displayed
             data = Uri.parse(url)
             type = "text/plain"
@@ -92,6 +92,5 @@ object Util {
     }
 
     private const val URL = "https://www.youtube.com/watch?v=%s"
-    private fun idToUrl(id : String): String = "https://www.youtube.com/watch?v=$id"
 
 }

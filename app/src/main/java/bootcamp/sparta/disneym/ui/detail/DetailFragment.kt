@@ -142,7 +142,7 @@ class DetailFragment : Fragment() {
              */
             activity?.let { context ->
                 viewModel.detailItem.value?.let { detailItem ->
-                    Util.shareUrl(context, detailItem.imgUrl)
+                    detailItem.id?.let { videoId -> Util.shareUrl(context, videoId) }
                 }
             }
         }
@@ -181,7 +181,6 @@ class DetailFragment : Fragment() {
             AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
-                // 나중에 변환해주는 함수 추가 예정
                 youTubePlayer.cueVideo(videoId, 0f)
             }
         })

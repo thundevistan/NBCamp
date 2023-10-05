@@ -17,54 +17,6 @@ import com.bumptech.glide.Glide
  *
  * HomeFragment 하단의 scrollView 안에 위치한 recyclerView의 어댑터
  */
-//class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-//
-//	private var oldItems = emptyList<HomeModel>()
-//
-//	interface ItemClick {
-//		fun onClick(view: View, position: Int)
-//	}
-//
-//	var itemClick: ItemClick? = null
-//
-//	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-//		val view = HomeRecyclerItemBinding.inflate(
-//			LayoutInflater.from(parent.context),
-//			parent,
-//			false
-//		)
-//		return ViewHolder(view)
-//	}
-//
-//	override fun getItemCount(): Int {
-//		return oldItems.size
-//	}
-//
-//	override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//		(holder as ViewHolder).setData(oldItems[position])
-//	}
-//
-//	inner class ViewHolder(itemView: HomeRecyclerItemBinding) :
-//		RecyclerView.ViewHolder(itemView.root) {
-//
-//		private val binding = itemView
-//
-//		fun setData(data: HomeModel) {
-//			Glide.with(binding.root)
-//				.load(data.imgUrl)
-//				.into(binding.homeThumbnailIv)
-//			Log.d("imgUrl", data.imgUrl)
-//		}
-//	}
-//
-//	fun setData(newList: List<HomeModel>) {
-//		val videoDiff = DiffUtil(oldItems, newList)
-//		val diff = DiffUtil.calculateDiff(videoDiff)
-//		oldItems = newList
-//		diff.dispatchUpdatesTo(this)
-//	}
-//}
-
 class HomeRecyclerAdapter(
     private val onItemClicked: (HomeModel) -> Unit,
 ) : ListAdapter<HomeModel, HomeRecyclerAdapter.Holder>(
@@ -98,7 +50,8 @@ class HomeRecyclerAdapter(
                 .into(binding.homeThumbnailIv)
 
             // 공백을 제거, 문자열 길이가 10줄 이상이면 나머지는 "..."으로 대체
-            val truncatedText = item.title.take(10).trimEnd() + if (item.title.length > 10) "..." else ""
+            val truncatedText =
+                item.title.take(10).trimEnd() + if (item.title.length > 10) "..." else ""
             homeRvItemTitle.text = truncatedText
 
             // 클릭이벤트
@@ -107,5 +60,4 @@ class HomeRecyclerAdapter(
             }
         }
     }
-
 }

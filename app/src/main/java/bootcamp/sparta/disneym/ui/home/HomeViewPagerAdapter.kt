@@ -1,9 +1,9 @@
 package bootcamp.sparta.disneym.ui.home
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.HomeViewpagerItemBinding
 import bootcamp.sparta.disneym.model.HomeModel
@@ -14,51 +14,43 @@ import com.bumptech.glide.Glide
  *
  * HomeFragment 상단에 위치한 viewpager의 어댑터
  */
-class HomeViewPagerAdapter :
-	RecyclerView.Adapter<HomeViewPagerAdapter.ViewHolder>() {
-
-	private var oldItems = emptyList<HomeModel>()
-
-	interface ItemClick {
-		fun onClick(view: View, position: Int)
-	}
-
-	var itemClick: ItemClick? = null
-
-	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		val view = HomeViewpagerItemBinding.inflate(
-			LayoutInflater.from(parent.context),
-			parent,
-			false
-		)
-		return ViewHolder(view)
-	}
-
-	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-		holder.setData(oldItems[position])
-	}
-
-	override fun getItemCount(): Int {
-		return oldItems.size
-	}
-
-	inner class ViewHolder(itemVIew: HomeViewpagerItemBinding) :
-		RecyclerView.ViewHolder(itemVIew.root) {
-
-		private val binding = itemVIew
-
-		fun setData(data: HomeModel) {
-			Glide.with(binding.root)
-				.load(data.imgUrl)
-				.into(binding.homeTitleIv)
-			Log.d("viewpager", data.imgUrl)
+class HomeViewPagerAdapter(
+	private val onItemClicked: (HomeModel) -> Unit
+) : ListAdapter<HomeModel, HomeViewPagerAdapter.Holder>(
+	object : DiffUtil.ItemCallback<HomeModel>() {
+		override fun areItemsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
+			return oldItem.imgUrl == newItem.imgUrl
 		}
+
+		override fun areContentsTheSame(oldItem: HomeModel, newItem: HomeModel): Boolean {
+			return oldItem == newItem
+		}
+
+	}
+) {
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+		val view =
+			HomeViewpagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+		return Holder(view, onItemClicked)
 	}
 
-	fun setData(newList: List<HomeModel>) {
-		val videoDiff = DiffUtil(oldItems, newList)
-		val diff = androidx.recyclerview.widget.DiffUtil.calculateDiff(videoDiff)
-		oldItems = newList
-		diff.dispatchUpdatesTo(this)
+	override fun onBindViewHolder(holder: Holder, position: Int) {
+		holder.onBind(getItem(position))
+	}
+
+	class Holder(
+		private val binding: HomeViewpagerItemBinding,
+		private val onItemClicked: (HomeModel) -> Unit
+	) : RecyclerView.ViewHolder(binding.root) {
+
+		fun onBind(item: HomeModel) = with(binding) {
+			Glide.with(binding.homeTitleIv)
+				.load(item.imgUrl)
+				.into(binding.homeTitleIv)
+
+			itemView.setOnClickListener {
+				onItemClicked(item)
+			}
+		}
 	}
 }

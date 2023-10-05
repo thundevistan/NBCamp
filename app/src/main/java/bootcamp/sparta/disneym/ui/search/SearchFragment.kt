@@ -10,23 +10,17 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.repository.MainRepository
 import bootcamp.sparta.disneym.repository.SearchRepositoryImpl
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
-import bootcamp.sparta.disneym.ui.detail.DetailFragment
-import bootcamp.sparta.disneym.ui.main.MainActivity
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import bootcamp.sparta.disneym.ui.viewmodel.search.SearchViewModel
@@ -59,11 +53,8 @@ class SearchFragment : Fragment() {
         )
     }
 
-    private val repository: SearchRepository by lazy {
-        SearchRepositoryImpl()
-    }
 
-    private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory(repository) }
+    private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory() }
     private val sharedViewModel: MainSharedViewModel by activityViewModels()
 
     private val detailLauncher =
@@ -81,12 +72,6 @@ class SearchFragment : Fragment() {
 
     private lateinit var gridManager: StaggeredGridLayoutManager
     private var searchViewVisible = false
-
-    private val part = "snippet"
-    private val key = API_KEY.AUTH_KEY
-    private val maxResults = 50
-    private val regionCode = "KR"
-    private val chart = "mostPopular"
 
 
     override fun onCreateView(
@@ -175,14 +160,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun initViewModel() = with(viewModel) {
-//        sharedViewModel.updateDetailItem(updateModel = SearchModel(  ))
 
-//        viewAdapter.setOnItemClickListener { searchModel ->
-//            sharedViewModel.updateDetailItem(searchModel)
-//            Log.d("SearchFragment", "updateDetailItem 호출 - searchModel: $searchModel")
-//        }
-
-        // detailEvent를 관찰하여 디테일 아이템이 업데이트될 때 화면을 열기
         searchItem.observe(viewLifecycleOwner) { searchItem ->
             viewAdapter.submitList(searchItem)
         }
@@ -211,7 +189,7 @@ class SearchFragment : Fragment() {
         val q = query
         Log.d("SearchFragment", "performSearch() 호출 - 검색어: $q")
 
-        viewModel.getSearchItems(part, q, maxResults, key)
+        viewModel.getSearchItems(q)
 
         viewModel.searchItem.observe(viewLifecycleOwner, Observer {
             viewAdapter.submitList(it)
@@ -221,7 +199,7 @@ class SearchFragment : Fragment() {
 
     private fun searchVideo(videoCategoryId: Int) {
 
-        viewModel.getVideoItems(part, chart, key, maxResults, videoCategoryId, regionCode)
+        viewModel.getVideoItems(videoCategoryId)
 
         viewModel.getVideo.observe(viewLifecycleOwner, Observer {
             mainAdapter.submitList(it)

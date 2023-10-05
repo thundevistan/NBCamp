@@ -6,11 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bootcamp.sparta.disneym.model.SearchModel
-import bootcamp.sparta.disneym.repository.MainRepository
 import bootcamp.sparta.disneym.ui.search.SearchRepository
+import bootcamp.sparta.disneym.ui.search.SearchUseCase
+import bootcamp.sparta.disneym.ui.search.VideoUseCase
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: SearchRepository): ViewModel() {
+class SearchViewModel(private val searchUseCase: SearchUseCase, private val videoUseCase: VideoUseCase): ViewModel() {
 
     private val _searchItem: MutableLiveData<List<SearchModel>> = MutableLiveData()
     val searchItem: LiveData<List<SearchModel>> = _searchItem
@@ -18,10 +19,10 @@ class SearchViewModel(private val repository: SearchRepository): ViewModel() {
     private val _getVideo: MutableLiveData<List<SearchModel>> = MutableLiveData()
     val getVideo : LiveData<List<SearchModel>> = _getVideo
 
-    fun getSearchItems(part: String, q: String, maxResults: Int, key: String) {
+    fun getSearchItems(q: String) {
         viewModelScope.launch {
             try {
-                val response = repository.getSearch(part, q, maxResults, key)
+                val response = searchUseCase(q= q)
                 if(response.isSuccessful) {
                     val searchResults = response.body()
                     Log.d("Search", "response : ${response.body()}")
@@ -51,10 +52,10 @@ class SearchViewModel(private val repository: SearchRepository): ViewModel() {
         }
     }
 
-    fun getVideoItems(part: String, chart: String, key: String, maxResults: Int, videoCategoryId: Int, regionCode: String) {
+    fun getVideoItems(videoCategoryId: Int) {
         viewModelScope.launch {
             try {
-                val response = repository.getVideos(part, chart, key, maxResults, videoCategoryId, regionCode)
+                val response = videoUseCase(videoCategoryId = videoCategoryId)
                 if (response.isSuccessful) {
                     val videoResult = response.body()
                     if (videoResult != null) {
@@ -84,35 +85,5 @@ class SearchViewModel(private val repository: SearchRepository): ViewModel() {
     }
 }
 
-
-//    private val _searchItem = MutableLiveData<List<SearchTestModel>>().apply { value = emptyList() }
-//
-//    val searchItem: LiveData<List<SearchTestModel>> = _searchItem
-//
-//    fun getSearch(part: String, q: String, maxResults: Int, key: String) {
-//        viewModelScope.launch {
-//            try {
-//                val response = repository.getSearch(part, q, maxResults, key)
-//
-//                if(response.isSuccessful) {
-//                    val searchResults = response.body()
-//                    if(searchResults != null) {
-//                        val searchItems: List<SearchTestModel> = searchResults.search.items.map { item ->
-//                            SearchTestModel(
-//                                title = item.snippet.title,
-//                                imgUrl = item.snippet.thumbnails.high.url,
-//                                description = item.snippet.description,
-//                                datetime = item.snippet.publishedAt,
-//                                channelTitle = item.snippet.channelTitle,
-//                                isBookmarked = false
-//                            )
-//                        }
-//                        _searchItem.value = searchItems
-//                    }
-//                }
-//            } catch (e: Exception) {
-//            }
-//        }
-//    }
 
 

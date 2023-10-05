@@ -16,10 +16,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.repository.SearchRepositoryImpl
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel

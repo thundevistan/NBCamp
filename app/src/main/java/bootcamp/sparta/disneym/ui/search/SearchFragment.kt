@@ -23,6 +23,7 @@ import bootcamp.sparta.disneym.data.datasource.remote.API_KEY
 import bootcamp.sparta.disneym.databinding.FragmentSearchBinding
 import bootcamp.sparta.disneym.model.DetailModel
 import bootcamp.sparta.disneym.repository.MainRepository
+import bootcamp.sparta.disneym.repository.SearchRepositoryImpl
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.detail.DetailFragment
 import bootcamp.sparta.disneym.ui.main.MainActivity
@@ -58,8 +59,8 @@ class SearchFragment : Fragment() {
         )
     }
 
-    private val repository: MainRepository by lazy {
-        MainRepository()
+    private val repository: SearchRepository by lazy {
+        SearchRepositoryImpl()
     }
 
     private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory(repository) }

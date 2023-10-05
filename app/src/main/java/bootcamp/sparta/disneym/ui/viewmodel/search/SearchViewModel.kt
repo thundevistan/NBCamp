@@ -7,9 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bootcamp.sparta.disneym.model.SearchModel
 import bootcamp.sparta.disneym.repository.MainRepository
+import bootcamp.sparta.disneym.ui.search.SearchRepository
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val repository: MainRepository): ViewModel() {
+class SearchViewModel(private val repository: SearchRepository): ViewModel() {
 
     private val _searchItem: MutableLiveData<List<SearchModel>> = MutableLiveData()
     val searchItem: LiveData<List<SearchModel>> = _searchItem

@@ -13,8 +13,6 @@ import com.google.gson.reflect.TypeToken
 
 object Util {
     private const val SHARED_PREFS_KEY = "shared_prefs_key"
-    private const val USER_SHARED_PREFS_KEY ="user_shared_prefs_key"
-    private const val USER_SHARED_PREFS_NAME ="user_shared_prefs_name"
 
 
     fun saveBookmarkItemForSharedPrefs(context: Context, item: BookmarkModel) {
@@ -48,31 +46,6 @@ object Util {
 
     }
 
-    fun saveUserDataForSharedPrefs(context: Context, values: UserModel) {
-        val gson = Gson()
-        val json = gson.toJson(values)
-        val prefs = context.getSharedPreferences(USER_SHARED_PREFS_NAME, Context.MODE_PRIVATE)
-        val editor = prefs?.edit()
-        editor?.putString(USER_SHARED_PREFS_KEY, json)
-        editor?.apply()
-    }
-
-    fun loadUserDataForSharedPrefs(context: Context): UserModel {
-        val prefs = context.getSharedPreferences(USER_SHARED_PREFS_NAME, Context.MODE_PRIVATE)
-        val json = prefs?.getString(USER_SHARED_PREFS_KEY, null)
-        return if (json != null) {
-            val gson = Gson()
-            val storedData: UserModel =
-                gson.fromJson(json, object : TypeToken<UserModel>() {}.type)
-            storedData
-        } else {
-            return UserModel(
-                R.drawable.profile2,
-                "disneym@gmail.com",
-                "123456789"
-            )
-        }
-    }
 
     fun shareUrl(context: Context, videoId : String){
 

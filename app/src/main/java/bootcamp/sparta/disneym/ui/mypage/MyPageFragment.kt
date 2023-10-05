@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentMyPageBinding
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageProfileDialog
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageTextDialog
+import bootcamp.sparta.disneym.ui.viewmodel.my.MyPageFactory
 import bootcamp.sparta.disneym.ui.viewmodel.my.MyPageViewModel
 import bootcamp.sparta.disneym.util.Util
 
@@ -23,7 +24,7 @@ class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MyPageViewModel by viewModels()
+    private val viewModel: MyPageViewModel by viewModels { MyPageFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +42,10 @@ class MyPageFragment : Fragment() {
     }
 
     private fun initModel() = with(viewModel) {
-        userInfo.observe(viewLifecycleOwner, Observer {
+        userInfo.observe(viewLifecycleOwner, Observer { userModel ->
             binding.apply {
-                myIdTv.text = it.id
-                val originalPassword = it?.password // 비밀번호 마스킹
+                myIdTv.text = userModel.id
+                val originalPassword = userModel?.password // 비밀번호 마스킹
                 val maskedPassword = originalPassword?.let {
                     if (it.length > 3) {
                         it.substring(0, 3) + "*".repeat(it.length - 3)
@@ -53,9 +54,12 @@ class MyPageFragment : Fragment() {
                     }
                 }
                 myPwTv.text = maskedPassword
-                myProfileIv.setImageResource(it.imageUri)
+                myProfileIv.setImageResource(userModel.imageUri)
             }
-            context?.let { context -> Util.saveUserDataForSharedPrefs(context, it) } // SharedPreference 데이터 저장
+            // SharedPreference 데이터 저장
+            context?.let { context ->
+                viewModel.saveUserData(context,userModel)
+            }
         })
     }
 
@@ -63,10 +67,7 @@ class MyPageFragment : Fragment() {
 
         context?.let { context ->
             // SharedPreference 데이터 로드
-            Util.loadUserDataForSharedPrefs(context).let { loadData ->
-                Log.d("sharedPreference","$loadData")
-                viewModel.loadUserData(loadData)
-            }
+            viewModel.loadUserData(context)
         }
         myEditProfileBtn.setOnClickListener {
             activity?.let {

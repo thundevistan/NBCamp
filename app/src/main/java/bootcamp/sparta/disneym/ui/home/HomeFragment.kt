@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.TranslateAnimation
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -123,12 +124,16 @@ class HomeFragment : Fragment() {
 				super.onScrollStateChanged(recyclerView, newState)
 
 				if (!recyclerView.canScrollVertically(-1) && !isScrolledDown) {
-					binding.mainMiddleContainer.visibility = View.VISIBLE
-					binding.mainUpperViewPager.visibility = View.VISIBLE
+					binding.apply {
+						mainMiddleContainer.visibility = View.VISIBLE
+						mainUpperViewPager.visibility = View.VISIBLE
+					}
 				}
 				if (newState == RecyclerView.SCROLL_STATE_DRAGGING && isScrolledDown) {
-					binding.mainMiddleContainer.visibility = View.GONE
-					binding.mainUpperViewPager.visibility = View.GONE
+					binding.apply {
+						mainMiddleContainer.visibility = View.GONE
+						mainUpperViewPager.visibility = View.GONE
+					}
 				}
 			}
 
@@ -186,7 +191,8 @@ class HomeFragment : Fragment() {
 				// sharedViewModel homeEvent(LiveData)의 값이 변했을 때 이벤트
 				// 매핑을 통해 HomeModel의 형태를 가진 Item이 "it"에 들어옴
 				// 기존의 Home에 있는 List와 비교해 동일한 아이템을 찾아 isbookmarked 값 변경
-
+//				viewModel.list.value = updateHomeItems(it)
+//				viewModel.popular.value = homeEvent
 			})
 		}
 	}
@@ -212,4 +218,9 @@ class HomeFragment : Fragment() {
 
 		viewModel.getVideoForCategory(POPULAR)
 	}
+
+//	private fun animateLayoutChanges() {
+//		val anim = TranslateAnimation()
+//
+//	}
 }

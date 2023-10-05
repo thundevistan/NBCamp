@@ -1,25 +1,16 @@
-package bootcamp.sparta.disneym.ui.viewmodel.my
+package bootcamp.sparta.disneym.domain.repository
 
 import android.content.Context
 import android.util.Log
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.ui.mypage.UserModel
-import bootcamp.sparta.disneym.util.Util
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-
-interface MyPageRepository {
-    fun updateUserId(id: String): UserModel
-
-    fun updateUserPw(pw: String): UserModel
-
-    fun updateUserProfile(profile: Int): UserModel
-
-    fun loadUserData(context: Context): UserModel
-
-    fun saveUserData(context: Context,userModel: UserModel)
-}
-
+/*
+ * 추민수
+ * 실질적인 데이터를 관리하는 Repository 구현부
+ * 데이터에 대한 처리를 다룸
+ */
 class MyPageRepositoryImpl : MyPageRepository {
 
     private val USER_SHARED_PREFS_KEY = "user_shared_prefs_key"
@@ -55,7 +46,7 @@ class MyPageRepositoryImpl : MyPageRepository {
         return userItem
     }
 
-    override fun saveUserData(context: Context,userModel: UserModel) {
+    override fun saveUserData(context: Context, userModel: UserModel) {
         saveUserDataForSharedPrefs(
             context,
             userModel

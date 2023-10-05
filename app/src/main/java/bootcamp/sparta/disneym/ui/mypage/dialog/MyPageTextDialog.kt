@@ -43,8 +43,6 @@ class MyPageTextDialog(
                 android.text.InputType.TYPE_CLASS_NUMBER
         }
 
-        dialogText.inputType
-
         // 뒤로가기, 빈 화면 터치를 통해 dialog가 종료되지 않게하는 코드
         setCancelable(false)
 

@@ -1,9 +1,12 @@
 package bootcamp.sparta.disneym.ui.viewmodel.my
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import bootcamp.sparta.disneym.R
+import bootcamp.sparta.disneym.ui.mypage.UserModel
+
 /*
  * 추민수
  * MyPage 데이터 관리를 위한 ViewModel
@@ -13,37 +16,30 @@ import bootcamp.sparta.disneym.R
  */
 class MyPageViewModel : ViewModel() {
 
-    private val _userInfo : MutableLiveData<EventForUserInfo>  = MutableLiveData()
-    val userInfo : LiveData<EventForUserInfo> get() = _userInfo
+    private val _userInfo: MutableLiveData<UserModel> = MutableLiveData()
+    val userInfo: LiveData<UserModel> get() = _userInfo
 
-    init {
-        _userInfo.value = EventForUserInfo.UpdateUserProfile(R.drawable.profile2)
-        _userInfo.value = EventForUserInfo.UpdateUserId("disneym@gmail.com")
-        _userInfo.value = EventForUserInfo.UpdateUserPw("123456789")
+    fun updateUserId(id: String) {
+        _userInfo.value = userInfo.value?.copy(
+            id = id
+        )
     }
 
-    fun updateUserId(id : String){
-        _userInfo.value = EventForUserInfo.UpdateUserId(id)
-    }
-
-    fun updateUserPw(pw : String){
-        _userInfo.value = EventForUserInfo.UpdateUserPw(pw)
+    fun updateUserPw(pw: String) {
+        _userInfo.value = userInfo.value?.copy(
+            password = pw
+        )
     }
 
     fun updateUserProfile(profile: Int) {
-        _userInfo.value = EventForUserInfo.UpdateUserProfile(profile)
+        _userInfo.value = _userInfo.value?.copy(
+            imageUri = profile
+        )
     }
-}
 
-sealed interface EventForUserInfo {
-    data class UpdateUserProfile(
-        val image : Int
-    ) : EventForUserInfo
-    data class UpdateUserId(
-        val text: String
-    ) : EventForUserInfo
+    fun loadUserData(loadData: UserModel) {
+        Log.d("sharedPreference","$loadData")
+        _userInfo.value = loadData
+    }
 
-    data class UpdateUserPw(
-        val text: String
-    ) : EventForUserInfo
 }

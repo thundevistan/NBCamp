@@ -4,13 +4,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
+import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
+import bootcamp.sparta.disneym.ui.mypage.UserModel
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object Util {
     private const val SHARED_PREFS_KEY = "shared_prefs_key"
+    private const val USER_SHARED_PREFS_KEY ="user_shared_prefs_key"
+    private const val USER_SHARED_PREFS_NAME ="user_shared_prefs_name"
+
 
     fun saveBookmarkItemForSharedPrefs(context: Context, item: BookmarkModel) {
         val pref = context.getSharedPreferences(SHARED_PREFS_KEY, Activity.MODE_PRIVATE)
@@ -43,12 +48,41 @@ object Util {
 
     }
 
-    fun shareUrl(context: Context, url : String){
+    fun saveUserDataForSharedPrefs(context: Context, values: UserModel) {
+        val gson = Gson()
+        val json = gson.toJson(values)
+        val prefs = context.getSharedPreferences(USER_SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        val editor = prefs?.edit()
+        editor?.putString(USER_SHARED_PREFS_KEY, json)
+        editor?.apply()
+    }
+
+    fun loadUserDataForSharedPrefs(context: Context): UserModel {
+        val prefs = context.getSharedPreferences(USER_SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        val json = prefs?.getString(USER_SHARED_PREFS_KEY, null)
+        return if (json != null) {
+            val gson = Gson()
+            val storedData: UserModel =
+                gson.fromJson(json, object : TypeToken<UserModel>() {}.type)
+            storedData
+        } else {
+            return UserModel(
+                R.drawable.profile2,
+                "disneym@gmail.com",
+                "123456789"
+            )
+        }
+    }
+
+    fun shareUrl(context: Context, videoId : String){
+
+        val url = URL.format(videoId)
+
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, url)
             // (Optional) Here we're setting the title of the content
-            putExtra(Intent.EXTRA_TITLE, "YOUTUBE URL")
+            putExtra(Intent.EXTRA_TITLE, "Share Youtube URL")
             // (Optional) Here we're passing a content URI to an image to be displayed
             data = Uri.parse(url)
             type = "text/plain"
@@ -56,5 +90,7 @@ object Util {
         }, null)
         context.startActivity(share)
     }
+
+    private const val URL = "https://www.youtube.com/watch?v=%s"
 
 }

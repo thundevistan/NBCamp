@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -125,6 +126,12 @@ class DetailFragment : Fragment() {
         detailBookmarkBtn.setOnClickListener {
             // isbookmarked btn Update
             detailBookmarkBtn.isSelected = !detailBookmarkBtn.isSelected
+            if(detailBookmarkBtn.isSelected){
+                Toast.makeText(context,"북마크에 추가되었습니다.",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context,"북마크에서 제거되었습니다.",Toast.LENGTH_SHORT).show()
+            }
             // detailItem Update
             searchBundle?.let { item ->
                 viewModel.isBookmarkedItem(

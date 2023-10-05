@@ -1,18 +1,18 @@
 package bootcamp.sparta.disneym.ui.mypage
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentMyPageBinding
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageProfileDialog
 import bootcamp.sparta.disneym.ui.mypage.dialog.MyPageTextDialog
-import bootcamp.sparta.disneym.ui.viewmodel.my.EventForUserInfo
 import bootcamp.sparta.disneym.ui.viewmodel.my.MyPageViewModel
+import bootcamp.sparta.disneym.util.Util
 
 /*
 * 추민수
@@ -24,12 +24,6 @@ class MyPageFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MyPageViewModel by viewModels()
-
-    private var userId = "disneym@gmail.com"
-
-    private var userPw = "123456789"
-
-    private var userProfile = R.drawable.profile2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,48 +42,57 @@ class MyPageFragment : Fragment() {
 
     private fun initModel() = with(viewModel) {
         userInfo.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is EventForUserInfo.UpdateUserId -> {
-                    userId = it.text
-                    binding.myIdTv.text = it.text
+            binding.apply {
+                myIdTv.text = it.id
+                val originalPassword = it?.password // 비밀번호 마스킹
+                val maskedPassword = originalPassword?.let {
+                    if (it.length > 3) {
+                        it.substring(0, 3) + "*".repeat(it.length - 3)
+                    } else {
+                        it // 길이가 3 이하일 때 마스킹 X
+                    }
                 }
-
-                is EventForUserInfo.UpdateUserPw -> {
-                    userPw = it.text
-                    val originalPassword = it.text// 비밀번호 예시
-                    val maskedPassword =
-                        originalPassword.substring(0, 3) + "*".repeat(originalPassword.length - 3)
-                    binding.myPwTv.text = maskedPassword
-                }
-
-                is EventForUserInfo.UpdateUserProfile -> {
-                    userProfile = it.image
-                    binding.myProfileIv.setImageResource(it.image)
-                }
+                myPwTv.text = maskedPassword
+                myProfileIv.setImageResource(it.imageUri)
             }
+            context?.let { context -> Util.saveUserDataForSharedPrefs(context, it) } // SharedPreference 데이터 저장
         })
     }
 
     private fun initView() = with(binding) {
+
+        context?.let { context ->
+            // SharedPreference 데이터 로드
+            Util.loadUserDataForSharedPrefs(context).let { loadData ->
+                Log.d("sharedPreference","$loadData")
+                viewModel.loadUserData(loadData)
+            }
+        }
         myEditProfileBtn.setOnClickListener {
             activity?.let {
-                MyPageProfileDialog(it, userProfile) { callBackProfile ->
-                    viewModel.updateUserProfile(callBackProfile)
-                }.show()
+                viewModel.userInfo.value?.let { it1 ->
+                    MyPageProfileDialog(it, it1.imageUri) { callBackProfile ->
+                        viewModel.updateUserProfile(callBackProfile)
+                    }.show()
+                }
             }
         }
         myEditId.setOnClickListener {
             activity?.let {
-                MyPageTextDialog(it, userId, EditDialogType.ID.ordinal) { callBackId ->
-                    viewModel.updateUserId(callBackId)
-                }.show()
+                viewModel.userInfo.value?.let { it1 ->
+                    MyPageTextDialog(it, it1.id, EditDialogType.ID.ordinal) { callBackId ->
+                        viewModel.updateUserId(callBackId)
+                    }.show()
+                }
             }
         }
         myEditPw.setOnClickListener {
             activity?.let {
-                MyPageTextDialog(it, userPw, EditDialogType.PW.ordinal) { callBackPw ->
-                    viewModel.updateUserPw(callBackPw)
-                }.show()
+                viewModel.userInfo.value?.let { it1 ->
+                    MyPageTextDialog(it, it1.password, EditDialogType.PW.ordinal) { callBackPw ->
+                        viewModel.updateUserPw(callBackPw)
+                    }.show()
+                }
             }
         }
     }

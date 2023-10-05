@@ -181,8 +181,6 @@ class DetailFragment : Fragment() {
             AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 super.onReady(youTubePlayer)
-                // https://www.youtube.com/watch?v=KhEAe2_T-4c&t=4652s 링크 -> ID값 [KhEAe2_T-4c]
-                // https://www.youtube.com/watch?v=42fmMP81EvA&t=2296s -> 42fmMP81EvA
                 // 나중에 변환해주는 함수 추가 예정
                 youTubePlayer.cueVideo(videoId, 0f)
             }

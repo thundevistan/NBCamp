@@ -8,6 +8,7 @@ import android.util.Log
 import bootcamp.sparta.disneym.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 object Util {
     private const val SHARED_PREFS_KEY = "shared_prefs_key"
@@ -42,8 +43,12 @@ object Util {
         edit.apply()
 
     }
+    
 
-    fun shareUrl(context: Context, url : String){
+    fun shareUrl(context: Context, videoId : String){
+
+        val url = idToUrl(videoId)
+
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, url)
@@ -56,5 +61,7 @@ object Util {
         }, null)
         context.startActivity(share)
     }
+
+    private fun idToUrl(id : String): String = "https://www.youtube.com/watch?v=$id"
 
 }

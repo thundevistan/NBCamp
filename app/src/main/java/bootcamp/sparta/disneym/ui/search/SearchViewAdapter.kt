@@ -1,15 +1,12 @@
 package bootcamp.sparta.disneym.ui.search
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerViewItemBinding
 import bootcamp.sparta.disneym.model.SearchModel
-import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import com.bumptech.glide.Glide
 
 /*

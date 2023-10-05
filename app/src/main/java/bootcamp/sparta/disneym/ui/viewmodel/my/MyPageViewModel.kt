@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import bootcamp.sparta.disneym.domain.repository.MyPageRepository
 import bootcamp.sparta.disneym.domain.usecase.mypage.LoadUserDataUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.SaveUserDataUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.UpdateUserIdUseCase

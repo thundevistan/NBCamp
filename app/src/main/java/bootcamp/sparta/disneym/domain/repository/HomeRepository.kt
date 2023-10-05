@@ -6,7 +6,7 @@ import bootcamp.sparta.disneym.ui.mypage.UserModel
  * 추민수
  * Facade 패턴을 사용한 Repository (건물의 앞부분)
  */
-interface MyPageRepository {
+interface HomeRepository {
     fun updateUserId(id: String): UserModel
 
     fun updateUserPw(pw: String): UserModel

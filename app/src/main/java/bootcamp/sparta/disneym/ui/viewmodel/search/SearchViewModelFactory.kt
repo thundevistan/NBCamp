@@ -2,18 +2,21 @@ package bootcamp.sparta.disneym.ui.viewmodel.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import bootcamp.sparta.disneym.repository.SearchRepositoryImpl
-import bootcamp.sparta.disneym.ui.search.SearchRepository
-import bootcamp.sparta.disneym.ui.search.SearchUseCase
-import bootcamp.sparta.disneym.ui.search.VideoUseCase
+import bootcamp.sparta.disneym.domain.repository.HomeRepositoryImpl
+import bootcamp.sparta.disneym.domain.repository.MainRepository
+import bootcamp.sparta.disneym.domain.repository.SearchRepositoryImpl
+import bootcamp.sparta.disneym.domain.usecase.home.GetVideoUseCase
+import bootcamp.sparta.disneym.domain.usecase.search.SearchUseCase
 
 class SearchViewModelFactory : ViewModelProvider.Factory {
 
-    private val repository = SearchRepositoryImpl()
+    private val searchRepository = SearchRepositoryImpl()
+    private val videoRepository = HomeRepositoryImpl()
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
-            return SearchViewModel(searchUseCase = SearchUseCase(repository),
-                videoUseCase = VideoUseCase(repository)) as T
+            return SearchViewModel(searchUseCase = SearchUseCase(searchRepository),
+                videoUseCase = GetVideoUseCase(videoRepository)
+            ) as T
         }
         throw IllegalArgumentException("ViewModel을 찾을 수 없습니다.")
     }

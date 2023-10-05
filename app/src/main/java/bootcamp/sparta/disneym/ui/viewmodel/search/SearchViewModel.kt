@@ -5,13 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import bootcamp.sparta.disneym.domain.usecase.home.GetVideoUseCase
 import bootcamp.sparta.disneym.model.SearchModel
-import bootcamp.sparta.disneym.ui.search.SearchRepository
-import bootcamp.sparta.disneym.ui.search.SearchUseCase
-import bootcamp.sparta.disneym.ui.search.VideoUseCase
+import bootcamp.sparta.disneym.domain.usecase.search.SearchUseCase
 import kotlinx.coroutines.launch
 
-class SearchViewModel(private val searchUseCase: SearchUseCase, private val videoUseCase: VideoUseCase): ViewModel() {
+class SearchViewModel(private val searchUseCase: SearchUseCase, private val videoUseCase: GetVideoUseCase): ViewModel() {
 
     private val _searchItem: MutableLiveData<List<SearchModel>> = MutableLiveData()
     val searchItem: LiveData<List<SearchModel>> = _searchItem

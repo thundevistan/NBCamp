@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import bootcamp.sparta.disneym.databinding.HomeRecyclerItemBinding
-import bootcamp.sparta.disneym.model.HomeModel
+import bootcamp.sparta.disneym.domain.model.HomeModel
 import com.bumptech.glide.Glide
 
 /**

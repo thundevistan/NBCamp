@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bootcamp.sparta.disneym.domain.usecase.home.GetVideoUseCase
-import bootcamp.sparta.disneym.model.SearchModel
+import bootcamp.sparta.disneym.domain.model.SearchModel
 import bootcamp.sparta.disneym.domain.usecase.search.SearchUseCase
 import kotlinx.coroutines.launch
 

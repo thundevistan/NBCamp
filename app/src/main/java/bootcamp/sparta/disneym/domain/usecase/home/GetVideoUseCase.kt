@@ -2,7 +2,6 @@ package bootcamp.sparta.disneym.domain.usecase.home
 
 import bootcamp.sparta.disneym.BuildConfig
 import bootcamp.sparta.disneym.domain.repository.MainRepository
-import bootcamp.sparta.disneym.domain.repository.SearchRepositoryImpl
 
 class GetVideoUseCase(private val repository: MainRepository) {
 

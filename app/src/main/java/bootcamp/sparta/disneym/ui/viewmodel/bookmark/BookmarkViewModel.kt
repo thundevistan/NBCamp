@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import bootcamp.sparta.disneym.DisneyMinusApp
-import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.domain.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import bootcamp.sparta.disneym.ui.viewmodel.detail.DetailViewModel
 import bootcamp.sparta.disneym.util.Util

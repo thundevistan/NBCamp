@@ -12,8 +12,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.FragmentBookmarkBinding
-import bootcamp.sparta.disneym.model.BookmarkModel
-import bootcamp.sparta.disneym.model.toBookmarkModel
+import bootcamp.sparta.disneym.domain.model.BookmarkModel
+import bootcamp.sparta.disneym.domain.model.toBookmarkModel
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForBookmark
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForHome
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel

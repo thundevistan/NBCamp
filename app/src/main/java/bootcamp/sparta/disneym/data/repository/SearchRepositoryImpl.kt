@@ -1,7 +1,8 @@
-package bootcamp.sparta.disneym.domain.repository
+package bootcamp.sparta.disneym.data.repository
 
-import bootcamp.sparta.disneym.data.datasource.remote.Search
+import bootcamp.sparta.disneym.data.model.Search
 import bootcamp.sparta.disneym.data.datasource.remote.YoutubeRetrofit
+import bootcamp.sparta.disneym.domain.repository.SearchRepository
 import retrofit2.Response
 
 /*

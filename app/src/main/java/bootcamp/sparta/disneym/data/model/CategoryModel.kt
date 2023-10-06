@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.data.datasource.remote
+package bootcamp.sparta.disneym.data.model
 
 import com.google.gson.annotations.SerializedName
 

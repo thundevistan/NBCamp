@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.SearchRecyclerMainItemBinding
-import bootcamp.sparta.disneym.model.SearchModel
+import bootcamp.sparta.disneym.domain.model.SearchModel
 import com.bumptech.glide.Glide
 
 /*

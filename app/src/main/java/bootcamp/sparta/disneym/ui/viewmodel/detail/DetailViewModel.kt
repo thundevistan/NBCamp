@@ -3,7 +3,7 @@ package bootcamp.sparta.disneym.ui.viewmodel.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
 /*
  * 추민수
  * DetialPage 데이터 관리를 위한 ViewModel

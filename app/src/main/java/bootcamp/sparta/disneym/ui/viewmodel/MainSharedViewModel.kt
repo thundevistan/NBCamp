@@ -3,14 +3,14 @@ package bootcamp.sparta.disneym.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import bootcamp.sparta.disneym.model.BookmarkModel
-import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.model.HomeModel
-import bootcamp.sparta.disneym.model.SearchModel
-import bootcamp.sparta.disneym.model.TestModel1
-import bootcamp.sparta.disneym.model.toBookmarkModel
-import bootcamp.sparta.disneym.model.toDetailModel
-import bootcamp.sparta.disneym.model.toHomeModel
+import bootcamp.sparta.disneym.domain.model.BookmarkModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.HomeModel
+import bootcamp.sparta.disneym.domain.model.SearchModel
+import bootcamp.sparta.disneym.domain.model.TestModel1
+import bootcamp.sparta.disneym.domain.model.toBookmarkModel
+import bootcamp.sparta.disneym.domain.model.toDetailModel
+import bootcamp.sparta.disneym.domain.model.toHomeModel
 
 /*
  * 작성자 : 추민수

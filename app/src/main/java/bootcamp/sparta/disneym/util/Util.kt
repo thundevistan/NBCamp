@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import bootcamp.sparta.disneym.R
-import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.domain.model.BookmarkModel
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType
 import bootcamp.sparta.disneym.ui.mypage.UserModel
 import com.google.gson.Gson

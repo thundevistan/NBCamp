@@ -15,7 +15,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import bootcamp.sparta.disneym.databinding.FragmentDetailBinding
-import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
 import bootcamp.sparta.disneym.ui.main.MainActivity
 import bootcamp.sparta.disneym.util.Util
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedEventForDetail

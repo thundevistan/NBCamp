@@ -1,4 +1,4 @@
-package bootcamp.sparta.disneym.model
+package bootcamp.sparta.disneym.domain.model
 
 import android.os.Parcelable
 import bootcamp.sparta.disneym.ui.bookmark.BookmarkViewType

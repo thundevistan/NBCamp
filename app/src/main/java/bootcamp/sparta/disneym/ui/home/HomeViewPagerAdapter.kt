@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.HomeViewpagerItemBinding
-import bootcamp.sparta.disneym.model.HomeModel
+import bootcamp.sparta.disneym.domain.model.HomeModel
 import com.bumptech.glide.Glide
 
 /**

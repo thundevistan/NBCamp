@@ -2,13 +2,12 @@ package bootcamp.sparta.disneym.ui.viewmodel.my
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import bootcamp.sparta.disneym.domain.repository.MyPageRepositoryImpl
+import bootcamp.sparta.disneym.data.repository.MyPageRepositoryImpl
 import bootcamp.sparta.disneym.domain.usecase.mypage.LoadUserDataUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.SaveUserDataUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.UpdateUserIdUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.UpdateUserProfileUseCase
 import bootcamp.sparta.disneym.domain.usecase.mypage.UpdateUserPwUseCase
-import bootcamp.sparta.disneym.ui.mypage.UserModel
 
 class MyPageFactory : ViewModelProvider.Factory {
 

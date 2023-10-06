@@ -2,7 +2,7 @@ package bootcamp.sparta.disneym.ui.viewmodel.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import bootcamp.sparta.disneym.domain.repository.HomeRepositoryImpl
+import bootcamp.sparta.disneym.data.repository.HomeRepositoryImpl
 import bootcamp.sparta.disneym.domain.usecase.home.GetVideoUseCase
 
 class HomeViewModelFactory(): ViewModelProvider.Factory {

@@ -1,5 +1,9 @@
 package bootcamp.sparta.disneym.data.datasource.remote
 
+import bootcamp.sparta.disneym.data.model.Channels
+import bootcamp.sparta.disneym.data.model.Search
+import bootcamp.sparta.disneym.data.model.VideoCategories
+import bootcamp.sparta.disneym.data.model.Videos
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import bootcamp.sparta.disneym.databinding.BookmarkRecyclerItemBinding
 import bootcamp.sparta.disneym.databinding.BookmarkRecyclerItemCheckboxBinding
-import bootcamp.sparta.disneym.model.BookmarkModel
+import bootcamp.sparta.disneym.domain.model.BookmarkModel
 import com.bumptech.glide.Glide
 
 /*

@@ -1,8 +1,9 @@
-package bootcamp.sparta.disneym.domain.repository
+package bootcamp.sparta.disneym.data.repository
 
 import android.content.Context
 import android.util.Log
 import bootcamp.sparta.disneym.R
+import bootcamp.sparta.disneym.domain.repository.HomeRepository
 import bootcamp.sparta.disneym.ui.mypage.UserModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

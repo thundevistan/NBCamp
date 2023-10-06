@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.ActivityDetailBinding
-import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
 import bootcamp.sparta.disneym.ui.search.SearchFragment
 
 class DetailActivity : AppCompatActivity() {

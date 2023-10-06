@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import bootcamp.sparta.disneym.R
 import bootcamp.sparta.disneym.databinding.ActivityMainBinding
-import bootcamp.sparta.disneym.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.viewmodel.MainSharedViewModel
 import com.google.android.material.tabs.TabLayoutMediator

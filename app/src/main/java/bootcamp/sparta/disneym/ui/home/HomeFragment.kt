@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import bootcamp.sparta.disneym.databinding.FragmentHomeBinding
-import bootcamp.sparta.disneym.model.DetailModel
-import bootcamp.sparta.disneym.model.toDetailModel
+import bootcamp.sparta.disneym.domain.model.DetailModel
+import bootcamp.sparta.disneym.domain.model.toDetailModel
 import bootcamp.sparta.disneym.ui.detail.DetailActivity
 import bootcamp.sparta.disneym.ui.home.Category.ENTERTAINMENT
 import bootcamp.sparta.disneym.ui.home.Category.FILM

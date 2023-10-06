@@ -1,10 +1,10 @@
-package bootcamp.sparta.disneym.domain.repository
+package bootcamp.sparta.disneym.data.repository
 
-import bootcamp.sparta.disneym.data.datasource.remote.Channels
-import bootcamp.sparta.disneym.data.datasource.remote.Search
-import bootcamp.sparta.disneym.data.datasource.remote.VideoCategories
-import bootcamp.sparta.disneym.data.datasource.remote.Videos
+import bootcamp.sparta.disneym.data.model.Channels
+import bootcamp.sparta.disneym.data.model.VideoCategories
+import bootcamp.sparta.disneym.data.model.Videos
 import bootcamp.sparta.disneym.data.datasource.remote.YoutubeRetrofit
+import bootcamp.sparta.disneym.domain.repository.MainRepository
 import retrofit2.Response
 
 class HomeRepositoryImpl: MainRepository {

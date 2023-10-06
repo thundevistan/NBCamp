@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bootcamp.sparta.disneym.BuildConfig
 import bootcamp.sparta.disneym.domain.usecase.home.GetVideoUseCase
-import bootcamp.sparta.disneym.model.HomeModel
+import bootcamp.sparta.disneym.domain.model.HomeModel
 import bootcamp.sparta.disneym.ui.home.Category
 import kotlinx.coroutines.launch
 

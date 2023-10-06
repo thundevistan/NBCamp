@@ -82,87 +82,89 @@ YouTube API를 활용하여 사용자에게 원하는 동영상을 쉽게 제공
   - [YouTube Data API v3](https://console.cloud.google.com/marketplace/product/google/youtube.googleapis.com?hl=ko&project=disneym)
 
 ## File Structure
-- `datasource.remote/`
-  - `CategoryModel.kt` : 카테고리 정보를 받아오는 데이터 모델
-  - `ChannelModel.kt`: 채널 정보를 받아오는 데이터 모델
-  - `SearchEntity` : 검색 정보를 받아오는 데이터 모델
-  - `VideoModel` : 동영상 정보를 받아오는 데이터 모델
-  - `YoutubeApi` : Retrofit API 인터페이스를 정의 
-  - `YoutubeRetrofit` : Youtube API 인터페이스의 구현체를 생성하고 반환 
+- `data`
+  - `datasource.remote/`
+    - `YoutubeApi` : Retrofit API 인터페이스를 정의 
+    - `YoutubeRetrofit` : Youtube API 인터페이스의 구현체를 생성하고 반환
+  - `modle/`
+    - `CategoryModel.kt` : 카테고리 정보를 받아오는 데이터 모델
+    - `ChannelModel.kt`: 채널 정보를 받아오는 데이터 모델
+    - `SearchEntity` : 검색 정보를 받아오는 데이터 모델
+    - `VideoModel` : 동영상 정보를 받아오는 데이터 모델
+  - `repository/`
+    - `SearchRepositoryImpl` : Retrofit을 사용하여 검색 요청 후 응답 반환 
+    - `MyPageRepositoryImpl` : 실질적인 데이터를 관리하는 Repository 구현부 / SharedPreferences로 나의 정보를 저장 
+    - `HomeRepositoryImpl` : Retrofit을 사용하여 데이터 요청 후 응답 반환 
 - `domain/`
   - `repository/`
-    - `MainRepository` : 
+    - `MyPageRepository` : 마이 페이지 정보 관련 데이터를 처리하는 메서드를 정의
     - `HomeRepository` : 동영상, 채널, 카테고리 관련 데이터를 처리하는 메서드를 정의 
-    - `HomeRepositoryImpl` : Retrofit을 사용하여 데이터 요청 후 응답 반환 
     - `SearchRepository` : 검색 관련 데이터를 처리하는 메서드를 정의(검색 결과를 가져온다)
-    - `SearchRepositoryImpl` : Retrofit을 사용하여 검색 요청 후 응답 반환 
-    - `MyPageeRepositoryImpl` :
   - `usecase/`
     - `home/`
-      - `GetVideoUseCase`
+      - `GetVideoUseCase` : HomeRepository를 주입받아 동영상 작업을 수행
     - `mypage/`
-      - `LoadUserDataUseCase`
-      - `SaveUserDataUseCase`
-      - `UpdateUserIdUseCase`
-      - `UpdateUserProfileUseCase`
-      - `UpdateUserPwUseCase`
+      - `LoadUserDataUseCase` : MyPageRepositoryImpl를 주입받아 사용자 데이터를 로드하는 작업을 처리한다. 
+      - `SaveUserDataUseCase` : MyPageRepositoryImpl를 주입받아 사용자 데이터를 저장하는 작업을 처리한다. 
+      - `UpdateUserIdUseCase` : MyPageRepositoryImpl를 주입받아 사용자의 아이디를 업데이트 하는 작업을 처리한다. 
+      - `UpdateUserProfileUseCase` : MyPageRepositoryImpl를 주입받아 사용자의 프로필을 업데이트하는 작업을 처리한다. 
+      - `UpdateUserPwUseCase` : MyPageRepositoryImpl를 주입받아 사용자의 패스워드를 업데이트하는 작업을 처리한다. 
     - `search/`
       - `SearchUseCase` : SearchRepository를 주입받아 검색 작업을 수행 
-- `Model/` : 모든 모델들을 `DetailModel`로 변환하기 위해 확장 함수 `toDetailModel` 제공. 
-  - `BookmarkModel` : 보관함 데이터 모델(확장 함수를 이용해 `HomeModel`로도 변환)
-  - `DetailModel` : 상세 페이지 데이터 모델(확장 함수를 이용해 `BookMarkModel`, `HomeModel`로 변환)
-  - `HomeModel` : 홈 페이지 데이터 모델(확장 함수를 이용해 `BookMarkModel`, `DetailModel`로 변환)
-  - `SearchModel` : 검색 데이터 모델. 
- 
+  - `Model/` : 모든 모델들을 `DetailModel`로 변환하기 위해 확장 함수 `toDetailModel` 제공. 
+    - `BookmarkModel` : 보관함 데이터 모델(확장 함수를 이용해 `HomeModel`로도 변환)
+    - `DetailModel` : 상세 페이지 데이터 모델(확장 함수를 이용해 `BookMarkModel`, `HomeModel`로 변환)
+    - `HomeModel` : 홈 페이지 데이터 모델(확장 함수를 이용해 `BookMarkModel`, `DetailModel`로 변환)
+    - `SearchModel` : 검색 데이터 모델. 
 - `ui/`
   - `bookmark/`
-    - `BookMarkFragment`
-    - `BookMarkListAdapter`
-    - `BookMarkViewType`
+    - `BookMarkFragment` : 보관함 UI 및 로직 관련 
+    - `BookMarkListAdapter` : ListAdapter를 상속하며 편집 상태에 맞는 뷰 타입에 따른 뷰홀더 생성하는 어댑터
+    - `BookMarkViewType` : 뷰 타입을 구분하기 위해 사용하는 sealed class
   - `detail/`
-    - `DetailActivity`
-    - `DetailFragment`
+    - `DetailActivity` : 디테일 프래그먼트를 초기화하고 상세 정보를 표시하는 화면을 관리 
+    - `DetailFragment` : 상세 페이지 UI 및 로직 관련 
   - `home/`
-    - `HomeFragment`
-    - `HomeRecyclerAdapter`
-    - `HomeViewPagerAdapter`
+    - `HomeFragment` : 홈 화면 UI 및 로직 관련
+    - `HomeRecyclerAdapter` : 홈 화면의 리싸이클러뷰 아이템을 표시하고 관리하는 어댑터
+    - `HomeViewPagerAdapter` : 홈 화면 상단에 위치한 뷰 페이저의 아이템을 표시하고 관리하는 어댑터
   - `main/`
-    - `MainActivity`
-    - `ViewPagerAdapter`
+    - `MainActivity` : 앱의 메인 화면을 구성 
+    - `ViewPagerAdapter` : MainActivity에서 사용하는 뷰 페이저 어댑터 
   - `mypage/`
-    `dialog/`
-      - `MyPageProfileDialog`
-      - `MyPageTextDialog`
-      - `ProfileDialogModel`
-      - `ProfileListAdapter`
-    - `EditDialogType`
-    - `MyPageFragment`
-    - `UserModel`
+    - `dialog/`
+      - `MyPageProfileDialog` : 프로필 사진 변경 다이얼로그
+      - `MyPageTextDialog` : ID와 PW를 수정하기 위한 다이얼로그 
+      - `ProfileDialogModel` : 프로필 이미지를 전달하기 위한 모델
+      - `ProfileListAdapter` : ListAdapter를 상속하며 프로필 이미지 목록을 표시하기 위한 리싸이클러뷰 어댑터 
+    - `EditDialogType` 
+    - `MyPageFragment` : 사용자의 개인 정보 UI 및 로직 관련
+    - `UserModel` : 사용자 정보를 나타내는 데이터 모델 
   - `search/`
-    - `SearchFragment`
-    - `SearchMainAdapter`
-    - `SearchViewAdapter`
+    - `SearchFragment` : 검색 화면 UI 및 로직 관련
+    - `SearchMainAdapter` : ListAdapter를 상속하며 검색 메인 리싸이클러뷰 어댑터
+    - `SearchViewAdapter` : ListAdapter를 상속하며 검색 결과를 보여주는 리싸이클러뷰 어댑터 
   - `splash/`
-    - `SplashActivity`
+    - `SplashActivity` : 앱의 스플래시 화면을 나타내는 액티비티
   - `viewmodel/`
     - `bookmark/`
-      - `BookmarkViewModel`
+      - `BookmarkViewModel` : LiveData를 생성하여 북마크 관련 데이터 및 뷰 업데이트를 관리하는 ViewModel. 내부에 ViewModelFactory 생성.
     - `detail/`
-      - `DetailViewModel`
-      - `DetailViewModelFactory`
+      - `DetailViewModel` : LiveData를 생성하여 상세 페이지 관련 데이터 및 뷰 업데이트를 관리하는 ViewModel.
+      - `DetailViewModelFactory` : DetailViewModel 생성을 위한 Factory 클래스
     - `home/`
-      - `HomeViewModel`
-      - `HomeViewModelFactory`
+      - `HomeViewModel` :  LiveData를 생성하여 홈 화면 관련 데이터 및 뷰 업데이트를 관리하는 ViewModel.
+      - `HomeViewModelFactory` : HomeViewModel 생성을 위한 Factory 클래스
     - `my/`
-      - `MyPageFactory`
-      - `MyPageViewModel`
+      - `MyPageFactory` : MyPageViewModel 생성을 위한 Factory 클래스
+      - `MyPageViewModel` : LiveData를 생성하여 마이 페이지 관련 데이터 및 뷰 업데이트를 관리하는 ViewModel.
     - `search/`
-      - `SearchViewModel`
-      - `SearchViewModelFactory`
-    - `MainSharedViewModel`
+      - `SearchViewModel` : LiveData를 생성하여 검색 화면 관련 데이터 및 뷰 업데이트를 관리하는 ViewModel.
+      - `SearchViewModelFactory` : SearchViewModel 생성을 위한 Factory 클래스
+    - `MainSharedViewModel` : 프래그먼트 간 데이터를 공유하고 관리하기 위한 ViewModel
 - `util`
-  - `Util`
-- `DisneyMinusApp`
+  - `Util` : 여러 유틸리티 기능을 제공하는 유틸리티 클래스
+- `DisneyMinusApp` : 
 
 ## Showcase
 

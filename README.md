@@ -45,9 +45,9 @@ YouTube API를 활용하여 사용자에게 원하는 동영상을 쉽게 제공
 
 ## Style / Logo 
 - 실제 Disney+ 어플의 색상과 이미지를 참조하여 만들었습니다.
-
-<img width="200" alt="스크린샷 2023-10-05 오후 3 51 30" src="https://github.com/Disneym/Disneym/assets/133577209/77e51a7f-3f7e-49e2-afde-10d26f417266"> 
-<img width="400" src="https://github.com/Disneym/Disneym/assets/133577209/36712213-2060-4e53-a20a-bd6739106b42">
+  
+<img height="400" src="https://github.com/Disneym/Disneym/assets/133577209/36712213-2060-4e53-a20a-bd6739106b42">
+<img width="226" alt="스크린샷 2023-10-06 오전 11 34 03" src="https://github.com/Disneym/Disneym/assets/132810978/81ef2363-5764-4d28-8e0f-28810502bb52">
 
 ## Architecture
 ### MVVM / Clean Architecture
@@ -137,7 +137,7 @@ YouTube API를 활용하여 사용자에게 원하는 동영상을 쉽게 제공
       - `MyPageTextDialog` : ID와 PW를 수정하기 위한 다이얼로그 
       - `ProfileDialogModel` : 프로필 이미지를 전달하기 위한 모델
       - `ProfileListAdapter` : ListAdapter를 상속하며 프로필 이미지 목록을 표시하기 위한 리싸이클러뷰 어댑터 
-    - `EditDialogType` 
+    - `EditDialogType` : ID, PW 수정 시 Input Type을 진입점에 따라 다르게 설정해주는 Enum Class
     - `MyPageFragment` : 사용자의 개인 정보 UI 및 로직 관련
     - `UserModel` : 사용자 정보를 나타내는 데이터 모델 
   - `search/`
@@ -169,8 +169,16 @@ YouTube API를 활용하여 사용자에게 원하는 동영상을 쉽게 제공
 ## Showcase
 
 <img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/b2f5e7b2-7fab-49c1-b4b0-662b4facd824"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/f7640656-58a8-4562-b171-cc0864c337c4"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/8631a7f8-199a-454a-aee2-c03e80d1a27d">
+
 <img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/80a8ee9f-5852-4040-aba9-79d874dd6015"><img width="30%" alt="imagee" src="https://github.com/Disneym/Disneym/assets/133577209/1d6a56fe-06ea-49b7-807f-b98d93b580b5"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/46b91b34-3431-4d2f-aea2-c64fdb9928f9">
-<img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/cd6e9fd0-5078-47cd-b2e8-63dc62df639d"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/a4149bc4-0574-4d73-a400-6e003ab62832"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/dac2c311-ea8b-418c-88d3-39b930b3b524"> 
+
+<img width="30%" alt="image" src= "https://github.com/Disneym/Disneym/assets/132810978/158f24b9-ee67-4a98-a97c-0205052c0f3e"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/cd6e9fd0-5078-47cd-b2e8-63dc62df639d"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/133577209/a4149bc4-0574-4d73-a400-6e003ab62832">
+
+
+<img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/248da3fd-d1ea-4c9c-a605-b36023818168"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/b2093df4-ad27-4899-9520-0fd60f770968"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/6f096690-ae44-4a91-88d6-b0db43458578">
+
+<img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/99a9699a-ecb7-4611-a206-0d4abfad5024"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/5c74092e-53d7-4d7a-82d0-df4bfc8211ed"><img width="30%" alt="image" src="https://github.com/Disneym/Disneym/assets/132810978/8af1d102-eac4-4a55-be86-39c468aa7f09"> 
+
 
 
 ## Team Notion 

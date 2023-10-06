@@ -1,9 +1,9 @@
 package bootcamp.sparta.disneym.domain.usecase.home
 
 import bootcamp.sparta.disneym.BuildConfig
-import bootcamp.sparta.disneym.domain.repository.MainRepository
+import bootcamp.sparta.disneym.domain.repository.HomeRepository
 
-class GetVideoUseCase(private val repository: MainRepository) {
+class GetVideoUseCase(private val repository: HomeRepository) {
 
 	suspend operator fun invoke(
 		part: String = "snippet",

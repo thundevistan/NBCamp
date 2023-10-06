@@ -15,11 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object YoutubeRetrofit {
 
+    private const val BASE_URL = "https://www.googleapis.com/"
+
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(API_KEY.BASE_URL)
+        .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(httpClient.build())
         .build()

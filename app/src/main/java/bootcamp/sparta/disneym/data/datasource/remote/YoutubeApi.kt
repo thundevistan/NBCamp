@@ -1,5 +1,6 @@
 package bootcamp.sparta.disneym.data.datasource.remote
 
+import bootcamp.sparta.disneym.BuildConfig
 import bootcamp.sparta.disneym.data.model.Channels
 import bootcamp.sparta.disneym.data.model.Search
 import bootcamp.sparta.disneym.data.model.VideoCategories
@@ -20,10 +21,9 @@ import retrofit2.http.Query
 * */
 interface YoutubeApi {
 
-
     @GET("youtube/v3/videos")
     suspend fun getPopularVideos (
-        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("key") key : String = BuildConfig.YOUTUBE_API_KEY,
         @Query("part") part : String,
         @Query("chart") chart : String,
         @Query("maxResults") maxResults: Int,
@@ -33,21 +33,21 @@ interface YoutubeApi {
 
     @GET("youtube/v3/videoCategories")
     suspend fun getVideoCategory (
-        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("key") key : String = BuildConfig.YOUTUBE_API_KEY,
         @Query("part") part : String,
         @Query("regionCode") regionCode : String
         ) : Response<VideoCategories>
 
     @GET("youtube/v3/channels")
     suspend fun getYoutubeChanel (
-        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("key") key : String = BuildConfig.YOUTUBE_API_KEY,
         @Query("part") part : String,
         @Query("id") id : String
         ) : Response<Channels>
 
     @GET("youtube/v3/search")
     suspend fun getSearch (
-        @Query("key") key : String = API_KEY.AUTH_KEY,
+        @Query("key") key : String = BuildConfig.YOUTUBE_API_KEY,
         @Query("q") q: String,
         @Query("part") part: String,
         @Query("maxResults") maxResults: Int

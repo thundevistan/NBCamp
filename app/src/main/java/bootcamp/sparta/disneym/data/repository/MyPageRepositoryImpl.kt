@@ -3,7 +3,7 @@ package bootcamp.sparta.disneym.data.repository
 import android.content.Context
 import android.util.Log
 import bootcamp.sparta.disneym.R
-import bootcamp.sparta.disneym.domain.repository.HomeRepository
+import bootcamp.sparta.disneym.domain.repository.MyPageRepository
 import bootcamp.sparta.disneym.ui.mypage.UserModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken
  * 실질적인 데이터를 관리하는 Repository 구현부
  * 데이터에 대한 처리를 다룸
  */
-class MyPageRepositoryImpl : HomeRepository {
+class MyPageRepositoryImpl : MyPageRepository {
 
     private val USER_SHARED_PREFS_KEY = "user_shared_prefs_key"
     private val USER_SHARED_PREFS_NAME = "user_shared_prefs_name"

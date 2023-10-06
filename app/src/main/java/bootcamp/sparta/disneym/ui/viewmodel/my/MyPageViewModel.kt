@@ -19,12 +19,11 @@ import bootcamp.sparta.disneym.ui.mypage.UserModel
  * 주요 이점은 상태를 저장하여 구성이 변경되어도 이를 유지하는 것 ( 화면 회전 시에도 UI가 데이터를 다시 가져오지 않아도 됨 )
  */
 class MyPageViewModel(
-    private val loadUser : LoadUserDataUseCase,
-    private val saveUser : SaveUserDataUseCase,
-    private val updateId : UpdateUserIdUseCase,
-    private val updatePw : UpdateUserPwUseCase,
-    private val updateProfile : UpdateUserProfileUseCase
-
+    private val loadUser: LoadUserDataUseCase,
+    private val saveUser: SaveUserDataUseCase,
+    private val updateId: UpdateUserIdUseCase,
+    private val updatePw: UpdateUserPwUseCase,
+    private val updateProfile: UpdateUserProfileUseCase
 ) : ViewModel() {
 
     private val _userInfo: MutableLiveData<UserModel> = MutableLiveData()
@@ -47,6 +46,6 @@ class MyPageViewModel(
     }
 
     fun saveUserData(context: Context, userModel: UserModel) {
-       saveUser(context,userModel)
+        saveUser(context, userModel)
     }
 }

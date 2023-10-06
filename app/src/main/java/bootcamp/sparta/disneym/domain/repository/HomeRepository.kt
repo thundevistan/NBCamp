@@ -1,19 +1,20 @@
 package bootcamp.sparta.disneym.domain.repository
 
-import android.content.Context
-import bootcamp.sparta.disneym.ui.mypage.UserModel
+import bootcamp.sparta.disneym.data.model.Channels
+import bootcamp.sparta.disneym.data.model.VideoCategories
+import bootcamp.sparta.disneym.data.model.Videos
+import retrofit2.Response
+
 /*
- * 추민수
- * Facade 패턴을 사용한 Repository (건물의 앞부분)
- */
+* Copyright 2023 김현준, Inc.
+* 각 메서드는 인기 동영상, 카테고리 목록, 채널 정보를 가져오고
+* YoutubeRetrofit 객체로 초기화한 API에서 각각의 목록과 정보를 요청하고 반환한다 */
+
 interface HomeRepository {
-    fun updateUserId(id: String): UserModel
+    suspend fun getVideos(part: String, chart: String, key: String, maxResults: Int, videoCategoryId: Int, regionCode: String) : Response<Videos>
 
-    fun updateUserPw(pw: String): UserModel
+    suspend fun getCategories(part: String, regionCode: String, key: String) : Response<VideoCategories>
 
-    fun updateUserProfile(profile: Int): UserModel
+    suspend fun getChannels(part: String, id: String, key: String) : Response<Channels>
 
-    fun loadUserData(context: Context): UserModel
-
-    fun saveUserData(context: Context, userModel: UserModel)
 }

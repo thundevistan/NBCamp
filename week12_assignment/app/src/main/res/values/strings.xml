@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Disneym</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_title_Disney">Disney-</string>
+    <string name="main_explore_film">FILM</string>
+    <string name="main_explore_pets">PETS</string>
+    <string name="main_explore_music">MUSIC</string>
+    <string name="main_explore_people">PEOPLE</string>
+    <string name="main_explore_gaming">GAMING</string>
+    <string name="main_explore_entertainment">ENTERTAINMENT</string>
+    <string name="detial_btn_play">▶  PLAY</string>
+    <string name="detail_test_title">AVENGERS</string>
+    <string name="detail_test_datetime">2023 • 08/23</string>
+    <string name="detail_play">PLAY</string>
+    <string name="detail_test_description">Avengers: Infinity War is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers.</string>
+    <string name="search_hint">Search</string>
+    <string name="search_main_explore">Explore</string>
+    <string name="search_originals_btn">Originals</string>
+    <string name="search_pets_btn">pets</string>
+    <string name="search_news_btn">news</string>
+    <string name="search_mostPopular">most popular</string>
+    <string name="search_shorts">shorts</string>
+    <string name="search_sports">sports</string>
+    <string name="search_comedy">comedy</string>
+    <string name="search_movies_btn">Movies</string>
+    <string name="search_series_btn">Series</string>
+    <string name="my_edit">EDIT</string>
+    <string name="my_page_account_details">ACCOUNT DETAILS</string>
+    <string name="my_page_id">disneym@gmail.com</string>
+    <string name="my_page_pw">********</string>
+    <string name="password">Password : </string>
+    <string name="my_log_out">Log out of All device</string>
+    <string name="my_subscription">SUBSCRIPTION</string>
+    <string name="my_subscription_title">Disney- (Monthly)</string>
+    <string name="my_subscription_text">Switch to annual and save over 15%</string>
+    <string name="my_monthly_description_tv">Manage your subscription preferences by going to your\nGoogle Play account.</string>
+    <string name="my_version">VERSION</string>
+    <string name="my_version_text">1.17.1 (2107290)</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="profile">PROFILE</string>
+</resources>
